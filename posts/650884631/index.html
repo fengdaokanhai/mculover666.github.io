@@ -4,7 +4,7 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="【STM32Cube_12】使用通用定时器产生PWM驱动蜂鸣器, 嵌入式软件 C/C++ ARM Linux 物联网IoT">
+    <meta name="keywords" content="STM32CubeMX PWM 定时器">
     <meta name="description" content="本篇详细的记录了如何使用STM32CubeMX配置STM32L431RCT6的通用定时器外设，产生PWM驱动无源蜂鸣器。
 
 
@@ -20,7 +20,7 @@
     <meta name="format-detection" content="telephone=no">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    <title>【STM32Cube_12】使用通用定时器产生PWM驱动蜂鸣器 | Mculover666</title>
+    <title>STM32CubeMX_12 | 使用通用定时器产生PWM驱动蜂鸣器 | Mculover666</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
@@ -77,13 +77,6 @@
     <ul class="sub-nav menus_item_child ">
       
       <li>
-        <a href="/posts/3223194057/">
-          
-          <span>Hexo</span>
-        </a>
-      </li>
-      
-      <li>
         <a href="/posts/578764034/">
           
           <span>STM32CubeMX</span>
@@ -96,20 +89,20 @@
   
   <li class="hide-on-med-and-down nav-item">
     
-    <a href="/categories" class="waves-effect waves-light">
+    <a href="https://blog.csdn.net/Mculover666" target="_blank" rel="noopener" class="waves-effect waves-light">
       
       <i class="fas fa-bookmark" style="zoom: 0.6;"></i>
       
-      <span>精选文章</span>
+      <span>CSDN</span>
     </a>
     
   </li>
   
   <li class="hide-on-med-and-down nav-item">
     
-    <a href="/friends" class="waves-effect waves-light">
+    <a href="/download" class="waves-effect waves-light">
       
-      <i class="fas fa-address-book" style="zoom: 0.6;"></i>
+      <i class="fas fa-download" style="zoom: 0.6;"></i>
       
       <span>资源下载</span>
     </a>
@@ -132,7 +125,7 @@
         <div class="logo-name">Mculover666</div>
         <div class="logo-desc">
             
-            一个喜欢玩板子的小码农
+            嵌入式 STM32 物联网领域的教程及精彩内容分享
             
         </div>
     </div>
@@ -165,14 +158,6 @@
               
                 <li>   
 				
-                  <a href="/posts/3223194057/ " style="margin-left:75px";>
-				  
-		          <span>Hexo</span>
-                  </a>
-                </li>
-              
-                <li>   
-				
                   <a href="/posts/578764034/ " style="margin-left:75px";>
 				  
 		          <span>STM32CubeMX</span>
@@ -185,20 +170,20 @@
         
         <li class="m-nav-item">
 	  
-		<a href="/categories" class="waves-effect waves-light">
+		<a href="https://blog.csdn.net/Mculover666" target="_blank" rel="noopener" class="waves-effect waves-light">
 			
 			    <i class="fa-fw fas fa-bookmark"></i>
 			
-			精选文章
+			CSDN
 		</a>
           
         </li>
         
         <li class="m-nav-item">
 	  
-		<a href="/friends" class="waves-effect waves-light">
+		<a href="/download" class="waves-effect waves-light">
 			
-			    <i class="fa-fw fas fa-address-book"></i>
+			    <i class="fa-fw fas fa-download"></i>
 			
 			资源下载
 		</a>
@@ -283,13 +268,13 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/2.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/0.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
                     <div class="description center-align post-title">
-                        【STM32Cube_12】使用通用定时器产生PWM驱动蜂鸣器
+                        STM32CubeMX_12 | 使用通用定时器产生PWM驱动蜂鸣器
                     </div>
                 </div>
             </div>
@@ -465,28 +450,28 @@
 <h1 id="1-准备工作"><a href="#1-准备工作" class="headerlink" title="1. 准备工作"></a>1. 准备工作</h1><h2 id="硬件准备"><a href="#硬件准备" class="headerlink" title="硬件准备"></a>硬件准备</h2><ul>
 <li>开发板<br>首先需要准备一个开发板，这里我准备的是STM32L4的开发板（BearPi）：</li>
 </ul>
-<p><img src="http://mculover666.cn/image/20190806/9uiPTi5odYSj.png?imageslim" alt="mark"></p>
+<p><img src="http://mculover666.cn/image/20190806/9uiPTi5odYSj.png?imageslim" alt=""></p>
 <ul>
 <li>蜂鸣器</li>
 </ul>
 <p>这里我直接使用扩展板上的蜂鸣器，如图：</p>
-<p><img src="http://mculover666.cn/image/20190807/egsTj4DhhwM8.png?imageslim" alt="mark"></p>
+<p><img src="http://mculover666.cn/image/20190807/egsTj4DhhwM8.png?imageslim" alt=""></p>
 <p>蜂鸣器的原理图如下：</p>
-<p><img src="http://mculover666.cn/image/20190807/kjUo6ctmGGXS.png?imageslim" alt="mark"></p>
+<p><img src="http://mculover666.cn/image/20190807/kjUo6ctmGGXS.png?imageslim" alt=""></p>
 <h2 id="软件准备"><a href="#软件准备" class="headerlink" title="软件准备"></a>软件准备</h2><ul>
 <li>需要安装好Keil - MDK及芯片对应的包，以便编译和下载生成的代码；</li>
 </ul>
 <blockquote>
 <p>Keil MDK和串口助手Serial Port Utility 的安装包都可以<strong>在文末关注公众号获取</strong>，回复关键字获取相应的安装包：</p>
 </blockquote>
-<p><img src="http://mculover666.cn/image/20190814/gubaOwmETp1w.png?imageslim" alt="mark"></p>
-<h1 id="2-生成MDK工程"><a href="#2-生成MDK工程" class="headerlink" title="2.生成MDK工程"></a>2.生成MDK工程</h1><h2 id="选择芯片型号"><a href="#选择芯片型号" class="headerlink" title="选择芯片型号"></a>选择芯片型号</h2><p>打开STM32CubeMX，打开MCU选择器：<br><img src="http://mculover666.cn/image/20190806/gBP6glmUSH80.png?imageslim" alt="mark"></p>
-<p>搜索并选中芯片<code>STM32L431RCT6</code>:<br><img src="http://mculover666.cn/image/20190806/gnyHwdl53uVD.png?imageslim" alt="mark"></p>
+<p><img src="http://mculover666.cn/image/20190814/gubaOwmETp1w.png?imageslim" alt=""></p>
+<h1 id="2-生成MDK工程"><a href="#2-生成MDK工程" class="headerlink" title="2.生成MDK工程"></a>2.生成MDK工程</h1><h2 id="选择芯片型号"><a href="#选择芯片型号" class="headerlink" title="选择芯片型号"></a>选择芯片型号</h2><p>打开STM32CubeMX，打开MCU选择器：<br><img src="http://mculover666.cn/image/20190806/gBP6glmUSH80.png?imageslim" alt=""></p>
+<p>搜索并选中芯片<code>STM32L431RCT6</code>:<br><img src="http://mculover666.cn/image/20190806/gnyHwdl53uVD.png?imageslim" alt=""></p>
 <h2 id="配置时钟源"><a href="#配置时钟源" class="headerlink" title="配置时钟源"></a>配置时钟源</h2><ul>
 <li>如果选择使用外部高速时钟（HSE），则需要在System Core中配置RCC；</li>
 <li>如果使用默认内部时钟（HSI），这一步可以略过；</li>
 </ul>
-<p>这里我都使用外部时钟：<br><img src="http://mculover666.cn/image/20190806/k593lGGb5tlW.png?imageslim" alt="mark"></p>
+<p>这里我都使用外部时钟：<br><img src="http://mculover666.cn/image/20190806/k593lGGb5tlW.png?imageslim" alt=""></p>
 <h2 id="配置通用定时器TIM16"><a href="#配置通用定时器TIM16" class="headerlink" title="配置通用定时器TIM16"></a>配置通用定时器TIM16</h2><blockquote>
 <p>知识小卡片——STM32L431的定时器</p>
 </blockquote>
@@ -520,13 +505,14 @@
 <p>知识小卡片结束啦~</p>
 </blockquote>
 <p>接下来开始配置TIM16定时器的PWM功能：</p>
-<p>首先选择<code>TIM</code>，选择通道1的功能，默认的CH1是<code>PA6</code>引脚，但是开发板上是与 PB8 连接的，所以在右边将PB8配置为<code>TIM16_CH1</code>：<br><img src="http://mculover666.cn/image/20190807/3Ru6wXY95H7s.png?imageslim" alt="mark"></p>
-<p>接下来是对TIM16的参数设置，参照数据手册中的RCC时钟树，TIM16内部时钟来源是<code>PCLK2 = 80Mhz</code>，我们的目的是产生<code>1khz</code>的PWM，所以预分频系数设置为<code>80-1</code>，自动重载值为<code>1000-1</code>，得到的计时器更新中断频率即为<code>80000000/80/1000 = 1000 Hz = 1K Hz</code>：<br><img src="http://mculover666.cn/image/20190807/FsrFLXtFVJBc.png?imageslim" alt="mark"></p>
-<p>其余的一些设置保持默认即可，最后配置PWM占空比：<br><img src="http://mculover666.cn/image/20190807/kVj0GfgtTFw9.png?imageslim" alt="mark"></p>
-<h2 id="配置时钟树"><a href="#配置时钟树" class="headerlink" title="配置时钟树"></a>配置时钟树</h2><p>STM32L4的最高主频到80M，所以配置PLL，最后使<code>HCLK = 80Mhz</code>即可：<br><img src="http://mculover666.cn/image/20190806/1TQg7frjRpVr.png?imageslim" alt="mark"></p>
-<h2 id="生成工程设置"><a href="#生成工程设置" class="headerlink" title="生成工程设置"></a>生成工程设置</h2><p><img src="http://mculover666.cn/image/20190807/UibRvxrbe4JC.png?imageslim" alt="mark"></p>
-<h2 id="代码生成设置"><a href="#代码生成设置" class="headerlink" title="代码生成设置"></a>代码生成设置</h2><p>最后设置生成独立的初始化文件：<br><img src="http://mculover666.cn/image/20190806/T6WvSK6Dfpts.png?imageslim" alt="mark"></p>
-<h2 id="生成代码"><a href="#生成代码" class="headerlink" title="生成代码"></a>生成代码</h2><p>点击<code>GENERATE CODE</code>即可生成MDK-V5工程：<br><img src="http://mculover666.cn/image/20190806/s0jGhLBWW6Cm.png?imageslim" alt="mark"></p>
+<p>首先选择<code>TIM</code>，选择通道1的功能，默认的CH1是<code>PA6</code>引脚，但是开发板上是与 PB8 连接的，所以在右边将PB8配置为<code>TIM16_CH1</code>：<br><img src="http://mculover666.cn/image/20190807/3Ru6wXY95H7s.png?imageslim" alt=""></p>
+<p>接下来是对TIM16的参数设置，参照数据手册中的RCC时钟树，TIM16内部时钟来源是<code>PCLK2 = 80Mhz</code>，我们的目的是产生<code>1khz</code>的PWM，所以预分频系数设置为<code>80-1</code>，自动重载值为<code>1000-1</code>，得到的计时器更新中断频率即为<code>80000000/80/1000 = 1000 Hz = 1K Hz</code>：</p>
+<p><img src="http://mculover666.cn/blog/20191202/K3Biuuw5VTzB.png?imageslim" alt=""></p>
+<p>其余的一些设置保持默认即可，最后配置PWM占空比：<br><img src="http://mculover666.cn/image/20190807/kVj0GfgtTFw9.png?imageslim" alt=""></p>
+<h2 id="配置时钟树"><a href="#配置时钟树" class="headerlink" title="配置时钟树"></a>配置时钟树</h2><p>STM32L4的最高主频到80M，所以配置PLL，最后使<code>HCLK = 80Mhz</code>即可：<br><img src="http://mculover666.cn/image/20190806/1TQg7frjRpVr.png?imageslim" alt=""></p>
+<h2 id="生成工程设置"><a href="#生成工程设置" class="headerlink" title="生成工程设置"></a>生成工程设置</h2><p><img src="http://mculover666.cn/image/20190807/UibRvxrbe4JC.png?imageslim" alt=""></p>
+<h2 id="代码生成设置"><a href="#代码生成设置" class="headerlink" title="代码生成设置"></a>代码生成设置</h2><p>最后设置生成独立的初始化文件：<br><img src="http://mculover666.cn/image/20190806/T6WvSK6Dfpts.png?imageslim" alt=""></p>
+<h2 id="生成代码"><a href="#生成代码" class="headerlink" title="生成代码"></a>生成代码</h2><p>点击<code>GENERATE CODE</code>即可生成MDK-V5工程：<br><img src="http://mculover666.cn/image/20190806/s0jGhLBWW6Cm.png?imageslim" alt=""></p>
 <h1 id="3-在MDK中编写、编译、下载用户代码"><a href="#3-在MDK中编写、编译、下载用户代码" class="headerlink" title="3. 在MDK中编写、编译、下载用户代码"></a>3. 在MDK中编写、编译、下载用户代码</h1><h2 id="启动定时器并产生PWM"><a href="#启动定时器并产生PWM" class="headerlink" title="启动定时器并产生PWM"></a>启动定时器并产生PWM</h2><p>最后在<code>main</code>函数中开启TIM2并使能其中断（TIM2初始化代码之后）：</p>
 <pre class=" language-c"><code class="language-c"><span class="token keyword">while</span> <span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">)</span>
 <span class="token punctuation">{</span>
@@ -538,7 +524,7 @@
 <h2 id="测试结果"><a href="#测试结果" class="headerlink" title="测试结果"></a>测试结果</h2><p>编译下载后即可听到无源蜂鸣器开始工作。</p>
 <p>至此，我们已经学会<strong>如何使用通用定时器产生PWM驱动蜂鸣器</strong>，下一节将讲述如何使用硬件IIC接口读写EEPROM。</p>
 <p><strong><font color="#FF0000">更多精彩文章及资源，请关注我的微信公众号：『mculover666』。</font></strong></p>
-<p><img src="http://mculover666.cn/image/20190814/NQqt1eRxrl1K.png?imageslim" alt="mark"></p>
+<p><img src="http://mculover666.cn/image/20190814/NQqt1eRxrl1K.png?imageslim" alt=""></p>
 
             </div>
             <hr/>
@@ -615,7 +601,7 @@
 <div id="article-share">
     
     
-    <div class="social-share" data-sites="twitter,facebook,google,qq,qzone,wechat,weibo,douban,linkedin" data-wechat-qrcode-helper="<p>微信扫一扫即可分享！</p>"></div>
+    <div class="social-share" data-sites="qq,qzone,wechat,weibo,douban" data-wechat-qrcode-helper="<p>微信扫一扫即可分享！</p>"></div>
     <script src="/libs/share/js/social-share.min.js"></script>
     
 
@@ -734,10 +720,10 @@
                         <li class="tab col s6 wechat-tab waves-effect waves-light"><a href="#wechat">微 信</a></li>
                     </ul>
                     <div id="alipay">
-                        <img src="/medias/reward/alipay.jpg" class="reward-img" alt="支付宝打赏二维码">
+                        <img src="/medias/reward/alipay.png" class="reward-img" alt="支付宝打赏二维码">
                     </div>
                     <div id="wechat">
-                        <img src="/medias/reward/wechat.png" class="reward-img" alt="微信打赏二维码">
+                        <img src="/medias/reward/we-chat.png" class="reward-img" alt="微信打赏二维码">
                     </div>
                 </div>
             </div>
@@ -799,9 +785,9 @@
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/4.jpg" class="responsive-img" alt="【STM32Cube_13】使用硬件I2C读写EEPROM（AT24C02）">
+                        <img src="/medias/featureimages/2.jpg" class="responsive-img" alt="STM32CubeMX_13 | 使用硬件I2C读写EEPROM（AT24C02）">
                         
-                        <span class="card-title">【STM32Cube_13】使用硬件I2C读写EEPROM（AT24C02）</span>
+                        <span class="card-title">STM32CubeMX_13 | 使用硬件I2C读写EEPROM（AT24C02）</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -854,9 +840,9 @@
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/17.jpg" class="responsive-img" alt="【STM32Cube_11】使用通用定时器闪烁LED">
+                        <img src="/medias/featureimages/17.jpg" class="responsive-img" alt="STM32CubeMX_11 | 使用通用定时器闪烁LED">
                         
-                        <span class="card-title">【STM32Cube_11】使用通用定时器闪烁LED</span>
+                        <span class="card-title">STM32CubeMX_11 | 使用通用定时器闪烁LED</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -1040,7 +1026,7 @@ code[class*="language-"], pre[class*="language-"] { white-space: pre !important;
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">46.7k</span>&nbsp;字
+                class="white-color">33.7k</span>&nbsp;字
             
             
             

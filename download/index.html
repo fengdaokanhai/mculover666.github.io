@@ -1,0 +1,1206 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN">
+
+
+<head>
+    <meta charset="utf-8">
+    <meta name="keywords" content="不限速下载站, STM32CubeMX 嵌入式 Linux">
+    <meta name="description" content="不限速下载站 | Mculover666">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta name="renderer" content="webkit|ie-stand|ie-comp">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <title>不限速下载站 | Mculover666</title>
+    <link rel="icon" type="image/png" href="/favicon.png">
+
+    <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
+    <link rel="stylesheet" type="text/css" href="/libs/materialize/materialize.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/aos/aos.css">
+    <link rel="stylesheet" type="text/css" href="/libs/animate/animate.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/lightGallery/css/lightgallery.min.css">
+    <link rel="stylesheet" type="text/css" href="/css/matery.css">
+    <link rel="stylesheet" type="text/css" href="/css/my.css">
+    
+    <script src="/libs/jquery/jquery.min.js"></script>
+    
+<link rel="stylesheet" href="/css/prism-tomorrow.css" type="text/css"></head>
+
+
+<body>
+    <header class="navbar-fixed">
+    <nav id="headNav" class="bg-color nav-transparent">
+        <div id="navContainer" class="nav-wrapper head-container">
+            <div class="brand-logo">
+                <a href="/" class="waves-effect waves-light">
+                    
+                    <img src="/medias/logo.png" class="logo-img" alt="LOGO">
+                    
+                    <span class="logo-span">Mculover666</span>
+                </a>
+            </div>
+            
+
+<a href="#" data-target="mobile-nav" class="sidenav-trigger button-collapse"><i class="fas fa-bars"></i></a>
+<ul class="right nav-menu">
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/" class="waves-effect waves-light">
+      
+      <i class="fas fa-home" style="zoom: 0.6;"></i>
+      
+      <span>首页</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="" class="waves-effect waves-light">
+
+      
+      <i class="fas fa-list" style="zoom: 0.6;"></i>
+      
+      <span>系列教程</span>
+      <i class="fas fa-chevron-down" aria-hidden="true" style="zoom: 0.6;"></i>
+    </a>
+    <ul class="sub-nav menus_item_child ">
+      
+      <li>
+        <a href="/posts/578764034/">
+          
+          <span>STM32CubeMX</span>
+        </a>
+      </li>
+      
+    </ul>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="https://blog.csdn.net/Mculover666" target="_blank" rel="noopener" class="waves-effect waves-light">
+      
+      <i class="fas fa-bookmark" style="zoom: 0.6;"></i>
+      
+      <span>CSDN</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/download" class="waves-effect waves-light">
+      
+      <i class="fas fa-download" style="zoom: 0.6;"></i>
+      
+      <span>资源下载</span>
+    </a>
+    
+  </li>
+  
+  <li>
+    <a href="#searchModal" class="modal-trigger waves-effect waves-light">
+      <i id="searchIcon" class="fas fa-search" title="搜索" style="zoom: 0.85;"></i>
+    </a>
+  </li>
+</ul>
+
+<div id="mobile-nav" class="side-nav sidenav">
+
+    <div class="mobile-head bg-color">
+        
+        <img src="/medias/logo.png" class="logo-img circle responsive-img">
+        
+        <div class="logo-name">Mculover666</div>
+        <div class="logo-desc">
+            
+            嵌入式 STM32 物联网领域的教程及精彩内容分享
+            
+        </div>
+    </div>
+
+    
+
+    <ul class="menu-list mobile-menu-list">
+        
+        <li class="m-nav-item">
+	  
+		<a href="/" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-home"></i>
+			
+			首页
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="javascript:;" target="_blank" rel="noopener">
+			
+				<i class="fa-fw fas fa-list"></i>
+			
+			系列教程
+			<span class="m-icon"><i class="fas fa-chevron-right"></i></span>
+		</a>
+            <ul  style="background:  ;" >
+              
+                <li>   
+				
+                  <a href="/posts/578764034/ " style="margin-left:75px";>
+				  
+		          <span>STM32CubeMX</span>
+                  </a>
+                </li>
+               
+            </ul>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="https://blog.csdn.net/Mculover666" target="_blank" rel="noopener" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-bookmark"></i>
+			
+			CSDN
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/download" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-download"></i>
+			
+			资源下载
+		</a>
+          
+        </li>
+        
+        
+        <li><div class="divider"></div></li>
+        <li>
+            <a href="https://github.com/Mculover666" class="waves-effect waves-light" target="_blank">
+                <i class="fab fa-github-square fa-fw"></i>Fork Me
+            </a>
+        </li>
+        
+    </ul>
+</div>
+
+        </div>
+
+        
+            <style>
+    .nav-transparent .github-corner {
+        display: none !important;
+    }
+
+    .github-corner {
+        position: absolute;
+        z-index: 10;
+        top: 0;
+        right: 0;
+        border: 0;
+        transform: scale(1.1);
+    }
+
+    .github-corner svg {
+        color: #0f9d58;
+        fill: #fff;
+        height: 64px;
+        width: 64px;
+    }
+
+    .github-corner:hover .octo-arm {
+        animation: a 0.56s ease-in-out;
+    }
+
+    .github-corner .octo-arm {
+        animation: none;
+    }
+
+    @keyframes a {
+        0%,
+        to {
+            transform: rotate(0);
+        }
+        20%,
+        60% {
+            transform: rotate(-25deg);
+        }
+        40%,
+        80% {
+            transform: rotate(10deg);
+        }
+    }
+</style>
+
+<a href="https://github.com/Mculover666" class="github-corner tooltipped hide-on-med-and-down" target="_blank"
+   data-tooltip="Fork Me" data-position="left" data-delay="50">
+    <svg viewBox="0 0 250 250" aria-hidden="true">
+        <path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path>
+        <path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2"
+              fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path>
+        <path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z"
+              fill="currentColor" class="octo-body"></path>
+    </svg>
+</a>
+        
+    </nav>
+
+</header>
+
+    
+
+
+
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/21.jpg')">
+    <div class="container" style="right: 0px;left: 0px;">
+        <div class="row">
+            <div class="col s12 m12 l12">
+                <div class="brand">
+                    <div class="description center-align post-title">
+                        不限速下载站
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+<main class="container content">
+
+    
+    <!-- 文章内容详情 -->
+<div id="artDetail">
+    <div class="card">
+        <div class="card-content article-info">
+            <div class="row tag-cate">
+                <div class="col s7">
+                    
+                          <div class="article-tag">
+                            <span class="chip bg-color">无标签</span>
+                          </div>
+                    
+                </div>
+                <div class="col s5 right-align">
+                    
+                </div>
+            </div>
+
+            <div class="post-info">
+                
+                <div class="post-date info-break-policy">
+                    <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
+                    2020-02-05
+                </div>
+                
+
+                
+
+                
+
+                
+                <div class="info-break-policy">
+                    <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
+                    7 分
+                </div>
+                
+				
+                
+                    <div id="busuanzi_container_page_pv" class="info-break-policy">
+                        <i class="far fa-eye fa-fw"></i>阅读次数:&nbsp;&nbsp;
+                        <span id="busuanzi_value_page_pv"></span>
+                    </div>
+				
+            </div>
+            
+        </div>
+        <hr class="clearfix">
+        <div class="card-content article-card-content">
+            <div id="articleContent">
+                <h1 id="建站初衷"><a href="#建站初衷" class="headerlink" title="  建站初衷"></a><center><i class="far fa-heart fa-x"></i>  建站初衷</center></h1><p>博主深受xx网盘之痛苦，就像单手开着法拉利却被限速40km/h的那种痛苦，遂揭竿而起，自费建立起“不限速下载站”，正如其名：</p>
+<p>不限速下载站致力于为开发者提供免费！不限速！的下载服务，下载速度只取决于你的网络！经多地实际测试，下载速度在5MB/s - 10MB/s范围。</p>
+<blockquote>
+<p>声明：本站提供的资源全部来源于网络，博主收集整理仅为方便开发者学习使用，<font color="green"><strong>不可用于商业用途！请支持正版！</strong></font>如有侵权，请联系博主删除(<a href="mailto:2412828003@qq.com" target="_blank" rel="noopener">2412828003@qq.com</a>)。</p>
+</blockquote>
+<h1 id="下载说明"><a href="#下载说明" class="headerlink" title=" 下载说明"></a><center><i class="fas fa-cloud-download-alt fa-x"></i> 下载说明</center></h1><p>① 微信扫描下方二维码，关注公众号『<font color="blue"><strong>Mculover666</strong></font>』</p>
+<p>② 进入公众号，发送关键词 <font color="green"><strong>密码</strong></font> 即可收到取件密码</p>
+<p>③ 每个下载链接都有最大下载次数，到达后我会更换新的链接和密码，所以切勿直接收藏链接</p>
+<p><img src="http://mculover666.cn/image/20190814/NQqt1eRxrl1K.png?imageslim" alt=""></p>
+<h1 id="软件资源"><a href="#软件资源" class="headerlink" title="  软件资源"></a><center><i class="fa-fw fas fa-book-open"></i>  软件资源</center></h1><h2 id="Keil-MDK"><a href="#Keil-MDK" class="headerlink" title="Keil-MDK"></a><center>Keil-MDK</center></h2><blockquote>
+<p>下载入口：<font color="blue"><strong><a href="https://c-t.work/s/0a06ed18e99445" target="_blank" rel="noopener">MDK软件+主题配置文件入口链接</a></strong></font></p>
+</blockquote>
+<p>进入链接后位于 Keil-MDK 目录下，选择需要的资源进行下载：</p>
+<ul>
+<li>安装包<ul>
+<li>MDK524a.exe</li>
+<li>MDK527.exe</li>
+<li>MDK528.exe(推荐)</li>
+<li>MDK529.exe(最新)</li>
+</ul>
+</li>
+<li>仿Sublime主题<ul>
+<li>Keil Sublime Theme.zip</li>
+</ul>
+</li>
+</ul>
+<blockquote>
+<p>下载入口：<font color="blue"><strong><a href="https://c-t.work/s/28f4bdb8d94242" target="_blank" rel="noopener">MDK芯片包入口链接</a></strong></font></p>
+</blockquote>
+<p>进入链接后位于 Keil-MDK-Pack 目录下，选择需要的资源进行下载，如未进行特殊备注，只需要MDK5版本和STM32CubeMX5版本即可：</p>
+<ul>
+<li>Keil.STM32F0xx_DFP.2.0.0.pack</li>
+<li>Keil.STM32F1xx_DFP.2.3.0.pack</li>
+<li>Keil.STM32F2xx_DFP.2.9.0.pack</li>
+<li>Keil.STM32F3xx_DFP.2.1.0.pack</li>
+<li>Keil.STM32F4xx_DFP.2.14.0.pack</li>
+<li>Keil.STM32F7xx_DFP.2.12.0.pack</li>
+<li>Keil.STM32G0xx_DFP.1.2.0.pack</li>
+<li>Keil.STM32G4xx_DFP.1.1.0.pack</li>
+<li>Keil.STM32H7xx_DFP.2.3.1.pack</li>
+<li>Keil.STM32H7xx_DFP.2.4.0.pack（需要STM32CubeMX V5.5.0支持）</li>
+<li>Keil.STM32L0xx_DFP.2.0.1.pack</li>
+<li>Keil.STM32L1xx_DFP.1.2.0.pack</li>
+<li>Keil.STM32L4xx_DFP.2.2.0.pack</li>
+<li>Keil.STM32L4xx_DFP.2.3.0.pack（需要STM32CubeMX V5.5.0支持）</li>
+<li>Keil.STM32L5xx_DFP.1.1.0.pack（推荐使用MDK 5.29）</li>
+<li>Keil.STM32MP1xx_DFP.1.2.0.pack</li>
+<li>Keil.STM32W1xx_DFP.1.0.0.pac</li>
+<li>Keil.STM32WBxx_DFP.1.0.0.pack</li>
+</ul>
+<p>参考安装教程：</p>
+<ul>
+<li><a href="https://blog.csdn.net/Mculover666/article/details/89469764" target="_blank" rel="noopener">（一）Keil MDK 5.28 的下载、安装、破解</a></li>
+<li><a href="https://blog.csdn.net/Mculover666/article/details/89480310" target="_blank" rel="noopener">（二）Keil MDK中芯片器件包的安装</a></li>
+<li><a href="https://blog.csdn.net/Mculover666/article/details/89480451" target="_blank" rel="noopener">（三）Keil MDK更换Sublime Text Molokai主题</a></li>
+<li><a href="https://blog.csdn.net/Mculover666/article/details/89480818" target="_blank" rel="noopener">（四）Keil MDK的一些推荐功能（编码格式、自动保存、代码提示、动态语法检查、多核编译）</a></li>
+</ul>
+<h2 id="STM32CubeMX"><a href="#STM32CubeMX" class="headerlink" title="STM32CubeMX"></a><center>STM32CubeMX</center></h2><blockquote>
+<p>下载入口：<font color="blue"><strong><a href="https://c-t.work/s/01299d2be3994b" target="_blank" rel="noopener">STM32CubeMX入口链接</a></strong></font></p>
+</blockquote>
+<p>进入链接后位于 STM32CubeMX 目录下，选择需要的资源进行下载：</p>
+<ul>
+<li>Java环境<ul>
+<li>jdk-8u212-windows-x64.exe</li>
+</ul>
+</li>
+<li>STM32CubeMX<ul>
+<li>en.stm32cubemx_v5.4.0.zip</li>
+</ul>
+</li>
+<li>STM32CubeProg<ul>
+<li>en.stm32cubeprog_v2.2.2.zip</li>
+</ul>
+</li>
+<li>STM32CubeIDE<ul>
+<li>en.st-stm32cubeide_1.1.0x86_64.exe.zip</li>
+</ul>
+</li>
+</ul>
+<p>参考安装教程：</p>
+<ul>
+<li><a href="http://www.mculover666.cn/posts/578764034/">STM32CubeMX系列教程</a></li>
+</ul>
+<h2 id="Android-IoT专场"><a href="#Android-IoT专场" class="headerlink" title="Android+IoT专场"></a><center>Android+IoT专场</center></h2><blockquote>
+<p>下载入口：<font color="blue"><strong><a href="https://c-t.work/s/4658e45647934b" target="_blank" rel="noopener">Android入口链接</a></strong></font></p>
+</blockquote>
+<p>进入链接后位于 Android 目录下，选择需要的资源进行下载：</p>
+<ul>
+<li>Java环境<ul>
+<li>jdk-8u212-windows-x64.exe</li>
+</ul>
+</li>
+<li>Android Studio安装包（最新）<ul>
+<li>android-studio-ide-191.6010548-windows.exe</li>
+</ul>
+</li>
+<li>乐鑫 ESP Touch jar包<ul>
+<li>esptouch-v0.3.7.0.jar</li>
+</ul>
+</li>
+<li>OpenCV Android开发SDK包<ul>
+<li>opencv-3.4.6-android-sdk.zip</li>
+</ul>
+</li>
+<li>MQTT Android开发SDK包<ul>
+<li>org.eclipse.paho.client.mqttv3-1.2.0.jar</li>
+</ul>
+</li>
+</ul>
+<p>感谢来自阿正啷个哩个啷（<a href="https://space.bilibili.com/265908761" target="_blank" rel="noopener">b站</a>,<a href="http://wenzheng.club" target="_blank" rel="noopener">个人博客</a>）的分享！</p>
+<p>参考视频教程：</p>
+<ul>
+<li><a href="https://www.bilibili.com/video/av88068983" target="_blank" rel="noopener">7天Java0基础速成IoT Android APP开发</a></li>
+</ul>
+<h2 id="Matlab"><a href="#Matlab" class="headerlink" title="Matlab"></a><center>Matlab</center></h2><blockquote>
+<p>下载入口：<font color="blue"><strong><a href="https://c-t.work/s/ec9832f1a4414c" target="_blank" rel="noopener">Matlab入口链接</a></strong></font></p>
+</blockquote>
+<p>进入链接后位于 Matlab 目录下，选择需要的资源进行下载：</p>
+<ul>
+<li>R2016a_win64.iso</li>
+<li>MATLAB 2018a_win64.zip</li>
+</ul>
+<p>由于此资源较大，需要注意以下事项：</p>
+<ol>
+<li>尽量使用Chrome浏览器或者复制链接到迅雷下载(如下图)，否则会出现下载一半无法下载的问题！</li>
+<li>下载过程尽量不要做别的事！</li>
+<li>下载有问题后请不要频繁点击，隔1-3min后再试，否则会被服务器误认为是爬虫！</li>
+<li>这是两个不同的版本，选择一个版本下载即可！</li>
+</ol>
+<p><img src="http://mculover666.cn/blog/20200217/T3udC1IIhHNR.png?imageslim" alt="迅雷下载方法"></p>
+<h2 id="Quartus-II-Intel-FPGA"><a href="#Quartus-II-Intel-FPGA" class="headerlink" title="Quartus II(Intel FPGA)"></a><center>Quartus II(Intel FPGA)</center></h2><blockquote>
+<p>下载入口：<font color="blue"><strong><a href="https://c-t.work/s/bfb5ddb03f0843" target="_blank" rel="noopener">Quartus入口链接</a></strong></font></p>
+</blockquote>
+<p>进入链接后位于 Quartus 目录下，选择需要的资源进行下载：</p>
+<ul>
+<li>device.zip(器件包)</li>
+<li>QII_13.0_SP1许可工具</li>
+<li>Quartus-13.0.0.156-windows.zip(安装包)</li>
+</ul>
+<p>参考安装教程：</p>
+<ul>
+<li><a href="https://blog.csdn.net/Mculover666/article/details/80650035" target="_blank" rel="noopener">【FPGA入门教程】（一）初识FPGA</a></li>
+<li><a href="https://blog.csdn.net/Mculover666/article/details/80650037" target="_blank" rel="noopener">【FPGA入门教程】（二）FPGA学习路线及开发流程</a></li>
+<li><a href="https://blog.csdn.net/Mculover666/article/details/80650040" target="_blank" rel="noopener">【FPGA入门教程】（三） Quartus II 13.0软件安装及激活</a></li>
+</ul>
+<h2 id="Vivado-Xilinx-FPGA"><a href="#Vivado-Xilinx-FPGA" class="headerlink" title="Vivado(Xilinx FPGA)"></a><center>Vivado(Xilinx FPGA)</center></h2><blockquote>
+<p>下载入口：<font color="blue"><strong><a href="https://c-t.work/s/3078b873fa0740" target="_blank" rel="noopener">Vivado入口链接</a></strong></font></p>
+</blockquote>
+<p>进入链接后位于 Vivado 目录下，选择需要的资源进行下载：</p>
+<ul>
+<li>Vivado系列<ul>
+<li>vivado2017.4.zip</li>
+<li>vivado2018.2.zip</li>
+<li>vivado2018.3.zip</li>
+<li>vivado2019.1.zip</li>
+</ul>
+</li>
+<li>ISE系列<ul>
+<li>Xilinx_ISE_DS_14.7_1015_1.zip</li>
+</ul>
+</li>
+</ul>
+<p>感谢来自zzy的分享！</p>
+<h2 id="gcc-工具链"><a href="#gcc-工具链" class="headerlink" title="gcc 工具链"></a><center>gcc 工具链</center></h2><blockquote>
+<p>下载入口：<font color="blue"><strong><a href="https://c-t.work/s/4f8df085b5f542" target="_blank" rel="noopener">gcc入口链接</a></strong></font></p>
+</blockquote>
+<p>进入链接后位于 gcc-toolchains 目录下，选择需要的资源进行下载：</p>
+<ul>
+<li>gcc工具链（Windows）<ul>
+<li>MinGW64.zip</li>
+</ul>
+</li>
+<li>arm-linux-gcc工具链（Linux）<ul>
+<li>arm-linux-gcc-4.4.3-20100728.tar.gz</li>
+</ul>
+</li>
+<li>gcc-arm-none-eabi工具链（STM32开发）<ul>
+<li>gcc-arm-none-eabi-7-2018-q2-update-linux.tar.bz2(Linux系统)</li>
+<li>gcc-arm-none-eabi-7-2018-q2-update-win32.zip(Windows系统)</li>
+</ul>
+</li>
+</ul>
+<p>参考安装教程：</p>
+<ul>
+<li><a href="https://blog.csdn.net/Mculover666/article/details/89844460" target="_blank" rel="noopener">在Windows上使用Mingw-W64进行C/C++开发（gcc工具链）</a></li>
+<li><a href="https://blog.csdn.net/Mculover666/article/details/88044790" target="_blank" rel="noopener">安装和使用arm-linux-gcc交叉编译工具链开发S3C2440</a></li>
+<li><a href="https://blog.csdn.net/Mculover666/article/details/84888539" target="_blank" rel="noopener">Linux下开发stm32（一）| 使用gcc-arm-none-eabi工具链编译</a></li>
+</ul>
+<h2 id="Altium-PCB"><a href="#Altium-PCB" class="headerlink" title="Altium(PCB)"></a><center>Altium(PCB)</center></h2><blockquote>
+<p>下载入口：<font color="blue"><strong><a href="https://c-t.work/s/054fb290410249" target="_blank" rel="noopener">Alitum入口链接</a></strong></font></p>
+</blockquote>
+<p>进入链接后位于 Altium 目录下，选择需要的资源进行下载：</p>
+<ul>
+<li>AD9.4版本（最稳定）<ul>
+<li>AD9.4.rar</li>
+</ul>
+</li>
+<li>AD16.1<ul>
+<li>AD16.1.12.iso</li>
+</ul>
+</li>
+<li>AD19.0<ul>
+<li>AD19.zip</li>
+</ul>
+</li>
+<li>AD19.1<ul>
+<li>Altium_Designer_19.1.8.iso</li>
+</ul>
+</li>
+<li>AD20.0<ul>
+<li>Altium Designer 20.0.1.rar</li>
+</ul>
+</li>
+</ul>
+<p>感谢来自山外青衫、XIAO李(<a href="https://liai.club/" target="_blank" rel="noopener">个人博客</a>)的分享！</p>
+<h2 id="Cadence-Allegro-PCB"><a href="#Cadence-Allegro-PCB" class="headerlink" title="Cadence/Allegro(PCB)"></a><center>Cadence/Allegro(PCB)</center></h2><blockquote>
+<p>下载入口：<font color="blue"><strong><a href="https://c-t.work/s/325dc7ff34fa4a" target="_blank" rel="noopener">Cadence入口链接</a></strong></font></p>
+</blockquote>
+<p>进入链接后位于 Cadence 目录下，选择需要的资源进行下载：</p>
+<ul>
+<li>阿里狗破戒大师<ul>
+<li>AleegoCrackMasterV3.1.0.zip</li>
+</ul>
+</li>
+<li>Cadence SPB OrCAD Allegro 16.6-2016 吴川斌的博客独家版<ul>
+<li>Cadence SPB 16.6.ooxx</li>
+<li>Hotfix_SPB16.60.114_wint_1of1.exe</li>
+</ul>
+</li>
+<li>Cadence SPB OrCAD Allegro 17.2-2016 吴川斌的博客独家版（推荐）<ul>
+<li>Cadence_SPB_17.2-2016_<a href="http://www.mr-wu.cn.7z" target="_blank" rel="noopener">www.mr-wu.cn.7z</a></li>
+<li>Hotfix_SPB17.20.058_wint_1of1.exe</li>
+</ul>
+</li>
+</ul>
+<p>参考安装教程：</p>
+<ul>
+<li><a href="http://aligou.mr-wu.cn/#fourthPage" target="_blank" rel="noopener">阿狸狗破戒大师-为攻城狮快乐的拉线而生</a></li>
+</ul>
+<h2 id="Arduino-IDE"><a href="#Arduino-IDE" class="headerlink" title="Arduino IDE"></a><center>Arduino IDE</center></h2><blockquote>
+<p>下载入口：<font color="blue"><strong><a href="https://c-t.work/s/7a477d87db9743" target="_blank" rel="noopener">Arduino入口链接</a></strong></font></p>
+</blockquote>
+<p>进入链接后位于 Arduino 目录下，选择需要的资源进行下载：</p>
+<ul>
+<li>arduino-1.8.10-windows.exe</li>
+</ul>
+<h2 id="实用小工具"><a href="#实用小工具" class="headerlink" title="实用小工具"></a><center>实用小工具</center></h2><blockquote>
+<p>下载入口：<font color="blue"><strong><a href="https://c-t.work/s/81f44a7c217d49" target="_blank" rel="noopener">小工具入口链接</a></strong></font></p>
+</blockquote>
+<p>进入链接后位于 小工具 目录下，选择需要的资源进行下载：</p>
+<ul>
+<li>友善串口助手<ul>
+<li>友善串口助手.exe</li>
+</ul>
+</li>
+<li>山外多功能串口助手（波形显示）<ul>
+<li>山外串口助手.zip</li>
+</ul>
+</li>
+<li>QCOM串口助手（通信模组调试）<ul>
+<li>QCOM_V1.6.exe</li>
+</ul>
+</li>
+<li>网络调试助手<ul>
+<li>sockettoolv25.exe</li>
+<li>NetAssist.exe</li>
+<li>tcp调试助手.zip</li>
+</ul>
+</li>
+<li>字符图片取模软件<ul>
+<li>Image2Lcd 2.9.zip</li>
+<li>PCtoLCD2002.zip</li>
+</ul>
+</li>
+<li>TFTP传输工具<ul>
+<li>Tftpd64.zip</li>
+</ul>
+</li>
+<li>终端工具<ul>
+<li>putty（ssh远程登录工具）</li>
+<li>winscp（基于ssh的远程文件传输工具）</li>
+</ul>
+</li>
+</ul>
+<p>参考使用教程：</p>
+<ul>
+<li><a href="https://blog.csdn.net/Mculover666/article/details/95615030" target="_blank" rel="noopener">【玩转嵌入式屏幕显示】（四）TFT-LCD屏幕显示字符（使用PCtoLCD2002取模）</a></li>
+<li><a href="https://blog.csdn.net/mculover666/article/details/95727736" target="_blank" rel="noopener">【玩转嵌入式屏幕显示】（五）TFT-LCD屏幕显示图片（使用Image2LCD取模）</a></li>
+</ul>
+<p>感谢来自XIAO李(<a href="https://liai.club/" target="_blank" rel="noopener">个人博客</a>)的分享！</p>
+<h1 id="提交资源"><a href="#提交资源" class="headerlink" title=" 提交资源"></a><center><i class="fa-fw fas fa-upload"></i> 提交资源</center></h1><p>有更好的资源分享？</p>
+<p>呐，点击此链接即可提交资源：<a href="https://shimo.im/forms/jxxJDpQX8TCJgvp6/fill" target="_blank" rel="noopener">不限速下载站资源提交</a>。</p>
+<h1 id="更新日志"><a href="#更新日志" class="headerlink" title=" 更新日志"></a><center><i class="fa-fw fas fa-blog"></i> 更新日志</center></h1><ul>
+<li>2020/2/5：不限速下载站正式上线</li>
+<li>2020/2/6：添加资源提交功能</li>
+<li>2020/2/7：修改资源获取机制(下载链接可直接访问)</li>
+<li>2020/2/8：添加Vivado多个常用版本</li>
+<li>2020/2/11：添加Android资源、AD20资源、putty、winscp</li>
+<li>2020/2/17：添加全系列MDK芯片包，添加MDK5.29</li>
+</ul>
+
+            </div>
+            <hr/>
+
+            
+
+    <div class="reprint" id="reprint-statement">
+        
+            <div class="reprint__author">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-user">
+                        文章作者:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    <a href="http://www.mculover666.cn" rel="external nofollow noreferrer">Mculover666</a>
+                </span>
+            </div>
+            <div class="reprint__type">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-link">
+                        文章链接:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    <a href="http://www.mculover666.cn/download/index.html">http://www.mculover666.cn/download/index.html</a>
+                </span>
+            </div>
+            <div class="reprint__notice">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-copyright">
+                        版权声明:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    本博客所有文章除特別声明外，均采用
+                    <a href="https://creativecommons.org/licenses/by/4.0/deed.zh" rel="external nofollow noreferrer" target="_blank">CC BY 4.0</a>
+                    许可协议。转载请注明来源
+                    <a href="http://www.mculover666.cn" target="_blank">Mculover666</a>
+                    !
+                </span>
+            </div>
+        
+    </div>
+
+    <script async defer>
+      document.addEventListener("copy", function (e) {
+        let toastHTML = '<span>复制成功，请遵循本文的转载规则</span><button class="btn-flat toast-action" onclick="navToReprintStatement()" style="font-size: smaller">查看</a>';
+        M.toast({html: toastHTML})
+      });
+
+      function navToReprintStatement() {
+        $("html, body").animate({scrollTop: $("#reprint-statement").offset().top - 80}, 800);
+      }
+    </script>
+
+
+
+            <div class="tag_share" style="display: block;">
+                <div class="post-meta__tag-list" style="display: inline-block;">
+                    
+                        <div class="article-tag">
+                            <span class="chip bg-color">无标签</span>
+                        </div>
+                    
+                </div>
+                <div class="post_share" style="zoom: 80%; width: fit-content; display: inline-block; float: right; margin: -0.15rem 0;">
+                    <link rel="stylesheet" type="text/css" href="/libs/share/css/share.min.css">
+
+<div id="article-share">
+    
+    
+    <div class="social-share" data-sites="qq,qzone,wechat,weibo,douban" data-wechat-qrcode-helper="<p>微信扫一扫即可分享！</p>"></div>
+    <script src="/libs/share/js/social-share.min.js"></script>
+    
+
+    
+
+</div>
+
+                </div>
+            </div>
+            
+                <style>
+    #reward {
+        margin: 40px 0;
+        text-align: center;
+    }
+
+    #reward .reward-link {
+        font-size: 1.4rem;
+        line-height: 38px;
+    }
+
+    #reward .btn-floating:hover {
+        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2), 0 5px 15px rgba(0, 0, 0, 0.2);
+    }
+
+    #rewardModal {
+        width: 320px;
+        height: 350px;
+    }
+
+    #rewardModal .reward-title {
+        margin: 15px auto;
+        padding-bottom: 5px;
+    }
+
+    #rewardModal .modal-content {
+        padding: 10px;
+    }
+
+    #rewardModal .close {
+        position: absolute;
+        right: 15px;
+        top: 15px;
+        color: rgba(0, 0, 0, 0.5);
+        font-size: 1.3rem;
+        line-height: 20px;
+        cursor: pointer;
+    }
+
+    #rewardModal .close:hover {
+        color: #ef5350;
+        transform: scale(1.3);
+        -moz-transform:scale(1.3);
+        -webkit-transform:scale(1.3);
+        -o-transform:scale(1.3);
+    }
+
+    #rewardModal .reward-tabs {
+        margin: 0 auto;
+        width: 210px;
+    }
+
+    .reward-tabs .tabs {
+        height: 38px;
+        margin: 10px auto;
+        padding-left: 0;
+    }
+
+    .reward-content ul {
+        padding-left: 0 !important;
+    }
+
+    .reward-tabs .tabs .tab {
+        height: 38px;
+        line-height: 38px;
+    }
+
+    .reward-tabs .tab a {
+        color: #fff;
+        background-color: #ccc;
+    }
+
+    .reward-tabs .tab a:hover {
+        background-color: #ccc;
+        color: #fff;
+    }
+
+    .reward-tabs .wechat-tab .active {
+        color: #fff !important;
+        background-color: #22AB38 !important;
+    }
+
+    .reward-tabs .alipay-tab .active {
+        color: #fff !important;
+        background-color: #019FE8 !important;
+    }
+
+    .reward-tabs .reward-img {
+        width: 210px;
+        height: 210px;
+    }
+</style>
+
+<div id="reward">
+    <a href="#rewardModal" class="reward-link modal-trigger btn-floating btn-medium waves-effect waves-light red">赏</a>
+
+    <!-- Modal Structure -->
+    <div id="rewardModal" class="modal">
+        <div class="modal-content">
+            <a class="close modal-close"><i class="fas fa-times"></i></a>
+            <h4 class="reward-title">你的赏识是我前进的动力</h4>
+            <div class="reward-content">
+                <div class="reward-tabs">
+                    <ul class="tabs row">
+                        <li class="tab col s6 alipay-tab waves-effect waves-light"><a href="#alipay">支付宝</a></li>
+                        <li class="tab col s6 wechat-tab waves-effect waves-light"><a href="#wechat">微 信</a></li>
+                    </ul>
+                    <div id="alipay">
+                        <img src="/medias/reward/alipay.png" class="reward-img" alt="支付宝打赏二维码">
+                    </div>
+                    <div id="wechat">
+                        <img src="/medias/reward/we-chat.png" class="reward-img" alt="微信打赏二维码">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    $(function () {
+        $('.tabs').tabs();
+    });
+</script>
+            
+        </div>
+    </div>
+
+    
+
+    
+
+    
+
+    
+    <div class="livere-card card" data-aos="fade-up">
+    <!-- 来必力City版安装代码 -->
+    <div id="lv-container" class="card-content" data-id="city" data-uid="MTAyMC80Njg0OS8yMzM1MA">
+        <script type="text/javascript">
+            (function (d, s) {
+                let j, e = d.getElementsByTagName(s)[0];
+                if (typeof LivereTower === 'function') {
+                    return;
+                }
+
+                j = d.createElement(s);
+                j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+                j.async = true;
+
+                e.parentNode.insertBefore(j, e);
+            })(document, 'script');
+        </script>
+        <noscript>为正常使用来必力评论功能请激活JavaScript。</noscript>
+    </div>
+    <!-- City版安装代码已完成 -->
+</div>
+    
+
+    
+
+    
+
+<article id="prenext-posts" class="prev-next articles">
+    <div class="row article-row">
+        
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
+            <div class="article-badge left-badge text-color">
+                <i class="far fa-dot-circle"></i>&nbsp;本篇
+            </div>
+            <div class="card">
+                <a href="/download/index.html">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/21.jpg" class="responsive-img" alt="不限速下载站">
+                        
+                        <span class="card-title">不限速下载站</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                              建站初衷博主深受xx网盘之痛苦，就像单手开着法拉利却被限速40km/h的那种痛苦，遂揭竿而起，自费建立起“不限速下载站”，正如其名：
+不限速下载站致力于为开发者提供免费！不限速！的下载服务，下载速度只取决于你的网络！经多地实际测试，下载
+                        
+                    </div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2020-02-05
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-user fa-fw"></i>
+                            Mculover666
+                            
+                        </span>
+                    </div>
+                </div>
+
+                
+            </div>
+        </div>
+        
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge right-badge text-color">
+                本篇&nbsp;<i class="far fa-dot-circle"></i>
+            </div>
+            <div class="card">
+                <a href="/download/index.html">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/21.jpg" class="responsive-img" alt="不限速下载站">
+                        
+                        <span class="card-title">不限速下载站</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                              建站初衷博主深受xx网盘之痛苦，就像单手开着法拉利却被限速40km/h的那种痛苦，遂揭竿而起，自费建立起“不限速下载站”，正如其名：
+不限速下载站致力于为开发者提供免费！不限速！的下载服务，下载速度只取决于你的网络！经多地实际测试，下载
+                        
+                    </div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2020-02-05
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-user fa-fw"></i>
+                            Mculover666
+                            
+                        </span>
+                    </div>
+                </div>
+
+                
+            </div>
+        </div>
+        
+    </div>
+</article>
+
+</div>
+
+
+
+<!-- 代码块功能依赖 -->
+<script type="text/javascript" src="/libs/codeBlock/codeBlockFuction.js"></script>
+
+<!-- 代码语言 -->
+
+    
+<!-- 代码块复制 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeCopy.js"></script>
+
+
+<!-- 代码块收缩 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeShrink.js"></script>
+
+
+<!-- 代码块折行 -->
+
+<style type="text/css">
+code[class*="language-"], pre[class*="language-"] { white-space: pre !important; }
+</style>
+
+    
+
+</main>
+
+
+
+    <footer class="page-footer bg-color">
+    <div class="container row center-align">
+        <div class="col s12 m8 l8 copy-right">
+            Copyright&nbsp;&copy;
+            <span id="year">年份</span>
+            <a href="http://www.mculover666.cn" target="_blank">Mculover666</a>
+            |&nbsp;Powered by&nbsp;<a href="https://hexo.io/" target="_blank">Hexo</a>
+            |&nbsp;Theme&nbsp;<a href="https://github.com/blinkfox/hexo-theme-matery" target="_blank">Matery</a>
+            <br>
+            
+            &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
+                class="white-color">33.7k</span>&nbsp;字
+            
+            
+            
+            
+            
+            
+            <span id="busuanzi_container_site_pv">
+                |&nbsp;<i class="far fa-eye"></i>&nbsp;总访问量:&nbsp;<span id="busuanzi_value_site_pv"
+                    class="white-color"></span>&nbsp;次
+            </span>
+            
+            
+            <span id="busuanzi_container_site_uv">
+                |&nbsp;<i class="fas fa-users"></i>&nbsp;总访问人数:&nbsp;<span id="busuanzi_value_site_uv"
+                    class="white-color"></span>&nbsp;人
+            </span>
+            
+            <br>
+            
+            <span id="sitetime">载入运行时间...</span>
+            <script>
+                function siteTime() {
+                    window.setTimeout("siteTime()", 1000);
+                    var seconds = 1000;
+                    var minutes = seconds * 60;
+                    var hours = minutes * 60;
+                    var days = hours * 24;
+                    var years = days * 365;
+                    var today = new Date();
+                    var startYear = "2016";
+                    var startMonth = "08";
+                    var startDate = "28";
+                    var startHour = "0";
+                    var startMinute = "0";
+                    var startSecond = "0";
+                    var todayYear = today.getFullYear();
+                    var todayMonth = today.getMonth() + 1;
+                    var todayDate = today.getDate();
+                    var todayHour = today.getHours();
+                    var todayMinute = today.getMinutes();
+                    var todaySecond = today.getSeconds();
+                    var t1 = Date.UTC(startYear, startMonth, startDate, startHour, startMinute, startSecond);
+                    var t2 = Date.UTC(todayYear, todayMonth, todayDate, todayHour, todayMinute, todaySecond);
+                    var diff = t2 - t1;
+                    var diffYears = Math.floor(diff / years);
+                    var diffDays = Math.floor((diff / days) - diffYears * 365);
+                    var diffHours = Math.floor((diff - (diffYears * 365 + diffDays) * days) / hours);
+                    var diffMinutes = Math.floor((diff - (diffYears * 365 + diffDays) * days - diffHours * hours) /
+                        minutes);
+                    var diffSeconds = Math.floor((diff - (diffYears * 365 + diffDays) * days - diffHours * hours -
+                        diffMinutes * minutes) / seconds);
+                    if (startYear == todayYear) {
+                        document.getElementById("year").innerHTML = todayYear;
+                        document.getElementById("sitetime").innerHTML = "本站已安全运行 " + diffDays + " 天 " + diffHours +
+                            " 小时 " + diffMinutes + " 分钟 " + diffSeconds + " 秒";
+                    } else {
+                        document.getElementById("year").innerHTML = startYear + " - " + todayYear;
+                        document.getElementById("sitetime").innerHTML = "本站已安全运行 " + diffYears + " 年 " + diffDays +
+                            " 天 " + diffHours + " 小时 " + diffMinutes + " 分钟 " + diffSeconds + " 秒";
+                    }
+                }
+                setInterval(siteTime, 1000);
+            </script>
+            
+            <br>
+            
+            <span id="icp"><img src="/medias/icp.png" style="vertical-align: text-bottom;" />
+                <a href="http://www.beian.miit.gov.cn" target="_blank">陇ICP备19002222号</a>
+            </span>
+            
+        </div>
+        <div class="col s12 m4 l4 social-link social-statis">
+    <a href="https://github.com/Mculover666" class="tooltipped" target="_blank" data-tooltip="访问我的GitHub" data-position="top" data-delay="50">
+        <i class="fab fa-github"></i>
+    </a>
+
+
+
+    <a href="mailto:mculover666@foxmail.com" class="tooltipped" target="_blank" data-tooltip="邮件联系我" data-position="top" data-delay="50">
+        <i class="fas fa-envelope-open"></i>
+    </a>
+
+
+
+
+
+
+
+    <a href="tencent://AddContact/?fromId=50&fromSubId=1&subcmd=all&uin=2412828003" class="tooltipped" target="_blank" data-tooltip="QQ联系我: 2412828003" data-position="top" data-delay="50">
+        <i class="fab fa-qq"></i>
+    </a>
+
+
+
+
+
+    <a href="https://www.zhihu.com/people/wang-shi-wei-67-38/activities" class="tooltipped" target="_blank" data-tooltip="关注我的知乎: https://www.zhihu.com/people/wang-shi-wei-67-38/activities" data-position="top" data-delay="50">
+        <i class="fab fa-zhihu1">知</i>
+    </a>
+
+
+
+    <a href="/atom.xml" class="tooltipped" target="_blank" data-tooltip="RSS 订阅" data-position="top" data-delay="50">
+        <i class="fas fa-rss"></i>
+    </a>
+
+</div>
+    </div>
+</footer>
+
+<div class="progress-bar"></div>
+
+
+    <!-- 搜索遮罩框 -->
+<div id="searchModal" class="modal">
+    <div class="modal-content">
+        <div class="search-header">
+            <span class="title"><i class="fas fa-search"></i>&nbsp;&nbsp;搜索</span>
+            <input type="search" id="searchInput" name="s" placeholder="请输入搜索的关键字"
+                   class="search-input">
+        </div>
+        <div id="searchResult"></div>
+    </div>
+</div>
+
+<script src="/js/search.js"></script>
+<script type="text/javascript">
+$(function () {
+    searchFunc("/" + "search.xml", 'searchInput', 'searchResult');
+});
+</script>
+    <!-- 回到顶部按钮 -->
+<div id="backTop" class="top-scroll">
+    <a class="btn-floating btn-large waves-effect waves-light" href="#!">
+        <i class="fas fa-arrow-up"></i>
+    </a>
+</div>
+
+
+    <script src="/libs/materialize/materialize.min.js"></script>
+    <script src="/libs/masonry/masonry.pkgd.min.js"></script>
+    <script src="/libs/aos/aos.js"></script>
+    <script src="/libs/scrollprogress/scrollProgress.min.js"></script>
+    <script src="/libs/lightGallery/js/lightgallery-all.min.js"></script>
+    <script src="/js/matery.js"></script>
+
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+
+
+    <!-- Baidu Analytics -->
+
+<script>
+    var _hmt = _hmt || [];
+    (function () {
+        var hm = document.createElement("script");
+        hm.src = "https://hm.baidu.com/hm.js?6e1efa0988723a1db6356535db2ae6bd";
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(hm, s);
+    })();
+</script>
+
+    <!-- Baidu Push -->
+
+<script>
+    (function () {
+        var bp = document.createElement('script');
+        var curProtocol = window.location.protocol.split(':')[0];
+        if (curProtocol === 'https') {
+            bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+        } else {
+            bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+        }
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(bp, s);
+    })();
+</script>
+
+    
+    <script src="/libs/others/clicklove.js" async="async"></script>
+    
+    
+    <script async src="/libs/others/busuanzi.pure.mini.js"></script>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <script type="text/javascript" src="/libs/background/ribbon-dynamic.js" async="async"></script>
+    
+    
+    
+    <script src="/libs/instantpage/instantpage.js" type="module"></script>
+    
+
+</body>
+
+</html>

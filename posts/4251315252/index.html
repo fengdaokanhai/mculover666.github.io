@@ -4,7 +4,7 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="【STM32Cube_17】使用硬件SPI驱动TFT-LCD（ST7789）, 嵌入式软件 C/C++ ARM Linux 物联网IoT">
+    <meta name="keywords" content="STM32CubeMX SPI ST7789">
     <meta name="description" content="本篇详细的记录了如何使用STM32CubeMX配置STM32L431RCT6的硬件SPI外设与ST7789通信，驱动16bit TFT-LCD 屏幕。
 
 
@@ -18,7 +18,7 @@
     <meta name="format-detection" content="telephone=no">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    <title>【STM32Cube_17】使用硬件SPI驱动TFT-LCD（ST7789） | Mculover666</title>
+    <title>STM32CubeMX_17 | 使用硬件SPI驱动TFT-LCD（ST7789） | Mculover666</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
@@ -75,13 +75,6 @@
     <ul class="sub-nav menus_item_child ">
       
       <li>
-        <a href="/posts/3223194057/">
-          
-          <span>Hexo</span>
-        </a>
-      </li>
-      
-      <li>
         <a href="/posts/578764034/">
           
           <span>STM32CubeMX</span>
@@ -94,20 +87,20 @@
   
   <li class="hide-on-med-and-down nav-item">
     
-    <a href="/categories" class="waves-effect waves-light">
+    <a href="https://blog.csdn.net/Mculover666" target="_blank" rel="noopener" class="waves-effect waves-light">
       
       <i class="fas fa-bookmark" style="zoom: 0.6;"></i>
       
-      <span>精选文章</span>
+      <span>CSDN</span>
     </a>
     
   </li>
   
   <li class="hide-on-med-and-down nav-item">
     
-    <a href="/friends" class="waves-effect waves-light">
+    <a href="/download" class="waves-effect waves-light">
       
-      <i class="fas fa-address-book" style="zoom: 0.6;"></i>
+      <i class="fas fa-download" style="zoom: 0.6;"></i>
       
       <span>资源下载</span>
     </a>
@@ -130,7 +123,7 @@
         <div class="logo-name">Mculover666</div>
         <div class="logo-desc">
             
-            一个喜欢玩板子的小码农
+            嵌入式 STM32 物联网领域的教程及精彩内容分享
             
         </div>
     </div>
@@ -163,14 +156,6 @@
               
                 <li>   
 				
-                  <a href="/posts/3223194057/ " style="margin-left:75px";>
-				  
-		          <span>Hexo</span>
-                  </a>
-                </li>
-              
-                <li>   
-				
                   <a href="/posts/578764034/ " style="margin-left:75px";>
 				  
 		          <span>STM32CubeMX</span>
@@ -183,20 +168,20 @@
         
         <li class="m-nav-item">
 	  
-		<a href="/categories" class="waves-effect waves-light">
+		<a href="https://blog.csdn.net/Mculover666" target="_blank" rel="noopener" class="waves-effect waves-light">
 			
 			    <i class="fa-fw fas fa-bookmark"></i>
 			
-			精选文章
+			CSDN
 		</a>
           
         </li>
         
         <li class="m-nav-item">
 	  
-		<a href="/friends" class="waves-effect waves-light">
+		<a href="/download" class="waves-effect waves-light">
 			
-			    <i class="fa-fw fas fa-address-book"></i>
+			    <i class="fa-fw fas fa-download"></i>
 			
 			资源下载
 		</a>
@@ -281,13 +266,13 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/19.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/3.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
                     <div class="description center-align post-title">
-                        【STM32Cube_17】使用硬件SPI驱动TFT-LCD（ST7789）
+                        STM32CubeMX_17 | 使用硬件SPI驱动TFT-LCD（ST7789）
                     </div>
                 </div>
             </div>
@@ -894,7 +879,7 @@ uint8_t <span class="token function">SPI_WriteByte</span><span class="token punc
 <div id="article-share">
     
     
-    <div class="social-share" data-sites="twitter,facebook,google,qq,qzone,wechat,weibo,douban,linkedin" data-wechat-qrcode-helper="<p>微信扫一扫即可分享！</p>"></div>
+    <div class="social-share" data-sites="qq,qzone,wechat,weibo,douban" data-wechat-qrcode-helper="<p>微信扫一扫即可分享！</p>"></div>
     <script src="/libs/share/js/social-share.min.js"></script>
     
 
@@ -1013,10 +998,10 @@ uint8_t <span class="token function">SPI_WriteByte</span><span class="token punc
                         <li class="tab col s6 wechat-tab waves-effect waves-light"><a href="#wechat">微 信</a></li>
                     </ul>
                     <div id="alipay">
-                        <img src="/medias/reward/alipay.jpg" class="reward-img" alt="支付宝打赏二维码">
+                        <img src="/medias/reward/alipay.png" class="reward-img" alt="支付宝打赏二维码">
                     </div>
                     <div id="wechat">
-                        <img src="/medias/reward/wechat.png" class="reward-img" alt="微信打赏二维码">
+                        <img src="/medias/reward/we-chat.png" class="reward-img" alt="微信打赏二维码">
                     </div>
                 </div>
             </div>
@@ -1078,9 +1063,9 @@ uint8_t <span class="token function">SPI_WriteByte</span><span class="token punc
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/9.jpg" class="responsive-img" alt="【STM32Cube-18】使用硬件QSPI读写SPI Flash（W25Q64）">
+                        <img src="/medias/featureimages/9.jpg" class="responsive-img" alt="STM32CubeMX-18 | 使用硬件QSPI读写SPI Flash（W25Q64）">
                         
-                        <span class="card-title">【STM32Cube-18】使用硬件QSPI读写SPI Flash（W25Q64）</span>
+                        <span class="card-title">STM32CubeMX-18 | 使用硬件QSPI读写SPI Flash（W25Q64）</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -1154,8 +1139,8 @@ uint8_t <span class="token function">SPI_WriteByte</span><span class="token punc
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="/categories/%E7%AE%97%E6%B3%95%E5%AE%9E%E7%8E%B0/" class="post-category">
-                                    算法实现
+                            <a href="/categories/%E7%AE%97%E6%B3%95/" class="post-category">
+                                    算法
                                 </a>
                             
                             
@@ -1165,8 +1150,8 @@ uint8_t <span class="token function">SPI_WriteByte</span><span class="token punc
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/CRC%E6%A0%A1%E9%AA%8C/">
-                        <span class="chip bg-color">CRC校验</span>
+                    <a href="/tags/CRC%E6%A0%A1%E9%AA%8C%E7%AE%97%E6%B3%95/">
+                        <span class="chip bg-color">CRC校验算法</span>
                     </a>
                     
                 </div>
@@ -1314,7 +1299,7 @@ code[class*="language-"], pre[class*="language-"] { white-space: pre !important;
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">46.7k</span>&nbsp;字
+                class="white-color">33.7k</span>&nbsp;字
             
             
             
