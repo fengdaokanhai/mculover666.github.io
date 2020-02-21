@@ -4,6 +4,31 @@
   
     
     <entry>
+      <title>桌面mini网络时钟教程 | 01-基于STM32芯片创建HelloWorld工程</title>
+      <link href="/posts/2303339885/"/>
+      <url>/posts/2303339885/</url>
+      
+        <content type="html"><![CDATA[<h1 id="1-RT-Thread-Studio"><a href="#1-RT-Thread-Studio" class="headerlink" title="1. RT-Thread Studio"></a>1. RT-Thread Studio</h1><p>RT-Thread Studio 是<strong>一站式的 RT-Thread 开发工具</strong>，通过简单易用的图形化配置系统以及丰富的软件包和组件资源，让物联网开发变得简单和高效。<br><img src="https://img-blog.csdnimg.cn/20200202170325301.png#pic_center" alt=""><br>RT-Thread主要包括工程创建和管理，代码编辑，SDK管理，RT-Thread配置，构建配置，调试配置，程序下载和调试等功能，结合图形化配置系统以及软件包和组件资源，减少重复工作，提高开发效率。</p><p><img src="https://img-blog.csdnimg.cn/20200202170406175.png" alt=""></p><p>RT-Thread STudio了可以从<a href="https://www.rt-thread.org/page/download.html#studio" target="_blank" rel="noopener">RT-Thread官网</a>下载，下载之后一路next安装即可，注意安装路径不要有中文或者空格。<br><img src="https://img-blog.csdnimg.cn/20200203110427759.png" alt=""></p><h1 id="2-桌面mini时钟项目"><a href="#2-桌面mini时钟项目" class="headerlink" title="2. 桌面mini时钟项目"></a>2. 桌面mini时钟项目</h1><p>迷你桌面时钟项目基于小熊派IoT开发板，使用RT-Thread物联网操作系统，使用RT-Thread Studio一站式开发工具，在极短的时间内开发完成一个桌面mini时钟。</p><p>整个项目的架构如下：<br><img src="https://img-blog.csdnimg.cn/2020020217203582.png" alt=""><br>项目所用的芯片型号如下：</p><ul><li>主控芯片：STM32L431RCT6</li><li>温湿度传感器：    SHT30</li><li>通信模组：ESP8266（WIFI）</li><li>显示模组：0.96’OLED（SSD1306）</li></ul><p>其中，SHT30传感器挂载到STM32的I2C1引脚上，OLED挂载到STM32的I2C3引脚上，两个设备均使用模拟I2C总线通信，ESP8266与STM32之间采用串口发送AT指令通信。</p><h1 id="3-基于芯片创建项目"><a href="#3-基于芯片创建项目" class="headerlink" title="3. 基于芯片创建项目"></a>3. 基于芯片创建项目</h1><p>① 打开RT-Thread Studio，点击左上角新建项目，新建一个RT-Thread项目：<br><img src="https://img-blog.csdnimg.cn/20200202172950506.png" alt=""></p><p>② 填写项目信息，基于芯片创建项目：</p><blockquote><p><strong>RT-Thead支持全系列STM32芯片，所以可以使用任何STM32开发板！</strong></p></blockquote><p><img src="https://img-blog.csdnimg.cn/20200202173448981.png" alt=""><br>③ 点击“小锤子”编译整个工程：<br><img src="https://img-blog.csdnimg.cn/20200202173803445.png" alt=""><br>所有编译信息都会在控制台输出：<br><img src="https://img-blog.csdnimg.cn/20200202173912355.png" alt=""></p><p>④ 点击按钮，在Putty创建一个串口终端：<br><img src="https://img-blog.csdnimg.cn/20200202174335624.png" alt=""><br>填写串口信息，打开串口：<br><img src="https://img-blog.csdnimg.cn/20200220204939424.png" alt=""><br>打开之后的串口终端如图所示：<br><img src="https://img-blog.csdnimg.cn/20200220205025561.png" alt=""></p><p>⑤ 点击按钮下载工程：<br><img src="https://img-blog.csdnimg.cn/20200202174444835.png" alt=""><br>所有下载信息都在控制台输出：<br><img src="https://img-blog.csdnimg.cn/20200202174525706.png" alt=""><br>⑥ 下载完毕自动复位运行，在串口终端查看输出：<br><img src="https://img-blog.csdnimg.cn/20200220205213254.png" alt=""></p><p><font color="red"><strong>一行代码都不用写，RT-Thread就在板子上跑起来了，爽不爽！</strong></font></p><h1 id="4-让LED闪烁起来"><a href="#4-让LED闪烁起来" class="headerlink" title="4. 让LED闪烁起来"></a>4. 让LED闪烁起来</h1><p>RT-Thread Studio默认生成的main./c中已经包含了LED闪烁的程序，我们只需要修改引脚即可。</p><p>小熊派IoT开发板板载一个LED，默认连接在PC13引脚上，修改这行代码设置引脚：<br><img src="https://img-blog.csdnimg.cn/20200202190419592.png" alt=""><br>再次编译，下载，可以看到板载蓝色LED开始闪烁。</p><h1 id="5-使用外部晶振时钟"><a href="#5-使用外部晶振时钟" class="headerlink" title="5. 使用外部晶振时钟"></a>5. 使用外部晶振时钟</h1><p>使用RT-Thread Studio<strong>基于芯片创建的工程全部使用内部时钟HSI</strong>，要使用外部晶振时钟HSE，在<code>board.c</code>中修改<code>SystemClock_Config</code>函数，这里我修改如下：<br><img src="https://img-blog.csdnimg.cn/20200202201426822.png" alt=""></p><p>再次编译下载，可以看到现象和之前使用HSI时候的现象一致。</p><p><font color="red"><strong>接收更多精彩文章及资源推送，欢迎订阅我的微信公众号：『mculover666』。</strong></font><br><img src="https://img-blog.csdnimg.cn/20200202092055136.png" alt=""></p>]]></content>
+      
+      
+      <categories>
+          
+          <category> 制作过程 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 制作过程 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>Matlab2018安装教程</title>
       <link href="/posts/2806899914/"/>
       <url>/posts/2806899914/</url>
