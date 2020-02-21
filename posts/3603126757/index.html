@@ -4,15 +4,8 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="STM32CubeMX STM32CubeMX GPIO 按键检测">
-    <meta name="description" content="本篇文章主要介绍如何使用STM32CubeMX初始化STM32L431RCT6的GPIO，并扫描检测按键。
-
-1. 准备工作硬件准备
-开发板首先需要准备一个开发板，这里我准备的是STM32L4的开发板（BearPi）：
-
-
-软件准备
-需要安">
+    <meta name="keywords" content="RT-Thread">
+    <meta name="description" content="使用RT-Thread Studio打造">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -20,7 +13,7 @@
     <meta name="format-detection" content="telephone=no">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    <title>STM32CubeMX_04 | 使用GPIO进行按键检测 | Mculover666</title>
+    <title>桌面mini网络时钟教程 | 04-OLED显示时钟和温湿度 | Mculover666</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
@@ -273,7 +266,7 @@
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">STM32CubeMX_04 | 使用GPIO进行按键检测</h1>
+                    <h1 class="description center-align post-title">桌面mini网络时钟教程 | 04-OLED显示时钟和温湿度</h1>
                 </div>
             </div>
         </div>
@@ -390,8 +383,8 @@
                     
                     <div class="article-tag">
                         
-                            <a href="/tags/STM32CubeMX/">
-                                <span class="chip bg-color">STM32CubeMX</span>
+                            <a href="/tags/%E5%88%B6%E4%BD%9C%E8%BF%87%E7%A8%8B/">
+                                <span class="chip bg-color">制作过程</span>
                             </a>
                         
                     </div>
@@ -402,8 +395,8 @@
                     <div class="post-cate">
                         <i class="fas fa-bookmark fa-fw icon-category"></i>
                         
-                            <a href="/categories/STM32CubeMX/" class="post-category">
-                                STM32CubeMX
+                            <a href="/categories/%E5%88%B6%E4%BD%9C%E8%BF%87%E7%A8%8B/" class="post-category">
+                                制作过程
                             </a>
                         
                     </div>
@@ -415,7 +408,7 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2019-07-25
+                    2020-02-20
                 </div>
                 
 
@@ -437,92 +430,192 @@
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <p>本篇文章主要介绍如何使用STM32CubeMX初始化STM32L431RCT6的GPIO，并扫描检测按键。</p>
-<a id="more"></a>
-<h1 id="1-准备工作"><a href="#1-准备工作" class="headerlink" title="1. 准备工作"></a>1. 准备工作</h1><h2 id="硬件准备"><a href="#硬件准备" class="headerlink" title="硬件准备"></a>硬件准备</h2><ul>
-<li>开发板<br>首先需要准备一个开发板，这里我准备的是STM32L4的开发板（BearPi）：</li>
-</ul>
-<p><img src="http://mculover666.cn/image/20190806/9uiPTi5odYSj.png?imageslim" alt="mark"></p>
-<h2 id="软件准备"><a href="#软件准备" class="headerlink" title="软件准备"></a>软件准备</h2><ul>
-<li>需要安装好Keil - MDK及芯片对应的包，以便编译和下载生成的代码；</li>
-</ul>
+                <h1 id="1-项目进度"><a href="#1-项目进度" class="headerlink" title="1. 项目进度"></a>1. 项目进度</h1><p>桌面Mini时钟项目用来演示如何使用RT-Thread Stduio开发项目，整个项目的架构如下：<br><img src="https://img-blog.csdnimg.cn/2020020311120887.png#pic_center" alt=""> </p>
+<p>在前三篇博文中简单的介绍了RT-Thread Studio一站式工具，基于STM32L431RCT6这个芯片创建工程，并修改时钟为使用外部时钟，以及添加SHT3x软件包获取温湿度传感器数据，最后添加了ESP8266设备连接网络，使用NTP服务器进行网络对时。</p>
 <blockquote>
-<p>Keil MDK和串口助手Serial Port Utility 的安装包都可以<strong>在文末关注公众号获取</strong>，回复关键字获取相应的安装包：</p>
-</blockquote>
-<p><img src="http://mculover666.cn/image/20190814/gubaOwmETp1w.png?imageslim" alt="mark"></p>
-<h1 id="2-生成MDK工程"><a href="#2-生成MDK工程" class="headerlink" title="2.生成MDK工程"></a>2.生成MDK工程</h1><h2 id="选择芯片型号"><a href="#选择芯片型号" class="headerlink" title="选择芯片型号"></a>选择芯片型号</h2><p>打开STM32CubeMX，打开MCU选择器：</p>
-<p><img src="http://mculover666.cn/image/20190806/gBP6glmUSH80.png?imageslim" alt="mark"></p>
-<p>搜索并选中芯片<code>STM32L431RCT6</code>:</p>
-<p><img src="http://mculover666.cn/image/20190806/gnyHwdl53uVD.png?imageslim" alt="mark"></p>
-<h2 id="配置时钟源"><a href="#配置时钟源" class="headerlink" title="配置时钟源"></a>配置时钟源</h2><ul>
-<li>如果选择使用外部高速时钟（HSE），则需要在System Core中配置RCC；</li>
-<li>如果使用默认内部时钟（HSI），这一步可以略过；</li>
-</ul>
-<p>这里我都使用外部时钟：</p>
-<p><img src="http://mculover666.cn/image/20190806/k593lGGb5tlW.png?imageslim" alt="mark"></p>
-<h2 id="配置LED的GPIO引脚"><a href="#配置LED的GPIO引脚" class="headerlink" title="配置LED的GPIO引脚"></a>配置LED的GPIO引脚</h2><p>查看小熊派开发板的原理图，如下：</p>
-<p><img src="http://mculover666.cn/image/20190812/5iCtQUfKbgzA.png?imageslim" alt="mark"></p>
-<p>所以接下来我们选择配置<code>PC13</code>引脚：</p>
-<p><img src="http://mculover666.cn/image/20190812/Ad3UrGCsgjXr.png?imageslim" alt="mark"></p>
-<p>设置用户标签为LED：</p>
-<p><img src="http://mculover666.cn/image/20190813/ClKDFmVJYceI.png?imageslim" alt="mark"></p>
-<p>给PC13引脚设置一个user_label:</p>
-<p><img src="http://mculover666.cn/blog/20191203/Xs7BxveXoyYs.png?imageslim" alt=""></p>
-<blockquote>
-<p>这里给PC13引脚添加一个user_label后，cubemx软件会在<code>main.h</code>文件中添加一个宏定义，如图，我们可以使用<code>LED_GPIO_Port</code>, <code>LED_Pin</code>来表示这个引脚，提高了程序的可移植性。如果没有该user_label，就需要使用<code>GPIOC</code>，<code>GPIO_PIN_13</code> 来表示这个引脚。</p>
-</blockquote>
-<p><img src="http://mculover666.cn/blog/20191203/fvPWgmNK4NU7.png?imageslim" alt=""></p>
-<h2 id="配置按键的GPIO引脚"><a href="#配置按键的GPIO引脚" class="headerlink" title="配置按键的GPIO引脚"></a>配置按键的GPIO引脚</h2><p>查看小熊派开发板的原理图，如下：</p>
-<p><img src="http://mculover666.cn/image/20190813/QNbG5i6QKGk3.png?imageslim" alt="mark"></p>
-<p>所以接下来我们选择配置<code>PB2</code>引脚和<code>PB3</code>引脚：</p>
-<p><img src="http://mculover666.cn/image/20190813/3fRF4dWxJ6iw.png?imageslim" alt="mark"></p>
-<p>因为没有设置硬件上拉，所以我们配置开启上拉电阻，并设置用户标签为<code>KEY1</code>和<code>KEY2</code>：</p>
-<p><img src="http://mculover666.cn/image/20190813/sjhFpsdWkQSB.png?imageslim" alt="mark"></p>
-<h2 id="配置时钟树"><a href="#配置时钟树" class="headerlink" title="配置时钟树"></a>配置时钟树</h2><p>STM32L4的最高主频到80M，所以配置PLL，最后使<code>HCLK = 80Mhz</code>即可：</p>
-<p><img src="http://mculover666.cn/image/20190806/1TQg7frjRpVr.png?imageslim" alt="mark"></p>
-<h2 id="生成工程设置"><a href="#生成工程设置" class="headerlink" title="生成工程设置"></a>生成工程设置</h2><p><img src="http://mculover666.cn/image/20190813/4cGrWhVnjEdp.png?imageslim" alt="mark"></p>
-<h2 id="代码生成设置"><a href="#代码生成设置" class="headerlink" title="代码生成设置"></a>代码生成设置</h2><p>最后设置生成独立的初始化文件：</p>
-<p><img src="http://mculover666.cn/image/20190812/PwTCS6QzHiyG.png?imageslim" alt="mark"></p>
-<h2 id="生成代码"><a href="#生成代码" class="headerlink" title="生成代码"></a>生成代码</h2><p>点击<code>GENERATE CODE</code>即可生成MDK-V5工程：</p>
-<p><img src="http://mculover666.cn/image/20190806/s0jGhLBWW6Cm.png?imageslim" alt="mark"></p>
-<h1 id="3-在MDK中编写、编译、下载用户代码"><a href="#3-在MDK中编写、编译、下载用户代码" class="headerlink" title="3. 在MDK中编写、编译、下载用户代码"></a>3. 在MDK中编写、编译、下载用户代码</h1><h2 id="编写用户代码"><a href="#编写用户代码" class="headerlink" title="编写用户代码"></a>编写用户代码</h2><p>进入<code>MDK-ARM</code>目录，打开工程，在<code>main.c</code>中的main函数中编写简单的用户代码：</p>
-<pre class=" language-c"><code class="language-c"><span class="token keyword">int</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token keyword">void</span><span class="token punctuation">)</span>
-<span class="token punctuation">{</span>
-
-  <span class="token function">HAL_Init</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-
-  <span class="token function">SystemClock_Config</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-
-  <span class="token function">MX_GPIO_Init</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-
-  <span class="token keyword">while</span> <span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">)</span>
-  <span class="token punctuation">{</span>
-    <span class="token comment" spellcheck="true">/* USER CODE BEGIN 3 */</span>
-        <span class="token keyword">if</span><span class="token punctuation">(</span><span class="token number">0</span> <span class="token operator">==</span> <span class="token function">HAL_GPIO_ReadPin</span><span class="token punctuation">(</span>KEY1_GPIO_Port<span class="token punctuation">,</span> KEY1_Pin<span class="token punctuation">)</span><span class="token punctuation">)</span>
-        <span class="token punctuation">{</span>
-            <span class="token function">HAL_GPIO_WritePin</span><span class="token punctuation">(</span>LED_GPIO_Port<span class="token punctuation">,</span>LED_Pin<span class="token punctuation">,</span>GPIO_PIN_SET<span class="token punctuation">)</span><span class="token punctuation">;</span>
-        <span class="token punctuation">}</span>
-        <span class="token keyword">if</span><span class="token punctuation">(</span><span class="token number">0</span> <span class="token operator">==</span> <span class="token function">HAL_GPIO_ReadPin</span><span class="token punctuation">(</span>KEY2_GPIO_Port<span class="token punctuation">,</span> KEY2_Pin<span class="token punctuation">)</span><span class="token punctuation">)</span>
-        <span class="token punctuation">{</span>
-            <span class="token function">HAL_GPIO_WritePin</span><span class="token punctuation">(</span>LED_GPIO_Port<span class="token punctuation">,</span>LED_Pin<span class="token punctuation">,</span>GPIO_PIN_RESET<span class="token punctuation">)</span><span class="token punctuation">;</span>
-        <span class="token punctuation">}</span>
-  <span class="token punctuation">}</span>
-  <span class="token comment" spellcheck="true">/* USER CODE END 3 */</span>
-<span class="token punctuation">}</span></code></pre>
-<h2 id="编译代码"><a href="#编译代码" class="headerlink" title="编译代码"></a>编译代码</h2><p>编译整个工程：</p>
-<p><img src="http://mculover666.cn/image/20190813/T9TxAoP6pyiI.png?imageslim" alt="mark"></p>
-<h2 id="设置下载器"><a href="#设置下载器" class="headerlink" title="设置下载器"></a>设置下载器</h2><p><img src="http://mculover666.cn/image/20190812/PHve6DYPkO9M.png?imageslim" alt="mark"></p>
-<p><img src="http://mculover666.cn/image/20190812/djSNbMCj6Hh6.png?imageslim" alt="mark"></p>
-<h2 id="实验现象"><a href="#实验现象" class="headerlink" title="实验现象"></a>实验现象</h2><p>下载运行后，实验现象如下：</p>
 <ul>
-<li>上电复位时LED处于熄灭状态；</li>
-<li>按下KEY1，LED点亮；</li>
-<li>按下KEY2，LED熄灭；</li>
+<li><a href="https://blog.csdn.net/Mculover666/article/details/104146623" target="_blank" rel="noopener">使用RT-Thread Studio DIY 迷你桌面时钟（一）| 基于STM32芯片创建工程</a></li>
+<li><a href="https://mculover666.blog.csdn.net/article/details/104153715" target="_blank" rel="noopener">使用RT-Thread Studio DIY 迷你桌面时钟（二）| 获取温湿度传感器数据（I2C设备驱动+SHT3x软件包）</a></li>
+<li><a href="https://mculover666.blog.csdn.net/article/details/104418075" target="_blank" rel="noopener">使用RT-Thread Studio DIY 迷你桌面时钟（三）| 获取NTP时间（at_device软件包 + netutils软件包）</a></li>
 </ul>
-<p><img src="http://mculover666.cn/image/20190813/jrREJBcJukl3.png?imageslim" alt="mark"></p>
-<p>至此，我们已经学会了<strong>如何使用STM32CubeMX快速生成MDK的工程</strong>，以及<strong>如何使用 STM32CubeMX初始化GPIO进行按键检测</strong>，下一节讲述如何配置NVIC使用外部中断检测按键。</p>
-<p><strong><font color="#FF0000">更多精彩文章及资源，请关注我的微信公众号：『mculover666』。</font></strong></p>
-<p><img src="http://mculover666.cn/image/20190814/NQqt1eRxrl1K.png?imageslim" alt="mark"></p>
+</blockquote>
+<p>接下来添加u8g2软件包，驱动OLED显示数字时钟效果和温湿度效果。</p>
+<h1 id="2-开启C-组件支持"><a href="#2-开启C-组件支持" class="headerlink" title="2. 开启C++组件支持"></a>2. 开启C++组件支持</h1><p>使用U8G2软件包需要C++组件支持，在RT-Thread项目设置中开启C++组件，如图：<br><img src="https://img-blog.csdnimg.cn/20200221091817570.png" alt=""><br>开启之后保存设置，软件会自动添加C++组件到工程中，编译没有问题：<br><img src="https://img-blog.csdnimg.cn/20200221094621580.png" alt=""></p>
+<h1 id="3-添加u8g2软件包并测试"><a href="#3-添加u8g2软件包并测试" class="headerlink" title="3. 添加u8g2软件包并测试"></a>3. 添加u8g2软件包并测试</h1><p>c++组件测试编译没有问题之后，打开工程设置，搜索u8g2，添加软件包：<br><img src="https://img-blog.csdnimg.cn/20200221094721981.png" alt=""><br>添加之后打开u8g2软件包配置，使能基本示例：<br><img src="https://img-blog.csdnimg.cn/20200221094848273.png" alt=""><br>保存配置，软件会自动构建工程，打开示例文件，文件位置如图：<br><img src="https://img-blog.csdnimg.cn/20200221095017406.png" alt=""><br>在示例文件最开始根据实际情况配置引脚编号：<br><img src="https://img-blog.csdnimg.cn/20200221095216644.png" alt=""><br>配置之后，编译，下载，在串口控制台中运行该线程，如图：<br><img src="https://img-blog.csdnimg.cn/20200221095426701.png" alt=""><br>线程运行起来之后OLED显示正常，测试完毕，如图：</p>
+<h1 id="4-编写OLED显示线程"><a href="#4-编写OLED显示线程" class="headerlink" title="4. 编写OLED显示线程"></a>4. 编写OLED显示线程</h1><p>测试完毕后，在RT-Thread项目设置中关闭该示例文件，保存设置，等待软件自动构建工程完毕后，在application分组下创建一个用户文件<code>oled_display.cpp</code>文件，存放本项目中的OLED显示代码。</p>
+<p>完整的代码如下：</p>
+<pre class=" language-c"><code class="language-c"><span class="token macro property">#<span class="token directive keyword">include</span> <span class="token string">&lt;rthw.h></span></span>
+<span class="token macro property">#<span class="token directive keyword">include</span> <span class="token string">&lt;rtthread.h></span></span>
+<span class="token macro property">#<span class="token directive keyword">include</span> <span class="token string">&lt;rtdevice.h></span></span>
+<span class="token macro property">#<span class="token directive keyword">include</span> <span class="token string">&lt;U8g2lib.h></span></span>
+<span class="token macro property">#<span class="token directive keyword">include</span> <span class="token string">&lt;stdio.h></span></span>
+
+<span class="token macro property">#<span class="token directive keyword">include</span> <span class="token string">&lt;drv_soft_i2c.h></span></span>
+
+<span class="token keyword">extern</span> <span class="token string">"C"</span>
+<span class="token punctuation">{</span>
+<span class="token macro property">#<span class="token directive keyword">include</span> <span class="token string">&lt;sht3x.h></span></span>
+<span class="token punctuation">}</span>
+<span class="token keyword">extern</span> <span class="token string">"C"</span>
+<span class="token punctuation">{</span>
+sht3x_device_t <span class="token function">sht3x_init</span><span class="token punctuation">(</span><span class="token keyword">const</span> <span class="token keyword">char</span> <span class="token operator">*</span>i2c_bus_name<span class="token punctuation">,</span> rt_uint8_t sht3x_addr<span class="token punctuation">)</span><span class="token punctuation">;</span>
+rt_err_t <span class="token function">sht3x_read_singleshot</span><span class="token punctuation">(</span>sht3x_device_t dev<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+
+<span class="token macro property">#<span class="token directive keyword">define</span> OLED_I2C_PIN_SCL                    7   </span><span class="token comment" spellcheck="true">// PA7</span>
+<span class="token macro property">#<span class="token directive keyword">define</span> OLED_I2C_PIN_SDA                    20  </span><span class="token comment" spellcheck="true">// PB4</span>
+
+<span class="token keyword">static</span> U8G2_SSD1306_128X64_NONAME_F_SW_I2C <span class="token function">u8g2</span><span class="token punctuation">(</span>U8G2_R0<span class="token punctuation">,</span>\
+                                         <span class="token comment" spellcheck="true">/* clock=*/</span> OLED_I2C_PIN_SCL<span class="token punctuation">,</span>\
+                                         <span class="token comment" spellcheck="true">/* data=*/</span> OLED_I2C_PIN_SDA<span class="token punctuation">,</span>\
+                                         <span class="token comment" spellcheck="true">/* reset=*/</span> U8X8_PIN_NONE<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token macro property">#<span class="token directive keyword">define</span> SUN 0</span>
+<span class="token macro property">#<span class="token directive keyword">define</span> SUN_CLOUD  1</span>
+<span class="token macro property">#<span class="token directive keyword">define</span> CLOUD 2</span>
+<span class="token macro property">#<span class="token directive keyword">define</span> RAIN 3</span>
+<span class="token macro property">#<span class="token directive keyword">define</span> THUNDER 4</span>
+
+<span class="token keyword">static</span> <span class="token keyword">void</span> <span class="token function">drawWeatherSymbol</span><span class="token punctuation">(</span>u8g2_uint_t x<span class="token punctuation">,</span> u8g2_uint_t y<span class="token punctuation">,</span> uint8_t symbol<span class="token punctuation">)</span>
+<span class="token punctuation">{</span>
+  <span class="token comment" spellcheck="true">// fonts used:</span>
+  <span class="token comment" spellcheck="true">// u8g2_font_open_iconic_embedded_6x_t</span>
+  <span class="token comment" spellcheck="true">// u8g2_font_open_iconic_weather_6x_t</span>
+  <span class="token comment" spellcheck="true">// encoding values, see: https://github.com/olikraus/u8g2/wiki/fntgrpiconic</span>
+
+  <span class="token keyword">switch</span><span class="token punctuation">(</span>symbol<span class="token punctuation">)</span>
+  <span class="token punctuation">{</span>
+    <span class="token keyword">case</span> SUN<span class="token punctuation">:</span>
+      u8g2<span class="token punctuation">.</span><span class="token function">setFont</span><span class="token punctuation">(</span>u8g2_font_open_iconic_weather_6x_t<span class="token punctuation">)</span><span class="token punctuation">;</span>
+      u8g2<span class="token punctuation">.</span><span class="token function">drawGlyph</span><span class="token punctuation">(</span>x<span class="token punctuation">,</span> y<span class="token punctuation">,</span> <span class="token number">69</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+      <span class="token keyword">break</span><span class="token punctuation">;</span>
+    <span class="token keyword">case</span> SUN_CLOUD<span class="token punctuation">:</span>
+      u8g2<span class="token punctuation">.</span><span class="token function">setFont</span><span class="token punctuation">(</span>u8g2_font_open_iconic_weather_6x_t<span class="token punctuation">)</span><span class="token punctuation">;</span>
+      u8g2<span class="token punctuation">.</span><span class="token function">drawGlyph</span><span class="token punctuation">(</span>x<span class="token punctuation">,</span> y<span class="token punctuation">,</span> <span class="token number">65</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+      <span class="token keyword">break</span><span class="token punctuation">;</span>
+    <span class="token keyword">case</span> CLOUD<span class="token punctuation">:</span>
+      u8g2<span class="token punctuation">.</span><span class="token function">setFont</span><span class="token punctuation">(</span>u8g2_font_open_iconic_weather_6x_t<span class="token punctuation">)</span><span class="token punctuation">;</span>
+      u8g2<span class="token punctuation">.</span><span class="token function">drawGlyph</span><span class="token punctuation">(</span>x<span class="token punctuation">,</span> y<span class="token punctuation">,</span> <span class="token number">64</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+      <span class="token keyword">break</span><span class="token punctuation">;</span>
+    <span class="token keyword">case</span> RAIN<span class="token punctuation">:</span>
+      u8g2<span class="token punctuation">.</span><span class="token function">setFont</span><span class="token punctuation">(</span>u8g2_font_open_iconic_weather_6x_t<span class="token punctuation">)</span><span class="token punctuation">;</span>
+      u8g2<span class="token punctuation">.</span><span class="token function">drawGlyph</span><span class="token punctuation">(</span>x<span class="token punctuation">,</span> y<span class="token punctuation">,</span> <span class="token number">67</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+      <span class="token keyword">break</span><span class="token punctuation">;</span>
+    <span class="token keyword">case</span> THUNDER<span class="token punctuation">:</span>
+      u8g2<span class="token punctuation">.</span><span class="token function">setFont</span><span class="token punctuation">(</span>u8g2_font_open_iconic_embedded_6x_t<span class="token punctuation">)</span><span class="token punctuation">;</span>
+      u8g2<span class="token punctuation">.</span><span class="token function">drawGlyph</span><span class="token punctuation">(</span>x<span class="token punctuation">,</span> y<span class="token punctuation">,</span> <span class="token number">67</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+      <span class="token keyword">break</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">static</span> <span class="token keyword">void</span> <span class="token function">drawWeather</span><span class="token punctuation">(</span>uint8_t symbol<span class="token punctuation">,</span> <span class="token keyword">int</span> degree<span class="token punctuation">)</span>
+<span class="token punctuation">{</span>
+  <span class="token function">drawWeatherSymbol</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">63</span><span class="token punctuation">,</span> symbol<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  u8g2<span class="token punctuation">.</span><span class="token function">setFont</span><span class="token punctuation">(</span>u8g2_font_logisoso32_tf<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  u8g2<span class="token punctuation">.</span><span class="token function">setCursor</span><span class="token punctuation">(</span><span class="token number">55</span><span class="token punctuation">,</span> <span class="token number">63</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  u8g2<span class="token punctuation">.</span><span class="token function">print</span><span class="token punctuation">(</span>degree<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  u8g2<span class="token punctuation">.</span><span class="token function">print</span><span class="token punctuation">(</span><span class="token string">"C"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+<span class="token keyword">static</span> <span class="token keyword">void</span> <span class="token function">drawHumidity</span><span class="token punctuation">(</span>uint8_t symbol<span class="token punctuation">,</span> <span class="token keyword">int</span> humidity<span class="token punctuation">)</span>
+<span class="token punctuation">{</span>
+  <span class="token function">drawWeatherSymbol</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">63</span><span class="token punctuation">,</span> symbol<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  u8g2<span class="token punctuation">.</span><span class="token function">setFont</span><span class="token punctuation">(</span>u8g2_font_logisoso32_tf<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  u8g2<span class="token punctuation">.</span><span class="token function">setCursor</span><span class="token punctuation">(</span><span class="token number">55</span><span class="token punctuation">,</span> <span class="token number">63</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  u8g2<span class="token punctuation">.</span><span class="token function">print</span><span class="token punctuation">(</span>humidity<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  u8g2<span class="token punctuation">.</span><span class="token function">print</span><span class="token punctuation">(</span><span class="token string">"%"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+
+<span class="token keyword">void</span> <span class="token function">oled_display</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token punctuation">{</span>
+    u8g2<span class="token punctuation">.</span><span class="token function">begin</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    u8g2<span class="token punctuation">.</span><span class="token function">clearBuffer</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    u8g2<span class="token punctuation">.</span><span class="token function">setFont</span><span class="token punctuation">(</span>u8g2_font_logisoso32_tf<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    u8g2<span class="token punctuation">.</span><span class="token function">setCursor</span><span class="token punctuation">(</span><span class="token number">48</span><span class="token operator">+</span><span class="token number">3</span><span class="token punctuation">,</span> <span class="token number">42</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    u8g2<span class="token punctuation">.</span><span class="token function">print</span><span class="token punctuation">(</span><span class="token string">"Hi~"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>     <span class="token comment" spellcheck="true">// requires enableUTF8Print()</span>
+
+    u8g2<span class="token punctuation">.</span><span class="token function">setFont</span><span class="token punctuation">(</span>u8g2_font_6x13_tr<span class="token punctuation">)</span><span class="token punctuation">;</span>            <span class="token comment" spellcheck="true">// choose a suitable font</span>
+    u8g2<span class="token punctuation">.</span><span class="token function">drawStr</span><span class="token punctuation">(</span><span class="token number">30</span><span class="token punctuation">,</span> <span class="token number">60</span><span class="token punctuation">,</span> <span class="token string">"By Mculover666"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>   <span class="token comment" spellcheck="true">// write something to the internal memory</span>
+    u8g2<span class="token punctuation">.</span><span class="token function">sendBuffer</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    sht3x_device_t  sht3x_device<span class="token punctuation">;</span>
+    sht3x_device <span class="token operator">=</span> <span class="token function">sht3x_init</span><span class="token punctuation">(</span><span class="token string">"i2c1"</span><span class="token punctuation">,</span> <span class="token number">0x44</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    <span class="token function">rt_thread_mdelay</span><span class="token punctuation">(</span><span class="token number">2000</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    <span class="token keyword">int</span> status <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
+    <span class="token keyword">char</span> mstr<span class="token punctuation">[</span><span class="token number">3</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+    <span class="token keyword">char</span> hstr<span class="token punctuation">[</span><span class="token number">3</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+    time_t now<span class="token punctuation">;</span>
+    <span class="token keyword">struct</span> tm <span class="token operator">*</span>p<span class="token punctuation">;</span>
+    <span class="token keyword">int</span> min <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">,</span> hour <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
+    <span class="token keyword">int</span> temperature <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">,</span>humidity <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
+
+    <span class="token keyword">while</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">)</span>
+    <span class="token punctuation">{</span>
+        <span class="token keyword">switch</span><span class="token punctuation">(</span>status<span class="token punctuation">)</span>
+        <span class="token punctuation">{</span>
+            <span class="token keyword">case</span> <span class="token number">0</span><span class="token punctuation">:</span>
+                now <span class="token operator">=</span> <span class="token function">time</span><span class="token punctuation">(</span>RT_NULL<span class="token punctuation">)</span><span class="token punctuation">;</span>
+                p<span class="token operator">=</span><span class="token function">gmtime</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token keyword">const</span> time_t<span class="token operator">*</span><span class="token punctuation">)</span> <span class="token operator">&amp;</span>now<span class="token punctuation">)</span><span class="token punctuation">;</span>
+                hour <span class="token operator">=</span> p<span class="token operator">-></span>tm_hour<span class="token punctuation">;</span>
+                min <span class="token operator">=</span> p<span class="token operator">-></span>tm_min<span class="token punctuation">;</span>
+                <span class="token function">sprintf</span><span class="token punctuation">(</span>mstr<span class="token punctuation">,</span> <span class="token string">"%02d"</span><span class="token punctuation">,</span> min<span class="token punctuation">)</span><span class="token punctuation">;</span>
+                <span class="token function">sprintf</span><span class="token punctuation">(</span>hstr<span class="token punctuation">,</span> <span class="token string">"%02d"</span><span class="token punctuation">,</span> hour<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+
+                u8g2<span class="token punctuation">.</span><span class="token function">firstPage</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+                <span class="token keyword">do</span> <span class="token punctuation">{</span>
+                     u8g2<span class="token punctuation">.</span><span class="token function">setFont</span><span class="token punctuation">(</span>u8g2_font_logisoso42_tn<span class="token punctuation">)</span><span class="token punctuation">;</span>
+                     u8g2<span class="token punctuation">.</span><span class="token function">drawStr</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">,</span><span class="token number">63</span><span class="token punctuation">,</span>hstr<span class="token punctuation">)</span><span class="token punctuation">;</span>
+                     u8g2<span class="token punctuation">.</span><span class="token function">drawStr</span><span class="token punctuation">(</span><span class="token number">50</span><span class="token punctuation">,</span><span class="token number">63</span><span class="token punctuation">,</span><span class="token string">":"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+                     u8g2<span class="token punctuation">.</span><span class="token function">drawStr</span><span class="token punctuation">(</span><span class="token number">67</span><span class="token punctuation">,</span><span class="token number">63</span><span class="token punctuation">,</span>mstr<span class="token punctuation">)</span><span class="token punctuation">;</span>
+                   <span class="token punctuation">}</span> <span class="token keyword">while</span> <span class="token punctuation">(</span> u8g2<span class="token punctuation">.</span><span class="token function">nextPage</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+
+                <span class="token function">rt_thread_mdelay</span><span class="token punctuation">(</span><span class="token number">5000</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+                status <span class="token operator">=</span> <span class="token number">1</span><span class="token punctuation">;</span>
+                <span class="token keyword">break</span><span class="token punctuation">;</span>
+           <span class="token keyword">case</span> <span class="token number">1</span><span class="token punctuation">:</span>
+               <span class="token keyword">if</span><span class="token punctuation">(</span>RT_EOK <span class="token operator">==</span> <span class="token function">sht3x_read_singleshot</span><span class="token punctuation">(</span>sht3x_device<span class="token punctuation">)</span><span class="token punctuation">)</span>
+               <span class="token punctuation">{</span>
+                   temperature <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token keyword">int</span><span class="token punctuation">)</span>sht3x_device<span class="token operator">-></span>temperature<span class="token punctuation">;</span>
+               <span class="token punctuation">}</span>
+               <span class="token keyword">else</span>
+               <span class="token punctuation">{</span>
+                   temperature <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
+               <span class="token punctuation">}</span>
+               u8g2<span class="token punctuation">.</span><span class="token function">clearBuffer</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+               <span class="token function">drawWeather</span><span class="token punctuation">(</span>SUN<span class="token punctuation">,</span> temperature<span class="token punctuation">)</span><span class="token punctuation">;</span>
+               u8g2<span class="token punctuation">.</span><span class="token function">sendBuffer</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+               <span class="token function">rt_thread_mdelay</span><span class="token punctuation">(</span><span class="token number">5000</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+               status <span class="token operator">=</span> <span class="token number">2</span><span class="token punctuation">;</span>
+               <span class="token keyword">break</span><span class="token punctuation">;</span>
+           <span class="token keyword">case</span> <span class="token number">2</span><span class="token punctuation">:</span>
+               <span class="token keyword">if</span><span class="token punctuation">(</span>RT_EOK <span class="token operator">==</span> <span class="token function">sht3x_read_singleshot</span><span class="token punctuation">(</span>sht3x_device<span class="token punctuation">)</span><span class="token punctuation">)</span>
+              <span class="token punctuation">{</span>
+                   humidity <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token keyword">int</span><span class="token punctuation">)</span>sht3x_device<span class="token operator">-></span>humidity<span class="token punctuation">;</span>
+              <span class="token punctuation">}</span>
+              <span class="token keyword">else</span>
+              <span class="token punctuation">{</span>
+                  humidity <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
+              <span class="token punctuation">}</span>
+              u8g2<span class="token punctuation">.</span><span class="token function">clearBuffer</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+              <span class="token function">drawHumidity</span><span class="token punctuation">(</span>RAIN<span class="token punctuation">,</span> humidity<span class="token punctuation">)</span><span class="token punctuation">;</span>
+              u8g2<span class="token punctuation">.</span><span class="token function">sendBuffer</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+              <span class="token function">rt_thread_mdelay</span><span class="token punctuation">(</span><span class="token number">5000</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+              status <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
+              <span class="token keyword">break</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+<span class="token function">MSH_CMD_EXPORT</span><span class="token punctuation">(</span>oled_display<span class="token punctuation">,</span> oled start<span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
+<p>最后的效果视频太大，放不上来，暂且用图片代替：</p>
+<p><img src="https://img-blog.csdnimg.cn/20200221142507452.png" alt=""></p>
+<p><img src="https://img-blog.csdnimg.cn/20200221142521218.png" alt=""><br><img src="https://img-blog.csdnimg.cn/20200221142539777.png" alt=""><br><img src="https://img-blog.csdnimg.cn/20200221142557580.png" alt=""></p>
+<p><font color="red"><strong>接收更多精彩文章及资源推送，欢迎订阅我的微信公众号：『mculover666』。</strong></font><br><img src="https://img-blog.csdnimg.cn/20200202092055136.png" alt=""></p>
 
             </div>
             <hr/>
@@ -548,7 +641,7 @@
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="http://www.mculover666.cn/posts/1763774108/">http://www.mculover666.cn/posts/1763774108/</a>
+                    <a href="http://www.mculover666.cn/posts/3603126757/">http://www.mculover666.cn/posts/3603126757/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -586,8 +679,8 @@
                     
                         <div class="article-tag">
                             
-                                <a href="/tags/STM32CubeMX/">
-                                    <span class="chip bg-color">STM32CubeMX</span>
+                                <a href="/tags/%E5%88%B6%E4%BD%9C%E8%BF%87%E7%A8%8B/">
+                                    <span class="chip bg-color">制作过程</span>
                                 </a>
                             
                         </div>
@@ -779,34 +872,31 @@
             <div class="article-badge left-badge text-color">
                 <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
             <div class="card">
-                <a href="/posts/2504113390/">
+                <a href="/posts/210720430/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/2.jpg" class="responsive-img" alt="STM32CubeMX_05 | 使用EXIT中断检测按键">
+                        <img src="/medias/featureimages/0.jpg" class="responsive-img" alt="桌面mini网络时钟教程 | 05-使用内置 Git 可视化插件管理项目">
                         
-                        <span class="card-title">STM32CubeMX_05 | 使用EXIT中断检测按键</span>
+                        <span class="card-title">桌面mini网络时钟教程 | 05-使用内置 Git 可视化插件管理项目</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            本篇文章主要介绍如何使用STM32CubeMX初始化STM32L431RCT6的EXIT检测按键，讲述了一些NVIC的小知识，并一步一步探索了HAL库的中断处理机制。
-
-1. 准备工作硬件准备
-开发板首先需要准备一个开发板，这里我准备的是S
+                            使用RT-Thread Studio打造
                         
                     </div>
                     <div class="publish-info">
                         <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2019-07-26
+                            <i class="far fa-clock fa-fw icon-date"></i>2020-02-20
                         </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="/categories/STM32CubeMX/" class="post-category">
-                                    STM32CubeMX
+                            <a href="/categories/%E5%88%B6%E4%BD%9C%E8%BF%87%E7%A8%8B/" class="post-category">
+                                    制作过程
                                 </a>
                             
                             
@@ -816,8 +906,8 @@
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/STM32CubeMX/">
-                        <span class="chip bg-color">STM32CubeMX</span>
+                    <a href="/tags/%E5%88%B6%E4%BD%9C%E8%BF%87%E7%A8%8B/">
+                        <span class="chip bg-color">制作过程</span>
                     </a>
                     
                 </div>
@@ -831,38 +921,31 @@
                 下一篇&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/posts/2046075734/">
+                <a href="/posts/2731501981/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/17.jpg" class="responsive-img" alt="STM32CubeMX_03 | 使用GPIO点亮一个LED">
+                        <img src="/medias/featureimages/8.jpg" class="responsive-img" alt="桌面mini网络时钟教程 | 03-获取NTP时间">
                         
-                        <span class="card-title">STM32CubeMX_03 | 使用GPIO点亮一个LED</span>
+                        <span class="card-title">桌面mini网络时钟教程 | 03-获取NTP时间</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            本篇文章主要介绍如何使用STM32CubeMX初始化STM32L431RCT6的GPIO，并点亮一个LED。
-
-1. 准备工作硬件准备
-开发板首先需要准备一个开发板，这里我准备的是STM32L4的开发板（BearPi）：
-
-
-软件准备
-需要
+                            使用RT-Thread Studio打造
                         
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2019-07-24
+                                <i class="far fa-clock fa-fw icon-date"></i>2020-02-20
                             </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="/categories/STM32CubeMX/" class="post-category">
-                                    STM32CubeMX
+                            <a href="/categories/%E5%88%B6%E4%BD%9C%E8%BF%87%E7%A8%8B/" class="post-category">
+                                    制作过程
                                 </a>
                             
                             
@@ -872,8 +955,8 @@
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/STM32CubeMX/">
-                        <span class="chip bg-color">STM32CubeMX</span>
+                    <a href="/tags/%E5%88%B6%E4%BD%9C%E8%BF%87%E7%A8%8B/">
+                        <span class="chip bg-color">制作过程</span>
                     </a>
                     
                 </div>

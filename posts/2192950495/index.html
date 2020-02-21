@@ -4,15 +4,8 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="STM32CubeMX STM32CubeMX GPIO 按键检测">
-    <meta name="description" content="本篇文章主要介绍如何使用STM32CubeMX初始化STM32L431RCT6的GPIO，并扫描检测按键。
-
-1. 准备工作硬件准备
-开发板首先需要准备一个开发板，这里我准备的是STM32L4的开发板（BearPi）：
-
-
-软件准备
-需要安">
+    <meta name="keywords" content="RT-Thread">
+    <meta name="description" content="使用RT-Thread Studio打造">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -20,7 +13,7 @@
     <meta name="format-detection" content="telephone=no">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    <title>STM32CubeMX_04 | 使用GPIO进行按键检测 | Mculover666</title>
+    <title>桌面mini网络时钟教程 | 02-获取温湿度传感器数据 | Mculover666</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
@@ -268,12 +261,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/21.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/0.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">STM32CubeMX_04 | 使用GPIO进行按键检测</h1>
+                    <h1 class="description center-align post-title">桌面mini网络时钟教程 | 02-获取温湿度传感器数据</h1>
                 </div>
             </div>
         </div>
@@ -390,8 +383,8 @@
                     
                     <div class="article-tag">
                         
-                            <a href="/tags/STM32CubeMX/">
-                                <span class="chip bg-color">STM32CubeMX</span>
+                            <a href="/tags/%E5%88%B6%E4%BD%9C%E8%BF%87%E7%A8%8B/">
+                                <span class="chip bg-color">制作过程</span>
                             </a>
                         
                     </div>
@@ -402,8 +395,8 @@
                     <div class="post-cate">
                         <i class="fas fa-bookmark fa-fw icon-category"></i>
                         
-                            <a href="/categories/STM32CubeMX/" class="post-category">
-                                STM32CubeMX
+                            <a href="/categories/%E5%88%B6%E4%BD%9C%E8%BF%87%E7%A8%8B/" class="post-category">
+                                制作过程
                             </a>
                         
                     </div>
@@ -415,7 +408,7 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2019-07-25
+                    2020-02-20
                 </div>
                 
 
@@ -437,92 +430,112 @@
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <p>本篇文章主要介绍如何使用STM32CubeMX初始化STM32L431RCT6的GPIO，并扫描检测按键。</p>
-<a id="more"></a>
-<h1 id="1-准备工作"><a href="#1-准备工作" class="headerlink" title="1. 准备工作"></a>1. 准备工作</h1><h2 id="硬件准备"><a href="#硬件准备" class="headerlink" title="硬件准备"></a>硬件准备</h2><ul>
-<li>开发板<br>首先需要准备一个开发板，这里我准备的是STM32L4的开发板（BearPi）：</li>
-</ul>
-<p><img src="http://mculover666.cn/image/20190806/9uiPTi5odYSj.png?imageslim" alt="mark"></p>
-<h2 id="软件准备"><a href="#软件准备" class="headerlink" title="软件准备"></a>软件准备</h2><ul>
-<li>需要安装好Keil - MDK及芯片对应的包，以便编译和下载生成的代码；</li>
-</ul>
+                <h1 id="1-项目进度"><a href="#1-项目进度" class="headerlink" title="1. 项目进度"></a>1. 项目进度</h1><p>桌面Mini时钟项目用来演示如何使用RT-Thread Stduio开发项目，整个项目的架构如下：</p>
+<p><img src="https://img-blog.csdnimg.cn/2020020311120887.png#pic_center" alt=""> </p>
+<p>在上一篇博文中简单的介绍了RT-Thread Studio一站式工具，基于STM32L431RCT6这个芯片创建工程，并修改时钟为使用外部时钟。</p>
 <blockquote>
-<p>Keil MDK和串口助手Serial Port Utility 的安装包都可以<strong>在文末关注公众号获取</strong>，回复关键字获取相应的安装包：</p>
+<p><a href="https://blog.csdn.net/Mculover666/article/details/104146623" target="_blank" rel="noopener">使用RT-Thread Studio DIY 迷你桌面时钟（一）| 基于STM32芯片创建工程</a></p>
 </blockquote>
-<p><img src="http://mculover666.cn/image/20190814/gubaOwmETp1w.png?imageslim" alt="mark"></p>
-<h1 id="2-生成MDK工程"><a href="#2-生成MDK工程" class="headerlink" title="2.生成MDK工程"></a>2.生成MDK工程</h1><h2 id="选择芯片型号"><a href="#选择芯片型号" class="headerlink" title="选择芯片型号"></a>选择芯片型号</h2><p>打开STM32CubeMX，打开MCU选择器：</p>
-<p><img src="http://mculover666.cn/image/20190806/gBP6glmUSH80.png?imageslim" alt="mark"></p>
-<p>搜索并选中芯片<code>STM32L431RCT6</code>:</p>
-<p><img src="http://mculover666.cn/image/20190806/gnyHwdl53uVD.png?imageslim" alt="mark"></p>
-<h2 id="配置时钟源"><a href="#配置时钟源" class="headerlink" title="配置时钟源"></a>配置时钟源</h2><ul>
-<li>如果选择使用外部高速时钟（HSE），则需要在System Core中配置RCC；</li>
-<li>如果使用默认内部时钟（HSI），这一步可以略过；</li>
-</ul>
-<p>这里我都使用外部时钟：</p>
-<p><img src="http://mculover666.cn/image/20190806/k593lGGb5tlW.png?imageslim" alt="mark"></p>
-<h2 id="配置LED的GPIO引脚"><a href="#配置LED的GPIO引脚" class="headerlink" title="配置LED的GPIO引脚"></a>配置LED的GPIO引脚</h2><p>查看小熊派开发板的原理图，如下：</p>
-<p><img src="http://mculover666.cn/image/20190812/5iCtQUfKbgzA.png?imageslim" alt="mark"></p>
-<p>所以接下来我们选择配置<code>PC13</code>引脚：</p>
-<p><img src="http://mculover666.cn/image/20190812/Ad3UrGCsgjXr.png?imageslim" alt="mark"></p>
-<p>设置用户标签为LED：</p>
-<p><img src="http://mculover666.cn/image/20190813/ClKDFmVJYceI.png?imageslim" alt="mark"></p>
-<p>给PC13引脚设置一个user_label:</p>
-<p><img src="http://mculover666.cn/blog/20191203/Xs7BxveXoyYs.png?imageslim" alt=""></p>
-<blockquote>
-<p>这里给PC13引脚添加一个user_label后，cubemx软件会在<code>main.h</code>文件中添加一个宏定义，如图，我们可以使用<code>LED_GPIO_Port</code>, <code>LED_Pin</code>来表示这个引脚，提高了程序的可移植性。如果没有该user_label，就需要使用<code>GPIOC</code>，<code>GPIO_PIN_13</code> 来表示这个引脚。</p>
-</blockquote>
-<p><img src="http://mculover666.cn/blog/20191203/fvPWgmNK4NU7.png?imageslim" alt=""></p>
-<h2 id="配置按键的GPIO引脚"><a href="#配置按键的GPIO引脚" class="headerlink" title="配置按键的GPIO引脚"></a>配置按键的GPIO引脚</h2><p>查看小熊派开发板的原理图，如下：</p>
-<p><img src="http://mculover666.cn/image/20190813/QNbG5i6QKGk3.png?imageslim" alt="mark"></p>
-<p>所以接下来我们选择配置<code>PB2</code>引脚和<code>PB3</code>引脚：</p>
-<p><img src="http://mculover666.cn/image/20190813/3fRF4dWxJ6iw.png?imageslim" alt="mark"></p>
-<p>因为没有设置硬件上拉，所以我们配置开启上拉电阻，并设置用户标签为<code>KEY1</code>和<code>KEY2</code>：</p>
-<p><img src="http://mculover666.cn/image/20190813/sjhFpsdWkQSB.png?imageslim" alt="mark"></p>
-<h2 id="配置时钟树"><a href="#配置时钟树" class="headerlink" title="配置时钟树"></a>配置时钟树</h2><p>STM32L4的最高主频到80M，所以配置PLL，最后使<code>HCLK = 80Mhz</code>即可：</p>
-<p><img src="http://mculover666.cn/image/20190806/1TQg7frjRpVr.png?imageslim" alt="mark"></p>
-<h2 id="生成工程设置"><a href="#生成工程设置" class="headerlink" title="生成工程设置"></a>生成工程设置</h2><p><img src="http://mculover666.cn/image/20190813/4cGrWhVnjEdp.png?imageslim" alt="mark"></p>
-<h2 id="代码生成设置"><a href="#代码生成设置" class="headerlink" title="代码生成设置"></a>代码生成设置</h2><p>最后设置生成独立的初始化文件：</p>
-<p><img src="http://mculover666.cn/image/20190812/PwTCS6QzHiyG.png?imageslim" alt="mark"></p>
-<h2 id="生成代码"><a href="#生成代码" class="headerlink" title="生成代码"></a>生成代码</h2><p>点击<code>GENERATE CODE</code>即可生成MDK-V5工程：</p>
-<p><img src="http://mculover666.cn/image/20190806/s0jGhLBWW6Cm.png?imageslim" alt="mark"></p>
-<h1 id="3-在MDK中编写、编译、下载用户代码"><a href="#3-在MDK中编写、编译、下载用户代码" class="headerlink" title="3. 在MDK中编写、编译、下载用户代码"></a>3. 在MDK中编写、编译、下载用户代码</h1><h2 id="编写用户代码"><a href="#编写用户代码" class="headerlink" title="编写用户代码"></a>编写用户代码</h2><p>进入<code>MDK-ARM</code>目录，打开工程，在<code>main.c</code>中的main函数中编写简单的用户代码：</p>
-<pre class=" language-c"><code class="language-c"><span class="token keyword">int</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token keyword">void</span><span class="token punctuation">)</span>
-<span class="token punctuation">{</span>
-
-  <span class="token function">HAL_Init</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-
-  <span class="token function">SystemClock_Config</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-
-  <span class="token function">MX_GPIO_Init</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-
-  <span class="token keyword">while</span> <span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">)</span>
-  <span class="token punctuation">{</span>
-    <span class="token comment" spellcheck="true">/* USER CODE BEGIN 3 */</span>
-        <span class="token keyword">if</span><span class="token punctuation">(</span><span class="token number">0</span> <span class="token operator">==</span> <span class="token function">HAL_GPIO_ReadPin</span><span class="token punctuation">(</span>KEY1_GPIO_Port<span class="token punctuation">,</span> KEY1_Pin<span class="token punctuation">)</span><span class="token punctuation">)</span>
-        <span class="token punctuation">{</span>
-            <span class="token function">HAL_GPIO_WritePin</span><span class="token punctuation">(</span>LED_GPIO_Port<span class="token punctuation">,</span>LED_Pin<span class="token punctuation">,</span>GPIO_PIN_SET<span class="token punctuation">)</span><span class="token punctuation">;</span>
-        <span class="token punctuation">}</span>
-        <span class="token keyword">if</span><span class="token punctuation">(</span><span class="token number">0</span> <span class="token operator">==</span> <span class="token function">HAL_GPIO_ReadPin</span><span class="token punctuation">(</span>KEY2_GPIO_Port<span class="token punctuation">,</span> KEY2_Pin<span class="token punctuation">)</span><span class="token punctuation">)</span>
-        <span class="token punctuation">{</span>
-            <span class="token function">HAL_GPIO_WritePin</span><span class="token punctuation">(</span>LED_GPIO_Port<span class="token punctuation">,</span>LED_Pin<span class="token punctuation">,</span>GPIO_PIN_RESET<span class="token punctuation">)</span><span class="token punctuation">;</span>
-        <span class="token punctuation">}</span>
-  <span class="token punctuation">}</span>
-  <span class="token comment" spellcheck="true">/* USER CODE END 3 */</span>
-<span class="token punctuation">}</span></code></pre>
-<h2 id="编译代码"><a href="#编译代码" class="headerlink" title="编译代码"></a>编译代码</h2><p>编译整个工程：</p>
-<p><img src="http://mculover666.cn/image/20190813/T9TxAoP6pyiI.png?imageslim" alt="mark"></p>
-<h2 id="设置下载器"><a href="#设置下载器" class="headerlink" title="设置下载器"></a>设置下载器</h2><p><img src="http://mculover666.cn/image/20190812/PHve6DYPkO9M.png?imageslim" alt="mark"></p>
-<p><img src="http://mculover666.cn/image/20190812/djSNbMCj6Hh6.png?imageslim" alt="mark"></p>
-<h2 id="实验现象"><a href="#实验现象" class="headerlink" title="实验现象"></a>实验现象</h2><p>下载运行后，实验现象如下：</p>
+<p>接下里我们开始添加I2C设备，添加SHT3x软件包，获取SHT3x温湿度传感器数据。</p>
+<h1 id="2-添加I2C设备"><a href="#2-添加I2C设备" class="headerlink" title="2. 添加I2C设备"></a>2. 添加I2C设备</h1><h2 id="2-1-打开I2C设备驱动框架"><a href="#2-1-打开I2C设备驱动框架" class="headerlink" title="2.1. 打开I2C设备驱动框架"></a>2.1. 打开I2C设备驱动框架</h2><p>双击左侧 <code>RT-Thread Setting</code> 文件，即可打开RT-Thread图形化配置工具，软件模拟I2C这一项是灰色的，表示没有打开，单击一下即可打开软件 I2C 的驱动框架，图标变为彩色表示打开：<br><img src="https://img-blog.csdnimg.cn/20200203113745577.png" alt=""><br>右击该选项可以打开更多配置，比如查看该驱动设备的依赖、查看该驱动设备的详细配置，查看该驱动设备的API文档，查看在线文档等操作：<br><img src="https://img-blog.csdnimg.cn/20200203113918385.png" alt=""><br>按<code>Ctrl+S</code>保存，配置生效，软件会自动添加I2C设备驱动框架到工程中：<br><img src="https://img-blog.csdnimg.cn/20200203114145426.png" alt=""></p>
+<h2 id="2-2-添加软件-I2C-源码"><a href="#2-2-添加软件-I2C-源码" class="headerlink" title="2.2. 添加软件 I2C 源码"></a>2.2. 添加软件 I2C 源码</h2><p>打开了软件 I2C 的驱动框架之后，还要添加软件I2C的驱动底层实现，具体芯片的软件 I2C 驱动源码不同，本例中下载添加 STM32 系列的软件 I2C 驱动：<a href="https://gitee.com/tyustli/tyustli/tree/master/stm32/soft-i2c" target="_blank" rel="noopener">Gitee 下载地址</a>。</p>
+<pre><code>git clone https://gitee.com/tyustli/tyustli.git</code></pre><p>下载之后源码只有两个文件：<br><img src="https://img-blog.csdnimg.cn/20200203114518477.png" alt=""><br>将这两个文件添加到项目中的<code>drivers</code>文件夹中：<br><img src="https://img-blog.csdnimg.cn/2020020311463736.png" alt=""><br>回到RT-Thread Studio IDE，在项目名称上右击，选择刷新，即可在目录中看到添加的文件：<br><img src="https://img-blog.csdnimg.cn/20200203114732443.png" alt=""></p>
+<h2 id="2-3-注册-I2C-设备"><a href="#2-3-注册-I2C-设备" class="headerlink" title="2.3. 注册 I2C 设备"></a>2.3. 注册 I2C 设备</h2><p>软件 I2C 添加到工程中之后就可以调用软件 I2C 注册函数 <code>rt_hw_i2c_init</code> 来注册软件 I2C 设备了，该函数的原型如下：</p>
+<pre class=" language-c"><code class="language-c"><span class="token keyword">int</span> <span class="token function">rt_hw_i2c_init</span><span class="token punctuation">(</span><span class="token keyword">char</span> <span class="token operator">*</span>name<span class="token punctuation">,</span> rt_uint8_t scl<span class="token punctuation">,</span> rt_uint8_t sda<span class="token punctuation">)</span></code></pre>
 <ul>
-<li>上电复位时LED处于熄灭状态；</li>
-<li>按下KEY1，LED点亮；</li>
-<li>按下KEY2，LED熄灭；</li>
+<li>name：设备名称</li>
+<li>scl：软件模拟I2C的SCL引脚</li>
+<li>sda：软件模拟I2C的SDA引脚</li>
 </ul>
-<p><img src="http://mculover666.cn/image/20190813/jrREJBcJukl3.png?imageslim" alt="mark"></p>
-<p>至此，我们已经学会了<strong>如何使用STM32CubeMX快速生成MDK的工程</strong>，以及<strong>如何使用 STM32CubeMX初始化GPIO进行按键检测</strong>，下一节讲述如何配置NVIC使用外部中断检测按键。</p>
-<p><strong><font color="#FF0000">更多精彩文章及资源，请关注我的微信公众号：『mculover666』。</font></strong></p>
-<p><img src="http://mculover666.cn/image/20190814/NQqt1eRxrl1K.png?imageslim" alt="mark"></p>
+<p>在小熊派IoT开发板上，温湿度传感器SHT30连接在PB6（SCL）和PB7（SDA） ，所以在<code>main.c</code>文件中先添加头文件：</p>
+<pre class=" language-c"><code class="language-c"><span class="token macro property">#<span class="token directive keyword">include</span> <span class="token string">&lt;drv_soft_i2c.h></span></span></code></pre>
+<p>然后在文件<strong>最后</strong>添加如下注册软件 I2C到系统中的代码：</p>
+<pre class=" language-c"><code class="language-c"><span class="token keyword">int</span> <span class="token function">register_i2c</span><span class="token punctuation">(</span><span class="token keyword">void</span><span class="token punctuation">)</span>
+<span class="token punctuation">{</span>
+    <span class="token function">rt_hw_i2c_init</span><span class="token punctuation">(</span><span class="token string">"i2c1"</span><span class="token punctuation">,</span> <span class="token function">GET_PIN</span><span class="token punctuation">(</span>B<span class="token punctuation">,</span><span class="token number">6</span><span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token function">GET_PIN</span><span class="token punctuation">(</span>B<span class="token punctuation">,</span><span class="token number">7</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    <span class="token keyword">return</span> RT_EOK<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+<span class="token comment" spellcheck="true">//注册到系统中，自动初始化设备</span>
+<span class="token function">INIT_BOARD_EXPORT</span><span class="token punctuation">(</span>register_i2c<span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
+<p>添加完成之后点击编译，下载到开发板中运行，即可在串口终端中看到日志信息（绿色），提示I2C总线设备已注册成功：<br><img src="https://img-blog.csdnimg.cn/20200220205525306.png" alt=""></p>
+<p>因为main线程中循环打印对使用控制台有影响，所以将打印函数注释：<br><img src="https://img-blog.csdnimg.cn/20200203115933671.png" alt=""></p>
+<p>重新编译下载，在串口终端中输入命令<code>list_device</code>查看系统中注册的设备吗，再次确认I2C总线设备注册成功：<br><img src="https://img-blog.csdnimg.cn/20200220205625815.png" alt=""></p>
+<h1 id="3-添加SHT3x软件包"><a href="#3-添加SHT3x软件包" class="headerlink" title="3. 添加SHT3x软件包"></a>3. 添加SHT3x软件包</h1><h2 id="3-1-搜索添加软件包"><a href="#3-1-搜索添加软件包" class="headerlink" title="3.1. 搜索添加软件包"></a>3.1. 搜索添加软件包</h2><p>RT-Thread Studio有在线软件包中心，里面有非常丰富的软件包供用户使用，点击立即添加进入：<br><img src="https://img-blog.csdnimg.cn/20200203125004277.png" alt=""></p>
+<p>搜索<code>SHT</code>，使用的传感器型号为SHT30，所以添加SHT3x软件包：<br><img src="https://img-blog.csdnimg.cn/20200203125057439.png" alt=""><br>添加之后，在项目设置中即可看到该软件包，右击可以查看软件包在线文档：<br><img src="https://img-blog.csdnimg.cn/2020020312523714.png" alt=""></p>
+<p>软件会自动打开该软件包的在线说明文档，在使用软件包之前，该文档必须要看：<br><img src="https://img-blog.csdnimg.cn/20200203125300994.png" alt=""><br>接下来按<code>Ctrl+S</code>保存项目，软件会自动添加软件包代码到工程中，其中<code>README.md</code>是软件包详细使用文档，使用前必须要看：<br><img src="https://img-blog.csdnimg.cn/20200203125559261.png" alt=""></p>
+<p>接下来编译、下载项目到开发板中，查看串口终端输出。</p>
+<h2 id="3-2-使用命令测试软件包"><a href="#3-2-使用命令测试软件包" class="headerlink" title="3.2. 使用命令测试软件包"></a>3.2. 使用命令测试软件包</h2><p>大部分软件包都提供测试命令，SHT3x软件包也是一样，提供了如下命令供测试：</p>
+<pre class=" language-c"><code class="language-c"><span class="token operator">-</span> sht3x probe <span class="token operator">&lt;</span>i2c_dev_name<span class="token operator">></span> <span class="token operator">&lt;</span>pu<span class="token operator">/</span>pd<span class="token operator">></span>  <span class="token operator">--</span>挂载SHT3x设备，需要指定i2c设备名称和上下拉方式，默认下拉
+<span class="token operator">-</span> sht3x read <span class="token operator">--</span>阅读SHT3x温湿度
+<span class="token operator">-</span> sht3x status <span class="token operator">--</span>读取查看状态寄存器值
+<span class="token operator">-</span> sht3x reset <span class="token operator">--</span>软件复位SHT3x
+<span class="token operator">-</span> sht3x heater <span class="token operator">&lt;</span>on<span class="token operator">/</span>off<span class="token operator">></span> <span class="token operator">--</span>开<span class="token operator">/</span>关heater</code></pre>
+<p>首先挂载SHT30温湿度传感器到之前注册的I2C总线设备上：<br><img src="https://img-blog.csdnimg.cn/20200220205752729.png" alt=""></p>
+<p>挂载之后可以进行查看寄存器，读取温湿度，复位，开/关heater操作，比如读取一次温度和湿度：<br><img src="https://img-blog.csdnimg.cn/20200220205821175.png" alt=""></p>
+<h1 id="4-获取温湿度传感器数据"><a href="#4-获取温湿度传感器数据" class="headerlink" title="4. 获取温湿度传感器数据"></a>4. 获取温湿度传感器数据</h1><p>在使用软件包提供的命令测试设备成功之后，创建一个线程，使用SHT3x软件包提供的API获取SHT3x数据。</p>
+<p>在Applicaition分组之下，新建一个文件<code>sht30_ccollect.c</code>用于存放SHT3x获取数据的相关代码，编辑以下内容：</p>
+<pre class=" language-c"><code class="language-c"><span class="token comment" spellcheck="true">/*
+ * Copyright (c) 2006-2019, RT-Thread Development Team
+ *
+ * SPDX-License-Identifier: Apache-2.0
+ *
+ * Change Logs:
+ * Date           Author       Notes
+ * 2020-02-20     Mculover666  the first version
+ */</span>
+
+<span class="token macro property">#<span class="token directive keyword">include</span> <span class="token string">&lt;rtthread.h></span></span>
+<span class="token macro property">#<span class="token directive keyword">include</span> <span class="token string">&lt;board.h></span></span>
+<span class="token macro property">#<span class="token directive keyword">include</span> <span class="token string">&lt;sht3x.h></span></span>
+
+<span class="token macro property">#<span class="token directive keyword">define</span> THREAD_PRIORITY         25</span>
+<span class="token macro property">#<span class="token directive keyword">define</span> THREAD_STACK_SIZE       512</span>
+<span class="token macro property">#<span class="token directive keyword">define</span> THREAD_TIMESLICE        5</span>
+
+<span class="token keyword">static</span> rt_thread_t tid1 <span class="token operator">=</span> RT_NULL<span class="token punctuation">;</span>
+
+<span class="token comment" spellcheck="true">/* 入口函数 */</span>
+<span class="token keyword">static</span> <span class="token keyword">void</span> <span class="token function">sht30_collect_thread_entry</span><span class="token punctuation">(</span><span class="token keyword">void</span> <span class="token operator">*</span>parameter<span class="token punctuation">)</span>
+<span class="token punctuation">{</span>
+    sht3x_device_t  sht3x_device<span class="token punctuation">;</span>
+
+    sht3x_device <span class="token operator">=</span> <span class="token function">sht3x_init</span><span class="token punctuation">(</span><span class="token string">"i2c1"</span><span class="token punctuation">,</span> <span class="token number">0x44</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    <span class="token keyword">while</span> <span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">)</span>
+    <span class="token punctuation">{</span>
+        <span class="token keyword">if</span><span class="token punctuation">(</span>RT_EOK <span class="token operator">==</span> <span class="token function">sht3x_read_singleshot</span><span class="token punctuation">(</span>sht3x_device<span class="token punctuation">)</span><span class="token punctuation">)</span>
+        <span class="token punctuation">{</span>
+            <span class="token function">rt_kprintf</span><span class="token punctuation">(</span><span class="token string">"sht30 humidity   : %d.%d  "</span><span class="token punctuation">,</span> <span class="token punctuation">(</span><span class="token keyword">int</span><span class="token punctuation">)</span>sht3x_device<span class="token operator">-></span>humidity<span class="token punctuation">,</span> <span class="token punctuation">(</span><span class="token keyword">int</span><span class="token punctuation">)</span><span class="token punctuation">(</span>sht3x_device<span class="token operator">-></span>humidity <span class="token operator">*</span> <span class="token number">10</span><span class="token punctuation">)</span> <span class="token operator">%</span> <span class="token number">10</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token function">rt_kprintf</span><span class="token punctuation">(</span><span class="token string">"temperature: %d.%d\n"</span><span class="token punctuation">,</span> <span class="token punctuation">(</span><span class="token keyword">int</span><span class="token punctuation">)</span>sht3x_device<span class="token operator">-></span>temperature<span class="token punctuation">,</span> <span class="token punctuation">(</span><span class="token keyword">int</span><span class="token punctuation">)</span><span class="token punctuation">(</span>sht3x_device<span class="token operator">-></span>temperature <span class="token operator">*</span> <span class="token number">10</span><span class="token punctuation">)</span> <span class="token operator">%</span> <span class="token number">10</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+        <span class="token keyword">else</span>
+        <span class="token punctuation">{</span>
+            <span class="token function">rt_kprintf</span><span class="token punctuation">(</span><span class="token string">"read sht3x fail.\r\n"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token keyword">break</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+        <span class="token function">rt_thread_mdelay</span><span class="token punctuation">(</span><span class="token number">2000</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+
+<span class="token comment" spellcheck="true">/* 创建线程 */</span>
+<span class="token keyword">int</span> <span class="token function">sht30_collect</span><span class="token punctuation">(</span><span class="token keyword">void</span><span class="token punctuation">)</span>
+<span class="token punctuation">{</span>
+    <span class="token comment" spellcheck="true">/* 创建线程*/</span>
+    tid1 <span class="token operator">=</span> <span class="token function">rt_thread_create</span><span class="token punctuation">(</span><span class="token string">"sht30_collect_thread"</span><span class="token punctuation">,</span>
+            sht30_collect_thread_entry<span class="token punctuation">,</span> RT_NULL<span class="token punctuation">,</span>
+                            THREAD_STACK_SIZE<span class="token punctuation">,</span>
+                            THREAD_PRIORITY<span class="token punctuation">,</span> THREAD_TIMESLICE<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    <span class="token comment" spellcheck="true">/* 如果获得线程控制块，启动这个线程 */</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span>tid1 <span class="token operator">!=</span> RT_NULL<span class="token punctuation">)</span>
+        <span class="token function">rt_thread_startup</span><span class="token punctuation">(</span>tid1<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    <span class="token keyword">return</span> <span class="token number">0</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span></code></pre>
+<p>在main.c中测试该程序：<br><img src="https://img-blog.csdnimg.cn/20200203131526137.png" alt=""><br>编译下载程序，在串口终端查看结果：</p>
+<p><img src="https://img-blog.csdnimg.cn/20200220205943216.png" alt=""></p>
+<p><font color="red"><strong>接收更多精彩文章及资源推送，欢迎订阅我的微信公众号：『mculover666』。</strong></font><br><img src="https://img-blog.csdnimg.cn/20200202092055136.png" alt=""></p>
 
             </div>
             <hr/>
@@ -548,7 +561,7 @@
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="http://www.mculover666.cn/posts/1763774108/">http://www.mculover666.cn/posts/1763774108/</a>
+                    <a href="http://www.mculover666.cn/posts/2192950495/">http://www.mculover666.cn/posts/2192950495/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -586,8 +599,8 @@
                     
                         <div class="article-tag">
                             
-                                <a href="/tags/STM32CubeMX/">
-                                    <span class="chip bg-color">STM32CubeMX</span>
+                                <a href="/tags/%E5%88%B6%E4%BD%9C%E8%BF%87%E7%A8%8B/">
+                                    <span class="chip bg-color">制作过程</span>
                                 </a>
                             
                         </div>
@@ -779,34 +792,31 @@
             <div class="article-badge left-badge text-color">
                 <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
             <div class="card">
-                <a href="/posts/2504113390/">
+                <a href="/posts/2731501981/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/2.jpg" class="responsive-img" alt="STM32CubeMX_05 | 使用EXIT中断检测按键">
+                        <img src="/medias/featureimages/8.jpg" class="responsive-img" alt="桌面mini网络时钟教程 | 03-获取NTP时间">
                         
-                        <span class="card-title">STM32CubeMX_05 | 使用EXIT中断检测按键</span>
+                        <span class="card-title">桌面mini网络时钟教程 | 03-获取NTP时间</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            本篇文章主要介绍如何使用STM32CubeMX初始化STM32L431RCT6的EXIT检测按键，讲述了一些NVIC的小知识，并一步一步探索了HAL库的中断处理机制。
-
-1. 准备工作硬件准备
-开发板首先需要准备一个开发板，这里我准备的是S
+                            使用RT-Thread Studio打造
                         
                     </div>
                     <div class="publish-info">
                         <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2019-07-26
+                            <i class="far fa-clock fa-fw icon-date"></i>2020-02-20
                         </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="/categories/STM32CubeMX/" class="post-category">
-                                    STM32CubeMX
+                            <a href="/categories/%E5%88%B6%E4%BD%9C%E8%BF%87%E7%A8%8B/" class="post-category">
+                                    制作过程
                                 </a>
                             
                             
@@ -816,8 +826,8 @@
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/STM32CubeMX/">
-                        <span class="chip bg-color">STM32CubeMX</span>
+                    <a href="/tags/%E5%88%B6%E4%BD%9C%E8%BF%87%E7%A8%8B/">
+                        <span class="chip bg-color">制作过程</span>
                     </a>
                     
                 </div>
@@ -831,38 +841,31 @@
                 下一篇&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/posts/2046075734/">
+                <a href="/posts/2303339885/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/17.jpg" class="responsive-img" alt="STM32CubeMX_03 | 使用GPIO点亮一个LED">
+                        <img src="/medias/featureimages/9.jpg" class="responsive-img" alt="桌面mini网络时钟教程 | 01-基于STM32芯片创建HelloWorld工程">
                         
-                        <span class="card-title">STM32CubeMX_03 | 使用GPIO点亮一个LED</span>
+                        <span class="card-title">桌面mini网络时钟教程 | 01-基于STM32芯片创建HelloWorld工程</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            本篇文章主要介绍如何使用STM32CubeMX初始化STM32L431RCT6的GPIO，并点亮一个LED。
-
-1. 准备工作硬件准备
-开发板首先需要准备一个开发板，这里我准备的是STM32L4的开发板（BearPi）：
-
-
-软件准备
-需要
+                            使用RT-Thread Studio打造
                         
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2019-07-24
+                                <i class="far fa-clock fa-fw icon-date"></i>2020-02-20
                             </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="/categories/STM32CubeMX/" class="post-category">
-                                    STM32CubeMX
+                            <a href="/categories/%E5%88%B6%E4%BD%9C%E8%BF%87%E7%A8%8B/" class="post-category">
+                                    制作过程
                                 </a>
                             
                             
@@ -872,8 +875,8 @@
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/STM32CubeMX/">
-                        <span class="chip bg-color">STM32CubeMX</span>
+                    <a href="/tags/%E5%88%B6%E4%BD%9C%E8%BF%87%E7%A8%8B/">
+                        <span class="chip bg-color">制作过程</span>
                     </a>
                     
                 </div>
