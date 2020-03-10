@@ -4,6 +4,31 @@
   
     
     <entry>
+      <title>Multisim13安装教程</title>
+      <link href="/posts/433364979/"/>
+      <url>/posts/433364979/</url>
+      
+        <content type="html"><![CDATA[<h1 id="安装-Multisim-13"><a href="#安装-Multisim-13" class="headerlink" title="安装 Multisim 13"></a>安装 Multisim 13</h1><ol><li>运行安装目录setup.exe</li></ol><p><img src="http://mculover666.cn/blog/20200310/AE1PiNxgKBOp.png?imageslim" alt=""></p><ol start="2"><li>选择Install this product for evaluation</li></ol><p><img src="http://mculover666.cn/blog/20200310/35Av4qhBJojG.png?imageslim" alt=""></p><ol start="3"><li>选择安装目录</li></ol><blockquote><p>路径不要有中文或者空格！</p></blockquote><p><img src="http://mculover666.cn/blog/20200310/ybM9hsqIPuIk.png?imageslim" alt=""></p><ol start="4"><li>选择安装产品（ 默认即可）</li></ol><p><img src="http://mculover666.cn/blog/20200310/6Cs3YXBrEnEB.png?imageslim" alt=""></p><ol start="5"><li>去掉发送用户信息</li></ol><p><img src="http://mculover666.cn/blog/20200310/Jajie6MP0XpV.png?imageslim" alt=""></p><ol start="6"><li>接受许可协议</li></ol><p><img src="http://mculover666.cn/blog/20200310/23RKNF8EaGvq.png?imageslim" alt=""></p><ol start="7"><li><p><img src="http://mculover666.cn/blog/20200310/fwaaoLQ08LiI.png?imageslim" alt=""></p></li><li><p>等待安装完成</p></li></ol><p><img src="http://mculover666.cn/blog/20200310/6c16etMCfMa2.png?imageslim" alt=""></p><ol start="9"><li>安装完成</li></ol><p><img src="http://mculover666.cn/blog/20200310/2ldnOu2kky7l.png?imageslim" alt=""></p><ol start="10"><li>重启电脑</li></ol><blockquote><p>注意：选择Restart之后会立马重启！</p></blockquote><p><img src="http://mculover666.cn/blog/20200310/NK9ivJTLJKd8.png?imageslim" alt=""></p><h1 id="激活"><a href="#激活" class="headerlink" title="激活"></a>激活</h1><p>运行安装包下NI License Activator 1.1文件夹内NI License Activator 1.1.exe程序，右键点击方框后面的字母，选择Active，五个框由灰变绿就可以，如图：</p><p><img src="http://mculover666.cn/blog/20200310/GO5LPV2yEJE1.png?imageslim" alt=""></p><h1 id="运行"><a href="#运行" class="headerlink" title="运行"></a>运行</h1><p><img src="http://mculover666.cn/blog/20200310/mLK3cN1GyiOT.png?imageslim" alt=""></p><p><strong><font color="#FF0000">更多精彩文章及资源，请关注我的微信公众号：『mculover666』。</font></strong></p><p><img src="http://mculover666.cn/image/20190814/NQqt1eRxrl1K.png?imageslim" alt="公众号"></p>]]></content>
+      
+      
+      <categories>
+          
+          <category> 安装教程 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 安装教程 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>桌面mini网络时钟教程</title>
       <link href="/posts/2151341594/"/>
       <url>/posts/2151341594/</url>
