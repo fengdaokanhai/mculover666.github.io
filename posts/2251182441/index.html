@@ -479,6 +479,25 @@
 <span class="token macro property">#<span class="token directive keyword">endif</span></span>
 
 <span class="token comment" spellcheck="true">/* USER CODE END 1 */</span></code></pre>
+<blockquote>
+<p>注意：如果是STM32F1系列，上面这段代码不适用，请使用下面的代码：</p>
+</blockquote>
+<pre class=" language-c"><code class="language-c"><span class="token comment" spellcheck="true">/* USER CODE BEGIN 1 */</span>
+<span class="token macro property">#<span class="token directive keyword">if</span> 1</span>
+<span class="token macro property">#<span class="token directive keyword">include</span> <span class="token string">&lt;stdio.h></span></span>
+
+<span class="token keyword">int</span> <span class="token function">fputc</span><span class="token punctuation">(</span><span class="token keyword">int</span> ch<span class="token punctuation">,</span> FILE <span class="token operator">*</span>stream<span class="token punctuation">)</span>
+<span class="token punctuation">{</span>
+    <span class="token comment" spellcheck="true">/* 堵塞判断串口是否发送完成 */</span>
+    <span class="token keyword">while</span><span class="token punctuation">(</span><span class="token punctuation">(</span>USART1<span class="token operator">-></span>SR <span class="token operator">&amp;</span> <span class="token number">0X40</span><span class="token punctuation">)</span> <span class="token operator">==</span> <span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    <span class="token comment" spellcheck="true">/* 串口发送完成，将该字符发送 */</span>
+    USART1<span class="token operator">-></span>DR <span class="token operator">=</span> <span class="token punctuation">(</span>uint8_t<span class="token punctuation">)</span> ch<span class="token punctuation">;</span>
+
+    <span class="token keyword">return</span> ch<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+<span class="token macro property">#<span class="token directive keyword">endif</span></span>
+<span class="token comment" spellcheck="true">/* USER CODE END 1 */</span></code></pre>
 <h2 id="测试printf"><a href="#测试printf" class="headerlink" title="测试printf"></a>测试printf</h2><p>在main函数中测试一下printf函数是否可以正常使用：</p>
 <pre class=" language-c"><code class="language-c">    <span class="token comment" spellcheck="true">/* USER CODE BEGIN 2 */</span>
     <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"Hello, i am %s\n"</span><span class="token punctuation">,</span> <span class="token string">"mculover666"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
@@ -1054,7 +1073,7 @@ code[class*="language-"], pre[class*="language-"] { white-space: pre !important;
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">40.9k</span>&nbsp;字
+                class="white-color">41.1k</span>&nbsp;字
             
             
             

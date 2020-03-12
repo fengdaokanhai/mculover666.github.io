@@ -623,6 +623,9 @@
   <span class="token punctuation">}</span>
   <span class="token comment" spellcheck="true">/* USER CODE END 3 */</span>
 <span class="token punctuation">}</span></code></pre>
+<blockquote>
+<p>注意：STM32F1系列会报错找不到__HAL_TIM_SetCompare函数，解决方案啊：<a href="https://blog.csdn.net/Mculover666/article/details/104801386" target="_blank" rel="noopener">STM32CubeMX生成F1的工程中提示找不到 __HAL_TIM_SetCompare 问题的解决方案</a>。</p>
+</blockquote>
 <p>编译下载后可以看到舵机在0°-180°之间来回旋转：</p>
 <p><img src="http://mculover666.cn/blog/20191205/ImBhKMzpWqKa.gif" alt="舵机角度动态调整效果"></p>
 <p>至此，我们已经学会<strong>如何使用通用定时器产生PWM驱动舵机</strong>。</p>
@@ -1127,7 +1130,7 @@ code[class*="language-"], pre[class*="language-"] { white-space: pre !important;
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">40.9k</span>&nbsp;字
+                class="white-color">41.1k</span>&nbsp;字
             
             
             
