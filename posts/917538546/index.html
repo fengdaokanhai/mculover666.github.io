@@ -4,14 +4,8 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="STM32CubeMX USART 串口发送和接收中断">
-    <meta name="description" content="本篇文章主要介绍如何使用STM32CubeMX初始化STM32L431RCT6的USART，并使用中断模式发送和接收数据。
-
-1. 准备工作硬件准备
-开发板首先需要准备一个开发板，这里我准备的是STM32L4的开发板（BearPi）：
-
-
-">
+    <meta name="keywords" content="Linux 文件读写">
+    <meta name="description" content="Linux应用开发">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -19,7 +13,7 @@
     <meta name="format-detection" content="telephone=no">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    <title>STM32CubeMX_07 | 使用USART发送和接收数据（中断模式） | Mculover666</title>
+    <title>Linux中的文件读写详解及示例程序 | Mculover666</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
@@ -267,12 +261,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/21.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/18.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">STM32CubeMX_07 | 使用USART发送和接收数据（中断模式）</h1>
+                    <h1 class="description center-align post-title">Linux中的文件读写详解及示例程序</h1>
                 </div>
             </div>
         </div>
@@ -389,8 +383,8 @@
                     
                     <div class="article-tag">
                         
-                            <a href="/tags/STM32CubeMX/">
-                                <span class="chip bg-color">STM32CubeMX</span>
+                            <a href="/tags/Linux%E5%BA%94%E7%94%A8%E5%BC%80%E5%8F%91/">
+                                <span class="chip bg-color">Linux应用开发</span>
                             </a>
                         
                     </div>
@@ -401,8 +395,8 @@
                     <div class="post-cate">
                         <i class="fas fa-bookmark fa-fw icon-category"></i>
                         
-                            <a href="/categories/STM32CubeMX/" class="post-category">
-                                STM32CubeMX
+                            <a href="/categories/Linux/" class="post-category">
+                                Linux
                             </a>
                         
                     </div>
@@ -414,7 +408,7 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2019-07-28
+                    2020-03-12
                 </div>
                 
 
@@ -436,95 +430,195 @@
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <p>本篇文章主要介绍如何使用STM32CubeMX初始化STM32L431RCT6的USART，并使用<strong>中断模式</strong>发送和接收数据。</p>
-<a id="more"></a>
-<h1 id="1-准备工作"><a href="#1-准备工作" class="headerlink" title="1. 准备工作"></a>1. 准备工作</h1><h2 id="硬件准备"><a href="#硬件准备" class="headerlink" title="硬件准备"></a>硬件准备</h2><ul>
-<li>开发板<br>首先需要准备一个开发板，这里我准备的是STM32L4的开发板（BearPi）：</li>
+                <h1 id="1-Linux中“一切皆文件”"><a href="#1-Linux中“一切皆文件”" class="headerlink" title="1. Linux中“一切皆文件”"></a>1. Linux中“一切皆文件”</h1><p>在Linux系统中，一切皆文件，文件类型根据其表示的意义，分为：</p>
+<ul>
+<li>普通文件</li>
+<li>设备文件：代表一个具体的硬件设备</li>
+<li>管道文件、FIFO文件：具有特殊意义的文件，用于进程间通信；</li>
+<li>套接字文件：用于网络通信；</li>
 </ul>
-<p><img src="http://mculover666.cn/image/20190806/9uiPTi5odYSj.png?imageslim" alt="mark"></p>
-<h2 id="软件准备"><a href="#软件准备" class="headerlink" title="软件准备"></a>软件准备</h2><ul>
-<li>需要安装好Keil - MDK及芯片对应的包，以便编译和下载生成的代码；</li>
-<li>准备一个串口调试助手，这里我使用的是<code>Serial Port Utility</code>；</li>
+<p>所有这些文件都可以用一套API来操作，最基本的四个API是：</p>
+<ul>
+<li>打开：open</li>
+<li>读文件：read</li>
+<li>写文件：write</li>
+<li>关闭：close</li>
 </ul>
-<blockquote>
-<p>Keil MDK和串口助手Serial Port Utility 的安装包都可以<strong>在文末关注公众号获取</strong>，回复关键字获取相应的安装包：</p>
-</blockquote>
-<p><img src="http://mculover666.cn/image/20190814/gubaOwmETp1w.png?imageslim" alt="mark"></p>
-<h1 id="2-生成MDK工程"><a href="#2-生成MDK工程" class="headerlink" title="2.生成MDK工程"></a>2.生成MDK工程</h1><h2 id="选择芯片型号"><a href="#选择芯片型号" class="headerlink" title="选择芯片型号"></a>选择芯片型号</h2><p>打开STM32CubeMX，打开MCU选择器：</p>
-<p><img src="http://mculover666.cn/image/20190806/gBP6glmUSH80.png?imageslim" alt="mark"></p>
-<p>搜索并选中芯片<code>STM32L431RCT6</code>:</p>
-<p><img src="http://mculover666.cn/image/20190806/gnyHwdl53uVD.png?imageslim" alt="mark"></p>
-<h2 id="配置时钟源"><a href="#配置时钟源" class="headerlink" title="配置时钟源"></a>配置时钟源</h2><ul>
-<li>如果选择使用外部高速时钟（HSE），则需要在System Core中配置RCC；</li>
-<li>如果使用默认内部时钟（HSI），这一步可以略过；</li>
+<p>在使用这些API操作文件的时候，需要传入文件标识符 fd（file descriptor），文件标识符的本质就是在进程中代码某一个具体文件的整数，在使用 open 函数打开一个文件时被唯一分配，一般情况下，fd的值如果从0开始分配，如果 fd 为负数，则表示文件打开失败或者操作失败。</p>
+<p>需要注意，fd的值在使用open打开文件时被唯一分配，在使用close关闭文件时会被回收。举个例子，比如第一次打开文件时分配的值fd = 0，如果该文件被关闭，下次新打开一个文件时，fd依然为0，但如果之前打开的文件没有被close掉，则下次新打开一个文件时，fd递增为1，一直递增到系统设定的同时打开文件的最大值为止，这个最大值可以使用<code>ulimit -n</code>查看，一般为1024。</p>
+<p>另外，文件描述符的值0、1、2被系统占用，在桌面Linux系统上表示：</p>
+<ul>
+<li>fd = 0：表示标准输入(stdin)，对应系统的键盘</li>
+<li>fd = 1：表示标准输出(stdout)，对应系统的显示器</li>
+<li>fd = 2：表示标准错误输出(stderr)，对应系统的显示器</li>
 </ul>
-<p>这里我都使用外部时钟：</p>
-<p><img src="http://mculover666.cn/image/20190806/k593lGGb5tlW.png?imageslim" alt="mark"></p>
-<h2 id="配置串口"><a href="#配置串口" class="headerlink" title="配置串口"></a>配置串口</h2><p>小熊派开发板板载ST-Link并且虚拟了一个串口，原理图如下：</p>
-<p><img src="http://mculover666.cn/image/20190814/IwyXONVefPx9.png?imageslim" alt="mark"></p>
-<p>这里我将开关拨到<code>AT-MCU</code>模式，使PC的串口与USART1之间连接。</p>
-<p>接下来开始配置<code>USART1</code>：</p>
-<p><img src="http://mculover666.cn/image/20190814/nLMRMYtmzghl.png?imageslim" alt="mark"></p>
-<h2 id="NVIC配置"><a href="#NVIC配置" class="headerlink" title="NVIC配置"></a>NVIC配置</h2><p>在NVIC中配置USART中断优先级：</p>
-<p><img src="http://mculover666.cn/image/20190816/Uw6jxzmblvJW.png?imageslim" alt="mark"></p>
-<h2 id="配置时钟树"><a href="#配置时钟树" class="headerlink" title="配置时钟树"></a>配置时钟树</h2><p>STM32L4的最高主频到80M，所以配置PLL，最后使<code>HCLK = 80Mhz</code>即可：</p>
-<p><img src="http://mculover666.cn/image/20190806/1TQg7frjRpVr.png?imageslim" alt="mark"></p>
-<p><img src="http://mculover666.cn/image/20190814/AITGSflAXS45.png?imageslim" alt="mark"></p>
-<h2 id="生成工程设置"><a href="#生成工程设置" class="headerlink" title="生成工程设置"></a>生成工程设置</h2><p><img src="http://mculover666.cn/image/20190816/RUWz76PbSunq.png?imageslim" alt="mark"></p>
-<h2 id="代码生成设置"><a href="#代码生成设置" class="headerlink" title="代码生成设置"></a>代码生成设置</h2><p>最后设置生成独立的初始化文件：</p>
-<p><img src="http://mculover666.cn/image/20190812/PwTCS6QzHiyG.png?imageslim" alt="mark"></p>
-<h2 id="生成代码"><a href="#生成代码" class="headerlink" title="生成代码"></a>生成代码</h2><p>点击<code>GENERATE CODE</code>即可生成MDK-V5工程：</p>
-<p><img src="http://mculover666.cn/image/20190806/s0jGhLBWW6Cm.png?imageslim" alt="mark"></p>
-<h1 id="3-在MDK中编写、编译、下载用户代码"><a href="#3-在MDK中编写、编译、下载用户代码" class="headerlink" title="3. 在MDK中编写、编译、下载用户代码"></a>3. 在MDK中编写、编译、下载用户代码</h1><h2 id="定义发送和接收缓冲区"><a href="#定义发送和接收缓冲区" class="headerlink" title="定义发送和接收缓冲区"></a>定义发送和接收缓冲区</h2><pre class=" language-c"><code class="language-c"><span class="token comment" spellcheck="true">/* Private user code ---------------------------------------------------------*/</span>
-<span class="token comment" spellcheck="true">/* USER CODE BEGIN 0 */</span>
-uint8_t hello<span class="token punctuation">[</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token string">"USART1 is ready...\n"</span><span class="token punctuation">;</span>
-uint8_t recv_buf<span class="token punctuation">[</span><span class="token number">13</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token punctuation">{</span><span class="token number">0</span><span class="token punctuation">}</span><span class="token punctuation">;</span>
-<span class="token comment" spellcheck="true">/* USER CODE END 0 */</span></code></pre>
-<h2 id="重新实现中断回调函数"><a href="#重新实现中断回调函数" class="headerlink" title="重新实现中断回调函数"></a>重新实现中断回调函数</h2><p>在NVIC一讲中我们探索了HAL库的中断处理机制，HAL中弱定义了一个中断回调函数 <code>HAL_UART_RxCpltCallback</code>， 我们需要在用户文件中重新定义该函数，放在哪都可以，这里我放在 <code>main.c</code> 中：</p>
-<pre class=" language-c"><code class="language-c"><span class="token comment" spellcheck="true">/* USER CODE BEGIN 4 */</span>
-<span class="token comment" spellcheck="true">/* 中断回调函数 */</span>
-<span class="token keyword">void</span> <span class="token function">HAL_UART_RxCpltCallback</span><span class="token punctuation">(</span>UART_HandleTypeDef <span class="token operator">*</span>huart<span class="token punctuation">)</span>
+<p>而在嵌入式Linux系统中，一般不存在显示器和键盘，都是用串口交互，所以这三个值对应的设备如下：</p>
+<ul>
+<li>fd = 0：表示标准输入(stdin)，对应系统的控制台串口</li>
+<li>fd = 1：表示标准输出(stdout)，对应系统的控制台串口</li>
+<li>fd = 2：表示标准错误输出(stderr)，对应系统的控制台串口</li>
+</ul>
+<h1 id="2-Linux-C库提供的文件操作API"><a href="#2-Linux-C库提供的文件操作API" class="headerlink" title="2. Linux C库提供的文件操作API"></a>2. Linux C库提供的文件操作API</h1><h2 id="2-1-头文件"><a href="#2-1-头文件" class="headerlink" title="2.1. 头文件"></a>2.1. 头文件</h2><p>在使用文件操作API时，必须首先包含以下头文件：</p>
+<pre class=" language-c"><code class="language-c"><span class="token macro property">#<span class="token directive keyword">include</span> <span class="token string">&lt;sys/types.h></span>        </span><span class="token comment" spellcheck="true">//定义了一些常用数据类型，比如size_t</span>
+<span class="token macro property">#<span class="token directive keyword">include</span> <span class="token string">&lt;fcntl.h></span>            </span><span class="token comment" spellcheck="true">//定义了open、creat等函数，以及表示文件权限的宏定义</span>
+<span class="token macro property">#<span class="token directive keyword">include</span> <span class="token string">&lt;unistd.h></span>            </span><span class="token comment" spellcheck="true">//定义了read、write、close、lseek等函数</span>
+<span class="token macro property">#<span class="token directive keyword">include</span> <span class="token string">&lt;errno.h></span>            </span><span class="token comment" spellcheck="true">//与全局变量errno相关的定义</span>
+<span class="token macro property">#<span class="token directive keyword">include</span> <span class="token string">&lt;sys/ioctl.h></span>        </span><span class="token comment" spellcheck="true">//定义了ioctl函数 </span></code></pre>
+<h2 id="2-2-open-—-打开文件"><a href="#2-2-open-—-打开文件" class="headerlink" title="2.2. open — 打开文件"></a>2.2. open — 打开文件</h2><p>操作文件之前必须要打开文件，获取文件描述符fd，该函数原型如下：</p>
+<pre class=" language-c"><code class="language-c"><span class="token keyword">int</span> <span class="token function">open</span><span class="token punctuation">(</span><span class="token keyword">const</span> <span class="token keyword">char</span> <span class="token operator">*</span>pathname<span class="token punctuation">,</span> <span class="token keyword">int</span> flags<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">int</span> <span class="token function">open</span><span class="token punctuation">(</span><span class="token keyword">const</span> <span class="token keyword">char</span> <span class="token operator">*</span>pathname<span class="token punctuation">,</span> <span class="token keyword">int</span> flags<span class="token punctuation">,</span>mode_t mode<span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
+<p>① 参数含义如下：</p>
+<ul>
+<li>pathname：文件路径+文件名称</li>
+<li>flags：文件打开方式</li>
+<li>mode：打开文件的权限</li>
+<li>返回值int：打开成功则返回文件描述符，打开失败则返回-1，同时设置全局变量errno的值来表示错误原因；</li>
+</ul>
+<p>② flags标志的值可以使用在<code>&lt;fcntl.h&gt;</code>的宏定义：</p>
+<ul>
+<li><code>O_RDONLY</code>：只读</li>
+<li><code>O_WRONLY</code>：只写</li>
+<li><code>O_RDWR</code>：可读可写（常用）</li>
+<li><code>O_CREAT</code>：如果要打开的文件不存在，则创建新文件</li>
+<li><code>O_EXCL</code>：如果使用O_CREAT时文件已经存在，则返回错误消息</li>
+<li><code>O_TRUNC</code>：如果文件已经存在，且成功打开，则删除文件中原来的全部数据</li>
+<li><code>O_APPEND</code>：以追加写入方式打开文件，打开之后文件指针指向文件末尾</li>
+</ul>
+<p>这些打开方式可以使用<code>|</code>操作符，一起使用，比如：</p>
+<pre class=" language-c"><code class="language-c">O_RDWR <span class="token operator">|</span> O_CREAT</code></pre>
+<p>③ mode的值表示创建新文件时设置的权限，用8进制数来表示，也可以使用&lt;fcntl.h&gt;中定义的宏定义来表示，但是八进制数比较方便。</p>
+<p>3bit的八进制数分别对应linux中文件的三个权限：</p>
+<pre><code>rwxrwxrwx</code></pre><p>第一个rwx是文件拥有者的权限，第二个rwx是文件拥有者所在用户组的权限，第三个rwx是其它用户组的权限；</p>
+<p>每一个rwx都对应一个<strong>8进制数</strong>，比如0x7就表示rwx三项权限全有，0x0就表示rwx三个权限全没有，比如：</p>
+<ul>
+<li><code>0700</code>：所属用户有rwx权限，当前用户组和其他用户组的用户没有任何权限；</li>
+<li><code>0664</code>（常用）：所属用户有rw-权限（-表示没有此项对应权限），当前用户组的其它用户拥有rw-权限，其它用户组的用户只有r–权限。</li>
+</ul>
+<h2 id="2-3-read-—-读取文件"><a href="#2-3-read-—-读取文件" class="headerlink" title="2.3. read — 读取文件"></a>2.3. read — 读取文件</h2><p>函数原型如下：</p>
+<pre class=" language-c"><code class="language-c">ssize_t <span class="token function">read</span><span class="token punctuation">(</span><span class="token keyword">int</span> fd<span class="token punctuation">,</span> <span class="token keyword">void</span> <span class="token operator">*</span>buf<span class="token punctuation">,</span> size_t count<span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
+<p>函数参数含义如下：</p>
+<ul>
+<li>fd：文件描述符</li>
+<li>buf：用来接收所读数据的缓冲区</li>
+<li>count：请求读取的字节数</li>
+<li>返回值：读取成功则返回读取的字节数，读取到文件尾则返回0，读取失败则返回-1，同时设置全局变量errno的值来表示错误原因；</li>
+</ul>
+<h2 id="2-4-write-—-写入文件"><a href="#2-4-write-—-写入文件" class="headerlink" title="2.4. write — 写入文件"></a>2.4. write — 写入文件</h2><p>函数原型如下：</p>
+<pre class=" language-c"><code class="language-c">ssize_t <span class="token function">write</span><span class="token punctuation">(</span><span class="token keyword">int</span> fd<span class="token punctuation">,</span> <span class="token keyword">const</span> <span class="token keyword">void</span> <span class="token operator">*</span>buf<span class="token punctuation">,</span> size_t count<span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
+<p>函数参数含义如下：</p>
+<ul>
+<li>fd：文件描述符</li>
+<li>buf：存放待写入数据的缓冲区</li>
+<li>count：请求写入的字节数</li>
+<li>返回值：写入成功则返回实际写入的字节数，写入失败则返回-1，同时设置全局变量errno的值来表示错误原因；</li>
+</ul>
+<h2 id="2-5-close-—-关闭文件"><a href="#2-5-close-—-关闭文件" class="headerlink" title="2.5. close — 关闭文件"></a>2.5. close — 关闭文件</h2><p>API原型如下：</p>
+<pre class=" language-c"><code class="language-c"><span class="token keyword">int</span> <span class="token function">close</span><span class="token punctuation">(</span><span class="token keyword">int</span> fd<span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
+<p>函数参数fd表示要关闭文件的文件描述符。</p>
+<p>如果关闭成功，返回0，否则返回-1，同时设置全局变量 errno 报告具体错误的原因。</p>
+<h1 id="3-文件操作示例程序"><a href="#3-文件操作示例程序" class="headerlink" title="3. 文件操作示例程序"></a>3. 文件操作示例程序</h1><p>范例实现功能：</p>
+<p>打开当前目录下的text.txt文件，如果不存在则创建，首先写入一个字符串，然后关闭文件，再重新打开读取该文件中的内容并打印。</p>
+<p>范例代码：</p>
+<pre class=" language-c"><code class="language-c"><span class="token comment" spellcheck="true">/**
+ * @brief  文件读写API使用示例程序
+ * @author Mculover666
+ * @note   首先写入文件，接着读取文件
+*/</span>
+
+<span class="token macro property">#<span class="token directive keyword">include</span> <span class="token string">&lt;sys/types.h></span>        </span><span class="token comment" spellcheck="true">//定义了一些常用数据类型，比如size_t</span>
+<span class="token macro property">#<span class="token directive keyword">include</span> <span class="token string">&lt;fcntl.h></span>            </span><span class="token comment" spellcheck="true">//定义了open、creat等函数，以及表示文件权限的宏定义</span>
+<span class="token macro property">#<span class="token directive keyword">include</span> <span class="token string">&lt;unistd.h></span>            </span><span class="token comment" spellcheck="true">//定义了read、write、close、lseek等函数</span>
+<span class="token macro property">#<span class="token directive keyword">include</span> <span class="token string">&lt;errno.h></span>            </span><span class="token comment" spellcheck="true">//与全局变量errno相关的定义</span>
+<span class="token macro property">#<span class="token directive keyword">include</span> <span class="token string">&lt;sys/ioctl.h></span>        </span><span class="token comment" spellcheck="true">//定义了ioctl函数 </span>
+<span class="token macro property">#<span class="token directive keyword">include</span> <span class="token string">&lt;stdio.h></span></span>
+
+<span class="token keyword">int</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token keyword">void</span><span class="token punctuation">)</span>
 <span class="token punctuation">{</span>
-    <span class="token comment" spellcheck="true">/* 判断是哪个串口触发的中断 */</span>
-    <span class="token keyword">if</span><span class="token punctuation">(</span>huart <span class="token operator">-></span>Instance <span class="token operator">==</span> USART1<span class="token punctuation">)</span>
+    <span class="token keyword">int</span> fd <span class="token operator">=</span> <span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">;</span>
+    <span class="token keyword">int</span> res <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
+
+    <span class="token keyword">char</span> filename<span class="token punctuation">[</span><span class="token punctuation">]</span>  <span class="token operator">=</span> <span class="token string">"test.txt"</span><span class="token punctuation">;</span>
+    <span class="token keyword">char</span> write_dat<span class="token punctuation">[</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token string">"Hello World!"</span><span class="token punctuation">;</span>
+    <span class="token keyword">char</span> read_buf<span class="token punctuation">[</span><span class="token number">128</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token punctuation">{</span><span class="token number">0</span><span class="token punctuation">}</span><span class="token punctuation">;</span>
+
+    <span class="token comment" spellcheck="true">/* 写入文件操作示例 */</span>
+    <span class="token comment" spellcheck="true">//1. 打开文件</span>
+    fd <span class="token operator">=</span> <span class="token function">open</span><span class="token punctuation">(</span>filename<span class="token punctuation">,</span> O_RDWR <span class="token operator">|</span> O_CREAT<span class="token punctuation">,</span> <span class="token number">0664</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">if</span><span class="token punctuation">(</span>fd <span class="token operator">&lt;</span> <span class="token number">0</span><span class="token punctuation">)</span>
     <span class="token punctuation">{</span>
-        <span class="token comment" spellcheck="true">//将接收到的数据发送</span>
-        <span class="token function">HAL_UART_Transmit_IT</span><span class="token punctuation">(</span>huart<span class="token punctuation">,</span> <span class="token punctuation">(</span>uint8_t<span class="token operator">*</span><span class="token punctuation">)</span>recv_buf<span class="token punctuation">,</span> <span class="token number">13</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-        <span class="token comment" spellcheck="true">//重新使能串口接收中断</span>
-        <span class="token function">HAL_UART_Receive_IT</span><span class="token punctuation">(</span>huart<span class="token punctuation">,</span> <span class="token punctuation">(</span>uint8_t<span class="token operator">*</span><span class="token punctuation">)</span>recv_buf<span class="token punctuation">,</span> <span class="token number">13</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"%s file open fail,errno = %d.\r\n"</span><span class="token punctuation">,</span> filename<span class="token punctuation">,</span> errno<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">return</span> <span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">;</span>
     <span class="token punctuation">}</span>
-<span class="token punctuation">}</span>
-<span class="token comment" spellcheck="true">/* USER CODE END 4 */</span></code></pre>
-<h2 id="修改main函数"><a href="#修改main函数" class="headerlink" title="修改main函数"></a>修改main函数</h2><p>在main函数中首先开启串口中断接收，然后发送提示信息：</p>
-<pre class=" language-c"><code class="language-c"><span class="token keyword">int</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token keyword">void</span><span class="token punctuation">)</span>
-<span class="token punctuation">{</span>
-  <span class="token function">HAL_Init</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 
-  <span class="token function">SystemClock_Config</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token comment" spellcheck="true">//2. 读取内容</span>
+    res <span class="token operator">=</span> <span class="token function">write</span><span class="token punctuation">(</span>fd<span class="token punctuation">,</span> write_dat<span class="token punctuation">,</span> <span class="token keyword">sizeof</span><span class="token punctuation">(</span>write_dat<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">if</span><span class="token punctuation">(</span>res <span class="token operator">&lt;</span> <span class="token number">0</span><span class="token punctuation">)</span>
+    <span class="token punctuation">{</span>
+        <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"write dat fail,errno = %d.\r\n"</span><span class="token punctuation">,</span> errno<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">return</span> <span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    <span class="token keyword">else</span>
+    <span class="token punctuation">{</span>
+        <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"write %d bytes:%s\r\n"</span><span class="token punctuation">,</span> res<span class="token punctuation">,</span> write_dat<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
 
-  <span class="token function">MX_GPIO_Init</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-  <span class="token function">MX_USART1_UART_Init</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token comment" spellcheck="true">//3. 关闭文件</span>
+    <span class="token function">close</span><span class="token punctuation">(</span>fd<span class="token punctuation">)</span><span class="token punctuation">;</span>
 
-  <span class="token comment" spellcheck="true">/* USER CODE BEGIN 2 */</span>
-  <span class="token comment" spellcheck="true">//使能串口中断接收</span>
-  <span class="token function">HAL_UART_Receive_IT</span><span class="token punctuation">(</span><span class="token operator">&amp;</span>huart1<span class="token punctuation">,</span> <span class="token punctuation">(</span>uint8_t<span class="token operator">*</span><span class="token punctuation">)</span>recv_buf<span class="token punctuation">,</span> <span class="token number">13</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-  <span class="token comment" spellcheck="true">//发送提示信息</span>
-  <span class="token function">HAL_UART_Transmit_IT</span><span class="token punctuation">(</span><span class="token operator">&amp;</span>huart1<span class="token punctuation">,</span> <span class="token punctuation">(</span>uint8_t<span class="token operator">*</span><span class="token punctuation">)</span>hello<span class="token punctuation">,</span> <span class="token keyword">sizeof</span><span class="token punctuation">(</span>hello<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-  <span class="token comment" spellcheck="true">/* USER CODE END 2 */</span>
+    <span class="token comment" spellcheck="true">/* 读取文件数据示例 */</span>
+    <span class="token comment" spellcheck="true">//1. 打开文件</span>
+    fd <span class="token operator">=</span> <span class="token function">open</span><span class="token punctuation">(</span>filename<span class="token punctuation">,</span> O_RDONLY<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">if</span><span class="token punctuation">(</span>fd <span class="token operator">&lt;</span> <span class="token number">0</span><span class="token punctuation">)</span>
+    <span class="token punctuation">{</span>
+        <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"%s file open fail,errno = %d.\r\n"</span><span class="token punctuation">,</span> filename<span class="token punctuation">,</span> errno<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">return</span> <span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
 
-  <span class="token keyword">while</span> <span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">)</span>
-  <span class="token punctuation">{</span>
-  <span class="token punctuation">}</span>
+    <span class="token comment" spellcheck="true">//2. 写入内容</span>
+    res <span class="token operator">=</span> <span class="token function">read</span><span class="token punctuation">(</span>fd<span class="token punctuation">,</span> read_buf<span class="token punctuation">,</span> <span class="token keyword">sizeof</span><span class="token punctuation">(</span>read_buf<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">if</span><span class="token punctuation">(</span>res <span class="token operator">&lt;</span> <span class="token number">0</span><span class="token punctuation">)</span>
+    <span class="token punctuation">{</span>
+        <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"read dat fail,errno = %d.\r\n"</span><span class="token punctuation">,</span> errno<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">return</span> <span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    <span class="token keyword">else</span>
+    <span class="token punctuation">{</span>
+        <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"read %d bytes:%s\r\n"</span><span class="token punctuation">,</span> res<span class="token punctuation">,</span> read_buf<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token comment" spellcheck="true">//3. 关闭文件</span>
+    <span class="token function">close</span><span class="token punctuation">(</span>fd<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    <span class="token keyword">return</span> <span class="token number">0</span><span class="token punctuation">;</span>
 <span class="token punctuation">}</span></code></pre>
-<h2 id="编译代码"><a href="#编译代码" class="headerlink" title="编译代码"></a>编译代码</h2><p>编译整个工程：</p>
-<p><img src="http://mculover666.cn/image/20190816/u6VALN7Rhqr0.png?imageslim" alt="mark"></p>
-<h2 id="设置下载器"><a href="#设置下载器" class="headerlink" title="设置下载器"></a>设置下载器</h2><p><img src="http://mculover666.cn/image/20190812/PHve6DYPkO9M.png?imageslim" alt="mark"></p>
-<p><img src="http://mculover666.cn/image/20190812/djSNbMCj6Hh6.png?imageslim" alt="mark"></p>
-<h2 id="实验现象"><a href="#实验现象" class="headerlink" title="实验现象"></a>实验现象</h2><p>下载运行后，实验现象如下：</p>
-<p><img src="http://mculover666.cn/image/20190816/RJHLbTakyimI.png?imageslim" alt="mark"></p>
-<p>至此，我们已经学会了<strong>如何配置USART使用中断模式发送和接收数据</strong>，下一节将讨论实现printf()函数的多种方法。</p>
-<p><strong><font color="#FF0000">更多精彩文章及资源，请关注我的微信公众号：『mculover666』。</font></strong></p>
-<p><img src="http://mculover666.cn/image/20190814/NQqt1eRxrl1K.png?imageslim" alt="mark"></p>
+<p>编译：</p>
+<pre class=" language-bash"><code class="language-bash">gcc 01-file_test.c -o 01-file_test.o</code></pre>
+<p>运行：</p>
+<p><img src="https://img-blog.csdnimg.cn/20200312193151469.png" alt=""></p>
+<h1 id="4-移植到嵌入式Linux开发板上运行测试"><a href="#4-移植到嵌入式Linux开发板上运行测试" class="headerlink" title="4. 移植到嵌入式Linux开发板上运行测试"></a>4. 移植到嵌入式Linux开发板上运行测试</h1><h2 id="4-1-优化程序-——-fsync"><a href="#4-1-优化程序-——-fsync" class="headerlink" title="4.1. 优化程序 —— fsync"></a>4.1. 优化程序 —— fsync</h2><p>嵌入式Linux系统通常采用 Flash 存储器， write()有个问题 —— 将数据提交到系统内部缓存之后就返回，所以当它返回之后，嵌入式系统如果突然掉电，则文件数据也会写入失败。</p>
+<p>所以，在嵌入式系统中使用这些API时，<strong>应该在write函数之后，用 fsync()函数把修改过的文件数据立马写入闪存中，避免数据丢失</strong>。</p>
+<p>fsync()函数的功能原型在&lt;unistd.h&gt;中，原型如下：</p>
+<pre class=" language-c"><code class="language-c"><span class="token keyword">int</span> <span class="token function">fsync</span><span class="token punctuation">(</span><span class="token keyword">int</span> fd<span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
+<p>fsync()调用后，会直到文件已修改过的数据全部写入磁盘后才返回，成功返回 0，失败返回-1， 同时设置全局变量 errno 报告具体错误的原因。</p>
+<p>在示例程序的write操作之后添加代码：</p>
+<pre class=" language-c"><code class="language-c"><span class="token comment" spellcheck="true">//写入之后立马同步数据</span>
+res <span class="token operator">=</span> <span class="token function">fsync</span><span class="token punctuation">(</span>fd<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">if</span><span class="token punctuation">(</span>res <span class="token operator">&lt;</span> <span class="token number">0</span><span class="token punctuation">)</span>
+<span class="token punctuation">{</span>
+    <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"fsync fail,errno = %d.\r\n"</span><span class="token punctuation">,</span> errno<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">return</span> <span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span></code></pre>
+<h2 id="4-2-移植到开发板上运行处"><a href="#4-2-移植到开发板上运行处" class="headerlink" title="4.2. 移植到开发板上运行处"></a>4.2. 移植到开发板上运行处</h2><p>① 使用交叉编译工具重新编译程序：</p>
+<pre class=" language-bash"><code class="language-bash">arm-none-linux-gnueabi-gcc 01-file_test.c -o 01-file_test_arm.o</code></pre>
+<p><img src="https://img-blog.csdnimg.cn/20200312195247139.png" alt=""></p>
+<p>② 基于NFS文件系统，将可执行文件传到开发板上</p>
+<pre class=" language-bash"><code class="language-bash"><span class="token function">cp</span> 01-file_test_arm.o /nfs_root/</code></pre>
+<p>③ 开发板上执行该程序测试：</p>
+<pre class=" language-bash"><code class="language-bash">./01-file_test_arm.o</code></pre>
+<p>开发板上执行结果如下：</p>
+<p><img src="https://img-blog.csdnimg.cn/20200312195622433.png" alt=""></p>
+<p><font color="red"><strong>接收更多精彩文章及资源推送，欢迎订阅我的微信公众号：『mculover666』。</strong></font></p>
+<p><img src="https://img-blog.csdnimg.cn/20200202092055136.png" alt=""></p>
 
             </div>
             <hr/>
@@ -550,7 +644,7 @@ uint8_t recv_buf<span class="token punctuation">[</span><span class="token numbe
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="http://www.mculover666.cn/posts/1803605667/">http://www.mculover666.cn/posts/1803605667/</a>
+                    <a href="http://www.mculover666.cn/posts/917538546/">http://www.mculover666.cn/posts/917538546/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -588,8 +682,8 @@ uint8_t recv_buf<span class="token punctuation">[</span><span class="token numbe
                     
                         <div class="article-tag">
                             
-                                <a href="/tags/STM32CubeMX/">
-                                    <span class="chip bg-color">STM32CubeMX</span>
+                                <a href="/tags/Linux%E5%BA%94%E7%94%A8%E5%BC%80%E5%8F%91/">
+                                    <span class="chip bg-color">Linux应用开发</span>
                                 </a>
                             
                         </div>
@@ -777,49 +871,48 @@ uint8_t recv_buf<span class="token punctuation">[</span><span class="token numbe
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
+                <i class="far fa-dot-circle"></i>&nbsp;本篇
+            </div>
             <div class="card">
-                <a href="/posts/1606619423/">
+                <a href="/posts/917538546/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/4.jpg" class="responsive-img" alt="STM32CubeMX_08 | 使用USART发送和接收数据（DMA模式）">
+                        <img src="/medias/featureimages/18.jpg" class="responsive-img" alt="Linux中的文件读写详解及示例程序">
                         
-                        <span class="card-title">STM32CubeMX_08 | 使用USART发送和接收数据（DMA模式）</span>
+                        <span class="card-title">Linux中的文件读写详解及示例程序</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            本篇文章主要介绍如何使用STM32CubeMX初始化STM32L431RCT6的USART，并使用DMA模式发送数据和接收数据。
-
-1. 准备工作硬件准备
-开发板首先需要准备一个开发板，这里我准备的是STM32L4的开发板（BearPi）：
+                            Linux应用开发
                         
                     </div>
                     <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2019-07-29
-                        </span>
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2020-03-12
+                            </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="/categories/STM32CubeMX/" class="post-category">
-                                    STM32CubeMX
+                            <a href="/categories/Linux/" class="post-category">
+                                    Linux
                                 </a>
                             
                             
                         </span>
                     </div>
                 </div>
+
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/STM32CubeMX/">
-                        <span class="chip bg-color">STM32CubeMX</span>
+                    <a href="/tags/Linux%E5%BA%94%E7%94%A8%E5%BC%80%E5%8F%91/">
+                        <span class="chip bg-color">Linux应用开发</span>
                     </a>
                     
                 </div>
@@ -833,34 +926,31 @@ uint8_t recv_buf<span class="token punctuation">[</span><span class="token numbe
                 下一篇&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/posts/2064921339/">
+                <a href="/posts/433364979/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/15.jpg" class="responsive-img" alt="STM32CubeMX_06 | 使用USART发送和接收数据（查询模式）">
+                        <img src="/medias/featureimages/6.jpg" class="responsive-img" alt="Multisim13安装教程">
                         
-                        <span class="card-title">STM32CubeMX_06 | 使用USART发送和接收数据（查询模式）</span>
+                        <span class="card-title">Multisim13安装教程</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            本篇文章主要介绍如何使用STM32CubeMX初始化STM32L431RCT6的USART，并使用查询模式发送数据，使用查询模式接收数据。
-
-1. 准备工作硬件准备
-开发板首先需要准备一个开发板，这里我准备的是STM32L4的开发板（Bea
+                            下载站配套安装教程
                         
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2019-07-27
+                                <i class="far fa-clock fa-fw icon-date"></i>2020-03-10
                             </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="/categories/STM32CubeMX/" class="post-category">
-                                    STM32CubeMX
+                            <a href="/categories/%E5%AE%89%E8%A3%85%E6%95%99%E7%A8%8B/" class="post-category">
+                                    安装教程
                                 </a>
                             
                             
@@ -870,8 +960,8 @@ uint8_t recv_buf<span class="token punctuation">[</span><span class="token numbe
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/STM32CubeMX/">
-                        <span class="chip bg-color">STM32CubeMX</span>
+                    <a href="/tags/%E5%AE%89%E8%A3%85%E6%95%99%E7%A8%8B/">
+                        <span class="chip bg-color">安装教程</span>
                     </a>
                     
                 </div>
