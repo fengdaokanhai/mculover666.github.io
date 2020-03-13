@@ -442,17 +442,17 @@
 <li><code>W</code>：退出状态，进程即将被销毁；</li>
 <li><code>Z</code>：退出状态，进程成为僵尸进程；</li>
 </ul>
-<p><img src="https://img-blog.csdnimg.cn/20200313185646266.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L01jdWxvdmVyNjY2,size_16,color_FFFFFF,t_70" alt=""></p>
+<p><img src="https://img-blog.csdnimg.cn/20200313185646266.png" alt=""></p>
 <h1 id="2-编写多进程程序——创建子进程"><a href="#2-编写多进程程序——创建子进程" class="headerlink" title="2. 编写多进程程序——创建子进程"></a>2. 编写多进程程序——创建子进程</h1><h2 id="2-1-头文件"><a href="#2-1-头文件" class="headerlink" title="2.1. 头文件"></a>2.1. 头文件</h2><p>在使用多进程编程的API时，必须首先包含以下头文件：</p>
 <pre class=" language-c"><code class="language-c"><span class="token macro property">#<span class="token directive keyword">include</span> <span class="token string">&lt;unistd.h></span>        </span><span class="token comment" spellcheck="true">//定义了fork函数</span></code></pre>
 <h2 id="2-2-创建进程"><a href="#2-2-创建进程" class="headerlink" title="2.2. 创建进程"></a>2.2. 创建进程</h2><p>函数原型如下：</p>
 <pre class=" language-c"><code class="language-c">pid_t <span class="token function">fork</span><span class="token punctuation">(</span><span class="token keyword">void</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
-<p>fork函数用来创建子进程，它是<color font="red"><strong>通过复制父进程得到的子进程</strong></font>，所以：</p>
+<p>fork函数用来创建子进程，它是<font color="red"><strong>通过复制父进程得到的子进程</strong></font>，所以：</p>
 <ul>
 <li>子进程将继承父进程的整个地址空间；</li>
 <li>子进程只有pid号和父进程不一样；</li>
 </ul>
-<p>fork函数会复制出子进程，接着子进程和父进程都处于就绪状态，开始由内核调度执行，所以，被调用的fork函数会<color font="red"><strong>返回两次</strong></font>：</p>
+<p>fork函数会复制出子进程，接着子进程和父进程都处于就绪状态，开始由内核调度执行，所以，被调用的fork函数会<font color="red"><strong>返回两次</strong></font>：</p>
 <ul>
 <li>父进程返回一次，返回的 pid_t 类型的值为新创建的子进程的pid；</li>
 <li>子进程返回一次，返回的 pid_t 类型的值为0；</li>
