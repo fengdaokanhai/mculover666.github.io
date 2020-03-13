@@ -4,11 +4,8 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="STM32CubeMX USART 串口发送和接收">
-    <meta name="description" content="本篇文章主要介绍如何使用STM32CubeMX初始化STM32L431RCT6的USART，并使用查询模式发送数据，使用查询模式接收数据。
-
-1. 准备工作硬件准备
-开发板首先需要准备一个开发板，这里我准备的是STM32L4的开发板（Bea">
+    <meta name="keywords" content="Linux 子进程 fork">
+    <meta name="description" content="Linux应用开发">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -16,7 +13,7 @@
     <meta name="format-detection" content="telephone=no">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    <title>STM32CubeMX_06 | 使用USART发送和接收数据（查询模式） | Mculover666</title>
+    <title>Linux中使用fork创建子进程详解及示例程序 | Mculover666</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
@@ -264,12 +261,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/15.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/13.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">STM32CubeMX_06 | 使用USART发送和接收数据（查询模式）</h1>
+                    <h1 class="description center-align post-title">Linux中使用fork创建子进程详解及示例程序</h1>
                 </div>
             </div>
         </div>
@@ -386,8 +383,8 @@
                     
                     <div class="article-tag">
                         
-                            <a href="/tags/STM32CubeMX/">
-                                <span class="chip bg-color">STM32CubeMX</span>
+                            <a href="/tags/Linux%E5%BA%94%E7%94%A8%E5%BC%80%E5%8F%91/">
+                                <span class="chip bg-color">Linux应用开发</span>
                             </a>
                         
                     </div>
@@ -398,8 +395,8 @@
                     <div class="post-cate">
                         <i class="fas fa-bookmark fa-fw icon-category"></i>
                         
-                            <a href="/categories/STM32CubeMX/" class="post-category">
-                                STM32CubeMX
+                            <a href="/categories/Linux/" class="post-category">
+                                Linux
                             </a>
                         
                     </div>
@@ -411,7 +408,7 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2019-07-27
+                    2020-03-13
                 </div>
                 
 
@@ -433,84 +430,87 @@
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <p>本篇文章主要介绍如何使用STM32CubeMX初始化STM32L431RCT6的USART，并使用查询模式发送数据，使用查询模式接收数据。</p>
-<a id="more"></a>
-<h1 id="1-准备工作"><a href="#1-准备工作" class="headerlink" title="1. 准备工作"></a>1. 准备工作</h1><h2 id="硬件准备"><a href="#硬件准备" class="headerlink" title="硬件准备"></a>硬件准备</h2><ul>
-<li>开发板<br>首先需要准备一个开发板，这里我准备的是STM32L4的开发板（BearPi）：</li>
+                <h1 id="1-进程"><a href="#1-进程" class="headerlink" title="1. 进程"></a>1. 进程</h1><h2 id="1-1-什么是进程"><a href="#1-1-什么是进程" class="headerlink" title="1.1. 什么是进程"></a>1.1. 什么是进程</h2><p>当可执行文件开始运行之后，就变为了系统中的一个<strong>进程</strong>，一个程序（可执行文件）运行起来之后可以创建多个进程执行，称之为多进程程序。</p>
+<p>每个进程包含有<strong>进程运行环境、内存地址空间、进程ID</strong>、和至少一个被称为线程的执行控制流等资源。</p>
+<p>系统中所有的这些进程实体共享计算机系统的 CPU、外设、内存等资源。</p>
+<h2 id="1-2-进程的状态"><a href="#1-2-进程的状态" class="headerlink" title="1.2. 进程的状态"></a>1.2. 进程的状态</h2><p>系统中的一个CPU在某一个时刻只能执行一个进程，系统中存在的这些多个进程按照一定的规则轮流交替执行，所以每个进程会产生不同的状态：</p>
+<ul>
+<li><code>R</code>：运行态或者就绪态，一旦等待CPU，立马执行；</li>
+<li><code>S</code>：可中断的睡眠状态（因为等待某种事件的发生而被挂起）；</li>
+<li><code>D</code>：不可中断的睡眠状态（此时不能响应异步信号）；</li>
+<li><code>T</code>：暂停状态；</li>
+<li><code>W</code>：退出状态，进程即将被销毁；</li>
+<li><code>Z</code>：退出状态，进程成为僵尸进程；</li>
 </ul>
-<p><img src="http://mculover666.cn/image/20190806/9uiPTi5odYSj.png?imageslim" alt="mark"></p>
-<h2 id="软件准备"><a href="#软件准备" class="headerlink" title="软件准备"></a>软件准备</h2><ul>
-<li>需要安装好Keil - MDK及芯片对应的包，以便编译和下载生成的代码；</li>
-<li>准备一个串口调试助手，这里我使用的是<code>Serial Port Utility</code>；</li>
+<p><img src="https://img-blog.csdnimg.cn/20200313185646266.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L01jdWxvdmVyNjY2,size_16,color_FFFFFF,t_70" alt=""></p>
+<h1 id="2-编写多进程程序——创建子进程"><a href="#2-编写多进程程序——创建子进程" class="headerlink" title="2. 编写多进程程序——创建子进程"></a>2. 编写多进程程序——创建子进程</h1><h2 id="2-1-头文件"><a href="#2-1-头文件" class="headerlink" title="2.1. 头文件"></a>2.1. 头文件</h2><p>在使用多进程编程的API时，必须首先包含以下头文件：</p>
+<pre class=" language-c"><code class="language-c"><span class="token macro property">#<span class="token directive keyword">include</span> <span class="token string">&lt;unistd.h></span>        </span><span class="token comment" spellcheck="true">//定义了fork函数</span></code></pre>
+<h2 id="2-2-创建进程"><a href="#2-2-创建进程" class="headerlink" title="2.2. 创建进程"></a>2.2. 创建进程</h2><p>函数原型如下：</p>
+<pre class=" language-c"><code class="language-c">pid_t <span class="token function">fork</span><span class="token punctuation">(</span><span class="token keyword">void</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
+<p>fork函数用来创建子进程，它是<color font="red"><strong>通过复制父进程得到的子进程</strong></font>，所以：</p>
+<ul>
+<li>子进程将继承父进程的整个地址空间；</li>
+<li>子进程只有pid号和父进程不一样；</li>
 </ul>
-<blockquote>
-<p>Keil MDK和串口助手Serial Port Utility 的安装包都可以<strong>在文末关注公众号获取</strong>，回复关键字获取相应的安装包：</p>
-</blockquote>
-<p><img src="http://mculover666.cn/image/20190814/gubaOwmETp1w.png?imageslim" alt="mark"></p>
-<h1 id="2-生成MDK工程"><a href="#2-生成MDK工程" class="headerlink" title="2.生成MDK工程"></a>2.生成MDK工程</h1><h2 id="选择芯片型号"><a href="#选择芯片型号" class="headerlink" title="选择芯片型号"></a>选择芯片型号</h2><p>打开STM32CubeMX，打开MCU选择器：</p>
-<p><img src="http://mculover666.cn/image/20190806/gBP6glmUSH80.png?imageslim" alt="mark"></p>
-<p>搜索并选中芯片<code>STM32L431RCT6</code>:</p>
-<p><img src="http://mculover666.cn/image/20190806/gnyHwdl53uVD.png?imageslim" alt="mark"></p>
-<h2 id="配置时钟源"><a href="#配置时钟源" class="headerlink" title="配置时钟源"></a>配置时钟源</h2><ul>
-<li>如果选择使用外部高速时钟（HSE），则需要在System Core中配置RCC；</li>
-<li>如果使用默认内部时钟（HSI），这一步可以略过；</li>
+<p>fork函数会复制出子进程，接着子进程和父进程都处于就绪状态，开始由内核调度执行，所以，被调用的fork函数会<color font="red"><strong>返回两次</strong></font>：</p>
+<ul>
+<li>父进程返回一次，返回的 pid_t 类型的值为新创建的子进程的pid；</li>
+<li>子进程返回一次，返回的 pid_t 类型的值为0；</li>
 </ul>
-<p>这里我都使用外部时钟：</p>
-<p><img src="http://mculover666.cn/image/20190806/k593lGGb5tlW.png?imageslim" alt="mark"></p>
-<h2 id="配置串口"><a href="#配置串口" class="headerlink" title="配置串口"></a>配置串口</h2><p>小熊派开发板板载ST-Link并且虚拟了一个串口，原理图如下：</p>
-<p><img src="http://mculover666.cn/image/20190814/IwyXONVefPx9.png?imageslim" alt="mark"></p>
-<p>这里我将开关拨到<code>AT-MCU</code>模式，使PC的串口与USART1之间连接。</p>
-<p>接下来开始配置<code>USART1</code>：</p>
-<p><img src="http://mculover666.cn/image/20190814/nLMRMYtmzghl.png?imageslim" alt="mark"></p>
-<h2 id="配置时钟树"><a href="#配置时钟树" class="headerlink" title="配置时钟树"></a>配置时钟树</h2><p>STM32L4的最高主频到80M，所以配置PLL，最后使<code>HCLK = 80Mhz</code>即可：</p>
-<p><img src="http://mculover666.cn/image/20190806/1TQg7frjRpVr.png?imageslim" alt="mark"></p>
-<p><img src="http://mculover666.cn/image/20190814/AITGSflAXS45.png?imageslim" alt="mark"></p>
-<h2 id="生成工程设置"><a href="#生成工程设置" class="headerlink" title="生成工程设置"></a>生成工程设置</h2><p><img src="http://mculover666.cn/image/20190814/4Bb6RzhdGGnH.png?imageslim" alt="mark"></p>
-<h2 id="代码生成设置"><a href="#代码生成设置" class="headerlink" title="代码生成设置"></a>代码生成设置</h2><p>最后设置生成独立的初始化文件：</p>
-<p><img src="http://mculover666.cn/image/20190812/PwTCS6QzHiyG.png?imageslim" alt="mark"></p>
-<h2 id="生成代码"><a href="#生成代码" class="headerlink" title="生成代码"></a>生成代码</h2><p>点击<code>GENERATE CODE</code>即可生成MDK-V5工程：</p>
-<p><img src="http://mculover666.cn/image/20190806/s0jGhLBWW6Cm.png?imageslim" alt="mark"></p>
-<h1 id="3-在MDK中编写、编译、下载用户代码"><a href="#3-在MDK中编写、编译、下载用户代码" class="headerlink" title="3. 在MDK中编写、编译、下载用户代码"></a>3. 在MDK中编写、编译、下载用户代码</h1><h2 id="编写查询模式发送和接收代码"><a href="#编写查询模式发送和接收代码" class="headerlink" title="编写查询模式发送和接收代码"></a>编写查询模式发送和接收代码</h2><p>编写 <code>main</code> 函数如下：</p>
-<pre class=" language-c"><code class="language-c"><span class="token keyword">int</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token keyword">void</span><span class="token punctuation">)</span>
-<span class="token punctuation">{</span>
-  <span class="token comment" spellcheck="true">/* USER CODE BEGIN 1 */</span>
-    <span class="token keyword">char</span> str<span class="token punctuation">[</span><span class="token number">12</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token string">"Hello World\n"</span><span class="token punctuation">;</span>
-    <span class="token keyword">char</span> recv_buf<span class="token punctuation">[</span><span class="token number">12</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token punctuation">{</span><span class="token number">0</span><span class="token punctuation">}</span><span class="token punctuation">;</span>
-  <span class="token comment" spellcheck="true">/* USER CODE END 1 */</span>
+<p>如果创建失败，父进程会返回-1。</p>
+<p>另外，pid_t类型其实就是short类型。</p>
+<h2 id="2-3-获取PID的函数"><a href="#2-3-获取PID的函数" class="headerlink" title="2.3. 获取PID的函数"></a>2.3. 获取PID的函数</h2><p>在头文件<code>&lt;unistd.h&gt;</code>中定义，原型如下：</p>
+<ul>
+<li><p>获取自己的pid</p>
+<pre class=" language-c"><code class="language-c">pid_t <span class="token function">getpid</span><span class="token punctuation">(</span><span class="token keyword">void</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
+</li>
+<li><p>在子进程中获取父进程的pid</p>
+<pre class=" language-c"><code class="language-c">pid_t <span class="token function">getppid</span><span class="token punctuation">(</span><span class="token keyword">void</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
+<h2 id="2-4-创建子进程的示例代码"><a href="#2-4-创建子进程的示例代码" class="headerlink" title="2.4. 创建子进程的示例代码"></a>2.4. 创建子进程的示例代码</h2><p>```c<br>/**</p>
+<ul>
+<li>@brief  使用fork创建子进程示例程序</li>
+<li>@author Mculover666</li>
+<li>@note   创建一个子进程，打印父进程和子进程的pid，并测试n的值</li>
+</ul>
+</li>
+</ul>
+<p>*/</p>
+<p>#include &lt;unistd.h&gt;<br>#include &lt;stdio.h&gt;</p>
+<p>int main(void)<br>{<br>    __pid_t pid;</p>
+<pre><code>int n = 0;  //测试父进程和子进程是否共享一个n
 
-  <span class="token function">HAL_Init</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+pid = fork();
 
-  <span class="token function">SystemClock_Config</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-
-  <span class="token function">MX_GPIO_Init</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-  <span class="token function">MX_USART1_UART_Init</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-
-  <span class="token comment" spellcheck="true">/* USER CODE BEGIN 2 */</span>
-    <span class="token function">HAL_UART_Transmit</span><span class="token punctuation">(</span><span class="token operator">&amp;</span>huart1<span class="token punctuation">,</span> <span class="token punctuation">(</span>uint8_t<span class="token operator">*</span><span class="token punctuation">)</span>str<span class="token punctuation">,</span> <span class="token number">12</span><span class="token punctuation">,</span> <span class="token number">0xFFFF</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-  <span class="token comment" spellcheck="true">/* USER CODE END 2 */</span>
-
-  <span class="token keyword">while</span> <span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">)</span>
-  <span class="token punctuation">{</span>
-    <span class="token comment" spellcheck="true">/* USER CODE END WHILE */</span>
-    <span class="token comment" spellcheck="true">/* USER CODE BEGIN 3 */</span>
-    <span class="token comment" spellcheck="true">//接收12个字节的数据，不超时</span>
-    <span class="token keyword">if</span><span class="token punctuation">(</span>HAL_OK <span class="token operator">==</span> <span class="token function">HAL_UART_Receive</span><span class="token punctuation">(</span><span class="token operator">&amp;</span>huart1<span class="token punctuation">,</span> <span class="token punctuation">(</span>uint8_t<span class="token operator">*</span><span class="token punctuation">)</span>recv_buf<span class="token punctuation">,</span> <span class="token number">12</span><span class="token punctuation">,</span> <span class="token number">0xFFFF</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
-    <span class="token punctuation">{</span>
-      <span class="token comment" spellcheck="true">//将接收到的数据发送</span>
-      <span class="token function">HAL_UART_Transmit</span><span class="token punctuation">(</span><span class="token operator">&amp;</span>huart1<span class="token punctuation">,</span> <span class="token punctuation">(</span>uint8_t<span class="token operator">*</span><span class="token punctuation">)</span>recv_buf<span class="token punctuation">,</span> <span class="token number">12</span><span class="token punctuation">,</span> <span class="token number">0xFFFF</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token punctuation">}</span>
-  <span class="token punctuation">}</span>
-  <span class="token comment" spellcheck="true">/* USER CODE END 3 */</span>
-<span class="token punctuation">}</span></code></pre>
-<h2 id="编译代码"><a href="#编译代码" class="headerlink" title="编译代码"></a>编译代码</h2><p>编译整个工程：</p>
-<p><img src="http://mculover666.cn/image/20190814/cQclXS2zTHaV.png?imageslim" alt="mark"></p>
-<h2 id="设置下载器"><a href="#设置下载器" class="headerlink" title="设置下载器"></a>设置下载器</h2><p><img src="http://mculover666.cn/image/20190812/PHve6DYPkO9M.png?imageslim" alt="mark"></p>
-<p><img src="http://mculover666.cn/image/20190812/djSNbMCj6Hh6.png?imageslim" alt="mark"></p>
-<h2 id="实验现象"><a href="#实验现象" class="headerlink" title="实验现象"></a>实验现象</h2><p>下载运行后，实验现象如下：</p>
-<p><img src="http://mculover666.cn/image/20190814/kQYbI27K2aQP.png?imageslim" alt="mark"></p>
-<p>至此，我们已经学会了<strong>如何配置USART使用查询模式发送和接收数据</strong>，下一节将讲述如何配置USART使用中断模式接收数据。</p>
-<p><strong><font color="#FF0000">更多精彩文章及资源，请关注我的微信公众号：『mculover666』。</font></strong></p>
-<p><img src="http://mculover666.cn/image/20190814/NQqt1eRxrl1K.png?imageslim" alt="mark"></p>
+if(pid &lt; 0)
+{
+    /* 创建子进程失败 */
+    printf(&quot;fork fail.\n&quot;);
+    return -1;
+}
+else if(pid == 0)
+{
+    /* 子进程执行的程序 */
+    n += 1;
+    printf(&quot;I am child, my pid = %d, my father pid = %d, n = %d.\n&quot;, getpid(), getppid(), n);
+    return 0;
+}
+else
+{
+    /* 父进程要执行的程序 */
+    n += 2;
+    printf(&quot;I am father, my pid = %d, my child pid = %d, n = %d.\n&quot;, getpid(), pid, n);
+    return 0;
+}</code></pre><p>}</p>
+<pre><code>编译：
+```bash
+gcc 02-fork_test.c -o 02-fork_test.o</code></pre><p>执行：<br><img src="https://img-blog.csdnimg.cn/20200313193621861.png" alt=""><br>由执行结果可以看到，n变量被子进程fork过去之后，在子进程中就有了一个新的变量n，所以父进程执行后n = 2，子进程执行后n = 1，不是同一个n。</p>
+<h2 id="2-5-移植到嵌入式Linux开发板上运行测试"><a href="#2-5-移植到嵌入式Linux开发板上运行测试" class="headerlink" title="2.5. 移植到嵌入式Linux开发板上运行测试"></a>2.5. 移植到嵌入式Linux开发板上运行测试</h2><p>① 使用交叉编译工具重新编译程序：</p>
+<pre class=" language-bash"><code class="language-bash">arm-none-linux-gnueabi-gcc 02-fork_test.c -o 02-fork_test_arm.o</code></pre>
+<p><img src="https://img-blog.csdnimg.cn/20200313194131978.png" alt=""></p>
+<p>② 基于NFS文件系统，将可执行文件传到开发板上</p>
+<pre class=" language-bash"><code class="language-bash"><span class="token function">cp</span> 02-fork_test_arm.o /nfs_root/</code></pre>
+<p>③ 开发板上执行该程序测试，结果如下：<br><img src="https://img-blog.csdnimg.cn/20200313194957396.png" alt=""></p>
+<p><font color="red"><strong>接收更多精彩文章及资源推送，欢迎订阅我的微信公众号：『mculover666』。</strong></font><br><img src="https://img-blog.csdnimg.cn/20200202092055136.png" alt=""></p>
 
             </div>
             <hr/>
@@ -536,7 +536,7 @@
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="http://www.mculover666.cn/posts/2064921339/">http://www.mculover666.cn/posts/2064921339/</a>
+                    <a href="http://www.mculover666.cn/posts/1603677970/">http://www.mculover666.cn/posts/1603677970/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -574,8 +574,8 @@
                     
                         <div class="article-tag">
                             
-                                <a href="/tags/STM32CubeMX/">
-                                    <span class="chip bg-color">STM32CubeMX</span>
+                                <a href="/tags/Linux%E5%BA%94%E7%94%A8%E5%BC%80%E5%8F%91/">
+                                    <span class="chip bg-color">Linux应用开发</span>
                                 </a>
                             
                         </div>
@@ -763,52 +763,48 @@
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
+                <i class="far fa-dot-circle"></i>&nbsp;本篇
+            </div>
             <div class="card">
-                <a href="/posts/1803605667/">
+                <a href="/posts/1603677970/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/21.jpg" class="responsive-img" alt="STM32CubeMX_07 | 使用USART发送和接收数据（中断模式）">
+                        <img src="/medias/featureimages/13.jpg" class="responsive-img" alt="Linux中使用fork创建子进程详解及示例程序">
                         
-                        <span class="card-title">STM32CubeMX_07 | 使用USART发送和接收数据（中断模式）</span>
+                        <span class="card-title">Linux中使用fork创建子进程详解及示例程序</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            本篇文章主要介绍如何使用STM32CubeMX初始化STM32L431RCT6的USART，并使用中断模式发送和接收数据。
-
-1. 准备工作硬件准备
-开发板首先需要准备一个开发板，这里我准备的是STM32L4的开发板（BearPi）：
-
-
-
+                            Linux应用开发
                         
                     </div>
                     <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2019-07-28
-                        </span>
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2020-03-13
+                            </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="/categories/STM32CubeMX/" class="post-category">
-                                    STM32CubeMX
+                            <a href="/categories/Linux/" class="post-category">
+                                    Linux
                                 </a>
                             
                             
                         </span>
                     </div>
                 </div>
+
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/STM32CubeMX/">
-                        <span class="chip bg-color">STM32CubeMX</span>
+                    <a href="/tags/Linux%E5%BA%94%E7%94%A8%E5%BC%80%E5%8F%91/">
+                        <span class="chip bg-color">Linux应用开发</span>
                     </a>
                     
                 </div>
@@ -822,34 +818,31 @@
                 下一篇&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/posts/2504113390/">
+                <a href="/posts/917538546/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/2.jpg" class="responsive-img" alt="STM32CubeMX_05 | 使用EXIT中断检测按键">
+                        <img src="/medias/featureimages/18.jpg" class="responsive-img" alt="Linux中的文件读写详解及示例程序">
                         
-                        <span class="card-title">STM32CubeMX_05 | 使用EXIT中断检测按键</span>
+                        <span class="card-title">Linux中的文件读写详解及示例程序</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            本篇文章主要介绍如何使用STM32CubeMX初始化STM32L431RCT6的EXIT检测按键，讲述了一些NVIC的小知识，并一步一步探索了HAL库的中断处理机制。
-
-1. 准备工作硬件准备
-开发板首先需要准备一个开发板，这里我准备的是S
+                            Linux应用开发
                         
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2019-07-26
+                                <i class="far fa-clock fa-fw icon-date"></i>2020-03-12
                             </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="/categories/STM32CubeMX/" class="post-category">
-                                    STM32CubeMX
+                            <a href="/categories/Linux/" class="post-category">
+                                    Linux
                                 </a>
                             
                             
@@ -859,8 +852,8 @@
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/STM32CubeMX/">
-                        <span class="chip bg-color">STM32CubeMX</span>
+                    <a href="/tags/Linux%E5%BA%94%E7%94%A8%E5%BC%80%E5%8F%91/">
+                        <span class="chip bg-color">Linux应用开发</span>
                     </a>
                     
                 </div>
