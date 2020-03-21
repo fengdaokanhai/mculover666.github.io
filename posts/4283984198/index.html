@@ -4,8 +4,15 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="Multisim安装教程">
-    <meta name="description" content="下载站配套安装教程">
+    <meta name="keywords" content="STM32CubeMX Systick">
+    <meta name="description" content="本篇文章主要介绍如何使用STM32中的系统滴答定时器Systick。
+
+1. 准备工作硬件准备
+开发板首先需要准备一个开发板，这里我准备的是STM32L4的开发板（BearPi）：
+
+
+软件准备
+需要安装好Keil - MDK及芯片对应的包">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -13,7 +20,7 @@
     <meta name="format-detection" content="telephone=no">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    <title>Multisim13安装教程 | Mculover666</title>
+    <title>STM32CubeMX | 27-系统滴答定时器Systick的使用 | Mculover666</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
@@ -261,12 +268,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/6.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/20.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">Multisim13安装教程</h1>
+                    <h1 class="description center-align post-title">STM32CubeMX | 27-系统滴答定时器Systick的使用</h1>
                 </div>
             </div>
         </div>
@@ -383,8 +390,8 @@
                     
                     <div class="article-tag">
                         
-                            <a href="/tags/%E5%AE%89%E8%A3%85%E6%95%99%E7%A8%8B/">
-                                <span class="chip bg-color">安装教程</span>
+                            <a href="/tags/STM32CubeMX-Systick/">
+                                <span class="chip bg-color">STM32CubeMX Systick</span>
                             </a>
                         
                     </div>
@@ -395,8 +402,8 @@
                     <div class="post-cate">
                         <i class="fas fa-bookmark fa-fw icon-category"></i>
                         
-                            <a href="/categories/%E5%AE%89%E8%A3%85%E6%95%99%E7%A8%8B/" class="post-category">
-                                安装教程
+                            <a href="/categories/STM32CubeMX/" class="post-category">
+                                STM32CubeMX
                             </a>
                         
                     </div>
@@ -408,7 +415,7 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2020-03-10
+                    2019-12-29
                 </div>
                 
 
@@ -430,56 +437,106 @@
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h1 id="安装-Multisim-13"><a href="#安装-Multisim-13" class="headerlink" title="安装 Multisim 13"></a>安装 Multisim 13</h1><ol>
-<li>运行安装目录setup.exe</li>
-</ol>
-<p><img src="http://mculover666.cn/blog/20200310/AE1PiNxgKBOp.png?imageslim" alt=""></p>
-<ol start="2">
-<li>选择Install this product for evaluation</li>
-</ol>
-<p><img src="http://mculover666.cn/blog/20200310/35Av4qhBJojG.png?imageslim" alt=""></p>
-<ol start="3">
-<li>选择安装目录</li>
-</ol>
+                <p>本篇文章主要介绍如何使用STM32中的系统滴答定时器Systick。</p>
+<a id="more"></a>
+<h1 id="1-准备工作"><a href="#1-准备工作" class="headerlink" title="1. 准备工作"></a>1. 准备工作</h1><h2 id="硬件准备"><a href="#硬件准备" class="headerlink" title="硬件准备"></a>硬件准备</h2><ul>
+<li>开发板<br>首先需要准备一个开发板，这里我准备的是STM32L4的开发板（BearPi）：</li>
+</ul>
+<p><img src="http://mculover666.cn/image/20190806/9uiPTi5odYSj.png?imageslim" alt=""></p>
+<h2 id="软件准备"><a href="#软件准备" class="headerlink" title="软件准备"></a>软件准备</h2><ul>
+<li>需要安装好Keil - MDK及芯片对应的包，以便编译和下载生成的代码；</li>
+</ul>
 <blockquote>
-<p>路径不要有中文或者空格！</p>
+<p>Keil MDK和串口助手Serial Port Utility 的安装包都可以<strong>在文末关注公众号获取</strong>，点击资源获取菜单即可。</p>
 </blockquote>
-<p><img src="http://mculover666.cn/blog/20200310/ybM9hsqIPuIk.png?imageslim" alt=""></p>
-<ol start="4">
-<li>选择安装产品（ 默认即可）</li>
-</ol>
-<p><img src="http://mculover666.cn/blog/20200310/6Cs3YXBrEnEB.png?imageslim" alt=""></p>
-<ol start="5">
-<li>去掉发送用户信息</li>
-</ol>
-<p><img src="http://mculover666.cn/blog/20200310/Jajie6MP0XpV.png?imageslim" alt=""></p>
-<ol start="6">
-<li>接受许可协议</li>
-</ol>
-<p><img src="http://mculover666.cn/blog/20200310/23RKNF8EaGvq.png?imageslim" alt=""></p>
-<ol start="7">
-<li><p><img src="http://mculover666.cn/blog/20200310/fwaaoLQ08LiI.png?imageslim" alt=""></p>
-</li>
-<li><p>等待安装完成</p>
-</li>
-</ol>
-<p><img src="http://mculover666.cn/blog/20200310/6c16etMCfMa2.png?imageslim" alt=""></p>
-<ol start="9">
-<li>安装完成</li>
-</ol>
-<p><img src="http://mculover666.cn/blog/20200310/2ldnOu2kky7l.png?imageslim" alt=""></p>
-<ol start="10">
-<li>重启电脑</li>
-</ol>
-<blockquote>
-<p>注意：选择Restart之后会立马重启！</p>
+<h1 id="2-生成MDK工程"><a href="#2-生成MDK工程" class="headerlink" title="2.生成MDK工程"></a>2.生成MDK工程</h1><blockquote>
+<p>如果使用的是STM32F1系列，请先看这篇文章！！！（<a href="https://blog.csdn.net/Mculover666/article/details/104802410" target="_blank" rel="noopener">STM32CubeMX生成F1的工程中造成 下载器无法下载 问题的解决方案</a>）</p>
 </blockquote>
-<p><img src="http://mculover666.cn/blog/20200310/NK9ivJTLJKd8.png?imageslim" alt=""></p>
-<h1 id="激活"><a href="#激活" class="headerlink" title="激活"></a>激活</h1><p>运行安装包下NI License Activator 1.1文件夹内NI License Activator 1.1.exe程序，右键点击方框后面的字母，选择Active，五个框由灰变绿就可以，如图：</p>
-<p><img src="http://mculover666.cn/blog/20200310/GO5LPV2yEJE1.png?imageslim" alt=""></p>
-<h1 id="运行"><a href="#运行" class="headerlink" title="运行"></a>运行</h1><p><img src="http://mculover666.cn/blog/20200310/mLK3cN1GyiOT.png?imageslim" alt=""></p>
+<h2 id="选择芯片型号"><a href="#选择芯片型号" class="headerlink" title="选择芯片型号"></a>选择芯片型号</h2><p>打开STM32CubeMX，打开MCU选择器：</p>
+<p><img src="http://mculover666.cn/image/20190806/gBP6glmUSH80.png?imageslim" alt=""></p>
+<p>搜索并选中芯片<code>STM32L431RCT6</code>:</p>
+<p><img src="http://mculover666.cn/image/20190806/gnyHwdl53uVD.png?imageslim" alt=""></p>
+<h2 id="配置时钟源"><a href="#配置时钟源" class="headerlink" title="配置时钟源"></a>配置时钟源</h2><ul>
+<li>如果选择使用外部高速时钟（HSE），则需要在System Core中配置RCC；</li>
+<li>如果使用默认内部时钟（HSI），这一步可以略过；</li>
+</ul>
+<p>这里我都使用外部时钟：</p>
+<p><img src="http://mculover666.cn/blog/20200320/xjfBJCiQiIqs.png?imageslim" alt=""></p>
+<h2 id="配置GPIO引脚"><a href="#配置GPIO引脚" class="headerlink" title="配置GPIO引脚"></a>配置GPIO引脚</h2><p>查看小熊派开发板的原理图，如下：</p>
+<p><img src="http://mculover666.cn/image/20190812/5iCtQUfKbgzA.png?imageslim" alt=""></p>
+<p>所以接下来我们选择配置<code>PC13</code>引脚：</p>
+<p><img src="http://mculover666.cn/blog/20200320/75KToL1Wb9Hi.png?imageslim" alt=""></p>
+<p>给PC13引脚设置一个user_label:</p>
+<p><img src="http://mculover666.cn/blog/20200320/RQ2wj7LvOpYB.png?imageslim" alt=""></p>
+<h2 id="系统滴答定时器Systick"><a href="#系统滴答定时器Systick" class="headerlink" title="系统滴答定时器Systick"></a>系统滴答定时器Systick</h2><p>SysTick 是一个24位的<strong>向下计数定时器</strong>，当计到0时，将从RELOAD寄存器中自动重装载定时初值并继续计数，且同时触发中断，SysTick 的主要作用是作为系统的时基，产生一个周期性的中断信号。</p>
+<p>STM32CubeMX使用的是HAL库，默认已经开启，也可以选择其它的定时器作为系统时基：</p>
+<p><img src="http://mculover666.cn/blog/20200320/wPr86c2AAhrV.png?imageslim" alt=""></p>
+<p>中断默认使能，无法关闭：</p>
+<p><img src="http://mculover666.cn/blog/20200320/gpq3D6yxcV0E.png?imageslim" alt=""></p>
+<h2 id="配置时钟树"><a href="#配置时钟树" class="headerlink" title="配置时钟树"></a>配置时钟树</h2><p>STM32L4的最高主频到80M，所以配置PLL，最后使<code>HCLK = 80Mhz</code>即可：</p>
+<p><img src="http://mculover666.cn/image/20190806/1TQg7frjRpVr.png?imageslim" alt=""></p>
+<p>需要注意，其中<code>To Cortex System timer</code>这一路是Systick的时钟频率，有<code>/1</code>和<code>/8</code>两种选择，这里我们使用8分频：</p>
+<p><img src="http://mculover666.cn/blog/20200320/B3hmj9mq9XFN.png?imageslim" alt=""></p>
+<h2 id="生成工程设置"><a href="#生成工程设置" class="headerlink" title="生成工程设置"></a>生成工程设置</h2><p><img src="http://mculover666.cn/blog/20200320/AomciGE6pPn3.png?imageslim" alt=""></p>
+<h2 id="代码生成设置"><a href="#代码生成设置" class="headerlink" title="代码生成设置"></a>代码生成设置</h2><p>最后设置生成独立的初始化文件：</p>
+<p><img src="http://mculover666.cn/image/20190812/PwTCS6QzHiyG.png?imageslim" alt=""></p>
+<h2 id="生成代码"><a href="#生成代码" class="headerlink" title="生成代码"></a>生成代码</h2><p>点击<code>GENERATE CODE</code>即可生成MDK-V5工程：</p>
+<p><img src="http://mculover666.cn/image/20190806/s0jGhLBWW6Cm.png?imageslim" alt=""></p>
+<h1 id="3-在MDK中编写、编译、下载用户代码"><a href="#3-在MDK中编写、编译、下载用户代码" class="headerlink" title="3. 在MDK中编写、编译、下载用户代码"></a>3. 在MDK中编写、编译、下载用户代码</h1><h2 id="自动生成的代码"><a href="#自动生成的代码" class="headerlink" title="自动生成的代码"></a>自动生成的代码</h2><p>STM32CubeMX会自动生成Systick相关的代码，其中比较重要的有：</p>
+<p>① 默认Systick频率值设定：</p>
+<p><img src="http://mculover666.cn/blog/20200320/QQ0mkE2nXt6X.png?imageslim" alt=""></p>
+<p>频率设定有三个值，在<code>stm32l4xx_hal.h</code>文件中：</p>
+<p><img src="http://mculover666.cn/blog/20200320/PVW77Adaevs9.png?imageslim" alt=""></p>
+<p>② Systick默认中断服务函数</p>
+<p><img src="http://mculover666.cn/blog/20200320/NeiPiq1Qp6hD.png?imageslim" alt=""></p>
+<p>HAL_IncTick函数会把当前系统中定义的计数值变量递加，在<code>stm32l4xx_hal.c</code>文件中，实现如下：</p>
+<p><img src="http://mculover666.cn/blog/20200320/GmxKupDBS7cU.png?imageslim" alt=""></p>
+<h2 id="编写用户代码"><a href="#编写用户代码" class="headerlink" title="编写用户代码"></a>编写用户代码</h2><p>HAL库中还定义了一个函数 HAL_GetTick()，使用此API可以获取到当前系统中的计数值，定义如下：</p>
+<p><img src="http://mculover666.cn/blog/20200320/BUl5TwumCMxN.png?imageslim" alt=""></p>
+<p>接下来使用此API来编写LED闪烁程序。</p>
+<p>在main.c函数中首先定义一个32位的uint型变量，用于存放计数起始值：</p>
+<pre class=" language-c"><code class="language-c"><span class="token comment" spellcheck="true">/* USER CODE BEGIN 1 */</span>
+
+uint32_t tickstart<span class="token punctuation">;</span>
+
+<span class="token comment" spellcheck="true">/* USER CODE END 1 */</span></code></pre>
+<p>然后在while(1)循环中调用 HAL_GetTick() 来获取当前的计数值，通过比较当前计数值和起始值即可起到延时的作用：</p>
+<pre class=" language-c"><code class="language-c"><span class="token keyword">while</span> <span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">)</span>
+<span class="token punctuation">{</span>
+    <span class="token comment" spellcheck="true">/* USER CODE END WHILE */</span>
+
+    <span class="token comment" spellcheck="true">/* USER CODE BEGIN 3 */</span>
+
+    <span class="token comment" spellcheck="true">//获取延时起始值</span>
+    tickstart <span class="token operator">=</span> <span class="token function">HAL_GetTick</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    <span class="token comment" spellcheck="true">//死循环比较，直到到达延时值，每次1ms，1000次为1s</span>
+    <span class="token keyword">while</span> <span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token function">HAL_GetTick</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">-</span> tickstart<span class="token punctuation">)</span> <span class="token operator">&lt;</span> <span class="token number">1000</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    <span class="token comment" spellcheck="true">//翻转LED</span>
+    <span class="token function">HAL_GPIO_TogglePin</span><span class="token punctuation">(</span>LED_GPIO_Port<span class="token punctuation">,</span> LED_Pin<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span></code></pre>
+<p>上面的这种应用方式比较准确，但系统进入了死循环，还有一种比较灵活的使用方式：</p>
+<pre class=" language-c"><code class="language-c"><span class="token keyword">while</span> <span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">)</span>
+<span class="token punctuation">{</span>
+<span class="token comment" spellcheck="true">/* USER CODE END WHILE */</span>
+
+<span class="token comment" spellcheck="true">/* USER CODE BEGIN 3 */</span>
+
+    <span class="token comment" spellcheck="true">//翻转LED</span>
+    <span class="token keyword">if</span><span class="token punctuation">(</span><span class="token function">HAL_GetTick</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">%</span> <span class="token number">1000</span> <span class="token operator">==</span> <span class="token number">0</span><span class="token punctuation">)</span>
+    <span class="token punctuation">{</span>
+        <span class="token function">HAL_GPIO_TogglePin</span><span class="token punctuation">(</span>LED_GPIO_Port<span class="token punctuation">,</span> LED_Pin<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span></code></pre>
+<p>这样就不会堵塞CPU了。</p>
+<h2 id="实验现象"><a href="#实验现象" class="headerlink" title="实验现象"></a>实验现象</h2><p>编译下载之后，即可看到LED按1s的间隔闪烁：</p>
+<p><img src="http://mculover666.cn/image/20190812/YCAOK10iYrQN.png?imageslim" alt=""></p>
+<h2 id="补充-——-HAL-Delay的实现原理"><a href="#补充-——-HAL-Delay的实现原理" class="headerlink" title="补充 —— HAL_Delay的实现原理"></a>补充 —— HAL_Delay的实现原理</h2><p>最开始使用HAL库的时候，觉得 HAL_Delay 简直太方便了，其实 HAL_Delay 也是依靠系统的时基信号来实现的，在<code>stm32l4xx_hal.c</code>文件中，实现如下：</p>
+<p><img src="http://mculover666.cn/blog/20200320/GA45wsv1k8Wa.png?imageslim" alt=""></p>
+<p>可以看到它采用的还是死等的方式，所以相比起来，还是第二种方式应用起来更加灵活，方便，喜欢文章的话，点个赞鼓励一下吧，笔芯~</p>
 <p><strong><font color="#FF0000">更多精彩文章及资源，请关注我的微信公众号：『mculover666』。</font></strong></p>
-<p><img src="http://mculover666.cn/image/20190814/NQqt1eRxrl1K.png?imageslim" alt="公众号"></p>
+<p><img src="http://mculover666.cn/image/20190814/NQqt1eRxrl1K.png?imageslim" alt=""></p>
 
             </div>
             <hr/>
@@ -505,7 +562,7 @@
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="http://www.mculover666.cn/posts/433364979/">http://www.mculover666.cn/posts/433364979/</a>
+                    <a href="http://www.mculover666.cn/posts/4283984198/">http://www.mculover666.cn/posts/4283984198/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -543,8 +600,8 @@
                     
                         <div class="article-tag">
                             
-                                <a href="/tags/%E5%AE%89%E8%A3%85%E6%95%99%E7%A8%8B/">
-                                    <span class="chip bg-color">安装教程</span>
+                                <a href="/tags/STM32CubeMX-Systick/">
+                                    <span class="chip bg-color">STM32CubeMX Systick</span>
                                 </a>
                             
                         </div>
@@ -736,31 +793,31 @@
             <div class="article-badge left-badge text-color">
                 <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
             <div class="card">
-                <a href="/posts/917538546/">
+                <a href="/posts/2806899914/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/18.jpg" class="responsive-img" alt="Linux中的文件读写详解及示例程序">
+                        <img src="/medias/featureimages/0.jpg" class="responsive-img" alt="Matlab2018安装教程">
                         
-                        <span class="card-title">Linux中的文件读写详解及示例程序</span>
+                        <span class="card-title">Matlab2018安装教程</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            Linux应用开发
+                            下载站配套安装教程
                         
                     </div>
                     <div class="publish-info">
                         <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2020-03-12
+                            <i class="far fa-clock fa-fw icon-date"></i>2020-02-20
                         </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="/categories/Linux/" class="post-category">
-                                    Linux
+                            <a href="/categories/%E5%AE%89%E8%A3%85%E6%95%99%E7%A8%8B/" class="post-category">
+                                    安装教程
                                 </a>
                             
                             
@@ -770,8 +827,8 @@
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/Linux%E5%BA%94%E7%94%A8%E5%BC%80%E5%8F%91/">
-                        <span class="chip bg-color">Linux应用开发</span>
+                    <a href="/tags/%E5%AE%89%E8%A3%85%E6%95%99%E7%A8%8B/">
+                        <span class="chip bg-color">安装教程</span>
                     </a>
                     
                 </div>
@@ -785,31 +842,35 @@
                 下一篇&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/posts/2151341594/">
+                <a href="/posts/4097081462/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/21.jpg" class="responsive-img" alt="桌面mini网络时钟教程">
+                        <img src="/medias/featureimages/10.jpg" class="responsive-img" alt="STM32CubeMX-26 | 使用硬件I2C读取温湿度传感器数据（HTS221）">
                         
-                        <span class="card-title">桌面mini网络时钟教程</span>
+                        <span class="card-title">STM32CubeMX-26 | 使用硬件I2C读取温湿度传感器数据（HTS221）</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            使用RT-Thread Studio打造
+                            本篇详细的记录了如何使用STM32CubeMX配置STM32L431RCT6的硬件I2C外设，读取HTS221温湿度传感器的数据并通过串口发送。
+
+
+1. 准备工作硬件准备
+开发板首先需要准备一个开发板，这里我准备的是STM32L0的开发板
                         
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2020-02-20
+                                <i class="far fa-clock fa-fw icon-date"></i>2019-12-29
                             </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="/categories/%E5%88%B6%E4%BD%9C%E8%BF%87%E7%A8%8B/" class="post-category">
-                                    制作过程
+                            <a href="/categories/STM32CubeMX/" class="post-category">
+                                    STM32CubeMX
                                 </a>
                             
                             
@@ -819,8 +880,8 @@
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/%E5%88%B6%E4%BD%9C%E8%BF%87%E7%A8%8B/">
-                        <span class="chip bg-color">制作过程</span>
+                    <a href="/tags/STM32CubeMX-%E6%B8%A9%E6%B9%BF%E5%BA%A6%E4%BC%A0%E6%84%9F%E5%99%A8-HTS221/">
+                        <span class="chip bg-color">STM32CubeMX 温湿度传感器 HTS221</span>
                     </a>
                     
                 </div>
