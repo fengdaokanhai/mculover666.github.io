@@ -4,10 +4,8 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="STM32CubeMX printf printf重定向">
-    <meta name="description" content="本文详细的介绍了如何重定向printf输出到串口输出的多种方法，包括调用MDK微库（MicroLib）的方法，调用标准库的方法，以及适用于 GNUC 系列编译器的方法。
-
-1.printf与fputc对于 printf 函数相信大家都不陌生">
+    <meta name="keywords" content="Matlab2019安装方法">
+    <meta name="description" content="下载站配套安装教程">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -15,7 +13,7 @@
     <meta name="format-detection" content="telephone=no">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    <title>STM32CubeMX_09 | 重定向printf函数到串口输出的多种方法 | Mculover666</title>
+    <title>Matlab2019安装教程 | Mculover666</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
@@ -263,12 +261,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/20.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/23.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">STM32CubeMX_09 | 重定向printf函数到串口输出的多种方法</h1>
+                    <h1 class="description center-align post-title">Matlab2019安装教程</h1>
                 </div>
             </div>
         </div>
@@ -385,8 +383,8 @@
                     
                     <div class="article-tag">
                         
-                            <a href="/tags/STM32CubeMX/">
-                                <span class="chip bg-color">STM32CubeMX</span>
+                            <a href="/tags/%E5%AE%89%E8%A3%85%E6%95%99%E7%A8%8B/">
+                                <span class="chip bg-color">安装教程</span>
                             </a>
                         
                     </div>
@@ -397,8 +395,8 @@
                     <div class="post-cate">
                         <i class="fas fa-bookmark fa-fw icon-category"></i>
                         
-                            <a href="/categories/STM32CubeMX/" class="post-category">
-                                STM32CubeMX
+                            <a href="/categories/%E5%AE%89%E8%A3%85%E6%95%99%E7%A8%8B/" class="post-category">
+                                安装教程
                             </a>
                         
                     </div>
@@ -410,7 +408,7 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2019-07-30
+                    2020-02-20
                 </div>
                 
 
@@ -432,148 +430,53 @@
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <p>本文详细的介绍了如何重定向printf输出到串口输出的多种方法，包括调用MDK微库（MicroLib）的方法，调用标准库的方法，以及适用于 <code>GNUC</code> 系列编译器的方法。</p>
-<a id="more"></a>
-<h1 id="1-printf与fputc"><a href="#1-printf与fputc" class="headerlink" title="1.printf与fputc"></a>1.printf与fputc</h1><p>对于 printf 函数相信大家都不陌生，第一个C语言程序就是使用 printf 函数在屏幕上的控制台打印出<code>Hello World</code>，之后使用 printf 函数输出各种类型的数据，使用格式控制输出各种长度的字符，甚至输出各种各样的图案。</p>
-<p>除此之外，在程序出错的时候，懒得调试，直接简单粗暴的加个 printf 找bug，有时候也不失为一种有效的方法。</p>
-<p>对于已经习惯的 printf 函数，你了解多少呢？</p>
-<p>printf 定义在 <code>&lt;stdio.h&gt;</code> 头文件中，如下：</p>
-<pre class=" language-c"><code class="language-c"><span class="token keyword">int</span> <span class="token function">printf</span><span class="token punctuation">(</span><span class="token keyword">const</span> <span class="token keyword">char</span> <span class="token operator">*</span>format<span class="token punctuation">,</span> <span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
-<p>printf 函数根据 <code>format</code> 字符串给出的格式打印输出到 <code>stdout</code>（标准输出）中，当然，<strong>printf 函数是不会一个字符一个字符去输出，它会调用更底层的 I/O 函数：<code>fputc</code>去逐个字符打印</strong>。</p>
-<p>fputc 也定义于头文件 <code>&lt;stdio.h&gt;</code>中，如下：</p>
-<pre class=" language-c"><code class="language-c"><span class="token keyword">int</span> <span class="token function">fputc</span><span class="token punctuation">(</span><span class="token keyword">int</span> ch<span class="token punctuation">,</span> FILE <span class="token operator">*</span>stream<span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
-<p>fputc 函数写入字符 ch 到给定输出流 stream，printf函数在调用该函数时，会向stream参数传入<code>stdout</code>从而打印数据到标准输出。</p>
-<p>那么，要实现printf打印到串口就变得非常简单了，<strong>只需要重新定义fputc函数，在fputc的函数中将数据通过串口发送，称之为：fputc重定向或者printf重定向。</strong></p>
-<h1 id="2-在MDK中使用MicroLib重定向printf"><a href="#2-在MDK中使用MicroLib重定向printf" class="headerlink" title="2.在MDK中使用MicroLib重定向printf"></a>2.在MDK中使用MicroLib重定向printf</h1><h2 id="勾选Use-MicroLib"><a href="#勾选Use-MicroLib" class="headerlink" title="勾选Use MicroLib"></a>勾选Use MicroLib</h2><p>MicroLib是对标准C库进行了高度优化之后的库，供MDK默认使用，相比之下，MicroLIB的代码更少，资源占用更少：</p>
-<p><img src="http://mculover666.cn/image/20190819/oFhTzahaD7Kk.png?imageslim" alt="mark"></p>
-<h2 id="重定义fputc到串口"><a href="#重定义fputc到串口" class="headerlink" title="重定义fputc到串口"></a>重定义fputc到串口</h2><p>重新实现fputc函数，编写代码将这个字符通过串口发送，因为发送每个字符时都会调用该函数，所以<strong>为了效率</strong>，不再调用库函数 <code>HAL_UART_Transmit</code> 发送，而是直接操作寄存器发送。</p>
-<ul>
-<li>检测串口当前状态</li>
-</ul>
-<p>STM32L431的USART串口外设有一个 <code>ISR</code> 寄存器，全名 <code>Interrupt and status register</code>， 用来指示当前串口的状态，如图：</p>
-<p><img src="http://mculover666.cn/image/20190819/2hNLPDdErguD.png?imageslim" alt="mark"></p>
-<p>其中 <code>BIT6 TC</code>用来指示当前串口是否发送完成，如图：</p>
-<p><img src="http://mculover666.cn/image/20190819/HqS3iDUO5Ce7.png?imageslim" alt="mark"></p>
-<p>可以通过判断该位来判断串口当前是否处于发送状态，代码如下：</p>
-<pre class=" language-c"><code class="language-c"><span class="token keyword">while</span><span class="token punctuation">(</span><span class="token punctuation">(</span>USART1<span class="token operator">-></span>ISR <span class="token operator">&amp;</span> <span class="token number">0X40</span><span class="token punctuation">)</span> <span class="token operator">==</span> <span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
-<ul>
-<li>串口发送字符ch</li>
-</ul>
-<p>同样，为了提高发送效率，直接使用寄存器来操作：</p>
-<pre class=" language-c"><code class="language-c">USART1<span class="token operator">-></span>TDR <span class="token operator">=</span> <span class="token punctuation">(</span>uint8_t<span class="token punctuation">)</span> ch<span class="token punctuation">;</span></code></pre>
-<p>最后实现fputc函数就变的非常简单了，这里我放在<code>usart.c</code>文件的末尾：</p>
-<pre class=" language-c"><code class="language-c"><span class="token comment" spellcheck="true">/* USER CODE BEGIN 1 */</span>
-<span class="token macro property">#<span class="token directive keyword">if</span> 1</span>
-<span class="token macro property">#<span class="token directive keyword">include</span> <span class="token string">&lt;stdio.h></span></span>
-
-<span class="token keyword">int</span> <span class="token function">fputc</span><span class="token punctuation">(</span><span class="token keyword">int</span> ch<span class="token punctuation">,</span> FILE <span class="token operator">*</span>stream<span class="token punctuation">)</span>
-<span class="token punctuation">{</span>
-    <span class="token comment" spellcheck="true">/* 堵塞判断串口是否发送完成 */</span>
-    <span class="token keyword">while</span><span class="token punctuation">(</span><span class="token punctuation">(</span>USART1<span class="token operator">-></span>ISR <span class="token operator">&amp;</span> <span class="token number">0X40</span><span class="token punctuation">)</span> <span class="token operator">==</span> <span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-
-    <span class="token comment" spellcheck="true">/* 串口发送完成，将该字符发送 */</span>
-    USART1<span class="token operator">-></span>TDR <span class="token operator">=</span> <span class="token punctuation">(</span>uint8_t<span class="token punctuation">)</span> ch<span class="token punctuation">;</span>
-
-    <span class="token keyword">return</span> ch<span class="token punctuation">;</span>
-<span class="token punctuation">}</span>
-<span class="token macro property">#<span class="token directive keyword">endif</span></span>
-
-<span class="token comment" spellcheck="true">/* USER CODE END 1 */</span></code></pre>
+                <h1 id="1-安装前的注意事项"><a href="#1-安装前的注意事项" class="headerlink" title="1. 安装前的注意事项"></a>1. 安装前的注意事项</h1><p><strong>电脑必须断开网络连接！</strong></p>
+<p><strong>电脑必须断开网络连接！</strong></p>
+<p><strong>电脑必须断开网络连接！</strong></p>
 <blockquote>
-<p>注意：如果是STM32F1系列，上面这段代码不适用，请使用下面的代码：</p>
+<p>本文档是静态页面，加载出来之后就可以断网了，不影响在浏览器中阅读！</p>
 </blockquote>
-<pre class=" language-c"><code class="language-c"><span class="token comment" spellcheck="true">/* USER CODE BEGIN 1 */</span>
-<span class="token macro property">#<span class="token directive keyword">if</span> 1</span>
-<span class="token macro property">#<span class="token directive keyword">include</span> <span class="token string">&lt;stdio.h></span></span>
-
-<span class="token keyword">int</span> <span class="token function">fputc</span><span class="token punctuation">(</span><span class="token keyword">int</span> ch<span class="token punctuation">,</span> FILE <span class="token operator">*</span>stream<span class="token punctuation">)</span>
-<span class="token punctuation">{</span>
-    <span class="token comment" spellcheck="true">/* 堵塞判断串口是否发送完成 */</span>
-    <span class="token keyword">while</span><span class="token punctuation">(</span><span class="token punctuation">(</span>USART1<span class="token operator">-></span>SR <span class="token operator">&amp;</span> <span class="token number">0X40</span><span class="token punctuation">)</span> <span class="token operator">==</span> <span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-
-    <span class="token comment" spellcheck="true">/* 串口发送完成，将该字符发送 */</span>
-    USART1<span class="token operator">-></span>DR <span class="token operator">=</span> <span class="token punctuation">(</span>uint8_t<span class="token punctuation">)</span> ch<span class="token punctuation">;</span>
-
-    <span class="token keyword">return</span> ch<span class="token punctuation">;</span>
-<span class="token punctuation">}</span>
-<span class="token macro property">#<span class="token directive keyword">endif</span></span>
-<span class="token comment" spellcheck="true">/* USER CODE END 1 */</span></code></pre>
-<h2 id="测试printf"><a href="#测试printf" class="headerlink" title="测试printf"></a>测试printf</h2><p>在main函数中测试一下printf函数是否可以正常使用：</p>
-<pre class=" language-c"><code class="language-c">    <span class="token comment" spellcheck="true">/* USER CODE BEGIN 2 */</span>
-    <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"Hello, i am %s\n"</span><span class="token punctuation">,</span> <span class="token string">"mculover666"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"Test int: i = %d"</span><span class="token punctuation">,</span> <span class="token number">100</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"Test float: i = %f"</span><span class="token punctuation">,</span> <span class="token number">1.234</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"Test hex: i = 0x%2x"</span><span class="token punctuation">,</span><span class="token number">100</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token comment" spellcheck="true">/* USER CODE END 2 */</span></code></pre>
-<p>结果如下：</p>
-<p><img src="http://mculover666.cn/image/20190819/l3kwHp8d4DPW.png?imageslim" alt="mark"></p>
-<h1 id="3-在MDK中使用标准库重定向printf"><a href="#3-在MDK中使用标准库重定向printf" class="headerlink" title="3.在MDK中使用标准库重定向printf"></a>3.在MDK中使用标准库重定向printf</h1><p>printf 函数使用了半主机模式，所以直接使用标准库会导致程序无法运行，因此必须提前告知编译器不使用半主机模式：</p>
+<h1 id="2-启动安装"><a href="#2-启动安装" class="headerlink" title="2. 启动安装"></a>2. 启动安装</h1><p>双击运行setup.exe，启动安装程序：</p>
+<p><img src="http://mculover666.cn/blog/20200324/tEuwK0fJMcaK.png?imageslim" alt="启动安装程序"></p>
+<p>选择使用文件安装秘钥：</p>
+<p><img src="http://mculover666.cn/blog/20200324/CLUHnfgG0ExI.png?imageslim" alt="mark"></p>
+<p>接受许可协议：</p>
+<p><img src="http://mculover666.cn/blog/20200324/frP2Je2ih9TH.png?imageslim" alt="mark"></p>
+<p>填写秘钥：</p>
+<blockquote>
+<p>秘钥在破解包中的秘钥.txt文件中！</p>
+</blockquote>
+<p><img src="http://mculover666.cn/blog/20200324/GcEvotS1Emzl.png?imageslim" alt="mark"></p>
+<p>接下来选择安装位置，注意目录不要有空格或者中文：</p>
+<p><img src="http://mculover666.cn/blog/20200324/EIKoP8k26pvE.png?imageslim" alt="mark"></p>
+<h1 id="3-选择安装产品"><a href="#3-选择安装产品" class="headerlink" title="3. 选择安装产品"></a>3. 选择安装产品</h1><p>Matlab中包含matlab全系列产品，可以根据自己的需要选择安装，没必要全部安装，而且<strong>以后有需要时，可以重新启动这个安装程序，选择对应的产品再次进行安装</strong>：</p>
 <ul>
-<li>不使用半主机模式<pre class=" language-c"><code class="language-c"><span class="token comment" spellcheck="true">/* 告知连接器不从C库链接使用半主机的函数 */</span>
-<span class="token macro property">#<span class="token directive keyword">pragma</span> import(__use_no_semihosting)</span>
-</code></pre>
-</li>
+<li>Matlab核心产品（必选）</li>
+<li>Simulink相关</li>
+<li>各种工具包</li>
 </ul>
-<p>/* 定义 _sys_exit() 以避免使用半主机模式 */<br>void _sys_exit(int x)<br>{<br>    x = x;<br>}</p>
-<pre><code>所以，重定向fputc()函数完整的代码如下：
-```c
-#if 1
-#include &lt;stdio.h&gt;
-
-/* 告知连接器不从C库链接使用半主机的函数 */
-#pragma import(__use_no_semihosting)
-
-/* 定义 _sys_exit() 以避免使用半主机模式 */
-void _sys_exit(int x)
-{
-    x = x;
-}
-
-/* 标准库需要的支持类型 */
-struct __FILE
-{
-    int handle;
-};
-
-FILE __stdout;
-
-/*  */
-int fputc(int ch, FILE *stream)
-{
-    /* 堵塞判断串口是否发送完成 */
-    while((USART1-&gt;ISR &amp; 0X40) == 0);
-
-    /* 串口发送完成，将该字符发送 */
-    USART1-&gt;TDR = (uint8_t) ch;
-
-    return ch;
-}
-
-#endif</code></pre><h2 id="测试printf-1"><a href="#测试printf-1" class="headerlink" title="测试printf"></a>测试printf</h2><p>测试printf函数的代码不变，在MDK设置中取消勾选<code>USE MICROLIB</code>，然后重新编译，下载代码后试验现象如下：</p>
-<p><img src="http://mculover666.cn/image/20190819/8zhddFdIleFV.png?imageslim" alt="mark"></p>
-<h1 id="4-在GCC中使用标准库重定向printf"><a href="#4-在GCC中使用标准库重定向printf" class="headerlink" title="4.在GCC中使用标准库重定向printf"></a>4.在GCC中使用标准库重定向printf</h1><p><strong>不同的编译器对于C库的底层实现机制是不同的，所以上面两种在MDK中的实现方法，在使用Gcc编译器的时候是不可行的。</strong></p>
-<p>在Gcc中重定向printf函数时注意两个关键点：</p>
-<ul>
-<li>与重定义fputs()函数一样，在使用Gcc编译器的时候，需要重新定义<code>_write</code>函数；</li>
-<li>Gcc中没有MicroLib，只能使用标准库；</li>
-</ul>
-<p>所以重定向printf函数的代码如下：</p>
-<pre class=" language-c"><code class="language-c"><span class="token comment" spellcheck="true">/* USER CODE BEGIN 1 */</span>
-<span class="token macro property">#<span class="token directive keyword">if</span> 1</span>
-<span class="token macro property">#<span class="token directive keyword">include</span> <span class="token string">&lt;stdio.h></span></span>
-
-<span class="token keyword">int</span> <span class="token function">_write</span><span class="token punctuation">(</span><span class="token keyword">int</span> fd<span class="token punctuation">,</span> <span class="token keyword">char</span> <span class="token operator">*</span>ptr<span class="token punctuation">,</span> <span class="token keyword">int</span> len<span class="token punctuation">)</span>  
-<span class="token punctuation">{</span>  
-  <span class="token function">HAL_UART_Transmit</span><span class="token punctuation">(</span><span class="token operator">&amp;</span>huart1<span class="token punctuation">,</span> <span class="token punctuation">(</span>uint8_t<span class="token operator">*</span><span class="token punctuation">)</span>ptr<span class="token punctuation">,</span> len<span class="token punctuation">,</span> <span class="token number">0xFFFF</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-  <span class="token keyword">return</span> len<span class="token punctuation">;</span>
-<span class="token punctuation">}</span>
-<span class="token macro property">#<span class="token directive keyword">endif</span></span>
-<span class="token comment" spellcheck="true">/* USER CODE END 1 */</span></code></pre>
-<p>使用STM32CubeMX生成makefile，然后使用arm-none-eabi-gcc编译没有问题，再使用STM32 ST-LINK utility 下载后实验现象如下：</p>
-<p><img src="http://mculover666.cn/image/20190819/PDr0G8VvtqN9.png?imageslim" alt="mark"></p>
-<p>至此，我们已经学会<strong>实现printf()函数的多种方法</strong>，下一节将讲述如何使用ADC读取MQ-2气体传感器的值。</p>
+<p>在本教程中只演示如何安装Malab核心产品 + Image Acquisition Toolbox（玩转摄像头必备），如下面的两张图：</p>
+<p><img src="http://mculover666.cn/blog/20200324/Kk5zSTDYzqRO.png?imageslim" alt="mark"></p>
+<p><img src="http://mculover666.cn/blog/20200324/XaXSyjgDd1en.png?imageslim" alt="mark"></p>
+<p>在输出的安装信息中可以看到本次安装的产品列表和占用空间的大小，点击安装，等待安装完成即可。</p>
+<h1 id="4-创建桌面图标"><a href="#4-创建桌面图标" class="headerlink" title="4. 创建桌面图标"></a>4. 创建桌面图标</h1><blockquote>
+<p><strong>请勿启动Matlab！</strong></p>
+</blockquote>
+<p>安装完成后，Matlab不会自动创建桌面快捷方式，需要手动创建。</p>
+<p>首先在Matlab安装目录找到主程序Matlab.exe：</p>
+<p><img src="http://mculover666.cn/blog/20200324/wb2hjS8oDa1D.png?imageslim" alt="mark"></p>
+<p>然后将其右键-&gt;发送到-&gt;桌面快捷方式，即可。</p>
+<h1 id="5-激活"><a href="#5-激活" class="headerlink" title="5. 激活"></a>5. 激活</h1><blockquote>
+<p><strong>仍然需要处于断网状态！</strong></p>
+</blockquote>
+<p>附件：<a href="">Matlab激活文件下载链接</a>。</p>
+<p>将 Matlab_2019b_Crack 文件夹内的 <code>license_standalone.lic</code> 文件复制到安装目录 licenses 目录里面，默认在<code>\MATLAB\R2019b\licenses</code>中：</p>
+<p><img src="http://mculover666.cn/blog/20200324/9Nx6krGeQzxi.png?imageslim" alt="mark"></p>
+<p>将 MATLAB R20189 Win64 Crack内<code>R2019b\bin\win64\matlab_startup_plugins\lmgrimpl</code>目录下的文件<code>libmwlmgrimpl.dll</code>，复制到安装目录下的同等目录中，会<strong>自动弹出是否覆盖</strong>，选择替换覆盖即可：</p>
+<p><img src="http://mculover666.cn/blog/20200324/nPtFt7mWMIGS.png?imageslim" alt="mark"></p>
+<p>激活完成，接下里启动Matlab，愉快的玩耍吧~</p>
 <p><strong><font color="#FF0000">更多精彩文章及资源，请关注我的微信公众号：『mculover666』。</font></strong></p>
-<p><img src="http://mculover666.cn/image/20190814/NQqt1eRxrl1K.png?imageslim" alt="mark"></p>
+<p><img src="http://mculover666.cn/image/20190814/NQqt1eRxrl1K.png?imageslim" alt="公众号"></p>
 
             </div>
             <hr/>
@@ -599,7 +502,7 @@ int fputc(int ch, FILE *stream)
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="http://www.mculover666.cn/posts/2251182441/">http://www.mculover666.cn/posts/2251182441/</a>
+                    <a href="http://www.mculover666.cn/posts/2061188431/">http://www.mculover666.cn/posts/2061188431/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -637,8 +540,8 @@ int fputc(int ch, FILE *stream)
                     
                         <div class="article-tag">
                             
-                                <a href="/tags/STM32CubeMX/">
-                                    <span class="chip bg-color">STM32CubeMX</span>
+                                <a href="/tags/%E5%AE%89%E8%A3%85%E6%95%99%E7%A8%8B/">
+                                    <span class="chip bg-color">安装教程</span>
                                 </a>
                             
                         </div>
@@ -830,35 +733,31 @@ int fputc(int ch, FILE *stream)
             <div class="article-badge left-badge text-color">
                 <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
             <div class="card">
-                <a href="/posts/1249993360/">
+                <a href="/posts/2303339885/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/9.jpg" class="responsive-img" alt="STM32CubeMX_10 | 使用ADC读取气体传感器数据（MQ-2）">
+                        <img src="/medias/featureimages/9.jpg" class="responsive-img" alt="桌面mini网络时钟教程 | 01-基于STM32芯片创建HelloWorld工程">
                         
-                        <span class="card-title">STM32CubeMX_10 | 使用ADC读取气体传感器数据（MQ-2）</span>
+                        <span class="card-title">桌面mini网络时钟教程 | 01-基于STM32芯片创建HelloWorld工程</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            本篇详细的记录了如何使用STM32CubeMX配置STM32L431RCT6的ADC外设，读取MQ-2气体传感器的数据并通过串口发送。
-
-
-1. 准备工作硬件准备
-开发板首先需要准备一个开发板，这里我准备的是STM32L4的开发板（Bear
+                            使用RT-Thread Studio打造
                         
                     </div>
                     <div class="publish-info">
                         <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2019-07-31
+                            <i class="far fa-clock fa-fw icon-date"></i>2020-02-20
                         </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="/categories/STM32CubeMX/" class="post-category">
-                                    STM32CubeMX
+                            <a href="/categories/%E5%88%B6%E4%BD%9C%E8%BF%87%E7%A8%8B/" class="post-category">
+                                    制作过程
                                 </a>
                             
                             
@@ -868,8 +767,8 @@ int fputc(int ch, FILE *stream)
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/STM32CubeMX-%E6%B0%94%E4%BD%93%E4%BC%A0%E6%84%9F%E5%99%A8MQ-2/">
-                        <span class="chip bg-color">STM32CubeMX 气体传感器MQ-2</span>
+                    <a href="/tags/%E5%88%B6%E4%BD%9C%E8%BF%87%E7%A8%8B/">
+                        <span class="chip bg-color">制作过程</span>
                     </a>
                     
                 </div>
@@ -883,34 +782,31 @@ int fputc(int ch, FILE *stream)
                 下一篇&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/posts/1606619423/">
+                <a href="/posts/2806899914/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/4.jpg" class="responsive-img" alt="STM32CubeMX_08 | 使用USART发送和接收数据（DMA模式）">
+                        <img src="/medias/featureimages/0.jpg" class="responsive-img" alt="Matlab2018安装教程">
                         
-                        <span class="card-title">STM32CubeMX_08 | 使用USART发送和接收数据（DMA模式）</span>
+                        <span class="card-title">Matlab2018安装教程</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            本篇文章主要介绍如何使用STM32CubeMX初始化STM32L431RCT6的USART，并使用DMA模式发送数据和接收数据。
-
-1. 准备工作硬件准备
-开发板首先需要准备一个开发板，这里我准备的是STM32L4的开发板（BearPi）：
+                            下载站配套安装教程
                         
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2019-07-29
+                                <i class="far fa-clock fa-fw icon-date"></i>2020-02-20
                             </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="/categories/STM32CubeMX/" class="post-category">
-                                    STM32CubeMX
+                            <a href="/categories/%E5%AE%89%E8%A3%85%E6%95%99%E7%A8%8B/" class="post-category">
+                                    安装教程
                                 </a>
                             
                             
@@ -920,8 +816,8 @@ int fputc(int ch, FILE *stream)
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/STM32CubeMX/">
-                        <span class="chip bg-color">STM32CubeMX</span>
+                    <a href="/tags/%E5%AE%89%E8%A3%85%E6%95%99%E7%A8%8B/">
+                        <span class="chip bg-color">安装教程</span>
                     </a>
                     
                 </div>
