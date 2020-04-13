@@ -1,0 +1,1339 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN">
+
+
+<head>
+    <meta charset="utf-8">
+    <meta name="keywords" content="lettershell">
+    <meta name="description" content="嵌入式开源项目精选专栏">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta name="renderer" content="webkit|ie-stand|ie-comp">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <title>letter-shell | 一个功能强大的嵌入式shell | Mculover666</title>
+    <link rel="icon" type="image/png" href="/favicon.png">
+
+    <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
+    <link rel="stylesheet" type="text/css" href="/libs/materialize/materialize.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/aos/aos.css">
+    <link rel="stylesheet" type="text/css" href="/libs/animate/animate.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/lightGallery/css/lightgallery.min.css">
+    <link rel="stylesheet" type="text/css" href="/css/matery.css">
+    <link rel="stylesheet" type="text/css" href="/css/my.css">
+
+    <script src="/libs/jquery/jquery.min.js"></script>
+    
+<link rel="stylesheet" href="/css/prism-tomorrow.css" type="text/css"></head>
+
+
+<body>
+    <header class="navbar-fixed">
+    <nav id="headNav" class="bg-color nav-transparent">
+        <div id="navContainer" class="nav-wrapper container">
+            <div class="brand-logo">
+                <a href="/" class="waves-effect waves-light">
+                    
+                    <img src="/medias/logo.png" class="logo-img" alt="LOGO">
+                    
+                    <span class="logo-span">Mculover666</span>
+                </a>
+            </div>
+            
+
+<a href="#" data-target="mobile-nav" class="sidenav-trigger button-collapse"><i class="fas fa-bars"></i></a>
+<ul class="right nav-menu">
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/" class="waves-effect waves-light">
+      
+      <i class="fas fa-home" style="zoom: 0.6;"></i>
+      
+      <span>首页</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="" class="waves-effect waves-light">
+
+      
+      <i class="fas fa-list" style="zoom: 0.6;"></i>
+      
+      <span>系列教程</span>
+      <i class="fas fa-chevron-down" aria-hidden="true" style="zoom: 0.6;"></i>
+    </a>
+    <ul class="sub-nav menus_item_child ">
+      
+      <li>
+        <a href="/posts/578764034/">
+          
+          <span>STM32CubeMX</span>
+        </a>
+      </li>
+      
+    </ul>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="https://blog.csdn.net/Mculover666" target="_blank" rel="noopener" class="waves-effect waves-light">
+      
+      <i class="fas fa-bookmark" style="zoom: 0.6;"></i>
+      
+      <span>CSDN</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/download" class="waves-effect waves-light">
+      
+      <i class="fas fa-download" style="zoom: 0.6;"></i>
+      
+      <span>资源下载</span>
+    </a>
+    
+  </li>
+  
+  <li>
+    <a href="#searchModal" class="modal-trigger waves-effect waves-light">
+      <i id="searchIcon" class="fas fa-search" title="搜索" style="zoom: 0.85;"></i>
+    </a>
+  </li>
+</ul>
+
+<div id="mobile-nav" class="side-nav sidenav">
+
+    <div class="mobile-head bg-color">
+        
+        <img src="/medias/logo.png" class="logo-img circle responsive-img">
+        
+        <div class="logo-name">Mculover666</div>
+        <div class="logo-desc">
+            
+            嵌入式 STM32 物联网领域的教程及精彩内容分享
+            
+        </div>
+    </div>
+
+    
+
+    <ul class="menu-list mobile-menu-list">
+        
+        <li class="m-nav-item">
+	  
+		<a href="/" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-home"></i>
+			
+			首页
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="javascript:;" target="_blank" rel="noopener">
+			
+				<i class="fa-fw fas fa-list"></i>
+			
+			系列教程
+			<span class="m-icon"><i class="fas fa-chevron-right"></i></span>
+		</a>
+            <ul  style="background:  ;" >
+              
+                <li>   
+				
+                  <a href="/posts/578764034/ " style="margin-left:75px";>
+				  
+		          <span>STM32CubeMX</span>
+                  </a>
+                </li>
+               
+            </ul>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="https://blog.csdn.net/Mculover666" target="_blank" rel="noopener" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-bookmark"></i>
+			
+			CSDN
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/download" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-download"></i>
+			
+			资源下载
+		</a>
+          
+        </li>
+        
+        
+        <li><div class="divider"></div></li>
+        <li>
+            <a href="https://github.com/Mculover666" class="waves-effect waves-light" target="_blank">
+                <i class="fab fa-github-square fa-fw"></i>Fork Me
+            </a>
+        </li>
+        
+    </ul>
+</div>
+
+        </div>
+
+        
+            <style>
+    .nav-transparent .github-corner {
+        display: none !important;
+    }
+
+    .github-corner {
+        position: absolute;
+        z-index: 10;
+        top: 0;
+        right: 0;
+        border: 0;
+        transform: scale(1.1);
+    }
+
+    .github-corner svg {
+        color: #0f9d58;
+        fill: #fff;
+        height: 64px;
+        width: 64px;
+    }
+
+    .github-corner:hover .octo-arm {
+        animation: a 0.56s ease-in-out;
+    }
+
+    .github-corner .octo-arm {
+        animation: none;
+    }
+
+    @keyframes a {
+        0%,
+        to {
+            transform: rotate(0);
+        }
+        20%,
+        60% {
+            transform: rotate(-25deg);
+        }
+        40%,
+        80% {
+            transform: rotate(10deg);
+        }
+    }
+</style>
+
+<a href="https://github.com/Mculover666" class="github-corner tooltipped hide-on-med-and-down" target="_blank"
+   data-tooltip="Fork Me" data-position="left" data-delay="50">
+    <svg viewBox="0 0 250 250" aria-hidden="true">
+        <path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path>
+        <path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2"
+              fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path>
+        <path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z"
+              fill="currentColor" class="octo-body"></path>
+    </svg>
+</a>
+        
+    </nav>
+
+</header>
+
+    
+
+
+
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/18.jpg')">
+    <div class="container" style="right: 0px;left: 0px;">
+        <div class="row">
+            <div class="col s12 m12 l12">
+                <div class="brand">
+                    <h1 class="description center-align post-title">letter-shell | 一个功能强大的嵌入式shell</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+<main class="post-container content">
+
+    
+    <link rel="stylesheet" href="/libs/tocbot/tocbot.css">
+<style>
+    #articleContent h1::before,
+    #articleContent h2::before,
+    #articleContent h3::before,
+    #articleContent h4::before,
+    #articleContent h5::before,
+    #articleContent h6::before {
+        display: block;
+        content: " ";
+        height: 100px;
+        margin-top: -100px;
+        visibility: hidden;
+    }
+
+    #articleContent :focus {
+        outline: none;
+    }
+
+    .toc-fixed {
+        position: fixed;
+        top: 64px;
+    }
+
+    .toc-widget {
+        width: 345px;
+        padding-left: 20px;
+    }
+
+    .toc-widget .toc-title {
+        margin: 35px 0 15px 0;
+        padding-left: 17px;
+        font-size: 1.5rem;
+        font-weight: bold;
+        line-height: 1.5rem;
+    }
+
+    .toc-widget ol {
+        padding: 0;
+        list-style: none;
+    }
+
+    #toc-content {
+        height: calc(100vh - 250px);
+        overflow: auto;
+    }
+
+    #toc-content ol {
+        padding-left: 10px;
+    }
+
+    #toc-content ol li {
+        padding-left: 10px;
+    }
+
+    #toc-content .toc-link:hover {
+        color: #42b983;
+        font-weight: 700;
+        text-decoration: underline;
+    }
+
+    #toc-content .toc-link::before {
+        background-color: transparent;
+        max-height: 25px;
+    }
+
+    #toc-content .is-active-link {
+        color: #42b983;
+    }
+
+    #toc-content .is-active-link::before {
+        background-color: #42b983;
+    }
+
+    #floating-toc-btn {
+        position: fixed;
+        right: 15px;
+        bottom: 76px;
+        padding-top: 15px;
+        margin-bottom: 0;
+        z-index: 998;
+    }
+
+    #floating-toc-btn .btn-floating {
+        width: 48px;
+        height: 48px;
+    }
+
+    #floating-toc-btn .btn-floating i {
+        line-height: 48px;
+        font-size: 1.4rem;
+    }
+</style>
+<div class="row">
+    <div id="main-content" class="col s12 m12 l9">
+        <!-- 文章内容详情 -->
+<div id="artDetail">
+    <div class="card">
+        <div class="card-content article-info">
+            <div class="row tag-cate">
+                <div class="col s7">
+                    
+                    <div class="article-tag">
+                        
+                            <a href="/tags/%E5%B5%8C%E5%85%A5%E5%BC%8F%E5%BC%80%E6%BA%90%E9%A1%B9%E7%9B%AE%E7%B2%BE%E9%80%89%E4%B8%93%E6%A0%8F/">
+                                <span class="chip bg-color">嵌入式开源项目精选专栏</span>
+                            </a>
+                        
+                    </div>
+                    
+                </div>
+                <div class="col s5 right-align">
+                    
+                    <div class="post-cate">
+                        <i class="fas fa-bookmark fa-fw icon-category"></i>
+                        
+                            <a href="/categories/OpenSource/" class="post-category">
+                                OpenSource
+                            </a>
+                        
+                    </div>
+                    
+                </div>
+            </div>
+
+            <div class="post-info">
+                
+                <div class="post-date info-break-policy">
+                    <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
+                    2020-04-09
+                </div>
+                
+
+                
+
+                
+
+                
+
+                
+                    <div id="busuanzi_container_page_pv" class="info-break-policy">
+                        <i class="far fa-eye fa-fw"></i>阅读次数:&nbsp;&nbsp;
+                        <span id="busuanzi_value_page_pv"></span>
+                    </div>
+				
+            </div>
+
+        </div>
+        <hr class="clearfix">
+        <div class="card-content article-card-content">
+            <div id="articleContent">
+                <p><img src="https://img-blog.csdnimg.cn/20200321151234798.png" alt=""></p>
+<h1 id="嵌入式开源项目精选专栏"><a href="#嵌入式开源项目精选专栏" class="headerlink" title="嵌入式开源项目精选专栏"></a>嵌入式开源项目精选专栏</h1><p>本专栏由Mculover666创建，主要内容为寻找嵌入式领域内的优质开源项目，一是帮助开发者使用开源项目实现更多的功能，二是通过这些开源项目，学习大佬的代码及背后的实现思想，提升自己的代码水平，和其它专栏相比，本专栏的优势在于：</p>
+<p><strong>不会单纯的介绍分享项目，还会包含作者亲自实践的过程分享，甚至还会有对它背后的设计思想解读</strong>。</p>
+<p>目前本专栏包含的开源项目有：</p>
+<ul>
+<li><a href="https://blog.csdn.net/Mculover666/article/details/101351255" target="_blank" rel="noopener">SFUD | 一个简洁实用的开源项目，帮你轻松搞定SPI Flash</a></li>
+<li><a href="https://blog.csdn.net/Mculover666/article/details/103796256" target="_blank" rel="noopener">cJSON | 一个轻量级C语言JSON解析器</a></li>
+<li><a href="https://blog.csdn.net/Mculover666/article/details/103935428" target="_blank" rel="noopener">paho | 支持10种语言编写mqtt客户端，总有一款适合你！</a></li>
+<li><a href="https://blog.csdn.net/Mculover666/article/details/104992661" target="_blank" rel="noopener">MultiButton | 一个小巧简单易用的事件驱动型按键驱动模块</a></li>
+</ul>
+<p>如果您自己编写或者发现的开源项目不错，欢迎留言或者私信投稿到本专栏，分享获得双倍的快乐！</p>
+<h1 id="1-letter-shell"><a href="#1-letter-shell" class="headerlink" title="1. letter-shell"></a>1. letter-shell</h1><p>本期给大家带来的开源项目是 letter-shell，<strong>一个功能强大的嵌入式shell</strong>，作者NevermindZZT，目前收获 155 个star，遵循 MIT 开源许可协议。</p>
+<p>letter shell 3.0是一个C语言编写的，可以嵌入在程序中的嵌入式shell，通俗一点说就是一个串口命令行，可以通过命令行调用、运行程序中的函数。</p>
+<p><img src="https://img-blog.csdnimg.cn/20200327145222418.png#pic_center" alt=""><br>目前 letter-shell 3.0版本支持的功能有：</p>
+<ul>
+<li>命令自动补全</li>
+<li>快捷键功能定义</li>
+<li>命令权限管理</li>
+<li>用户管理</li>
+<li>变量支持</li>
+</ul>
+<blockquote>
+<p>项目地址：<a href="https://github.com/NevermindZZT/letter-shell" target="_blank" rel="noopener">https://github.com/NevermindZZT/letter-shell</a></p>
+</blockquote>
+<h1 id="2-移植letter-shell"><a href="#2-移植letter-shell" class="headerlink" title="2. 移植letter-shell"></a>2. 移植letter-shell</h1><h2 id="2-1-移植思路"><a href="#2-1-移植思路" class="headerlink" title="2.1. 移植思路"></a>2.1. 移植思路</h2><p>① 看项目readme文件中的移植说明，一般都比较完善；<br>② 看项目中的demo，举一反三；<br>③ 看别人移植好的博客；</p>
+<h2 id="2-2-移植过程"><a href="#2-2-移植过程" class="headerlink" title="2.2. 移植过程"></a>2.2. 移植过程</h2><p>letter-shell的移植非常简单，<strong>自己实现串口读写一个字符的接口，自己编写一个初始化函数</strong>，完成。</p>
+<p>本文中我使用的是小熊派IoT开发套件，主控芯片为STM32L431RCT6：<br><img src="https://imgconvert.csdnimg.cn/aHR0cDovL21jdWxvdmVyNjY2LmNuL2Jsb2cvMjAxOTA5MTkvekh4NXhNWVVtU1cxLnBuZw?x-oss-process=image/format,png#pic_center" alt=""><br>移植之前需要准备一份裸机工程，我使用STM32CubeMX生成，使用USART1的查询方式发送数据、使用USART1的中断方式接收数据，参考教程：</p>
+<ul>
+<li><a href="http://www.mculover666.cn/posts/2064921339/">STM32CubeMX_06 | 使用USART发送和接收数据（查询模式）</a></li>
+<li><a href="http://www.mculover666.cn/posts/1803605667/">STM32CubeMX_07 | 使用USART发送和接收数据（中断模式）</a></li>
+</ul>
+<p>① 复制源码到工程中：<br><img src="https://img-blog.csdnimg.cn/20200327152927521.png" alt=""><br>② 新建存放实现移植接口的文件：<br><img src="https://img-blog.csdnimg.cn/20200327153402563.png" alt=""><br>③ 在keil中添加文件，添加头文件路径：<br><img src="https://img-blog.csdnimg.cn/20200327154614874.png" alt=""><br>目录下还有头文件，添加到头文件路径中：<br><img src="https://img-blog.csdnimg.cn/20200327154705670.png" alt=""><br>④ 编辑shell_port.c文件，<strong>实现向串口写入一个字符的接口</strong>，并编写shell的初始化函数：</p>
+<pre class=" language-c"><code class="language-c"><span class="token comment" spellcheck="true">/**
+ * @brief    shell移植到STM32L431时的接口实现
+ * @author    mculover666
+ * @date    2020/03/27 
+*/</span>
+
+<span class="token macro property">#<span class="token directive keyword">include</span> <span class="token string">"shell.h"</span></span>
+<span class="token macro property">#<span class="token directive keyword">include</span> <span class="token string">&lt;stm32l4xx_hal.h></span></span>
+<span class="token macro property">#<span class="token directive keyword">include</span> <span class="token string">"usart.h"</span></span>
+<span class="token macro property">#<span class="token directive keyword">include</span> <span class="token string">"shell_port.h"</span></span>
+
+<span class="token comment" spellcheck="true">/* 1. 创建shell对象，开辟shell缓冲区 */</span>
+Shell shell<span class="token punctuation">;</span>
+<span class="token keyword">char</span> shell_buffer<span class="token punctuation">[</span><span class="token number">512</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+
+
+<span class="token comment" spellcheck="true">/* 2. 自己实现shell写函数 */</span>
+
+<span class="token comment" spellcheck="true">//shell写函数原型：typedef void (*shellWrite)(const char);</span>
+<span class="token keyword">void</span> <span class="token function">User_Shell_Write</span><span class="token punctuation">(</span><span class="token keyword">const</span> <span class="token keyword">char</span> ch<span class="token punctuation">)</span>
+<span class="token punctuation">{</span>
+    <span class="token comment" spellcheck="true">//调用STM32 HAL库 API 使用查询方式发送</span>
+    <span class="token function">HAL_UART_Transmit</span><span class="token punctuation">(</span><span class="token operator">&amp;</span>huart1<span class="token punctuation">,</span> <span class="token punctuation">(</span>uint8_t<span class="token operator">*</span><span class="token punctuation">)</span><span class="token operator">&amp;</span>ch<span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">0xFFFF</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token comment" spellcheck="true">/* 3. 编写初始化函数 */</span>
+<span class="token keyword">void</span> <span class="token function">User_Shell_Init</span><span class="token punctuation">(</span><span class="token keyword">void</span><span class="token punctuation">)</span>
+<span class="token punctuation">{</span>
+    <span class="token comment" spellcheck="true">//注册自己实现的写函数</span>
+    shell<span class="token punctuation">.</span>write <span class="token operator">=</span> User_Shell_Write<span class="token punctuation">;</span>
+
+    <span class="token comment" spellcheck="true">//调用shell初始化函数</span>
+    <span class="token function">shellInit</span><span class="token punctuation">(</span><span class="token operator">&amp;</span>shell<span class="token punctuation">,</span> shell_buffer<span class="token punctuation">,</span> <span class="token number">512</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span></code></pre>
+<p>⑤ 编辑shell_port.h文件，声明自己编写的初始化函数：</p>
+<pre class=" language-c"><code class="language-c"><span class="token macro property">#<span class="token directive keyword">ifndef</span> _SHELL_PORT_H_</span>
+<span class="token macro property">#<span class="token directive keyword">define</span>    _SHELL_PORT_H_</span>
+
+<span class="token macro property">#<span class="token directive keyword">include</span> <span class="token string">"shell.h"</span></span>
+
+<span class="token comment" spellcheck="true">/* 将shell定义为外部变量，在串口中断回调函数中还要使用 */</span>
+<span class="token keyword">extern</span> Shell shell<span class="token punctuation">;</span>
+
+<span class="token comment" spellcheck="true">/* 声明自己编写的初始化函数 */</span>
+<span class="token keyword">void</span> <span class="token function">User_Shell_Init</span><span class="token punctuation">(</span><span class="token keyword">void</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token macro property">#<span class="token directive keyword">endif</span> </span><span class="token comment" spellcheck="true">/* _SHELL_PORT_H_ */</span></code></pre>
+<p>⑥ 在<code>main.c</code>文件的末尾编写串口中断回调函数，在接收到一个字符之后调用 shellHandler 函数进行处理，首先把头文件包含进来：</p>
+<pre class=" language-c"><code class="language-c"><span class="token comment" spellcheck="true">/* USER CODE BEGIN Includes */</span>
+<span class="token macro property">#<span class="token directive keyword">include</span> <span class="token string">"shell_port.h"</span></span>
+<span class="token comment" spellcheck="true">/* USER CODE END Includes */</span></code></pre>
+<p>接着开辟一个串口接收缓冲区（一个字符）：</p>
+<pre class=" language-c"><code class="language-c"><span class="token comment" spellcheck="true">/* USER CODE BEGIN PV */</span>
+uint8_t recv_buf <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
+<span class="token comment" spellcheck="true">/* USER CODE END PV */</span></code></pre>
+<p>然后编写回调函数</p>
+<pre class=" language-c"><code class="language-c"><span class="token comment" spellcheck="true">/* USER CODE BEGIN 4 */</span>
+<span class="token comment" spellcheck="true">/* 中断回调函数 */</span>
+<span class="token keyword">void</span> <span class="token function">HAL_UART_RxCpltCallback</span><span class="token punctuation">(</span>UART_HandleTypeDef <span class="token operator">*</span>huart<span class="token punctuation">)</span>
+<span class="token punctuation">{</span>
+    <span class="token comment" spellcheck="true">/* 判断是哪个串口触发的中断 */</span>
+    <span class="token keyword">if</span><span class="token punctuation">(</span>huart <span class="token operator">-></span>Instance <span class="token operator">==</span> USART1<span class="token punctuation">)</span>
+    <span class="token punctuation">{</span>
+        <span class="token comment" spellcheck="true">//调用shell处理数据的接口</span>
+              <span class="token function">shellHandler</span><span class="token punctuation">(</span><span class="token operator">&amp;</span>shell<span class="token punctuation">,</span> recv_buf<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token comment" spellcheck="true">//使能串口中断接收</span>
+              <span class="token function">HAL_UART_Receive_IT</span><span class="token punctuation">(</span><span class="token operator">&amp;</span>huart1<span class="token punctuation">,</span> <span class="token punctuation">(</span>uint8_t<span class="token operator">*</span><span class="token punctuation">)</span><span class="token operator">&amp;</span>recv_buf<span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+<span class="token comment" spellcheck="true">/* USER CODE END 4 */</span></code></pre>
+<p>⑥ 在<code>main函数</code>中使能中断接收，调用自己编写的shell初始化函数：</p>
+<pre class=" language-c"><code class="language-c"><span class="token comment" spellcheck="true">/* USER CODE BEGIN 2 */</span>
+<span class="token comment" spellcheck="true">//使能串口中断接收</span>
+<span class="token function">HAL_UART_Receive_IT</span><span class="token punctuation">(</span><span class="token operator">&amp;</span>huart1<span class="token punctuation">,</span> <span class="token punctuation">(</span>uint8_t<span class="token operator">*</span><span class="token punctuation">)</span><span class="token operator">&amp;</span>recv_buf<span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token function">User_Shell_Init</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token comment" spellcheck="true">/* USER CODE END 2 */</span></code></pre>
+<p>至此，移植完成，编译、下载之后使用串口终端软件Mobaxterm即可看到效果：<br><img src="https://img-blog.csdnimg.cn/20200327170352712.png" alt=""></p>
+<h2 id="2-3-宏定义配置"><a href="#2-3-宏定义配置" class="headerlink" title="2.3. 宏定义配置"></a>2.3. 宏定义配置</h2><p>letter-shell具备很多功能，可以通过宏定义来开启或者关闭，在<code>shell_cfg.h</code>文件中根据需要进行配置：<br><img src="https://img-blog.csdnimg.cn/20200327171321707.png" alt=""></p>
+<p>在本次移植过程中，我将shell默认用户改为了mculover666，其它宏保持默认：</p>
+<pre class=" language-c"><code class="language-c"><span class="token macro property">#<span class="token directive keyword">define</span>     SHELL_DEFAULT_USER          "mculover666"</span></code></pre>
+<h1 id="3-使用letter-shell"><a href="#3-使用letter-shell" class="headerlink" title="3. 使用letter-shell"></a>3. 使用letter-shell</h1><h2 id="3-1-应用场景"><a href="#3-1-应用场景" class="headerlink" title="3.1. 应用场景"></a>3.1. 应用场景</h2><p>在嵌入式项目中，做出一个项目之后还需要用户在串口终端中进行操作，这样的情况很少，串口的作用基本都是用来在调试阶段打印信息。</p>
+<p>但是在调试的模组比较复杂时，比如SPI Flash、LCD屏幕这些，我希望可以在串口直接调用某几个功能函数开始执行，当移植了shell之后，<strong>在代码中只需要添加一行宏定义，就可以在串口中调用此函数开始执行</strong>，多爽！</p>
+<p>当然也可以在main函数中调用，然后打断点进入调试，根据个人喜好选择就行。</p>
+<h2 id="3-2-可执行命令定义宏"><a href="#3-2-可执行命令定义宏" class="headerlink" title="3.2. 可执行命令定义宏"></a>3.2. 可执行命令定义宏</h2><p>这个宏可以实现将函数添加到shell的可执行命令列表中，使用时需要确保shell_cfg.h中的宏定义要开启：</p>
+<pre class=" language-c"><code class="language-c"><span class="token macro property">#<span class="token directive keyword">define</span>     SHELL_USING_CMD_EXPORT      1</span></code></pre>
+<p>该宏定义的定义如下：</p>
+<pre class=" language-c"><code class="language-c"><span class="token comment" spellcheck="true">/**
+ * @brief shell 命令定义
+ *
+ * @param _attr 命令属性
+ * @param _name 命令名
+ * @param _func 命令函数
+ * @param _desc 命令描述
+ */</span>
+<span class="token macro property">#<span class="token directive keyword">define</span> SHELL_EXPORT_CMD(_attr, _name, _func, _desc) \
+        const char shellCmd##_name[] = #_name; \
+        const char shellDesc##_name[] = #_desc; \
+        const ShellCommand \
+        shellCommand##_name SECTION("shellCommand") =  \
+        { \
+            .attr.value = _attr, \
+            .data.cmd.name = shellCmd##_name, \
+            .data.cmd.function = (int (*)())_func, \
+            .data.cmd.desc = shellDesc##_name \
+        }</span></code></pre>
+<p>第一个参数attr表示该命令的属性，包括命令权限和命令类型等，但是对于目前这种应用场合下多用户没什么用，所以设置为下面的值就ok：</p>
+<pre class=" language-c"><code class="language-c"><span class="token function">SHELL_CMD_PERMISSION</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">)</span><span class="token operator">|</span><span class="token function">SHELL_CMD_TYPE</span><span class="token punctuation">(</span>SHELL_TYPE_CMD_FUNC<span class="token punctuation">)</span></code></pre>
+<p>最后需要注意一点，这个宏目前测试<strong>在MDK中可以正常使用</strong>，在IAR和GCC中请移步项目地址阅读文档。</p>
+<h2 id="3-3-调用函数示例"><a href="#3-3-调用函数示例" class="headerlink" title="3.3. 调用函数示例"></a>3.3. 调用函数示例</h2><p>在main.c文件中随便定义一个函数，然后使用宏定义导出到命令列表进行测试：</p>
+<pre class=" language-c"><code class="language-c"><span class="token comment" spellcheck="true">/* USER CODE BEGIN 0 */</span>
+<span class="token keyword">int</span> <span class="token function">test</span><span class="token punctuation">(</span><span class="token keyword">int</span> i<span class="token punctuation">,</span> <span class="token keyword">char</span> ch<span class="token punctuation">,</span> <span class="token keyword">char</span> <span class="token operator">*</span>str<span class="token punctuation">)</span>
+<span class="token punctuation">{</span>
+    <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"input int: %d, char: %c, string: %s\r\n"</span><span class="token punctuation">,</span> i<span class="token punctuation">,</span> ch<span class="token punctuation">,</span> str<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    <span class="token keyword">return</span> <span class="token number">0</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token comment" spellcheck="true">//导出到命令列表里</span>
+<span class="token function">SHELL_EXPORT_CMD</span><span class="token punctuation">(</span><span class="token function">SHELL_CMD_PERMISSION</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">)</span><span class="token operator">|</span><span class="token function">SHELL_CMD_TYPE</span><span class="token punctuation">(</span>SHELL_TYPE_CMD_FUNC<span class="token punctuation">)</span><span class="token punctuation">,</span> test<span class="token punctuation">,</span> test<span class="token punctuation">,</span> test<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token comment" spellcheck="true">/* USER CODE END 0 */</span></code></pre>
+<p><img src="https://img-blog.csdnimg.cn/20200327175605777.png#pic_center" alt=""><br>有两点需要注意：</p>
+<p>① <strong>目前支持的参数类型为整型、字符型、字符串型，不支持浮点型参数</strong>。</p>
+<p>② <strong>函数最大传入参数个数由shell_cfg.h中的宏定义配置</strong>：</p>
+<pre class=" language-c"><code class="language-c">
+<span class="token macro property">#<span class="token directive keyword">define</span>     SHELL_PARAMETER_MAX_NUMBER  8</span></code></pre>
+<p>所以在使用时导出到命令列表中的参数最大是 <code>8 - 1 = 7</code>个，测试如下：</p>
+<pre class=" language-c"><code class="language-c"><span class="token keyword">int</span> <span class="token function">test2</span><span class="token punctuation">(</span><span class="token keyword">int</span> i1<span class="token punctuation">,</span> <span class="token keyword">int</span> i2<span class="token punctuation">,</span> <span class="token keyword">int</span> i3<span class="token punctuation">,</span> <span class="token keyword">int</span> i4<span class="token punctuation">,</span> <span class="token keyword">int</span> i5<span class="token punctuation">,</span> <span class="token keyword">int</span> i6<span class="token punctuation">,</span> <span class="token keyword">int</span> i7<span class="token punctuation">,</span> <span class="token keyword">int</span> i8<span class="token punctuation">)</span>
+<span class="token punctuation">{</span>
+    <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"input int: %d, %d, %d, %d, %d, %d, %d, %d\r\n"</span><span class="token punctuation">,</span> i1<span class="token punctuation">,</span> i2<span class="token punctuation">,</span> i3<span class="token punctuation">,</span> i4<span class="token punctuation">,</span> i5<span class="token punctuation">,</span> i6<span class="token punctuation">,</span> i7<span class="token punctuation">,</span> i8<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">return</span> <span class="token number">0</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+<span class="token comment" spellcheck="true">//导出到命令列表里</span>
+<span class="token function">SHELL_EXPORT_CMD</span><span class="token punctuation">(</span><span class="token function">SHELL_CMD_PERMISSION</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">)</span><span class="token operator">|</span><span class="token function">SHELL_CMD_TYPE</span><span class="token punctuation">(</span>SHELL_TYPE_CMD_FUNC<span class="token punctuation">)</span><span class="token punctuation">,</span> test2<span class="token punctuation">,</span> test2<span class="token punctuation">,</span> test2<span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
+<p>执行之后失败：<br><img src="https://img-blog.csdnimg.cn/20200327180426899.png#pic_center" alt=""></p>
+<h1 id="4-letter-shell设计思想解读"><a href="#4-letter-shell设计思想解读" class="headerlink" title="4. letter-shell设计思想解读"></a>4. letter-shell设计思想解读</h1><h2 id="4-1-终端软件交互原理"><a href="#4-1-终端软件交互原理" class="headerlink" title="4.1. 终端软件交互原理"></a>4.1. 终端软件交互原理</h2><p>当我们使用诸如 mobaxterm 这类软件作为串口终端交互时，首先需要注意三点：</p>
+<p>① 当在终端软件中输入一个字符时，这个字符会被直接通过串口发送，屏幕上不会显示任何东西；<br>② 如果单片机做了回显，终端软件中收到后才会显示出来；<br>③ 当在终端软件中按下回车键、退格键、删除键、四个方向键时，会直接发送其<strong>键值</strong>，单片机中靠这个键值来解析是否按下了按键。</p>
+<p>在lettershell中输入<code>keys</code>命令即可查看当前支持的按键键值解析：<br><img src="https://img-blog.csdnimg.cn/20200403093922523.png" alt=""><br>解析这些键值的源码在<code>shell.c</code>中，分别对应以下的函数：</p>
+<pre class=" language-c"><code class="language-c"><span class="token keyword">void</span> <span class="token function">shellUp</span><span class="token punctuation">(</span>Shell <span class="token operator">*</span>shell<span class="token punctuation">)</span><span class="token punctuation">;</span>
+……
+<span class="token keyword">void</span> <span class="token function">shellTab</span><span class="token punctuation">(</span>Shell <span class="token operator">*</span>shell<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">void</span> <span class="token function">shellBackspace</span><span class="token punctuation">(</span>Shell <span class="token operator">*</span>shell<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">void</span> <span class="token function">shellEnter</span><span class="token punctuation">(</span>Shell <span class="token operator">*</span>shell<span class="token punctuation">)</span><span class="token punctuation">;</span>
+……</code></pre>
+<p>除此之外，lettershell还支持<strong>设置快捷键</strong>来快速调用函数执行，比如这里我设置在终端中按下<code>Ctrl+A</code>之后调用hello函数，过程如下：</p>
+<p>① 首先在串口中断中添加一行代码，查看按下<code>Ctrl+A</code>快捷键之后串口发送的键值：<br><img src="https://img-blog.csdnimg.cn/20200403095335802.png" alt=""><br>编译下载，在终端软件中按下<code>Ctrl+A</code>，得到的键值如下：<br><img src="https://img-blog.csdnimg.cn/20200403095452396.png" alt=""><br>此处需要注意，终端发送的字符串序列以<strong>大端模式</strong>表示，所以单片机解析的键值应该为<code>0x01000000</code>。</p>
+<p>② 一行代码搞定键值解析，在main文件中添加测试函数hello，并使用宏定义向lettershell中添加按键解析值：</p>
+<pre class=" language-c"><code class="language-c"><span class="token keyword">int</span> <span class="token function">hello</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token punctuation">{</span>
+    <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"Hello World\r\n"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">return</span> <span class="token number">0</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+<span class="token function">SHELL_EXPORT_KEY</span><span class="token punctuation">(</span><span class="token function">SHELL_CMD_PERMISSION</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token number">0x01000000</span><span class="token punctuation">,</span> hello<span class="token punctuation">,</span> hello<span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
+<p>将之前串口接收中断函数中添加的printt注释，编译，下载：<br><img src="https://img-blog.csdnimg.cn/20200403100027600.png" alt=""></p>
+<h2 id="4-2-如何解析命令"><a href="#4-2-如何解析命令" class="headerlink" title="4.2. 如何解析命令"></a>4.2. 如何解析命令</h2><p>在letter shell中，当它接收到一个字符后，首先判断是不是特殊的按键，否则直接扔进命令解析缓冲区，因为它对左右方向键、退格键处理的比较好，相当于不停的在维护命令解析缓冲区的内容，非常整齐，解析时就变得相对容易了。</p>
+<p>当用户按下回车键时，首先去命令列表中匹配：</p>
+<pre class=" language-c"><code class="language-c"><span class="token comment" spellcheck="true">/**
+ * @brief shell匹配命令
+ * 
+ * @param shell shell对象
+ * @param cmd 命令
+ * @param base 匹配命令表基址
+ * @param compareLength 匹配字符串长度
+ * @return ShellCommand* 匹配到的命令
+ */</span>
+ShellCommand<span class="token operator">*</span> <span class="token function">shellSeekCommand</span><span class="token punctuation">(</span>Shell <span class="token operator">*</span>shell<span class="token punctuation">,</span>
+                               <span class="token keyword">const</span> <span class="token keyword">char</span> <span class="token operator">*</span>cmd<span class="token punctuation">,</span>
+                               ShellCommand <span class="token operator">*</span>base<span class="token punctuation">,</span>
+                               <span class="token keyword">unsigned</span> <span class="token keyword">short</span> compareLength<span class="token punctuation">)</span></code></pre>
+<p>如果匹配到之后则开始执行这条命令：</p>
+<pre class=" language-c"><code class="language-c"><span class="token comment" spellcheck="true">/**
+ * @brief shell运行命令
+ * 
+ * @param shell shell对象
+ * @param command 命令
+ */</span>
+<span class="token keyword">static</span> <span class="token keyword">void</span> <span class="token function">shellRunCommand</span><span class="token punctuation">(</span>Shell <span class="token operator">*</span>shell<span class="token punctuation">,</span> ShellCommand <span class="token operator">*</span>command<span class="token punctuation">)</span></code></pre>
+<p>限于文章篇幅，具体解析的过程和方法不再深入讲述，如有兴趣可以自行研究学习，另外，=除了本文所讲述的自定义函数调用，自定义快捷键设置，letter shell还有非常多的功能，比如自定义变量查看，用户登录，用户权限，自动锁定shell等高级内容，也欢迎有兴趣的读者探索，研究！</p>
+<h1 id="5-项目工程源码获取和问题交流"><a href="#5-项目工程源码获取和问题交流" class="headerlink" title="5. 项目工程源码获取和问题交流"></a>5. 项目工程源码获取和问题交流</h1><p>目前我将LetterShell源码、我移植到小熊派STM32L431RCT6开发板的工程、移植到STM32Nucleo-STM32G071RB开发板的工程源码上传到了QQ群里（包含好几份HAL库，QQ相对速度快点），<strong>可以在QQ群里下载，有问题也可以在群里交流，当然也欢迎大家分享出来自己移植的工程到QQ群里</strong>：<br><img src="https://img-blog.csdnimg.cn/20200321144423738.png" alt=""><br>放上QQ群二维码：<br><img src="https://img-blog.csdnimg.cn/20200321144543508.png" alt=""></p>
+<p><font color="red"><strong>接收更多精彩文章及资源推送，欢迎订阅我的微信公众号：『mculover666』。</strong></font><br><img src="https://img-blog.csdnimg.cn/20200202092055136.png" alt=""></p>
+
+            </div>
+            <hr/>
+
+            
+
+    <div class="reprint" id="reprint-statement">
+        
+            <div class="reprint__author">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-user">
+                        文章作者:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    <a href="http://www.mculover666.cn" rel="external nofollow noreferrer">Mculover666</a>
+                </span>
+            </div>
+            <div class="reprint__type">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-link">
+                        文章链接:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    <a href="http://www.mculover666.cn/posts/131757493/">http://www.mculover666.cn/posts/131757493/</a>
+                </span>
+            </div>
+            <div class="reprint__notice">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-copyright">
+                        版权声明:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    本博客所有文章除特別声明外，均采用
+                    <a href="https://creativecommons.org/licenses/by/4.0/deed.zh" rel="external nofollow noreferrer" target="_blank">CC BY 4.0</a>
+                    许可协议。转载请注明来源
+                    <a href="http://www.mculover666.cn" target="_blank">Mculover666</a>
+                    !
+                </span>
+            </div>
+        
+    </div>
+
+    <script async defer>
+      document.addEventListener("copy", function (e) {
+        let toastHTML = '<span>复制成功，请遵循本文的转载规则</span><button class="btn-flat toast-action" onclick="navToReprintStatement()" style="font-size: smaller">查看</a>';
+        M.toast({html: toastHTML})
+      });
+
+      function navToReprintStatement() {
+        $("html, body").animate({scrollTop: $("#reprint-statement").offset().top - 80}, 800);
+      }
+    </script>
+
+
+
+            <div class="tag_share" style="display: block;">
+                <div class="post-meta__tag-list" style="display: inline-block;">
+                    
+                        <div class="article-tag">
+                            
+                                <a href="/tags/%E5%B5%8C%E5%85%A5%E5%BC%8F%E5%BC%80%E6%BA%90%E9%A1%B9%E7%9B%AE%E7%B2%BE%E9%80%89%E4%B8%93%E6%A0%8F/">
+                                    <span class="chip bg-color">嵌入式开源项目精选专栏</span>
+                                </a>
+                            
+                        </div>
+                    
+                </div>
+                <div class="post_share" style="zoom: 80%; width: fit-content; display: inline-block; float: right; margin: -0.15rem 0;">
+                    <link rel="stylesheet" type="text/css" href="/libs/share/css/share.min.css">
+
+<div id="article-share">
+    
+    
+    <div class="social-share" data-sites="qq,qzone,wechat,weibo,douban" data-wechat-qrcode-helper="<p>微信扫一扫即可分享！</p>"></div>
+    <script src="/libs/share/js/social-share.min.js"></script>
+    
+
+    
+
+</div>
+
+                </div>
+            </div>
+            
+                <style>
+    #reward {
+        margin: 40px 0;
+        text-align: center;
+    }
+
+    #reward .reward-link {
+        font-size: 1.4rem;
+        line-height: 38px;
+    }
+
+    #reward .btn-floating:hover {
+        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2), 0 5px 15px rgba(0, 0, 0, 0.2);
+    }
+
+    #rewardModal {
+        width: 320px;
+        height: 350px;
+    }
+
+    #rewardModal .reward-title {
+        margin: 15px auto;
+        padding-bottom: 5px;
+    }
+
+    #rewardModal .modal-content {
+        padding: 10px;
+    }
+
+    #rewardModal .close {
+        position: absolute;
+        right: 15px;
+        top: 15px;
+        color: rgba(0, 0, 0, 0.5);
+        font-size: 1.3rem;
+        line-height: 20px;
+        cursor: pointer;
+    }
+
+    #rewardModal .close:hover {
+        color: #ef5350;
+        transform: scale(1.3);
+        -moz-transform:scale(1.3);
+        -webkit-transform:scale(1.3);
+        -o-transform:scale(1.3);
+    }
+
+    #rewardModal .reward-tabs {
+        margin: 0 auto;
+        width: 210px;
+    }
+
+    .reward-tabs .tabs {
+        height: 38px;
+        margin: 10px auto;
+        padding-left: 0;
+    }
+
+    .reward-content ul {
+        padding-left: 0 !important;
+    }
+
+    .reward-tabs .tabs .tab {
+        height: 38px;
+        line-height: 38px;
+    }
+
+    .reward-tabs .tab a {
+        color: #fff;
+        background-color: #ccc;
+    }
+
+    .reward-tabs .tab a:hover {
+        background-color: #ccc;
+        color: #fff;
+    }
+
+    .reward-tabs .wechat-tab .active {
+        color: #fff !important;
+        background-color: #22AB38 !important;
+    }
+
+    .reward-tabs .alipay-tab .active {
+        color: #fff !important;
+        background-color: #019FE8 !important;
+    }
+
+    .reward-tabs .reward-img {
+        width: 210px;
+        height: 210px;
+    }
+</style>
+
+<div id="reward">
+    <a href="#rewardModal" class="reward-link modal-trigger btn-floating btn-medium waves-effect waves-light red">赏</a>
+
+    <!-- Modal Structure -->
+    <div id="rewardModal" class="modal">
+        <div class="modal-content">
+            <a class="close modal-close"><i class="fas fa-times"></i></a>
+            <h4 class="reward-title">你的赏识是我前进的动力</h4>
+            <div class="reward-content">
+                <div class="reward-tabs">
+                    <ul class="tabs row">
+                        <li class="tab col s6 alipay-tab waves-effect waves-light"><a href="#alipay">支付宝</a></li>
+                        <li class="tab col s6 wechat-tab waves-effect waves-light"><a href="#wechat">微 信</a></li>
+                    </ul>
+                    <div id="alipay">
+                        <img src="/medias/reward/alipay.png" class="reward-img" alt="支付宝打赏二维码">
+                    </div>
+                    <div id="wechat">
+                        <img src="/medias/reward/we-chat.png" class="reward-img" alt="微信打赏二维码">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    $(function () {
+        $('.tabs').tabs();
+    });
+</script>
+            
+        </div>
+    </div>
+
+    
+
+    
+
+    
+
+    
+    <div class="livere-card card" data-aos="fade-up">
+    <!-- 来必力City版安装代码 -->
+    <div id="lv-container" class="card-content" data-id="city" data-uid="MTAyMC80Njg0OS8yMzM1MA">
+        <script type="text/javascript">
+            (function (d, s) {
+                let j, e = d.getElementsByTagName(s)[0];
+                if (typeof LivereTower === 'function') {
+                    return;
+                }
+
+                j = d.createElement(s);
+                j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+                j.async = true;
+
+                e.parentNode.insertBefore(j, e);
+            })(document, 'script');
+        </script>
+        <noscript>为正常使用来必力评论功能请激活JavaScript。</noscript>
+    </div>
+    <!-- City版安装代码已完成 -->
+</div>
+    
+
+    
+
+    
+
+<article id="prenext-posts" class="prev-next articles">
+    <div class="row article-row">
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge left-badge text-color">
+                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
+            <div class="card">
+                <a href="/posts/524269974/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/14.jpg" class="responsive-img" alt="EasyLogger | 一款轻量级且高性能的日志库">
+                        
+                        <span class="card-title">EasyLogger | 一款轻量级且高性能的日志库</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            嵌入式开源项目精选专栏
+                        
+                    </div>
+                    <div class="publish-info">
+                        <span class="publish-date">
+                            <i class="far fa-clock fa-fw icon-date"></i>2020-04-10
+                        </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/OpenSource/" class="post-category">
+                                    OpenSource
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/%E5%B5%8C%E5%85%A5%E5%BC%8F%E5%BC%80%E6%BA%90%E9%A1%B9%E7%9B%AE%E7%B2%BE%E9%80%89%E4%B8%93%E6%A0%8F/">
+                        <span class="chip bg-color">嵌入式开源项目精选专栏</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge right-badge text-color">
+                下一篇&nbsp;<i class="fas fa-chevron-right"></i>
+            </div>
+            <div class="card">
+                <a href="/posts/2795548875/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/12.jpg" class="responsive-img" alt="MultiButton | 一个小巧简单易用的事件驱动型按键驱动模块">
+                        
+                        <span class="card-title">MultiButton | 一个小巧简单易用的事件驱动型按键驱动模块</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            嵌入式开源项目精选专栏
+                        
+                    </div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2020-04-08
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/OpenSource/" class="post-category">
+                                    OpenSource
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/%E5%B5%8C%E5%85%A5%E5%BC%8F%E5%BC%80%E6%BA%90%E9%A1%B9%E7%9B%AE%E7%B2%BE%E9%80%89%E4%B8%93%E6%A0%8F/">
+                        <span class="chip bg-color">嵌入式开源项目精选专栏</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+    </div>
+</article>
+
+</div>
+
+
+
+<!-- 代码块功能依赖 -->
+<script type="text/javascript" src="/libs/codeBlock/codeBlockFuction.js"></script>
+
+<!-- 代码语言 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeLang.js"></script>
+
+
+<!-- 代码块复制 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeCopy.js"></script>
+
+
+<!-- 代码块收缩 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeShrink.js"></script>
+
+
+<!-- 代码块折行 -->
+
+<style type="text/css">
+code[class*="language-"], pre[class*="language-"] { white-space: pre !important; }
+</style>
+
+
+    </div>
+    <div id="toc-aside" class="expanded col l3 hide-on-med-and-down">
+        <div class="toc-widget">
+            <div class="toc-title"><i class="far fa-list-alt"></i>&nbsp;&nbsp;目录</div>
+            <div id="toc-content"></div>
+        </div>
+    </div>
+</div>
+
+<!-- TOC 悬浮按钮. -->
+
+<div id="floating-toc-btn" class="hide-on-med-and-down">
+    <a class="btn-floating btn-large bg-color">
+        <i class="fas fa-list-ul"></i>
+    </a>
+</div>
+
+
+<script src="/libs/tocbot/tocbot.min.js"></script>
+<script>
+    $(function () {
+        tocbot.init({
+            tocSelector: '#toc-content',
+            contentSelector: '#articleContent',
+            headingsOffset: -($(window).height() * 0.4 - 45),
+            collapseDepth: Number('0'),
+            headingSelector: 'h1, h2, h3, h4, h5, h6'
+        });
+
+        // modify the toc link href to support Chinese.
+        let i = 0;
+        let tocHeading = 'toc-heading-';
+        $('#toc-content a').each(function () {
+            $(this).attr('href', '#' + tocHeading + (++i));
+        });
+
+        // modify the heading title id to support Chinese.
+        i = 0;
+        $('#articleContent').children('h1, h2, h3, h4, h5, h6').each(function () {
+            $(this).attr('id', tocHeading + (++i));
+        });
+
+        // Set scroll toc fixed.
+        let tocHeight = parseInt($(window).height() * 0.4 - 64);
+        let $tocWidget = $('.toc-widget');
+        $(window).scroll(function () {
+            let scroll = $(window).scrollTop();
+            /* add post toc fixed. */
+            if (scroll > tocHeight) {
+                $tocWidget.addClass('toc-fixed');
+            } else {
+                $tocWidget.removeClass('toc-fixed');
+            }
+        });
+
+        
+        /* 修复文章卡片 div 的宽度. */
+        let fixPostCardWidth = function (srcId, targetId) {
+            let srcDiv = $('#' + srcId);
+            if (srcDiv.length === 0) {
+                return;
+            }
+
+            let w = srcDiv.width();
+            if (w >= 450) {
+                w = w + 21;
+            } else if (w >= 350 && w < 450) {
+                w = w + 18;
+            } else if (w >= 300 && w < 350) {
+                w = w + 16;
+            } else {
+                w = w + 14;
+            }
+            $('#' + targetId).width(w);
+        };
+
+        // 切换TOC目录展开收缩的相关操作.
+        const expandedClass = 'expanded';
+        let $tocAside = $('#toc-aside');
+        let $mainContent = $('#main-content');
+        $('#floating-toc-btn .btn-floating').click(function () {
+            if ($tocAside.hasClass(expandedClass)) {
+                $tocAside.removeClass(expandedClass).hide();
+                $mainContent.removeClass('l9');
+            } else {
+                $tocAside.addClass(expandedClass).show();
+                $mainContent.addClass('l9');
+            }
+            fixPostCardWidth('artDetail', 'prenext-posts');
+        });
+        
+    });
+</script>
+
+    
+
+</main>
+
+
+
+    <footer class="page-footer bg-color">
+    
+    <div class="container row center-align" style="margin-bottom: 15px !important;">
+        <div class="col s12 m8 l8 copy-right">
+            Copyright&nbsp;&copy;
+            <span id="year">2016</span>
+            <a href="http://www.mculover666.cn" target="_blank">Mculover666</a>
+            |&nbsp;Powered by&nbsp;<a href="https://hexo.io/" target="_blank">Hexo</a>
+            |&nbsp;Theme&nbsp;<a href="https://github.com/blinkfox/hexo-theme-matery" target="_blank">Matery</a>
+            <br>
+            
+            &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
+                class="white-color">55.5k</span>&nbsp;字
+            
+            
+            
+            
+            
+            
+            <span id="busuanzi_container_site_pv">
+                |&nbsp;<i class="far fa-eye"></i>&nbsp;总访问量:&nbsp;<span id="busuanzi_value_site_pv"
+                    class="white-color"></span>&nbsp;次
+            </span>
+            
+            
+            <span id="busuanzi_container_site_uv">
+                |&nbsp;<i class="fas fa-users"></i>&nbsp;总访问人数:&nbsp;<span id="busuanzi_value_site_uv"
+                    class="white-color"></span>&nbsp;人
+            </span>
+            
+            <br>
+            
+            <span id="sitetime">载入运行时间...</span>
+            <script>
+                function siteTime() {
+                    var seconds = 1000;
+                    var minutes = seconds * 60;
+                    var hours = minutes * 60;
+                    var days = hours * 24;
+                    var years = days * 365;
+                    var today = new Date();
+                    var startYear = "2016";
+                    var startMonth = "08";
+                    var startDate = "28";
+                    var startHour = "0";
+                    var startMinute = "0";
+                    var startSecond = "0";
+                    var todayYear = today.getFullYear();
+                    var todayMonth = today.getMonth() + 1;
+                    var todayDate = today.getDate();
+                    var todayHour = today.getHours();
+                    var todayMinute = today.getMinutes();
+                    var todaySecond = today.getSeconds();
+                    var t1 = Date.UTC(startYear, startMonth, startDate, startHour, startMinute, startSecond);
+                    var t2 = Date.UTC(todayYear, todayMonth, todayDate, todayHour, todayMinute, todaySecond);
+                    var diff = t2 - t1;
+                    var diffYears = Math.floor(diff / years);
+                    var diffDays = Math.floor((diff / days) - diffYears * 365);
+                    var diffHours = Math.floor((diff - (diffYears * 365 + diffDays) * days) / hours);
+                    var diffMinutes = Math.floor((diff - (diffYears * 365 + diffDays) * days - diffHours * hours) /
+                        minutes);
+                    var diffSeconds = Math.floor((diff - (diffYears * 365 + diffDays) * days - diffHours * hours -
+                        diffMinutes * minutes) / seconds);
+                    if (startYear == todayYear) {
+                        document.getElementById("year").innerHTML = todayYear;
+                        document.getElementById("sitetime").innerHTML = "本站已安全运行 " + diffDays + " 天 " + diffHours +
+                            " 小时 " + diffMinutes + " 分钟 " + diffSeconds + " 秒";
+                    } else {
+                        document.getElementById("year").innerHTML = startYear + " - " + todayYear;
+                        document.getElementById("sitetime").innerHTML = "本站已安全运行 " + diffYears + " 年 " + diffDays +
+                            " 天 " + diffHours + " 小时 " + diffMinutes + " 分钟 " + diffSeconds + " 秒";
+                    }
+                }
+                setInterval(siteTime, 1000);
+            </script>
+            
+            <br>
+            
+            <span id="icp"><img src="/medias/icp.png" style="vertical-align: text-bottom;" />
+                <a href="http://www.beian.miit.gov.cn" target="_blank">陇ICP备19002222号</a>
+            </span>
+            
+        </div>
+        <div class="col s12 m4 l4 social-link social-statis">
+    <a href="https://github.com/Mculover666" class="tooltipped" target="_blank" data-tooltip="访问我的GitHub" data-position="top" data-delay="50">
+        <i class="fab fa-github"></i>
+    </a>
+
+
+
+    <a href="mailto:mculover666@foxmail.com" class="tooltipped" target="_blank" data-tooltip="邮件联系我" data-position="top" data-delay="50">
+        <i class="fas fa-envelope-open"></i>
+    </a>
+
+
+
+
+
+
+
+    <a href="tencent://AddContact/?fromId=50&fromSubId=1&subcmd=all&uin=2412828003" class="tooltipped" target="_blank" data-tooltip="QQ联系我: 2412828003" data-position="top" data-delay="50">
+        <i class="fab fa-qq"></i>
+    </a>
+
+
+
+
+
+    <a href="https://www.zhihu.com/people/wang-shi-wei-67-38/activities" class="tooltipped" target="_blank" data-tooltip="关注我的知乎: https://www.zhihu.com/people/wang-shi-wei-67-38/activities" data-position="top" data-delay="50">
+        <i class="fab fa-zhihu1">知</i>
+    </a>
+
+
+
+    <a href="/atom.xml" class="tooltipped" target="_blank" data-tooltip="RSS 订阅" data-position="top" data-delay="50">
+        <i class="fas fa-rss"></i>
+    </a>
+
+</div>
+    </div>
+</footer>
+
+<div class="progress-bar"></div>
+
+
+    <!-- 搜索遮罩框 -->
+<div id="searchModal" class="modal">
+    <div class="modal-content">
+        <div class="search-header">
+            <span class="title"><i class="fas fa-search"></i>&nbsp;&nbsp;搜索</span>
+            <input type="search" id="searchInput" name="s" placeholder="请输入搜索的关键字"
+                   class="search-input">
+        </div>
+        <div id="searchResult"></div>
+    </div>
+</div>
+
+<script src="/js/search.js"></script>
+<script type="text/javascript">
+$(function () {
+    searchFunc("/" + "search.xml", 'searchInput', 'searchResult');
+});
+</script>
+    <!-- 回到顶部按钮 -->
+<div id="backTop" class="top-scroll">
+    <a class="btn-floating btn-large waves-effect waves-light" href="#!">
+        <i class="fas fa-arrow-up"></i>
+    </a>
+</div>
+
+
+    <script src="/libs/materialize/materialize.min.js"></script>
+    <script src="/libs/masonry/masonry.pkgd.min.js"></script>
+    <script src="/libs/aos/aos.js"></script>
+    <script src="/libs/scrollprogress/scrollProgress.min.js"></script>
+    <script src="/libs/lightGallery/js/lightgallery-all.min.js"></script>
+    <script src="/js/matery.js"></script>
+
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+
+
+    <!-- Baidu Analytics -->
+
+<script>
+    var _hmt = _hmt || [];
+    (function () {
+        var hm = document.createElement("script");
+        hm.src = "https://hm.baidu.com/hm.js?6e1efa0988723a1db6356535db2ae6bd";
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(hm, s);
+    })();
+</script>
+
+    <!-- Baidu Push -->
+
+<script>
+    (function () {
+        var bp = document.createElement('script');
+        var curProtocol = window.location.protocol.split(':')[0];
+        if (curProtocol === 'https') {
+            bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+        } else {
+            bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+        }
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(bp, s);
+    })();
+</script>
+
+    
+    <script src="/libs/others/clicklove.js" async="async"></script>
+    
+    
+    <script async src="/libs/others/busuanzi.pure.mini.js"></script>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <script type="text/javascript" src="/libs/background/ribbon-dynamic.js" async="async"></script>
+    
+    
+    
+    <script src="/libs/instantpage/instantpage.js" type="module"></script>
+    
+
+</body>
+
+</html>

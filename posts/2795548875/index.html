@@ -1,0 +1,1320 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN">
+
+
+<head>
+    <meta charset="utf-8">
+    <meta name="keywords" content="MultiButton">
+    <meta name="description" content="嵌入式开源项目精选专栏">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta name="renderer" content="webkit|ie-stand|ie-comp">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <title>MultiButton | 一个小巧简单易用的事件驱动型按键驱动模块 | Mculover666</title>
+    <link rel="icon" type="image/png" href="/favicon.png">
+
+    <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
+    <link rel="stylesheet" type="text/css" href="/libs/materialize/materialize.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/aos/aos.css">
+    <link rel="stylesheet" type="text/css" href="/libs/animate/animate.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/lightGallery/css/lightgallery.min.css">
+    <link rel="stylesheet" type="text/css" href="/css/matery.css">
+    <link rel="stylesheet" type="text/css" href="/css/my.css">
+
+    <script src="/libs/jquery/jquery.min.js"></script>
+    
+<link rel="stylesheet" href="/css/prism-tomorrow.css" type="text/css"></head>
+
+
+<body>
+    <header class="navbar-fixed">
+    <nav id="headNav" class="bg-color nav-transparent">
+        <div id="navContainer" class="nav-wrapper container">
+            <div class="brand-logo">
+                <a href="/" class="waves-effect waves-light">
+                    
+                    <img src="/medias/logo.png" class="logo-img" alt="LOGO">
+                    
+                    <span class="logo-span">Mculover666</span>
+                </a>
+            </div>
+            
+
+<a href="#" data-target="mobile-nav" class="sidenav-trigger button-collapse"><i class="fas fa-bars"></i></a>
+<ul class="right nav-menu">
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/" class="waves-effect waves-light">
+      
+      <i class="fas fa-home" style="zoom: 0.6;"></i>
+      
+      <span>首页</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="" class="waves-effect waves-light">
+
+      
+      <i class="fas fa-list" style="zoom: 0.6;"></i>
+      
+      <span>系列教程</span>
+      <i class="fas fa-chevron-down" aria-hidden="true" style="zoom: 0.6;"></i>
+    </a>
+    <ul class="sub-nav menus_item_child ">
+      
+      <li>
+        <a href="/posts/578764034/">
+          
+          <span>STM32CubeMX</span>
+        </a>
+      </li>
+      
+    </ul>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="https://blog.csdn.net/Mculover666" target="_blank" rel="noopener" class="waves-effect waves-light">
+      
+      <i class="fas fa-bookmark" style="zoom: 0.6;"></i>
+      
+      <span>CSDN</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/download" class="waves-effect waves-light">
+      
+      <i class="fas fa-download" style="zoom: 0.6;"></i>
+      
+      <span>资源下载</span>
+    </a>
+    
+  </li>
+  
+  <li>
+    <a href="#searchModal" class="modal-trigger waves-effect waves-light">
+      <i id="searchIcon" class="fas fa-search" title="搜索" style="zoom: 0.85;"></i>
+    </a>
+  </li>
+</ul>
+
+<div id="mobile-nav" class="side-nav sidenav">
+
+    <div class="mobile-head bg-color">
+        
+        <img src="/medias/logo.png" class="logo-img circle responsive-img">
+        
+        <div class="logo-name">Mculover666</div>
+        <div class="logo-desc">
+            
+            嵌入式 STM32 物联网领域的教程及精彩内容分享
+            
+        </div>
+    </div>
+
+    
+
+    <ul class="menu-list mobile-menu-list">
+        
+        <li class="m-nav-item">
+	  
+		<a href="/" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-home"></i>
+			
+			首页
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="javascript:;" target="_blank" rel="noopener">
+			
+				<i class="fa-fw fas fa-list"></i>
+			
+			系列教程
+			<span class="m-icon"><i class="fas fa-chevron-right"></i></span>
+		</a>
+            <ul  style="background:  ;" >
+              
+                <li>   
+				
+                  <a href="/posts/578764034/ " style="margin-left:75px";>
+				  
+		          <span>STM32CubeMX</span>
+                  </a>
+                </li>
+               
+            </ul>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="https://blog.csdn.net/Mculover666" target="_blank" rel="noopener" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-bookmark"></i>
+			
+			CSDN
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/download" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-download"></i>
+			
+			资源下载
+		</a>
+          
+        </li>
+        
+        
+        <li><div class="divider"></div></li>
+        <li>
+            <a href="https://github.com/Mculover666" class="waves-effect waves-light" target="_blank">
+                <i class="fab fa-github-square fa-fw"></i>Fork Me
+            </a>
+        </li>
+        
+    </ul>
+</div>
+
+        </div>
+
+        
+            <style>
+    .nav-transparent .github-corner {
+        display: none !important;
+    }
+
+    .github-corner {
+        position: absolute;
+        z-index: 10;
+        top: 0;
+        right: 0;
+        border: 0;
+        transform: scale(1.1);
+    }
+
+    .github-corner svg {
+        color: #0f9d58;
+        fill: #fff;
+        height: 64px;
+        width: 64px;
+    }
+
+    .github-corner:hover .octo-arm {
+        animation: a 0.56s ease-in-out;
+    }
+
+    .github-corner .octo-arm {
+        animation: none;
+    }
+
+    @keyframes a {
+        0%,
+        to {
+            transform: rotate(0);
+        }
+        20%,
+        60% {
+            transform: rotate(-25deg);
+        }
+        40%,
+        80% {
+            transform: rotate(10deg);
+        }
+    }
+</style>
+
+<a href="https://github.com/Mculover666" class="github-corner tooltipped hide-on-med-and-down" target="_blank"
+   data-tooltip="Fork Me" data-position="left" data-delay="50">
+    <svg viewBox="0 0 250 250" aria-hidden="true">
+        <path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path>
+        <path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2"
+              fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path>
+        <path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z"
+              fill="currentColor" class="octo-body"></path>
+    </svg>
+</a>
+        
+    </nav>
+
+</header>
+
+    
+
+
+
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/12.jpg')">
+    <div class="container" style="right: 0px;left: 0px;">
+        <div class="row">
+            <div class="col s12 m12 l12">
+                <div class="brand">
+                    <h1 class="description center-align post-title">MultiButton | 一个小巧简单易用的事件驱动型按键驱动模块</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+<main class="post-container content">
+
+    
+    <link rel="stylesheet" href="/libs/tocbot/tocbot.css">
+<style>
+    #articleContent h1::before,
+    #articleContent h2::before,
+    #articleContent h3::before,
+    #articleContent h4::before,
+    #articleContent h5::before,
+    #articleContent h6::before {
+        display: block;
+        content: " ";
+        height: 100px;
+        margin-top: -100px;
+        visibility: hidden;
+    }
+
+    #articleContent :focus {
+        outline: none;
+    }
+
+    .toc-fixed {
+        position: fixed;
+        top: 64px;
+    }
+
+    .toc-widget {
+        width: 345px;
+        padding-left: 20px;
+    }
+
+    .toc-widget .toc-title {
+        margin: 35px 0 15px 0;
+        padding-left: 17px;
+        font-size: 1.5rem;
+        font-weight: bold;
+        line-height: 1.5rem;
+    }
+
+    .toc-widget ol {
+        padding: 0;
+        list-style: none;
+    }
+
+    #toc-content {
+        height: calc(100vh - 250px);
+        overflow: auto;
+    }
+
+    #toc-content ol {
+        padding-left: 10px;
+    }
+
+    #toc-content ol li {
+        padding-left: 10px;
+    }
+
+    #toc-content .toc-link:hover {
+        color: #42b983;
+        font-weight: 700;
+        text-decoration: underline;
+    }
+
+    #toc-content .toc-link::before {
+        background-color: transparent;
+        max-height: 25px;
+    }
+
+    #toc-content .is-active-link {
+        color: #42b983;
+    }
+
+    #toc-content .is-active-link::before {
+        background-color: #42b983;
+    }
+
+    #floating-toc-btn {
+        position: fixed;
+        right: 15px;
+        bottom: 76px;
+        padding-top: 15px;
+        margin-bottom: 0;
+        z-index: 998;
+    }
+
+    #floating-toc-btn .btn-floating {
+        width: 48px;
+        height: 48px;
+    }
+
+    #floating-toc-btn .btn-floating i {
+        line-height: 48px;
+        font-size: 1.4rem;
+    }
+</style>
+<div class="row">
+    <div id="main-content" class="col s12 m12 l9">
+        <!-- 文章内容详情 -->
+<div id="artDetail">
+    <div class="card">
+        <div class="card-content article-info">
+            <div class="row tag-cate">
+                <div class="col s7">
+                    
+                    <div class="article-tag">
+                        
+                            <a href="/tags/%E5%B5%8C%E5%85%A5%E5%BC%8F%E5%BC%80%E6%BA%90%E9%A1%B9%E7%9B%AE%E7%B2%BE%E9%80%89%E4%B8%93%E6%A0%8F/">
+                                <span class="chip bg-color">嵌入式开源项目精选专栏</span>
+                            </a>
+                        
+                    </div>
+                    
+                </div>
+                <div class="col s5 right-align">
+                    
+                    <div class="post-cate">
+                        <i class="fas fa-bookmark fa-fw icon-category"></i>
+                        
+                            <a href="/categories/OpenSource/" class="post-category">
+                                OpenSource
+                            </a>
+                        
+                    </div>
+                    
+                </div>
+            </div>
+
+            <div class="post-info">
+                
+                <div class="post-date info-break-policy">
+                    <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
+                    2020-04-08
+                </div>
+                
+
+                
+
+                
+
+                
+
+                
+                    <div id="busuanzi_container_page_pv" class="info-break-policy">
+                        <i class="far fa-eye fa-fw"></i>阅读次数:&nbsp;&nbsp;
+                        <span id="busuanzi_value_page_pv"></span>
+                    </div>
+				
+            </div>
+
+        </div>
+        <hr class="clearfix">
+        <div class="card-content article-card-content">
+            <div id="articleContent">
+                <p><img src="https://img-blog.csdnimg.cn/20200321151234798.png" alt=""></p>
+<h1 id="嵌入式开源项目精选专栏"><a href="#嵌入式开源项目精选专栏" class="headerlink" title="嵌入式开源项目精选专栏"></a>嵌入式开源项目精选专栏</h1><p>本专栏由Mculover666创建，主要内容为寻找嵌入式领域内的优质开源项目，一是帮助开发者使用开源项目实现更多的功能，二是通过这些开源项目，学习大佬的代码及背后的实现思想，提升自己的代码水平，和其它专栏相比，本专栏的优势在于：</p>
+<p><strong>不会单纯的介绍分享项目，还会包含作者亲自实践的过程分享，甚至还会有对它背后的设计思想解读</strong>。</p>
+<p>目前本专栏包含的开源项目有：</p>
+<ul>
+<li><a href="https://blog.csdn.net/Mculover666/article/details/101351255" target="_blank" rel="noopener">SFUD | 一个简洁实用的开源项目，帮你轻松搞定SPI Flash</a></li>
+<li><a href="https://blog.csdn.net/Mculover666/article/details/103796256" target="_blank" rel="noopener">cJSON | 一个轻量级C语言JSON解析器</a></li>
+<li><a href="https://blog.csdn.net/Mculover666/article/details/103935428" target="_blank" rel="noopener">paho | 支持10种语言编写mqtt客户端，总有一款适合你！</a></li>
+</ul>
+<p>如果您自己编写或者发现的开源项目不错，欢迎留言或者私信投稿到本专栏，分享获得双倍的快乐！</p>
+<h1 id="1-MultiButton"><a href="#1-MultiButton" class="headerlink" title="1. MultiButton"></a>1. MultiButton</h1><p>本期给大家带来的开源项目是 MultiButton，<strong>一个小巧简单易用的事件驱动型按键驱动模块</strong>，作者 0x1abin，目前收获 222 个star，遵循 MIT 开源许可。</p>
+<p>这个项目非常精简，只有两个文件，可无限量扩展按键，按键事件的回调异步处理方式可以简化程序结构，去除冗余的按键处理硬编码，让你的按键业务逻辑更清晰。<br><img src="https://img-blog.csdnimg.cn/20200320163601795.png" alt=""><br>MuliButton 支持如下的按钮事件：<br>|事件|说明|<br>|:—:|:—:|<br>|PRESS_DOWN    |按键按下，每次按下都触发|<br>|PRESS_UP    |按键弹起，每次松开都触发|<br>|PRESS_REPEAT|    重复按下触发，变量repeat计数连击次数|<br>|SINGLE_CLICK    |单击按键事件|<br>|DOUBLE_CLICK|    双击按键事件|<br>|LONG_RRESS_START|    达到长按时间阈值时触发一次|<br>|LONG_PRESS_HOLD|    长按期间一直触发|</p>
+<blockquote>
+<p>GIthub地址：<a href="https://github.com/0x1abin/MultiButton" target="_blank" rel="noopener">https://github.com/0x1abin/MultiButton</a></p>
+</blockquote>
+<h1 id="2-使用MultiButton"><a href="#2-使用MultiButton" class="headerlink" title="2. 使用MultiButton"></a>2. 使用MultiButton</h1><h2 id="2-1-准备一份裸机工程"><a href="#2-1-准备一份裸机工程" class="headerlink" title="2.1. 准备一份裸机工程"></a>2.1. 准备一份裸机工程</h2><p>需要掌握使用HAL库读取GPIO输入的函数、串口的使用、printf重定向、以及systick的使用：</p>
+<ul>
+<li><a href="https://blog.csdn.net/Mculover666/article/details/95907760" target="_blank" rel="noopener">STM32CubeMX | 04-使用GPIO进行按键检测</a></li>
+<li><a href="https://blog.csdn.net/Mculover666/article/details/95941795" target="_blank" rel="noopener">STM32CubeMX | 06-使用USART发送和接收数据（查询模式）</a></li>
+<li><a href="https://blog.csdn.net/Mculover666/article/details/99842909" target="_blank" rel="noopener">STM32CubeMX | 09-重定向printf函数到串口输出的多种方法</a></li>
+<li><a href=""></a></li>
+</ul>
+<p>本文中我使用小熊派IoT开发板，主控为STM32L431RCT6：<br><img src="https://img-blog.csdnimg.cn/20200320201839463.png" alt=""><br>配置外部时钟：<br><img src="https://img-blog.csdnimg.cn/20200320202248791.png" alt=""><br>按键GPIO配置：<br><img src="https://img-blog.csdnimg.cn/20200320202336887.png" alt=""><br>打印串口配置：<br><img src="https://img-blog.csdnimg.cn/20200320202436671.png" alt=""><br>时钟配置：<br><img src="https://img-blog.csdnimg.cn/20200320202521420.png" alt=""><br>配置工程，生成代码，重定向printf，<strong>printf可以正常打印后进行下面的步骤</strong>。</p>
+<h2 id="2-2-移植MultiButton"><a href="#2-2-移植MultiButton" class="headerlink" title="2.2. 移植MultiButton"></a>2.2. 移植MultiButton</h2><p>① 复制MultiButton源码到裸机工程中：<br><img src="https://img-blog.csdnimg.cn/20200320202819445.png" alt=""><br>② 添加MultiButton源码到项目中：<br><img src="https://img-blog.csdnimg.cn/20200320203315805.png" alt=""><br><img src="https://img-blog.csdnimg.cn/20200320203343127.png" alt=""><br>此时编译没有问题。</p>
+<h2 id="2-3-编写MultiButton应用代码"><a href="#2-3-编写MultiButton应用代码" class="headerlink" title="2.3. 编写MultiButton应用代码"></a>2.3. 编写MultiButton应用代码</h2><p>在main.c文件中编写以下代码。</p>
+<p>① <strong>包含头文件</strong></p>
+<pre class=" language-c"><code class="language-c"><span class="token comment" spellcheck="true">/* USER CODE BEGIN Includes */</span>
+
+<span class="token macro property">#<span class="token directive keyword">include</span> <span class="token string">&lt;stdio.h></span>        </span><span class="token comment" spellcheck="true">//要使用printf</span>
+<span class="token macro property">#<span class="token directive keyword">include</span> <span class="token string">"multi_button.h"</span></span>
+
+<span class="token comment" spellcheck="true">/* USER CODE END Includes */</span></code></pre>
+<p>② <strong>定义一个按键结构（按键对象）</strong></p>
+<pre class=" language-c"><code class="language-c"><span class="token comment" spellcheck="true">/* USER CODE BEGIN PV */</span>
+
+<span class="token comment" spellcheck="true">//申请一个按键结构</span>
+<span class="token keyword">struct</span> Button button1<span class="token punctuation">;</span>
+
+<span class="token comment" spellcheck="true">/* USER CODE END PV */</span></code></pre>
+<p>③ <strong>初始化按键对象</strong></p>
+<p>初始化按键对象使用的API为：<br><img src="https://img-blog.csdnimg.cn/20200320204526906.png" alt=""></p>
+<ul>
+<li>第一个参数为刚刚创建的按键对象的指针；</li>
+<li>第二个参数为绑定按键的GPIO电平读取接口；</li>
+<li>第三个参数为设置有效触发电平；</li>
+</ul>
+<p>首先在main函数之前实现一个GPIO电平读取接口：</p>
+<pre class=" language-c"><code class="language-c"><span class="token comment" spellcheck="true">/* USER CODE BEGIN 0 */</span>
+
+<span class="token comment" spellcheck="true">//按键状态读取接口</span>
+uint8_t <span class="token function">read_button1_GPIO</span><span class="token punctuation">(</span><span class="token punctuation">)</span> 
+<span class="token punctuation">{</span>
+    <span class="token keyword">return</span> <span class="token function">HAL_GPIO_ReadPin</span><span class="token punctuation">(</span>KEY1_GPIO_Port<span class="token punctuation">,</span> KEY1_Pin<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token comment" spellcheck="true">/* USER CODE END 0 */</span></code></pre>
+<p>初始化按键对象的代码在main函数中，while(1)之前编写，如下：</p>
+<pre class=" language-c"><code class="language-c"><span class="token comment" spellcheck="true">/* USER CODE BEGIN 2 */</span>
+<span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"MultiButton Test...\r\n"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token comment" spellcheck="true">//初始化按键对象</span>
+<span class="token function">button_init</span><span class="token punctuation">(</span><span class="token operator">&amp;</span>button1<span class="token punctuation">,</span> read_button1_GPIO<span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token comment" spellcheck="true">/* USER CODE END 2 */</span></code></pre>
+<p>④ 注册按键事件</p>
+<p>注册按钮事件的API如下：<br><img src="https://img-blog.csdnimg.cn/20200320205411492.png" alt=""></p>
+<ul>
+<li>第一个参数为按钮对象指针；</li>
+<li>第二个参数为MultiButton支持的按钮事件；</li>
+<li>第三个参数为要注册的该事件回调函数；</li>
+</ul>
+<p>MultiButton支持的按钮事件枚举如下：<br><img src="https://img-blog.csdnimg.cn/20200320205957544.png" alt=""><br>首先<strong>在main函数之前</strong>定义这两个事件的回调函数，回调函数有两种写法。</p>
+<p>第一种<strong>适合于按键事件较少的情况</strong>：</p>
+<pre class=" language-c"><code class="language-c"><span class="token comment" spellcheck="true">//按键1按下事件回调函数</span>
+<span class="token keyword">void</span> <span class="token function">btn1_press_down_Handler</span><span class="token punctuation">(</span><span class="token keyword">void</span><span class="token operator">*</span> btn<span class="token punctuation">)</span>
+<span class="token punctuation">{</span>
+    <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"---> key1 press down! &lt;---\r\n"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token comment" spellcheck="true">//按键1松开事件回调函数</span>
+<span class="token keyword">void</span> <span class="token function">btn1_press_up_Handler</span><span class="token punctuation">(</span><span class="token keyword">void</span><span class="token operator">*</span> btn<span class="token punctuation">)</span>
+<span class="token punctuation">{</span>
+    <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"***> key1 press up! &lt;***\r\n"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span></code></pre>
+<p>在main函数中，while(1)之前注册这两个回调函数：</p>
+<pre class=" language-c"><code class="language-c"><span class="token comment" spellcheck="true">//注册按钮事件回调函数</span>
+<span class="token function">button_attach</span><span class="token punctuation">(</span><span class="token operator">&amp;</span>button1<span class="token punctuation">,</span> PRESS_DOWN<span class="token punctuation">,</span> btn1_press_down_Handler<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token function">button_attach</span><span class="token punctuation">(</span><span class="token operator">&amp;</span>button1<span class="token punctuation">,</span> PRESS_UP<span class="token punctuation">,</span> btn1_press_up_Handler<span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
+<p>第二种<strong>适合于按键事件较多的情况</strong>，如果每个按键都要写 7 个回调函数，那么代码量会非常的大，所以可以将这 7 个回调函数写在一起，一次性全部注册，回调函数如下：</p>
+<pre class=" language-c"><code class="language-c"><span class="token keyword">void</span> <span class="token function">button_callback</span><span class="token punctuation">(</span><span class="token keyword">void</span> <span class="token operator">*</span>button<span class="token punctuation">)</span>
+<span class="token punctuation">{</span>
+    uint32_t btn_event_val<span class="token punctuation">;</span> 
+
+    btn_event_val <span class="token operator">=</span> <span class="token function">get_button_event</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token keyword">struct</span> Button <span class="token operator">*</span><span class="token punctuation">)</span>button<span class="token punctuation">)</span><span class="token punctuation">;</span> 
+
+    <span class="token keyword">switch</span><span class="token punctuation">(</span>btn_event_val<span class="token punctuation">)</span>
+    <span class="token punctuation">{</span>
+        <span class="token keyword">case</span> PRESS_DOWN<span class="token punctuation">:</span>
+            <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"---> key1 press down! &lt;---\r\n"</span><span class="token punctuation">)</span><span class="token punctuation">;</span> 
+            <span class="token keyword">break</span><span class="token punctuation">;</span> 
+
+        <span class="token keyword">case</span> PRESS_UP<span class="token punctuation">:</span> 
+            <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"***> key1 press up! &lt;***\r\n"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token keyword">break</span><span class="token punctuation">;</span> 
+
+        <span class="token keyword">case</span> PRESS_REPEAT<span class="token punctuation">:</span> 
+            <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"---> key1 press repeat! &lt;---\r\n"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token keyword">break</span><span class="token punctuation">;</span> 
+
+        <span class="token keyword">case</span> SINGLE_CLICK<span class="token punctuation">:</span> 
+            <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"---> key1 single click! &lt;---\r\n"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token keyword">break</span><span class="token punctuation">;</span> 
+
+        <span class="token keyword">case</span> DOUBLE_CLICK<span class="token punctuation">:</span> 
+            <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"***> key1 double click! &lt;***\r\n"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token keyword">break</span><span class="token punctuation">;</span> 
+
+        <span class="token keyword">case</span> LONG_RRESS_START<span class="token punctuation">:</span> 
+            <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"---> key1 long press start! &lt;---\r\n"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+               <span class="token keyword">break</span><span class="token punctuation">;</span> 
+
+        <span class="token keyword">case</span> LONG_PRESS_HOLD<span class="token punctuation">:</span> 
+            <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"***> key1 long press hold! &lt;***\r\n"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token keyword">break</span><span class="token punctuation">;</span> 
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span></code></pre>
+<p>使用这种回调函数的时候需要在MultiButton的源码中添加一行代码：<br><img src="https://img-blog.csdnimg.cn/20200321132828355.png" alt=""><br>注册回调函数的代码如下：</p>
+<pre class=" language-c"><code class="language-c"><span class="token comment" spellcheck="true">//注册按钮事件回调函数</span>
+
+<span class="token function">button_attach</span><span class="token punctuation">(</span><span class="token operator">&amp;</span>button1<span class="token punctuation">,</span> PRESS_DOWN<span class="token punctuation">,</span>       button_callback<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token function">button_attach</span><span class="token punctuation">(</span><span class="token operator">&amp;</span>button1<span class="token punctuation">,</span> PRESS_UP<span class="token punctuation">,</span>         button_callback<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token comment" spellcheck="true">//button_attach(&amp;button1, PRESS_REPEAT,     button_callback);</span>
+<span class="token comment" spellcheck="true">//button_attach(&amp;button1, SINGLE_CLICK,     button_callback);</span>
+<span class="token comment" spellcheck="true">//button_attach(&amp;button1, DOUBLE_CLICK,     button_callback);</span>
+<span class="token comment" spellcheck="true">//button_attach(&amp;button1, LONG_RRESS_START, button_callback);</span>
+<span class="token comment" spellcheck="true">//button_attach(&amp;button1, LONG_PRESS_HOLD,  button_callback);</span></code></pre>
+<p>⑤ 启动按键<br>启动按键的API如下：<br><img src="https://img-blog.csdnimg.cn/20200320210755871.png" alt=""><br>接着在main函数中，while(1)之前编写代码，启动按键：</p>
+<pre class=" language-c"><code class="language-c"><span class="token comment" spellcheck="true">//启动按键</span>
+<span class="token function">button_start</span><span class="token punctuation">(</span><span class="token operator">&amp;</span>button1<span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
+<p>⑥ 设置一个5ms间隔的定时器循环调用后台处理函数</p>
+<p>这里就要用到systick了，在main函数的while(1)循环中编写如下代码：</p>
+<pre class=" language-c"><code class="language-c">  <span class="token comment" spellcheck="true">/* Infinite loop */</span>
+  <span class="token comment" spellcheck="true">/* USER CODE BEGIN WHILE */</span>
+  <span class="token keyword">while</span> <span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">)</span>
+  <span class="token punctuation">{</span>
+    <span class="token comment" spellcheck="true">/* USER CODE END WHILE */</span>
+
+    <span class="token comment" spellcheck="true">/* USER CODE BEGIN 3 */</span>
+        <span class="token comment" spellcheck="true">//每隔5ms调用一次后台处理函数</span>
+        <span class="token function">button_ticks</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token function">HAL_Delay</span><span class="token punctuation">(</span><span class="token number">5</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+  <span class="token comment" spellcheck="true">/* USER CODE END 3 */</span></code></pre>
+<h2 id="2-4-实验现象"><a href="#2-4-实验现象" class="headerlink" title="2.4. 实验现象"></a>2.4. 实验现象</h2><p>编译、下载之后，每次按下Key1时打印按下提示，松开Key1时打印松开提示：<br><img src="https://img-blog.csdnimg.cn/20200320211941501.png" alt=""></p>
+<h2 id="2-5-扩展实验"><a href="#2-5-扩展实验" class="headerlink" title="2.5. 扩展实验"></a>2.5. 扩展实验</h2><p>在注册回调函数时将这按下和松开屏蔽，将单击和双击打开进行测试：</p>
+<pre class=" language-c"><code class="language-c"><span class="token comment" spellcheck="true">//注册按钮事件回调函数</span>
+<span class="token comment" spellcheck="true">//button_attach(&amp;button1, PRESS_DOWN,       button_callback);</span>
+<span class="token comment" spellcheck="true">//button_attach(&amp;button1, PRESS_UP,         button_callback);</span>
+<span class="token comment" spellcheck="true">//button_attach(&amp;button1, PRESS_REPEAT,     button_callback);</span>
+<span class="token function">button_attach</span><span class="token punctuation">(</span><span class="token operator">&amp;</span>button1<span class="token punctuation">,</span> SINGLE_CLICK<span class="token punctuation">,</span>     button_callback<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token function">button_attach</span><span class="token punctuation">(</span><span class="token operator">&amp;</span>button1<span class="token punctuation">,</span> DOUBLE_CLICK<span class="token punctuation">,</span>     button_callback<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token comment" spellcheck="true">//button_attach(&amp;button1, LONG_RRESS_START, button_callback);</span>
+<span class="token comment" spellcheck="true">//button_attach(&amp;button1, LONG_PRESS_HOLD,  button_callback);</span></code></pre>
+<p><img src="https://img-blog.csdnimg.cn/20200321133109749.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L01jdWxvdmVyNjY2,size_16,color_FFFFFF,t_70" alt=""><br>再测试长按：</p>
+<pre class=" language-c"><code class="language-c">    <span class="token comment" spellcheck="true">//注册按钮事件回调函数</span>
+    <span class="token comment" spellcheck="true">//button_attach(&amp;button1, PRESS_DOWN,       button_callback);</span>
+    <span class="token comment" spellcheck="true">//button_attach(&amp;button1, PRESS_UP,         button_callback);</span>
+    <span class="token comment" spellcheck="true">//button_attach(&amp;button1, PRESS_REPEAT,     button_callback);</span>
+    <span class="token comment" spellcheck="true">//button_attach(&amp;button1, SINGLE_CLICK,     button_callback);</span>
+    <span class="token comment" spellcheck="true">//button_attach(&amp;button1, DOUBLE_CLICK,     button_callback);</span>
+    <span class="token function">button_attach</span><span class="token punctuation">(</span><span class="token operator">&amp;</span>button1<span class="token punctuation">,</span> LONG_RRESS_START<span class="token punctuation">,</span> button_callback<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token function">button_attach</span><span class="token punctuation">(</span><span class="token operator">&amp;</span>button1<span class="token punctuation">,</span> LONG_PRESS_HOLD<span class="token punctuation">,</span>  button_callback<span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
+<p><img src="https://img-blog.csdnimg.cn/20200321133329271.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L01jdWxvdmVyNjY2,size_16,color_FFFFFF,t_70" alt=""></p>
+<h1 id="3-MultiButton设计思想解读"><a href="#3-MultiButton设计思想解读" class="headerlink" title="3. MultiButton设计思想解读"></a>3. MultiButton设计思想解读</h1><h2 id="3-1-面向对象思想"><a href="#3-1-面向对象思想" class="headerlink" title="3.1. 面向对象思想"></a>3.1. 面向对象思想</h2><p>MultiButton中每个按键都抽象为了一个<strong>按键对象</strong>，每个按键对象是独立的，系统中所有的按键对象使用<strong>单链表</strong>串起来，结构如下：<br><img src="https://img-blog.csdnimg.cn/20200321112311826.png" alt=""><br>其中在变量后面跟冒号的语法称为<strong>位域</strong>，使用位域的优势是<strong>节省内存</strong>。</p>
+<p>比如在这个结构体中，本来 6 个uint8_t 类型的变量需要占用 6 个字节，但使用位域语法后，这6个变量<strong>只占用两个字节</strong>：<br><img src="https://img-blog.csdnimg.cn/2020032111334119.png" alt=""></p>
+<h2 id="3-2-按键对象单链表"><a href="#3-2-按键对象单链表" class="headerlink" title="3.2. 按键对象单链表"></a>3.2. 按键对象单链表</h2><p>MultiButton自己定义了一个<strong>头指针</strong>：</p>
+<pre class=" language-c"><code class="language-c"><span class="token comment" spellcheck="true">//button handle list head.</span>
+<span class="token keyword">static</span> <span class="token keyword">struct</span> Button<span class="token operator">*</span> head_handle <span class="token operator">=</span> <span class="token constant">NULL</span><span class="token punctuation">;</span></code></pre>
+<p>用户插入一个按键对象的代码如下：</p>
+<pre class=" language-c"><code class="language-c"><span class="token comment" spellcheck="true">//启动按键</span>
+<span class="token function">button_start</span><span class="token punctuation">(</span><span class="token operator">&amp;</span>button1<span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
+<p>那么，button_start插入新的按键对象之后，单链表长啥样呢？</p>
+<p>理解了 button_start 的源码就很好知道答案了：<br><img src="https://img-blog.csdnimg.cn/20200321120539957.png" alt=""><br>第一次插入时，因为head_hanler 为 NULL，所以只需要执行while之后的代码，<br><img src="https://img-blog.csdnimg.cn/20200321121556782.png" alt=""><br>按照它的插入于原理，如果再插入一个buuton2按键对象，结果是不是可以猜出来了呢？</p>
+<p>没错，它长这样：<br><img src="https://img-blog.csdnimg.cn/20200321122110969.png" alt=""><br>这样做是不是有点不符合常理？后插入Button2竟然在button1前面，凭什么？</p>
+<p>这又不是排队抢鸡蛋，在前在后没什么关系的。只是这样的插入方法<strong>在代码算法上会非常简洁</strong>，两行代码完成插入。</p>
+<h2 id="3-3-状态机处理思想"><a href="#3-3-状态机处理思想" class="headerlink" title="3.3. 状态机处理思想"></a>3.3. 状态机处理思想</h2><p>MultiButton中使用状态机来处理每个按键对象（的状态），比如在上述应用中根据Systick提供的时基信号，每隔5ms调用一次 <code>button_tick()</code>，该函数会依次调用状态机对单链表上的所有按键对象进行遍历处理：<br><img src="https://img-blog.csdnimg.cn/20200321114739484.png" alt=""><br>根据上一节的单链表讲解，<strong>系统中定义的链表头指针 head_handle 永远指向最后一个插入的按键对象，所以无需任何参数即可遍历整个单链表上的对象</strong>，非常之牛逼。</p>
+<p>使用 button_handler 来对按键对象的状态进行处理，该函数源码如下：</p>
+<p>（读源码的时候只需要记住该函数每隔5ms进入一次就很好分析了）</p>
+<p>① <strong>读取当前引脚状态</strong></p>
+<p>调用该按键对象注册的读取状态函数进行读取：<br><img src="https://img-blog.csdnimg.cn/20200321133718186.png" alt=""><br>② 读取之后，判断当前状态机的状态，如果有功能正在执行（state不为0），则按键对象的tick值加1（<strong>后续一切功能的基础</strong>）：<br><img src="https://img-blog.csdnimg.cn/2020032113383453.png" alt=""><br>③ <strong>按键消抖</strong>（连续读取3次，15ms，如果引脚状态一直与之前不同，则改变按键对象中的引脚状态）：<br><img src="https://img-blog.csdnimg.cn/20200321134036739.png" alt=""><br>④ <strong>状态机</strong>（整个设计的灵魂所在）</p>
+<p><img src="https://img-blog.csdnimg.cn/20200321140602485.png" alt=""></p>
+<h1 id="4-项目工程源码获取和问题交流"><a href="#4-项目工程源码获取和问题交流" class="headerlink" title="4. 项目工程源码获取和问题交流"></a>4. 项目工程源码获取和问题交流</h1><p>目前我将MultiButton源码、我移植到小熊派STM32L431RCT6开发板的工程、移植到STM32Nucleo-STM32G071RB开发板的工程源码上传到了QQ群里（包含好几份HAL库，QQ相对速度快点），<strong>可以在QQ群里下载，有问题也可以在群里交流，当然也欢迎大家分享出来自己移植的工程到QQ群里</strong>：<br><img src="https://img-blog.csdnimg.cn/20200321144423738.png" alt=""><br>放上QQ群二维码：<br><img src="https://img-blog.csdnimg.cn/20200321144543508.png" alt=""></p>
+<p><font color="red"><strong>接收更多精彩文章及资源推送，欢迎订阅我的微信公众号：『mculover666』。</strong></font><br><img src="https://img-blog.csdnimg.cn/20200202092055136.png" alt=""></p>
+
+            </div>
+            <hr/>
+
+            
+
+    <div class="reprint" id="reprint-statement">
+        
+            <div class="reprint__author">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-user">
+                        文章作者:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    <a href="http://www.mculover666.cn" rel="external nofollow noreferrer">Mculover666</a>
+                </span>
+            </div>
+            <div class="reprint__type">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-link">
+                        文章链接:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    <a href="http://www.mculover666.cn/posts/2795548875/">http://www.mculover666.cn/posts/2795548875/</a>
+                </span>
+            </div>
+            <div class="reprint__notice">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-copyright">
+                        版权声明:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    本博客所有文章除特別声明外，均采用
+                    <a href="https://creativecommons.org/licenses/by/4.0/deed.zh" rel="external nofollow noreferrer" target="_blank">CC BY 4.0</a>
+                    许可协议。转载请注明来源
+                    <a href="http://www.mculover666.cn" target="_blank">Mculover666</a>
+                    !
+                </span>
+            </div>
+        
+    </div>
+
+    <script async defer>
+      document.addEventListener("copy", function (e) {
+        let toastHTML = '<span>复制成功，请遵循本文的转载规则</span><button class="btn-flat toast-action" onclick="navToReprintStatement()" style="font-size: smaller">查看</a>';
+        M.toast({html: toastHTML})
+      });
+
+      function navToReprintStatement() {
+        $("html, body").animate({scrollTop: $("#reprint-statement").offset().top - 80}, 800);
+      }
+    </script>
+
+
+
+            <div class="tag_share" style="display: block;">
+                <div class="post-meta__tag-list" style="display: inline-block;">
+                    
+                        <div class="article-tag">
+                            
+                                <a href="/tags/%E5%B5%8C%E5%85%A5%E5%BC%8F%E5%BC%80%E6%BA%90%E9%A1%B9%E7%9B%AE%E7%B2%BE%E9%80%89%E4%B8%93%E6%A0%8F/">
+                                    <span class="chip bg-color">嵌入式开源项目精选专栏</span>
+                                </a>
+                            
+                        </div>
+                    
+                </div>
+                <div class="post_share" style="zoom: 80%; width: fit-content; display: inline-block; float: right; margin: -0.15rem 0;">
+                    <link rel="stylesheet" type="text/css" href="/libs/share/css/share.min.css">
+
+<div id="article-share">
+    
+    
+    <div class="social-share" data-sites="qq,qzone,wechat,weibo,douban" data-wechat-qrcode-helper="<p>微信扫一扫即可分享！</p>"></div>
+    <script src="/libs/share/js/social-share.min.js"></script>
+    
+
+    
+
+</div>
+
+                </div>
+            </div>
+            
+                <style>
+    #reward {
+        margin: 40px 0;
+        text-align: center;
+    }
+
+    #reward .reward-link {
+        font-size: 1.4rem;
+        line-height: 38px;
+    }
+
+    #reward .btn-floating:hover {
+        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2), 0 5px 15px rgba(0, 0, 0, 0.2);
+    }
+
+    #rewardModal {
+        width: 320px;
+        height: 350px;
+    }
+
+    #rewardModal .reward-title {
+        margin: 15px auto;
+        padding-bottom: 5px;
+    }
+
+    #rewardModal .modal-content {
+        padding: 10px;
+    }
+
+    #rewardModal .close {
+        position: absolute;
+        right: 15px;
+        top: 15px;
+        color: rgba(0, 0, 0, 0.5);
+        font-size: 1.3rem;
+        line-height: 20px;
+        cursor: pointer;
+    }
+
+    #rewardModal .close:hover {
+        color: #ef5350;
+        transform: scale(1.3);
+        -moz-transform:scale(1.3);
+        -webkit-transform:scale(1.3);
+        -o-transform:scale(1.3);
+    }
+
+    #rewardModal .reward-tabs {
+        margin: 0 auto;
+        width: 210px;
+    }
+
+    .reward-tabs .tabs {
+        height: 38px;
+        margin: 10px auto;
+        padding-left: 0;
+    }
+
+    .reward-content ul {
+        padding-left: 0 !important;
+    }
+
+    .reward-tabs .tabs .tab {
+        height: 38px;
+        line-height: 38px;
+    }
+
+    .reward-tabs .tab a {
+        color: #fff;
+        background-color: #ccc;
+    }
+
+    .reward-tabs .tab a:hover {
+        background-color: #ccc;
+        color: #fff;
+    }
+
+    .reward-tabs .wechat-tab .active {
+        color: #fff !important;
+        background-color: #22AB38 !important;
+    }
+
+    .reward-tabs .alipay-tab .active {
+        color: #fff !important;
+        background-color: #019FE8 !important;
+    }
+
+    .reward-tabs .reward-img {
+        width: 210px;
+        height: 210px;
+    }
+</style>
+
+<div id="reward">
+    <a href="#rewardModal" class="reward-link modal-trigger btn-floating btn-medium waves-effect waves-light red">赏</a>
+
+    <!-- Modal Structure -->
+    <div id="rewardModal" class="modal">
+        <div class="modal-content">
+            <a class="close modal-close"><i class="fas fa-times"></i></a>
+            <h4 class="reward-title">你的赏识是我前进的动力</h4>
+            <div class="reward-content">
+                <div class="reward-tabs">
+                    <ul class="tabs row">
+                        <li class="tab col s6 alipay-tab waves-effect waves-light"><a href="#alipay">支付宝</a></li>
+                        <li class="tab col s6 wechat-tab waves-effect waves-light"><a href="#wechat">微 信</a></li>
+                    </ul>
+                    <div id="alipay">
+                        <img src="/medias/reward/alipay.png" class="reward-img" alt="支付宝打赏二维码">
+                    </div>
+                    <div id="wechat">
+                        <img src="/medias/reward/we-chat.png" class="reward-img" alt="微信打赏二维码">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    $(function () {
+        $('.tabs').tabs();
+    });
+</script>
+            
+        </div>
+    </div>
+
+    
+
+    
+
+    
+
+    
+    <div class="livere-card card" data-aos="fade-up">
+    <!-- 来必力City版安装代码 -->
+    <div id="lv-container" class="card-content" data-id="city" data-uid="MTAyMC80Njg0OS8yMzM1MA">
+        <script type="text/javascript">
+            (function (d, s) {
+                let j, e = d.getElementsByTagName(s)[0];
+                if (typeof LivereTower === 'function') {
+                    return;
+                }
+
+                j = d.createElement(s);
+                j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+                j.async = true;
+
+                e.parentNode.insertBefore(j, e);
+            })(document, 'script');
+        </script>
+        <noscript>为正常使用来必力评论功能请激活JavaScript。</noscript>
+    </div>
+    <!-- City版安装代码已完成 -->
+</div>
+    
+
+    
+
+    
+
+<article id="prenext-posts" class="prev-next articles">
+    <div class="row article-row">
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge left-badge text-color">
+                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
+            <div class="card">
+                <a href="/posts/131757493/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/18.jpg" class="responsive-img" alt="letter-shell | 一个功能强大的嵌入式shell">
+                        
+                        <span class="card-title">letter-shell | 一个功能强大的嵌入式shell</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            嵌入式开源项目精选专栏
+                        
+                    </div>
+                    <div class="publish-info">
+                        <span class="publish-date">
+                            <i class="far fa-clock fa-fw icon-date"></i>2020-04-09
+                        </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/OpenSource/" class="post-category">
+                                    OpenSource
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/%E5%B5%8C%E5%85%A5%E5%BC%8F%E5%BC%80%E6%BA%90%E9%A1%B9%E7%9B%AE%E7%B2%BE%E9%80%89%E4%B8%93%E6%A0%8F/">
+                        <span class="chip bg-color">嵌入式开源项目精选专栏</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge right-badge text-color">
+                下一篇&nbsp;<i class="fas fa-chevron-right"></i>
+            </div>
+            <div class="card">
+                <a href="/posts/1603677970/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/13.jpg" class="responsive-img" alt="Linux中使用fork创建子进程详解及示例程序">
+                        
+                        <span class="card-title">Linux中使用fork创建子进程详解及示例程序</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            Linux应用开发
+                        
+                    </div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2020-03-13
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/Linux/" class="post-category">
+                                    Linux
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/Linux%E5%BA%94%E7%94%A8%E5%BC%80%E5%8F%91/">
+                        <span class="chip bg-color">Linux应用开发</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+    </div>
+</article>
+
+</div>
+
+
+
+<!-- 代码块功能依赖 -->
+<script type="text/javascript" src="/libs/codeBlock/codeBlockFuction.js"></script>
+
+<!-- 代码语言 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeLang.js"></script>
+
+
+<!-- 代码块复制 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeCopy.js"></script>
+
+
+<!-- 代码块收缩 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeShrink.js"></script>
+
+
+<!-- 代码块折行 -->
+
+<style type="text/css">
+code[class*="language-"], pre[class*="language-"] { white-space: pre !important; }
+</style>
+
+
+    </div>
+    <div id="toc-aside" class="expanded col l3 hide-on-med-and-down">
+        <div class="toc-widget">
+            <div class="toc-title"><i class="far fa-list-alt"></i>&nbsp;&nbsp;目录</div>
+            <div id="toc-content"></div>
+        </div>
+    </div>
+</div>
+
+<!-- TOC 悬浮按钮. -->
+
+<div id="floating-toc-btn" class="hide-on-med-and-down">
+    <a class="btn-floating btn-large bg-color">
+        <i class="fas fa-list-ul"></i>
+    </a>
+</div>
+
+
+<script src="/libs/tocbot/tocbot.min.js"></script>
+<script>
+    $(function () {
+        tocbot.init({
+            tocSelector: '#toc-content',
+            contentSelector: '#articleContent',
+            headingsOffset: -($(window).height() * 0.4 - 45),
+            collapseDepth: Number('0'),
+            headingSelector: 'h1, h2, h3, h4, h5, h6'
+        });
+
+        // modify the toc link href to support Chinese.
+        let i = 0;
+        let tocHeading = 'toc-heading-';
+        $('#toc-content a').each(function () {
+            $(this).attr('href', '#' + tocHeading + (++i));
+        });
+
+        // modify the heading title id to support Chinese.
+        i = 0;
+        $('#articleContent').children('h1, h2, h3, h4, h5, h6').each(function () {
+            $(this).attr('id', tocHeading + (++i));
+        });
+
+        // Set scroll toc fixed.
+        let tocHeight = parseInt($(window).height() * 0.4 - 64);
+        let $tocWidget = $('.toc-widget');
+        $(window).scroll(function () {
+            let scroll = $(window).scrollTop();
+            /* add post toc fixed. */
+            if (scroll > tocHeight) {
+                $tocWidget.addClass('toc-fixed');
+            } else {
+                $tocWidget.removeClass('toc-fixed');
+            }
+        });
+
+        
+        /* 修复文章卡片 div 的宽度. */
+        let fixPostCardWidth = function (srcId, targetId) {
+            let srcDiv = $('#' + srcId);
+            if (srcDiv.length === 0) {
+                return;
+            }
+
+            let w = srcDiv.width();
+            if (w >= 450) {
+                w = w + 21;
+            } else if (w >= 350 && w < 450) {
+                w = w + 18;
+            } else if (w >= 300 && w < 350) {
+                w = w + 16;
+            } else {
+                w = w + 14;
+            }
+            $('#' + targetId).width(w);
+        };
+
+        // 切换TOC目录展开收缩的相关操作.
+        const expandedClass = 'expanded';
+        let $tocAside = $('#toc-aside');
+        let $mainContent = $('#main-content');
+        $('#floating-toc-btn .btn-floating').click(function () {
+            if ($tocAside.hasClass(expandedClass)) {
+                $tocAside.removeClass(expandedClass).hide();
+                $mainContent.removeClass('l9');
+            } else {
+                $tocAside.addClass(expandedClass).show();
+                $mainContent.addClass('l9');
+            }
+            fixPostCardWidth('artDetail', 'prenext-posts');
+        });
+        
+    });
+</script>
+
+    
+
+</main>
+
+
+
+    <footer class="page-footer bg-color">
+    
+    <div class="container row center-align" style="margin-bottom: 15px !important;">
+        <div class="col s12 m8 l8 copy-right">
+            Copyright&nbsp;&copy;
+            <span id="year">2016</span>
+            <a href="http://www.mculover666.cn" target="_blank">Mculover666</a>
+            |&nbsp;Powered by&nbsp;<a href="https://hexo.io/" target="_blank">Hexo</a>
+            |&nbsp;Theme&nbsp;<a href="https://github.com/blinkfox/hexo-theme-matery" target="_blank">Matery</a>
+            <br>
+            
+            &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
+                class="white-color">55.5k</span>&nbsp;字
+            
+            
+            
+            
+            
+            
+            <span id="busuanzi_container_site_pv">
+                |&nbsp;<i class="far fa-eye"></i>&nbsp;总访问量:&nbsp;<span id="busuanzi_value_site_pv"
+                    class="white-color"></span>&nbsp;次
+            </span>
+            
+            
+            <span id="busuanzi_container_site_uv">
+                |&nbsp;<i class="fas fa-users"></i>&nbsp;总访问人数:&nbsp;<span id="busuanzi_value_site_uv"
+                    class="white-color"></span>&nbsp;人
+            </span>
+            
+            <br>
+            
+            <span id="sitetime">载入运行时间...</span>
+            <script>
+                function siteTime() {
+                    var seconds = 1000;
+                    var minutes = seconds * 60;
+                    var hours = minutes * 60;
+                    var days = hours * 24;
+                    var years = days * 365;
+                    var today = new Date();
+                    var startYear = "2016";
+                    var startMonth = "08";
+                    var startDate = "28";
+                    var startHour = "0";
+                    var startMinute = "0";
+                    var startSecond = "0";
+                    var todayYear = today.getFullYear();
+                    var todayMonth = today.getMonth() + 1;
+                    var todayDate = today.getDate();
+                    var todayHour = today.getHours();
+                    var todayMinute = today.getMinutes();
+                    var todaySecond = today.getSeconds();
+                    var t1 = Date.UTC(startYear, startMonth, startDate, startHour, startMinute, startSecond);
+                    var t2 = Date.UTC(todayYear, todayMonth, todayDate, todayHour, todayMinute, todaySecond);
+                    var diff = t2 - t1;
+                    var diffYears = Math.floor(diff / years);
+                    var diffDays = Math.floor((diff / days) - diffYears * 365);
+                    var diffHours = Math.floor((diff - (diffYears * 365 + diffDays) * days) / hours);
+                    var diffMinutes = Math.floor((diff - (diffYears * 365 + diffDays) * days - diffHours * hours) /
+                        minutes);
+                    var diffSeconds = Math.floor((diff - (diffYears * 365 + diffDays) * days - diffHours * hours -
+                        diffMinutes * minutes) / seconds);
+                    if (startYear == todayYear) {
+                        document.getElementById("year").innerHTML = todayYear;
+                        document.getElementById("sitetime").innerHTML = "本站已安全运行 " + diffDays + " 天 " + diffHours +
+                            " 小时 " + diffMinutes + " 分钟 " + diffSeconds + " 秒";
+                    } else {
+                        document.getElementById("year").innerHTML = startYear + " - " + todayYear;
+                        document.getElementById("sitetime").innerHTML = "本站已安全运行 " + diffYears + " 年 " + diffDays +
+                            " 天 " + diffHours + " 小时 " + diffMinutes + " 分钟 " + diffSeconds + " 秒";
+                    }
+                }
+                setInterval(siteTime, 1000);
+            </script>
+            
+            <br>
+            
+            <span id="icp"><img src="/medias/icp.png" style="vertical-align: text-bottom;" />
+                <a href="http://www.beian.miit.gov.cn" target="_blank">陇ICP备19002222号</a>
+            </span>
+            
+        </div>
+        <div class="col s12 m4 l4 social-link social-statis">
+    <a href="https://github.com/Mculover666" class="tooltipped" target="_blank" data-tooltip="访问我的GitHub" data-position="top" data-delay="50">
+        <i class="fab fa-github"></i>
+    </a>
+
+
+
+    <a href="mailto:mculover666@foxmail.com" class="tooltipped" target="_blank" data-tooltip="邮件联系我" data-position="top" data-delay="50">
+        <i class="fas fa-envelope-open"></i>
+    </a>
+
+
+
+
+
+
+
+    <a href="tencent://AddContact/?fromId=50&fromSubId=1&subcmd=all&uin=2412828003" class="tooltipped" target="_blank" data-tooltip="QQ联系我: 2412828003" data-position="top" data-delay="50">
+        <i class="fab fa-qq"></i>
+    </a>
+
+
+
+
+
+    <a href="https://www.zhihu.com/people/wang-shi-wei-67-38/activities" class="tooltipped" target="_blank" data-tooltip="关注我的知乎: https://www.zhihu.com/people/wang-shi-wei-67-38/activities" data-position="top" data-delay="50">
+        <i class="fab fa-zhihu1">知</i>
+    </a>
+
+
+
+    <a href="/atom.xml" class="tooltipped" target="_blank" data-tooltip="RSS 订阅" data-position="top" data-delay="50">
+        <i class="fas fa-rss"></i>
+    </a>
+
+</div>
+    </div>
+</footer>
+
+<div class="progress-bar"></div>
+
+
+    <!-- 搜索遮罩框 -->
+<div id="searchModal" class="modal">
+    <div class="modal-content">
+        <div class="search-header">
+            <span class="title"><i class="fas fa-search"></i>&nbsp;&nbsp;搜索</span>
+            <input type="search" id="searchInput" name="s" placeholder="请输入搜索的关键字"
+                   class="search-input">
+        </div>
+        <div id="searchResult"></div>
+    </div>
+</div>
+
+<script src="/js/search.js"></script>
+<script type="text/javascript">
+$(function () {
+    searchFunc("/" + "search.xml", 'searchInput', 'searchResult');
+});
+</script>
+    <!-- 回到顶部按钮 -->
+<div id="backTop" class="top-scroll">
+    <a class="btn-floating btn-large waves-effect waves-light" href="#!">
+        <i class="fas fa-arrow-up"></i>
+    </a>
+</div>
+
+
+    <script src="/libs/materialize/materialize.min.js"></script>
+    <script src="/libs/masonry/masonry.pkgd.min.js"></script>
+    <script src="/libs/aos/aos.js"></script>
+    <script src="/libs/scrollprogress/scrollProgress.min.js"></script>
+    <script src="/libs/lightGallery/js/lightgallery-all.min.js"></script>
+    <script src="/js/matery.js"></script>
+
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+
+
+    <!-- Baidu Analytics -->
+
+<script>
+    var _hmt = _hmt || [];
+    (function () {
+        var hm = document.createElement("script");
+        hm.src = "https://hm.baidu.com/hm.js?6e1efa0988723a1db6356535db2ae6bd";
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(hm, s);
+    })();
+</script>
+
+    <!-- Baidu Push -->
+
+<script>
+    (function () {
+        var bp = document.createElement('script');
+        var curProtocol = window.location.protocol.split(':')[0];
+        if (curProtocol === 'https') {
+            bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+        } else {
+            bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+        }
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(bp, s);
+    })();
+</script>
+
+    
+    <script src="/libs/others/clicklove.js" async="async"></script>
+    
+    
+    <script async src="/libs/others/busuanzi.pure.mini.js"></script>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <script type="text/javascript" src="/libs/background/ribbon-dynamic.js" async="async"></script>
+    
+    
+    
+    <script src="/libs/instantpage/instantpage.js" type="module"></script>
+    
+
+</body>
+
+</html>
