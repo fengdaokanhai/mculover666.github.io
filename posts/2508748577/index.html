@@ -440,12 +440,12 @@
 <h1 id="1-准备工作"><a href="#1-准备工作" class="headerlink" title="1. 准备工作"></a>1. 准备工作</h1><h2 id="硬件准备"><a href="#硬件准备" class="headerlink" title="硬件准备"></a>硬件准备</h2><ul>
 <li>开发板<br>首先需要准备一个开发板，这里我准备的是STM32L4的开发板（BearPi）：</li>
 </ul>
-<p><img src="http://mculover666.cn/image/20190806/9uiPTi5odYSj.png?imageslim" alt="mark"></p>
+<p><img src="http://mculover666.cn/image/20190806/9uiPTi5odYSj.png?imageslim" alt=""></p>
 <ul>
 <li>SHT30温湿度传感器<br>SHT30温湿度传感器是一个完全校准的、现行的、带有温度补偿的<strong>数字输出型</strong>传感器，具有 2.4V-5.5V 的宽电压支持，使用IIC接口进行通信，最高速率可达1M并且有两个用户可选地址，除此之外，它还具有8个引脚的DFN超小封装，如图：</li>
 </ul>
-<p><img src="http://mculover666.cn/image/20190808/XthdnB8dTXFW.png?imageslim" alt="mark"></p>
-<p>SHT30的原理图如下：<br><img src="http://mculover666.cn/image/20190808/BSqAexcE2Pir.png?imageslim" alt="mark"></p>
+<p><img src="http://mculover666.cn/image/20190808/XthdnB8dTXFW.png?imageslim" alt=""></p>
+<p>SHT30的原理图如下：<br><img src="http://mculover666.cn/image/20190808/BSqAexcE2Pir.png?imageslim" alt=""></p>
 <h2 id="软件准备"><a href="#软件准备" class="headerlink" title="软件准备"></a>软件准备</h2><ul>
 <li>需要安装好Keil - MDK及芯片对应的包，以便编译和下载生成的代码；</li>
 <li>准备一个串口调试助手，这里我使用的是<code>Serial Port Utility</code>；</li>
@@ -453,30 +453,30 @@
 <blockquote>
 <p>Keil MDK和串口助手Serial Port Utility 的安装包都可以<strong>在文末关注公众号获取</strong>，回复关键字获取相应的安装包：</p>
 </blockquote>
-<p><img src="http://mculover666.cn/image/20190814/gubaOwmETp1w.png?imageslim" alt="mark"></p>
-<h1 id="2-生成MDK工程"><a href="#2-生成MDK工程" class="headerlink" title="2.生成MDK工程"></a>2.生成MDK工程</h1><h2 id="选择芯片型号"><a href="#选择芯片型号" class="headerlink" title="选择芯片型号"></a>选择芯片型号</h2><p>打开STM32CubeMX，打开MCU选择器：<br><img src="http://mculover666.cn/image/20190806/gBP6glmUSH80.png?imageslim" alt="mark"></p>
-<p>搜索并选中芯片<code>STM32L431RCT6</code>:<br><img src="http://mculover666.cn/image/20190806/gnyHwdl53uVD.png?imageslim" alt="mark"></p>
+<p><img src="http://mculover666.cn/image/20190814/gubaOwmETp1w.png?imageslim" alt=""></p>
+<h1 id="2-生成MDK工程"><a href="#2-生成MDK工程" class="headerlink" title="2.生成MDK工程"></a>2.生成MDK工程</h1><h2 id="选择芯片型号"><a href="#选择芯片型号" class="headerlink" title="选择芯片型号"></a>选择芯片型号</h2><p>打开STM32CubeMX，打开MCU选择器：<br><img src="http://mculover666.cn/image/20190806/gBP6glmUSH80.png?imageslim" alt=""></p>
+<p>搜索并选中芯片<code>STM32L431RCT6</code>:<br><img src="http://mculover666.cn/image/20190806/gnyHwdl53uVD.png?imageslim" alt=""></p>
 <h2 id="配置时钟源"><a href="#配置时钟源" class="headerlink" title="配置时钟源"></a>配置时钟源</h2><ul>
 <li>如果选择使用外部高速时钟（HSE），则需要在System Core中配置RCC；</li>
 <li>如果使用默认内部时钟（HSI），这一步可以略过；</li>
 </ul>
-<p>这里我都使用外部时钟：<br><img src="http://mculover666.cn/image/20190806/k593lGGb5tlW.png?imageslim" alt="mark"></p>
+<p>这里我都使用外部时钟：<br><img src="http://mculover666.cn/image/20190806/k593lGGb5tlW.png?imageslim" alt=""></p>
 <h2 id="配置串口"><a href="#配置串口" class="headerlink" title="配置串口"></a>配置串口</h2><p>小熊派开发板板载ST-Link并且虚拟了一个串口，原理图如下：</p>
-<p><img src="http://mculover666.cn/image/20190814/IwyXONVefPx9.png?imageslim" alt="mark"></p>
+<p><img src="http://mculover666.cn/image/20190814/IwyXONVefPx9.png?imageslim" alt=""></p>
 <p>这里我将开关拨到<code>AT-MCU</code>模式，使PC的串口与USART1之间连接。</p>
 <p>接下来开始配置<code>USART1</code>：</p>
-<p><img src="http://mculover666.cn/image/20190814/nLMRMYtmzghl.png?imageslim" alt="mark"></p>
-<h2 id="配置I2C接口"><a href="#配置I2C接口" class="headerlink" title="配置I2C接口"></a>配置I2C接口</h2><p>查看小熊派E53接口的原理图：<br><img src="http://mculover666.cn/image/20190808/gHWofMib3ISQ.png?imageslim" alt="mark"></p>
-<p>接下来开始配置I2C接口1：<br><img src="http://mculover666.cn/image/20190808/GuKoTgin8iDJ.png?imageslim" alt="mark"></p>
-<h2 id="配置时钟树"><a href="#配置时钟树" class="headerlink" title="配置时钟树"></a>配置时钟树</h2><p>STM32L4的最高主频到80M，所以配置PLL，最后使<code>HCLK = 80Mhz</code>即可：<br><img src="http://mculover666.cn/image/20190806/1TQg7frjRpVr.png?imageslim" alt="mark"></p>
-<h2 id="生成工程设置"><a href="#生成工程设置" class="headerlink" title="生成工程设置"></a>生成工程设置</h2><p><img src="http://mculover666.cn/image/20190808/vJ8NCpGew9fg.png?imageslim" alt="mark"></p>
-<h2 id="代码生成设置"><a href="#代码生成设置" class="headerlink" title="代码生成设置"></a>代码生成设置</h2><p>最后设置生成独立的初始化文件：<br><img src="http://mculover666.cn/image/20190806/T6WvSK6Dfpts.png?imageslim" alt="mark"></p>
-<h2 id="生成代码"><a href="#生成代码" class="headerlink" title="生成代码"></a>生成代码</h2><p>点击<code>GENERATE CODE</code>即可生成MDK-V5工程：<br><img src="http://mculover666.cn/image/20190806/s0jGhLBWW6Cm.png?imageslim" alt="mark"></p>
+<p><img src="http://mculover666.cn/image/20190814/nLMRMYtmzghl.png?imageslim" alt=""></p>
+<h2 id="配置I2C接口"><a href="#配置I2C接口" class="headerlink" title="配置I2C接口"></a>配置I2C接口</h2><p>查看小熊派E53接口的原理图：<br><img src="http://mculover666.cn/image/20190808/gHWofMib3ISQ.png?imageslim" alt=""></p>
+<p>接下来开始配置I2C接口1：<br><img src="http://mculover666.cn/image/20190808/GuKoTgin8iDJ.png?imageslim" alt=""></p>
+<h2 id="配置时钟树"><a href="#配置时钟树" class="headerlink" title="配置时钟树"></a>配置时钟树</h2><p>STM32L4的最高主频到80M，所以配置PLL，最后使<code>HCLK = 80Mhz</code>即可：<br><img src="http://mculover666.cn/image/20190806/1TQg7frjRpVr.png?imageslim" alt=""></p>
+<h2 id="生成工程设置"><a href="#生成工程设置" class="headerlink" title="生成工程设置"></a>生成工程设置</h2><p><img src="http://mculover666.cn/image/20190808/vJ8NCpGew9fg.png?imageslim" alt=""></p>
+<h2 id="代码生成设置"><a href="#代码生成设置" class="headerlink" title="代码生成设置"></a>代码生成设置</h2><p>最后设置生成独立的初始化文件：<br><img src="http://mculover666.cn/image/20190806/T6WvSK6Dfpts.png?imageslim" alt=""></p>
+<h2 id="生成代码"><a href="#生成代码" class="headerlink" title="生成代码"></a>生成代码</h2><p>点击<code>GENERATE CODE</code>即可生成MDK-V5工程：<br><img src="http://mculover666.cn/image/20190806/s0jGhLBWW6Cm.png?imageslim" alt=""></p>
 <h1 id="3-在MDK中编写、编译、下载用户代码"><a href="#3-在MDK中编写、编译、下载用户代码" class="headerlink" title="3. 在MDK中编写、编译、下载用户代码"></a>3. 在MDK中编写、编译、下载用户代码</h1><h2 id="重定向printf-函数"><a href="#重定向printf-函数" class="headerlink" title="重定向printf( )函数"></a>重定向printf( )函数</h2><p>参考：<a href="https://www.mculover666.cn/2019/07/30/STM32Cube/【STM32Cube-09】重定向printf函数到串口输出的多种方法/">【STM32Cube_09】重定向printf函数到串口输出的多种方法</a>。</p>
-<h2 id="修改I2C初始化代码的小BUG"><a href="#修改I2C初始化代码的小BUG" class="headerlink" title="修改I2C初始化代码的小BUG"></a>修改I2C初始化代码的小BUG</h2><p><img src="http://mculover666.cn/image/20190808/zGOS6y9hjXhu.png?imageslim" alt="mark"></p>
+<h2 id="修改I2C初始化代码的小BUG"><a href="#修改I2C初始化代码的小BUG" class="headerlink" title="修改I2C初始化代码的小BUG"></a>修改I2C初始化代码的小BUG</h2><p><img src="http://mculover666.cn/image/20190808/zGOS6y9hjXhu.png?imageslim" alt=""></p>
 <h1 id="4-编写SHT30驱动程序"><a href="#4-编写SHT30驱动程序" class="headerlink" title="4. 编写SHT30驱动程序"></a>4. 编写SHT30驱动程序</h1><p>参考<a href="https://download.csdn.net/download/mculover666/11368379" target="_blank" rel="noopener">SHT30数据手册.pdf</a>进行编程。</p>
 <h2 id="宏定义SHT30器件地址"><a href="#宏定义SHT30器件地址" class="headerlink" title="宏定义SHT30器件地址"></a>宏定义SHT30器件地址</h2><p>先来编写<code>sht30_i2c_drv.h</code>头文件，SHT30的器件地址由<code>ADDR</code>端口的高低电平决定：</p>
-<p><img src="http://mculover666.cn/image/20190808/mYPfGe7jdXS3.png?imageslim" alt="mark"></p>
+<p><img src="http://mculover666.cn/image/20190808/mYPfGe7jdXS3.png?imageslim" alt=""></p>
 <p>注意数据手册中给出了8位数据，只有低7位用作地址，结合原理图，可以定义如下：</p>
 <pre class=" language-c"><code class="language-c"><span class="token comment" spellcheck="true">/* ADDR Pin Conect to VSS */</span>
 
@@ -533,14 +533,14 @@
     uint8_t cmd_buffer<span class="token punctuation">[</span><span class="token number">2</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
     cmd_buffer<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span> <span class="token operator">=</span> cmd <span class="token operator">>></span> <span class="token number">8</span><span class="token punctuation">;</span>
     cmd_buffer<span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">]</span> <span class="token operator">=</span> cmd<span class="token punctuation">;</span>
-    <span class="token keyword">return</span> <span class="token function">HAL_I2C_Master_Transmit</span><span class="token punctuation">(</span><span class="token operator">&amp;</span>hi2c1<span class="token punctuation">,</span> SHT30_ADDR_WRITE<span class="token punctuation">,</span> <span class="token punctuation">(</span>uint8_t<span class="token operator">*</span> cmd_buffer<span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">,</span> <span class="token number">0xFFFF</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">return</span> <span class="token function">HAL_I2C_Master_Transmit</span><span class="token punctuation">(</span><span class="token operator">&amp;</span>hi2c1<span class="token punctuation">,</span> SHT30_ADDR_WRITE<span class="token punctuation">,</span> <span class="token punctuation">(</span>uint8_t<span class="token operator">*</span><span class="token punctuation">)</span>cmd_buffer<span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">,</span> <span class="token number">0xFFFF</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 <span class="token punctuation">}</span></code></pre>
 <h2 id="复位函数"><a href="#复位函数" class="headerlink" title="复位函数"></a>复位函数</h2><pre class=" language-c"><code class="language-c"><span class="token comment" spellcheck="true">/**
  * @brief    复位SHT30
  * @param    none
  * @retval    none
 */</span>
-<span class="token keyword">void</span> <span class="token function">SHT30_reset</span><span class="token punctuation">(</span><span class="token keyword">void</span><span class="token punctuation">)</span>
+<span class="token keyword">void</span> <span class="token function">SHT30_Reset</span><span class="token punctuation">(</span><span class="token keyword">void</span><span class="token punctuation">)</span>
 <span class="token punctuation">{</span>
     <span class="token function">SHT30_Send_Cmd</span><span class="token punctuation">(</span>SOFT_RESET_CMD<span class="token punctuation">)</span><span class="token punctuation">;</span>
     <span class="token function">HAL_Delay</span><span class="token punctuation">(</span><span class="token number">20</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
@@ -556,7 +556,7 @@ uint8_t <span class="token function">SHT30_Init</span><span class="token punctua
     <span class="token keyword">return</span> <span class="token function">SHT30_Send_Cmd</span><span class="token punctuation">(</span>MEDIUM_2_CMD<span class="token punctuation">)</span><span class="token punctuation">;</span>
 <span class="token punctuation">}</span></code></pre>
 <h2 id="从SHTY30读取一次数据（周期测量模式下）"><a href="#从SHTY30读取一次数据（周期测量模式下）" class="headerlink" title="从SHTY30读取一次数据（周期测量模式下）"></a>从SHTY30读取一次数据（周期测量模式下）</h2><p>从SHT30数据手册中可以得到在周期测量模式下读取一次数据的时序，如图：</p>
-<p><img src="http://mculover666.cn/image/20190810/et530Xi83sku.png?imageslim" alt="mark"></p>
+<p><img src="http://mculover666.cn/image/20190810/et530Xi83sku.png?imageslim" alt=""></p>
 <p>根据该时序可以看出，首先要发送读数据的命令，然后接收6个字节的数据，编写程序如下：</p>
 <pre class=" language-c"><code class="language-c"><span class="token comment" spellcheck="true">/**
  * @brief    从SHT30读取一次数据
@@ -603,7 +603,7 @@ uint8_t <span class="token function">CheckCrc8</span><span class="token punctuat
     <span class="token keyword">return</span> remainder<span class="token punctuation">;</span>
 <span class="token punctuation">}</span></code></pre>
 <p>计算温度值和湿度值的公式在数据手册中已给出，如图：</p>
-<p><img src="http://mculover666.cn/image/20190810/akji0RTvX77c.png?imageslim" alt="mark"></p>
+<p><img src="http://mculover666.cn/image/20190810/akji0RTvX77c.png?imageslim" alt=""></p>
 <p>接下来编写解析数据的函数：</p>
 <pre class=" language-c"><code class="language-c"><span class="token comment" spellcheck="true">/**
  * @brief    将SHT30接收的6个字节数据进行CRC校验，并转换为温度值和湿度值
@@ -686,10 +686,10 @@ uint8_t <span class="token function">SHT30_Dat_To_Float</span><span class="token
 <span class="token punctuation">}</span>
 </code></pre>
 <p>测试结果如图：</p>
-<p><img src="http://mculover666.cn/image/20190810/vlDKzTOJ8cBE.png?imageslim" alt="mark"></p>
+<p><img src="http://mculover666.cn/image/20190810/vlDKzTOJ8cBE.png?imageslim" alt=""></p>
 <p>至此，我们已经学会<strong>如何使用硬件IIC接口读取温湿度传感器数据并使用软件CRC校验（SHT30）</strong>，下一节将讲述如何使用硬件CRC校验SHT30的数据。</p>
 <p><strong><font color="#FF0000">更多精彩文章及资源，请关注我的微信公众号：『mculover666』。</font></strong></p>
-<p><img src="http://mculover666.cn/image/20190814/NQqt1eRxrl1K.png?imageslim" alt="mark"></p>
+<p><img src="http://mculover666.cn/image/20190814/NQqt1eRxrl1K.png?imageslim" alt=""></p>
 
             </div>
             <hr/>
