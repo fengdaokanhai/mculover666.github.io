@@ -1,0 +1,1448 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN">
+
+
+<head>
+    <meta charset="utf-8">
+    <meta name="keywords" content="EasyFlash">
+    <meta name="description" content="嵌入式开源项目精选专栏">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta name="renderer" content="webkit|ie-stand|ie-comp">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <title>EasyFlash | 让Flash成为小型 KV 数据库 | Mculover666</title>
+    <link rel="icon" type="image/png" href="/favicon.png">
+
+    <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
+    <link rel="stylesheet" type="text/css" href="/libs/materialize/materialize.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/aos/aos.css">
+    <link rel="stylesheet" type="text/css" href="/libs/animate/animate.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/lightGallery/css/lightgallery.min.css">
+    <link rel="stylesheet" type="text/css" href="/css/matery.css">
+    <link rel="stylesheet" type="text/css" href="/css/my.css">
+
+    <script src="/libs/jquery/jquery.min.js"></script>
+    
+<link rel="stylesheet" href="/css/prism-tomorrow.css" type="text/css"></head>
+
+
+<body>
+    <header class="navbar-fixed">
+    <nav id="headNav" class="bg-color nav-transparent">
+        <div id="navContainer" class="nav-wrapper container">
+            <div class="brand-logo">
+                <a href="/" class="waves-effect waves-light">
+                    
+                    <img src="/medias/logo.png" class="logo-img" alt="LOGO">
+                    
+                    <span class="logo-span">Mculover666</span>
+                </a>
+            </div>
+            
+
+<a href="#" data-target="mobile-nav" class="sidenav-trigger button-collapse"><i class="fas fa-bars"></i></a>
+<ul class="right nav-menu">
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/" class="waves-effect waves-light">
+      
+      <i class="fas fa-home" style="zoom: 0.6;"></i>
+      
+      <span>首页</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="" class="waves-effect waves-light">
+
+      
+      <i class="fas fa-list" style="zoom: 0.6;"></i>
+      
+      <span>系列教程</span>
+      <i class="fas fa-chevron-down" aria-hidden="true" style="zoom: 0.6;"></i>
+    </a>
+    <ul class="sub-nav menus_item_child ">
+      
+      <li>
+        <a href="/posts/578764034/">
+          
+          <span>STM32CubeMX</span>
+        </a>
+      </li>
+      
+    </ul>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="https://blog.csdn.net/Mculover666" target="_blank" rel="noopener" class="waves-effect waves-light">
+      
+      <i class="fas fa-bookmark" style="zoom: 0.6;"></i>
+      
+      <span>CSDN</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/download" class="waves-effect waves-light">
+      
+      <i class="fas fa-download" style="zoom: 0.6;"></i>
+      
+      <span>资源下载</span>
+    </a>
+    
+  </li>
+  
+  <li>
+    <a href="#searchModal" class="modal-trigger waves-effect waves-light">
+      <i id="searchIcon" class="fas fa-search" title="搜索" style="zoom: 0.85;"></i>
+    </a>
+  </li>
+</ul>
+
+<div id="mobile-nav" class="side-nav sidenav">
+
+    <div class="mobile-head bg-color">
+        
+        <img src="/medias/logo.png" class="logo-img circle responsive-img">
+        
+        <div class="logo-name">Mculover666</div>
+        <div class="logo-desc">
+            
+            嵌入式 STM32 物联网领域的教程及精彩内容分享
+            
+        </div>
+    </div>
+
+    
+
+    <ul class="menu-list mobile-menu-list">
+        
+        <li class="m-nav-item">
+	  
+		<a href="/" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-home"></i>
+			
+			首页
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="javascript:;" target="_blank" rel="noopener">
+			
+				<i class="fa-fw fas fa-list"></i>
+			
+			系列教程
+			<span class="m-icon"><i class="fas fa-chevron-right"></i></span>
+		</a>
+            <ul  style="background:  ;" >
+              
+                <li>   
+				
+                  <a href="/posts/578764034/ " style="margin-left:75px";>
+				  
+		          <span>STM32CubeMX</span>
+                  </a>
+                </li>
+               
+            </ul>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="https://blog.csdn.net/Mculover666" target="_blank" rel="noopener" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-bookmark"></i>
+			
+			CSDN
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/download" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-download"></i>
+			
+			资源下载
+		</a>
+          
+        </li>
+        
+        
+        <li><div class="divider"></div></li>
+        <li>
+            <a href="https://github.com/Mculover666" class="waves-effect waves-light" target="_blank">
+                <i class="fab fa-github-square fa-fw"></i>Fork Me
+            </a>
+        </li>
+        
+    </ul>
+</div>
+
+        </div>
+
+        
+            <style>
+    .nav-transparent .github-corner {
+        display: none !important;
+    }
+
+    .github-corner {
+        position: absolute;
+        z-index: 10;
+        top: 0;
+        right: 0;
+        border: 0;
+        transform: scale(1.1);
+    }
+
+    .github-corner svg {
+        color: #0f9d58;
+        fill: #fff;
+        height: 64px;
+        width: 64px;
+    }
+
+    .github-corner:hover .octo-arm {
+        animation: a 0.56s ease-in-out;
+    }
+
+    .github-corner .octo-arm {
+        animation: none;
+    }
+
+    @keyframes a {
+        0%,
+        to {
+            transform: rotate(0);
+        }
+        20%,
+        60% {
+            transform: rotate(-25deg);
+        }
+        40%,
+        80% {
+            transform: rotate(10deg);
+        }
+    }
+</style>
+
+<a href="https://github.com/Mculover666" class="github-corner tooltipped hide-on-med-and-down" target="_blank"
+   data-tooltip="Fork Me" data-position="left" data-delay="50">
+    <svg viewBox="0 0 250 250" aria-hidden="true">
+        <path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path>
+        <path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2"
+              fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path>
+        <path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z"
+              fill="currentColor" class="octo-body"></path>
+    </svg>
+</a>
+        
+    </nav>
+
+</header>
+
+    
+
+
+
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/5.jpg')">
+    <div class="container" style="right: 0px;left: 0px;">
+        <div class="row">
+            <div class="col s12 m12 l12">
+                <div class="brand">
+                    <h1 class="description center-align post-title">EasyFlash | 让Flash成为小型 KV 数据库</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+<main class="post-container content">
+
+    
+    <link rel="stylesheet" href="/libs/tocbot/tocbot.css">
+<style>
+    #articleContent h1::before,
+    #articleContent h2::before,
+    #articleContent h3::before,
+    #articleContent h4::before,
+    #articleContent h5::before,
+    #articleContent h6::before {
+        display: block;
+        content: " ";
+        height: 100px;
+        margin-top: -100px;
+        visibility: hidden;
+    }
+
+    #articleContent :focus {
+        outline: none;
+    }
+
+    .toc-fixed {
+        position: fixed;
+        top: 64px;
+    }
+
+    .toc-widget {
+        width: 345px;
+        padding-left: 20px;
+    }
+
+    .toc-widget .toc-title {
+        margin: 35px 0 15px 0;
+        padding-left: 17px;
+        font-size: 1.5rem;
+        font-weight: bold;
+        line-height: 1.5rem;
+    }
+
+    .toc-widget ol {
+        padding: 0;
+        list-style: none;
+    }
+
+    #toc-content {
+        height: calc(100vh - 250px);
+        overflow: auto;
+    }
+
+    #toc-content ol {
+        padding-left: 10px;
+    }
+
+    #toc-content ol li {
+        padding-left: 10px;
+    }
+
+    #toc-content .toc-link:hover {
+        color: #42b983;
+        font-weight: 700;
+        text-decoration: underline;
+    }
+
+    #toc-content .toc-link::before {
+        background-color: transparent;
+        max-height: 25px;
+    }
+
+    #toc-content .is-active-link {
+        color: #42b983;
+    }
+
+    #toc-content .is-active-link::before {
+        background-color: #42b983;
+    }
+
+    #floating-toc-btn {
+        position: fixed;
+        right: 15px;
+        bottom: 76px;
+        padding-top: 15px;
+        margin-bottom: 0;
+        z-index: 998;
+    }
+
+    #floating-toc-btn .btn-floating {
+        width: 48px;
+        height: 48px;
+    }
+
+    #floating-toc-btn .btn-floating i {
+        line-height: 48px;
+        font-size: 1.4rem;
+    }
+</style>
+<div class="row">
+    <div id="main-content" class="col s12 m12 l9">
+        <!-- 文章内容详情 -->
+<div id="artDetail">
+    <div class="card">
+        <div class="card-content article-info">
+            <div class="row tag-cate">
+                <div class="col s7">
+                    
+                    <div class="article-tag">
+                        
+                            <a href="/tags/%E5%B5%8C%E5%85%A5%E5%BC%8F%E5%BC%80%E6%BA%90%E9%A1%B9%E7%9B%AE%E7%B2%BE%E9%80%89%E4%B8%93%E6%A0%8F/">
+                                <span class="chip bg-color">嵌入式开源项目精选专栏</span>
+                            </a>
+                        
+                    </div>
+                    
+                </div>
+                <div class="col s5 right-align">
+                    
+                    <div class="post-cate">
+                        <i class="fas fa-bookmark fa-fw icon-category"></i>
+                        
+                            <a href="/categories/OpenSource/" class="post-category">
+                                OpenSource
+                            </a>
+                        
+                    </div>
+                    
+                </div>
+            </div>
+
+            <div class="post-info">
+                
+                <div class="post-date info-break-policy">
+                    <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
+                    2020-04-25
+                </div>
+                
+
+                
+
+                
+
+                
+
+                
+                    <div id="busuanzi_container_page_pv" class="info-break-policy">
+                        <i class="far fa-eye fa-fw"></i>阅读次数:&nbsp;&nbsp;
+                        <span id="busuanzi_value_page_pv"></span>
+                    </div>
+				
+            </div>
+
+        </div>
+        <hr class="clearfix">
+        <div class="card-content article-card-content">
+            <div id="articleContent">
+                <h1 id="嵌入式开源项目精选专栏"><a href="#嵌入式开源项目精选专栏" class="headerlink" title="嵌入式开源项目精选专栏"></a>嵌入式开源项目精选专栏</h1><p>本专栏由Mculover666创建，主要内容为寻找嵌入式领域内的优质开源项目，一是帮助开发者使用开源项目实现更多的功能，二是通过这些开源项目，学习大佬的代码及背后的实现思想，提升自己的代码水平，和其它专栏相比，本专栏的优势在于：</p>
+<p><strong>不会单纯的介绍分享项目，还会包含作者亲自实践的过程分享，甚至还会有对它背后的设计思想解读</strong>。</p>
+<p>目前本专栏包含的开源项目有：</p>
+<ul>
+<li><a href="https://blog.csdn.net/Mculover666/article/details/103796256" target="_blank" rel="noopener">cJSON | 一个轻量级C语言JSON解析器</a></li>
+<li><a href="https://blog.csdn.net/Mculover666/article/details/103935428" target="_blank" rel="noopener">paho | 支持10种语言编写mqtt客户端，总有一款适合你！</a></li>
+<li><a href="https://blog.csdn.net/Mculover666/article/details/104992661" target="_blank" rel="noopener">MultiButton | 一个小巧简单易用的事件驱动型按键驱动模块</a></li>
+<li><a href="https://blog.csdn.net/Mculover666/article/details/105141286" target="_blank" rel="noopener">letter-shell | 一个功能强大的嵌入式shell</a></li>
+<li><a href="https://blog.csdn.net/Mculover666/article/details/105371993" target="_blank" rel="noopener">EasyLogger | 一款轻量级且高性能的日志库</a></li>
+<li><a href="https://blog.csdn.net/Mculover666/article/details/105516371" target="_blank" rel="noopener">SFUD | 一款串行 Flash 通用驱动库 </a></li>
+</ul>
+<p>如果您自己编写或者发现的开源项目不错，欢迎留言或者私信投稿到本专栏，分享获得双倍的快乐！</p>
+<h1 id="1-EasyFlash"><a href="#1-EasyFlash" class="headerlink" title="1. EasyFlash"></a>1. EasyFlash</h1><p>本期给大家带来的开源项目是 EasyFlash，<strong>可以让 Flash 成为小型 KV 数据库（Key-Value）</strong>，作者armink，目前收获 975 个 star，遵循 MIT 开源许可协议。</p>
+<p>EasyFlash是一款开源的轻量级嵌入式Flash存储器库，非常适合智能家居、可穿戴、工控、医疗、物联网等需要<strong>断电存储功能</strong>的产品，资源占用极低，并且支持各种 MCU 片上存储器。</p>
+<p>目前 EasyFlash 支持以下功能：</p>
+<ul>
+<li>ENV：快速保存产品参数，支持 写平衡（磨损平衡） 及掉电保护功能；</li>
+<li>IAP：在线升级；</li>
+<li>LOG：无需文件系统，日志可直接存储在Flash上；</li>
+</ul>
+<blockquote>
+<p>项目地址：<a href="https://github.com/armink/EasyFlash" target="_blank" rel="noopener">https://github.com/armink/EasyFlash</a></p>
+</blockquote>
+<h1 id="2-移植EasyFlash"><a href="#2-移植EasyFlash" class="headerlink" title="2. 移植EasyFlash"></a>2. 移植EasyFlash</h1><h2 id="2-1-移植思路"><a href="#2-1-移植思路" class="headerlink" title="2.1. 移植思路"></a>2.1. 移植思路</h2><p>在移植过程中主要参考两个资料：项目的readme文档和demo工程。</p>
+<p>对于这些开源项目，其实移植起来也就两步：</p>
+<ul>
+<li>① 添加源码到裸机工程中；</li>
+<li>② 实现需要的接口即可（擦、写、读、打印）；</li>
+</ul>
+<h2 id="2-2-准备裸机工程"><a href="#2-2-准备裸机工程" class="headerlink" title="2.2. 准备裸机工程"></a>2.2. 准备裸机工程</h2><p>本文中我使用的是小熊派IoT开发套件，主控芯片为STM32L431RCT6：<br><img src="https://imgconvert.csdnimg.cn/aHR0cDovL21jdWxvdmVyNjY2LmNuL2Jsb2cvMjAxOTA5MTkvekh4NXhNWVVtU1cxLnBuZw?x-oss-process=image/format,png#pic_center" alt=""><br>板载Flash型号为<code>W25Q64JV</code>，大小64Mbit，与STM32的QSPI接口相连：<br><img src="https://img-blog.csdnimg.cn/20200416112021185.png" alt=""></p>
+<p>移植之前需要准备一份裸机工程，我使用STM32CubeMX生成，需要初始化以下配置：</p>
+<ul>
+<li>配置一个串口用于打印信息</li>
+<li>printf重定向</li>
+<li>配置SPI Flash通信接口（SPI或QSPI）</li>
+<li>移植SFUD开源库（方便操作Flash）</li>
+</ul>
+<p>SFUD移植过程请参考上一期文章：</p>
+<ul>
+<li><a href="https://blog.csdn.net/Mculover666/article/details/105516371" target="_blank" rel="noopener">SFUD | 一款串行 Flash 通用驱动库 </a></li>
+</ul>
+<h1 id="2-3-添加EasyFlash到工程中"><a href="#2-3-添加EasyFlash到工程中" class="headerlink" title="2.3. 添加EasyFlash到工程中"></a>2.3. 添加EasyFlash到工程中</h1><p><img src="https://img-blog.csdnimg.cn/20200420180805827.png" alt=""><br>② 在keil中添加 SFUD 组件的源码文件：</p>
+<ul>
+<li><code>src\easyflash.c</code>：（必选）包含EasyFlash初始化方法；</li>
+<li><code>src\ef_utils.c</code>：（必选）EasyFlash常用小工具；</li>
+<li><code>port\ef_port.c</code>：（必选）EasyFlash移植接口；</li>
+<li><code>src\ef_env.c</code>：Env（常规模式）相关操作接口及实现源码；</li>
+</ul>
+<p><img src="https://img-blog.csdnimg.cn/20200420181230492.png" alt=""><br>其它两个IAP和LOG相关的源码暂且不用添加。</p>
+<p>③ 将<code>easyflash/inc</code>头文件路径添加到keil中：</p>
+<p><img src="https://img-blog.csdnimg.cn/20200420181328372.png" alt=""></p>
+<h2 id="2-4-实现EasyFlash移植接口"><a href="#2-4-实现EasyFlash移植接口" class="headerlink" title="2.4. 实现EasyFlash移植接口"></a>2.4. 实现EasyFlash移植接口</h2><p>EasyFlash的移植接口都已经写好了，在<code>ef_port.c</code>文件中，只需要在函数体中添加代码即可。</p>
+<p>① 默认环境变量集合</p>
+<p>产品上需要的默认环境变量集中定义在这里，当 flash 第一次初始化时会将默认的环境变量写入，采用 <code>void *</code> 类型，所以支持任意类型：</p>
+<pre class=" language-c"><code class="language-c"><span class="token comment" spellcheck="true">/* default environment variables set for user */</span>
+<span class="token keyword">static</span> <span class="token keyword">const</span> ef_env default_env_set<span class="token punctuation">[</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token punctuation">{</span>
+    <span class="token punctuation">{</span><span class="token string">"wifi_ssid"</span><span class="token punctuation">,</span><span class="token string">"FAST_88A6"</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">}</span><span class="token punctuation">,</span>    <span class="token comment" spellcheck="true">//字符串大小设置为0，会自动检测</span>
+    <span class="token punctuation">{</span><span class="token string">"wifi_passwd"</span><span class="token punctuation">,</span><span class="token string">"12345678"</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">}</span><span class="token punctuation">,</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span></code></pre>
+<p>② EasyFlash初始化接口</p>
+<p>在该接口中会传递默认环境变量，初始化EasyFlash移植所需的资源（比如SFUD库的初始化）：</p>
+<pre class=" language-c"><code class="language-c">EfErrCode <span class="token function">ef_port_init</span><span class="token punctuation">(</span>ef_env <span class="token keyword">const</span> <span class="token operator">*</span><span class="token operator">*</span>default_env<span class="token punctuation">,</span> size_t <span class="token operator">*</span>default_env_size<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    EfErrCode result <span class="token operator">=</span> EF_NO_ERR<span class="token punctuation">;</span>
+
+    <span class="token operator">*</span>default_env <span class="token operator">=</span> default_env_set<span class="token punctuation">;</span>
+    <span class="token operator">*</span>default_env_size <span class="token operator">=</span> <span class="token keyword">sizeof</span><span class="token punctuation">(</span>default_env_set<span class="token punctuation">)</span> <span class="token operator">/</span> <span class="token keyword">sizeof</span><span class="token punctuation">(</span>default_env_set<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    <span class="token comment" spellcheck="true">//SFUD库初始化</span>
+    <span class="token function">sfud_init</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    <span class="token keyword">return</span> result<span class="token punctuation">;</span>
+<span class="token punctuation">}</span></code></pre>
+<p>③ 读取Flash接口</p>
+<p>使用SFUD开源库提供的API实现该接口：</p>
+<pre class=" language-c"><code class="language-c">EfErrCode <span class="token function">ef_port_read</span><span class="token punctuation">(</span>uint32_t addr<span class="token punctuation">,</span> uint32_t <span class="token operator">*</span>buf<span class="token punctuation">,</span> size_t size<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    EfErrCode result <span class="token operator">=</span> EF_NO_ERR<span class="token punctuation">;</span>
+
+    <span class="token comment" spellcheck="true">//获取SFUD Flash设备对象</span>
+    <span class="token keyword">const</span> sfud_flash <span class="token operator">*</span>flash <span class="token operator">=</span> <span class="token function">sfud_get_device_table</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">+</span> SFUD_W25Q64_DEVICE_INDEX<span class="token punctuation">;</span>
+
+    <span class="token comment" spellcheck="true">//使用SFUD开源库提供的API实现Flash读取</span>
+    <span class="token function">sfud_read</span><span class="token punctuation">(</span>flash<span class="token punctuation">,</span> addr<span class="token punctuation">,</span> size<span class="token punctuation">,</span> <span class="token punctuation">(</span>uint8_t <span class="token operator">*</span><span class="token punctuation">)</span>buf<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    <span class="token keyword">return</span> result<span class="token punctuation">;</span>
+<span class="token punctuation">}</span></code></pre>
+<p>④ 擦除Flash接口</p>
+<p>使用SFUD开源库提供的API实现该接口：</p>
+<pre class=" language-c"><code class="language-c">EfErrCode <span class="token function">ef_port_erase</span><span class="token punctuation">(</span>uint32_t addr<span class="token punctuation">,</span> size_t size<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    EfErrCode result <span class="token operator">=</span> EF_NO_ERR<span class="token punctuation">;</span>
+    sfud_err sfud_result <span class="token operator">=</span> SFUD_SUCCESS<span class="token punctuation">;</span>
+
+    <span class="token comment" spellcheck="true">//获取SFUD Flash设备对象</span>
+    <span class="token keyword">const</span> sfud_flash <span class="token operator">*</span>flash <span class="token operator">=</span> <span class="token function">sfud_get_device_table</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">+</span> SFUD_W25Q64_DEVICE_INDEX<span class="token punctuation">;</span>
+
+    <span class="token comment" spellcheck="true">/* make sure the start address is a multiple of FLASH_ERASE_MIN_SIZE */</span>
+    <span class="token function">EF_ASSERT</span><span class="token punctuation">(</span>addr <span class="token operator">%</span> EF_ERASE_MIN_SIZE <span class="token operator">==</span> <span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    <span class="token comment" spellcheck="true">//使用SFUD提供的API实现Flash擦除</span>
+    sfud_result <span class="token operator">=</span> <span class="token function">sfud_erase</span><span class="token punctuation">(</span>flash<span class="token punctuation">,</span> addr<span class="token punctuation">,</span> size<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    <span class="token keyword">if</span><span class="token punctuation">(</span>sfud_result <span class="token operator">!=</span> SFUD_SUCCESS<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        result <span class="token operator">=</span> EF_ERASE_ERR<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token keyword">return</span> result<span class="token punctuation">;</span>
+<span class="token punctuation">}</span></code></pre>
+<p>⑤ 写入Flash接口</p>
+<p>使用SFUD开源库提供的API实现该接口：</p>
+<pre class=" language-c"><code class="language-c">EfErrCode <span class="token function">ef_port_write</span><span class="token punctuation">(</span>uint32_t addr<span class="token punctuation">,</span> <span class="token keyword">const</span> uint32_t <span class="token operator">*</span>buf<span class="token punctuation">,</span> size_t size<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    EfErrCode result <span class="token operator">=</span> EF_NO_ERR<span class="token punctuation">;</span>
+    sfud_err sfud_result <span class="token operator">=</span> SFUD_SUCCESS<span class="token punctuation">;</span>
+
+    <span class="token comment" spellcheck="true">//获取SFUD Flash设备对象</span>
+    <span class="token keyword">const</span> sfud_flash <span class="token operator">*</span>flash <span class="token operator">=</span> <span class="token function">sfud_get_device_table</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">+</span> SFUD_W25Q64_DEVICE_INDEX<span class="token punctuation">;</span>
+
+    <span class="token comment" spellcheck="true">//使用SFUD开源库提供的API实现</span>
+    sfud_result <span class="token operator">=</span> <span class="token function">sfud_write</span><span class="token punctuation">(</span>flash<span class="token punctuation">,</span> addr<span class="token punctuation">,</span> size<span class="token punctuation">,</span> <span class="token punctuation">(</span><span class="token keyword">const</span> uint8_t <span class="token operator">*</span><span class="token punctuation">)</span>buf<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    <span class="token keyword">if</span><span class="token punctuation">(</span>sfud_result <span class="token operator">!=</span> SFUD_SUCCESS<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        result <span class="token operator">=</span> EF_WRITE_ERR<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token keyword">return</span> result<span class="token punctuation">;</span>
+<span class="token punctuation">}</span></code></pre>
+<p>⑥ 对环境变量缓冲区加锁/解锁</p>
+<p>裸机时可以使用关闭/打开全局中断来上锁/解锁：</p>
+<pre class=" language-c"><code class="language-c"><span class="token comment" spellcheck="true">/**
+ * lock the ENV ram cache
+ */</span>
+<span class="token keyword">void</span> <span class="token function">ef_port_env_lock</span><span class="token punctuation">(</span><span class="token keyword">void</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+
+    <span class="token comment" spellcheck="true">//关闭全局中断</span>
+   <span class="token function">__disable_irq</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token comment" spellcheck="true">/**
+ * unlock the ENV ram cache
+ */</span>
+<span class="token keyword">void</span> <span class="token function">ef_port_env_unlock</span><span class="token punctuation">(</span><span class="token keyword">void</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+
+    <span class="token comment" spellcheck="true">//打开全局中断</span>
+    <span class="token function">__enable_irq</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token punctuation">}</span></code></pre>
+<p>⑦ EasyFlash打印数据和日志接口</p>
+<p>在该文件最顶部开辟一块打印数据缓冲区：</p>
+<pre class=" language-c"><code class="language-c"><span class="token comment" spellcheck="true">//easyflash打印数据缓冲区</span>
+<span class="token keyword">static</span> <span class="token keyword">char</span> log_buf<span class="token punctuation">[</span><span class="token number">128</span><span class="token punctuation">]</span><span class="token punctuation">;</span></code></pre>
+<p>然后实现输出无固定格式的打印信息接口：</p>
+<pre class=" language-c"><code class="language-c"><span class="token keyword">void</span> <span class="token function">ef_print</span><span class="token punctuation">(</span><span class="token keyword">const</span> <span class="token keyword">char</span> <span class="token operator">*</span>format<span class="token punctuation">,</span> <span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    va_list args<span class="token punctuation">;</span>
+
+    <span class="token comment" spellcheck="true">/* args point to the first variable parameter */</span>
+    <span class="token function">va_start</span><span class="token punctuation">(</span>args<span class="token punctuation">,</span> format<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    <span class="token comment" spellcheck="true">/* 实现数据输出 */</span>
+    <span class="token function">vsprintf</span><span class="token punctuation">(</span>log_buf<span class="token punctuation">,</span> format<span class="token punctuation">,</span> args<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"%s"</span><span class="token punctuation">,</span> log_buf<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    <span class="token function">va_end</span><span class="token punctuation">(</span>args<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span></code></pre>
+<p>然后使用该函数去实现<strong>调试信息日志打印接口</strong>：</p>
+<pre class=" language-c"><code class="language-c"><span class="token keyword">void</span> <span class="token function">ef_log_debug</span><span class="token punctuation">(</span><span class="token keyword">const</span> <span class="token keyword">char</span> <span class="token operator">*</span>file<span class="token punctuation">,</span> <span class="token keyword">const</span> <span class="token keyword">long</span> line<span class="token punctuation">,</span> <span class="token keyword">const</span> <span class="token keyword">char</span> <span class="token operator">*</span>format<span class="token punctuation">,</span> <span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+
+<span class="token macro property">#<span class="token directive keyword">ifdef</span> PRINT_DEBUG</span>
+
+    va_list args<span class="token punctuation">;</span>
+
+    <span class="token comment" spellcheck="true">/* args point to the first variable parameter */</span>
+    <span class="token function">va_start</span><span class="token punctuation">(</span>args<span class="token punctuation">,</span> format<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    <span class="token comment" spellcheck="true">/* You can add your code under here. */</span>
+      <span class="token function">ef_print</span><span class="token punctuation">(</span><span class="token string">"[Flash](%s:%ld) "</span><span class="token punctuation">,</span> file<span class="token punctuation">,</span> line<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token comment" spellcheck="true">/* must use vprintf to print */</span>
+    <span class="token function">vsprintf</span><span class="token punctuation">(</span>log_buf<span class="token punctuation">,</span> format<span class="token punctuation">,</span> args<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token function">ef_print</span><span class="token punctuation">(</span><span class="token string">"%s"</span><span class="token punctuation">,</span> log_buf<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"\r"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    <span class="token function">va_end</span><span class="token punctuation">(</span>args<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token macro property">#<span class="token directive keyword">endif</span></span>
+
+<span class="token punctuation">}</span></code></pre>
+<p>最后实现普通日志信息打印接口：</p>
+<pre class=" language-c"><code class="language-c"><span class="token keyword">void</span> <span class="token function">ef_log_info</span><span class="token punctuation">(</span><span class="token keyword">const</span> <span class="token keyword">char</span> <span class="token operator">*</span>format<span class="token punctuation">,</span> <span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    va_list args<span class="token punctuation">;</span>
+
+    <span class="token comment" spellcheck="true">/* args point to the first variable parameter */</span>
+    <span class="token function">va_start</span><span class="token punctuation">(</span>args<span class="token punctuation">,</span> format<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    <span class="token comment" spellcheck="true">/* You can add your code under here. */</span>
+    <span class="token function">ef_print</span><span class="token punctuation">(</span><span class="token string">"[Flash]"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token comment" spellcheck="true">/* must use vprintf to print */</span>
+    <span class="token function">vsprintf</span><span class="token punctuation">(</span>log_buf<span class="token punctuation">,</span> format<span class="token punctuation">,</span> args<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token function">ef_print</span><span class="token punctuation">(</span><span class="token string">"%s"</span><span class="token punctuation">,</span> log_buf<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"\r"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    <span class="token function">va_end</span><span class="token punctuation">(</span>args<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span></code></pre>
+<h2 id="2-5-配置EasyFlash"><a href="#2-5-配置EasyFlash" class="headerlink" title="2.5. 配置EasyFlash"></a>2.5. 配置EasyFlash</h2><p>EasyFlash的核心功能配置文件在<code>ef_cfg.h</code>，修改说明如下。</p>
+<p>① 环境变量功能相关<br><img src="https://img-blog.csdnimg.cn/20200421121813716.png" alt=""></p>
+<p>② Flash擦除粒度和写入粒度<br><img src="https://img-blog.csdnimg.cn/20200421122026329.png" alt=""><br>③ 备份区相关<br><img src="https://img-blog.csdnimg.cn/20200421122409326.png" alt=""><br>④ 调试日志是否开启<br><img src="https://img-blog.csdnimg.cn/2020042112250197.png" alt=""><br>至此，EasyFlash移植、配置完成，接下来就可以愉快的使用了！</p>
+<h1 id="3-使用EasyFlash"><a href="#3-使用EasyFlash" class="headerlink" title="3. 使用EasyFlash"></a>3. 使用EasyFlash</h1><p>使用时包含头文件：</p>
+<pre class=" language-c"><code class="language-c"><span class="token macro property">#<span class="token directive keyword">include</span> <span class="token string">&lt;easyflash.h></span></span></code></pre>
+<h2 id="3-1-初始化EasyFlash"><a href="#3-1-初始化EasyFlash" class="headerlink" title="3.1. 初始化EasyFlash"></a>3.1. 初始化EasyFlash</h2><pre class=" language-c"><code class="language-c">EfErrCode <span class="token function">easyflash_init</span><span class="token punctuation">(</span><span class="token keyword">void</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
+<p>该 API 会初始化的EasyFlash的各个组件，初始化后才可以使用别的API，第一次初始化的时候，会自动调用 ef_env_set_default 将定义的默认环境变量保存到Flash。</p>
+<p>在main函数中初始化EasyFlash：</p>
+<pre class=" language-c"><code class="language-c"><span class="token comment" spellcheck="true">/* USER CODE BEGIN 2 */</span>
+<span class="token comment" spellcheck="true">//初始化EasyFlash</span>
+ret <span class="token operator">=</span> <span class="token function">easyflash_init</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">if</span><span class="token punctuation">(</span>ret <span class="token operator">!=</span> EF_NO_ERR<span class="token punctuation">)</span>
+<span class="token punctuation">{</span>
+    <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"EasyFlash init fail, EfErrCode = %d.r\n"</span><span class="token punctuation">,</span> ret<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token comment" spellcheck="true">/* USER CODE END 2 */</span></code></pre>
+<h2 id="3-2-环境变量操作API"><a href="#3-2-环境变量操作API" class="headerlink" title="3.2. 环境变量操作API"></a>3.2. 环境变量操作API</h2><p>在 V4.0 以后，环境变量在 EasyFlash 底层都是按照二进制数据格式进行存储，即 blob 格式 ，这样上层支持传入任意类型。</p>
+<p>① 获取 blob 类型环境变量</p>
+<pre class=" language-c"><code class="language-c">size_t <span class="token function">ef_get_env_blob</span><span class="token punctuation">(</span><span class="token keyword">const</span> <span class="token keyword">char</span> <span class="token operator">*</span>key<span class="token punctuation">,</span> <span class="token keyword">void</span> <span class="token operator">*</span>value_buf<span class="token punctuation">,</span> size_t buf_len<span class="token punctuation">,</span> size_t <span class="token operator">*</span>save_value_len<span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
+<p>其中参数的意义如下：</p>
+<ul>
+<li>key：环境变量名称</li>
+<li>value_buf：存放环境变量的缓冲区</li>
+<li>buf_len：该缓冲区的大小</li>
+<li>save_value_len：返回该环境变量实际存储在 flash 中的大小</li>
+<li>返回值：成功存放至缓冲区中的数据长度</li>
+</ul>
+<p>② 设置 blob 类型环境变量</p>
+<p>使用该API可以对环境变量完成如下操作：</p>
+<ul>
+<li>增加 ：当环境变量表中不存在该名称的环境变量时，则会执行新增操作；</li>
+<li>修改 ：入参中的环境变量名称在当前环境变量表中存在，则把该环境变量值修改为入参中的值；</li>
+<li>删除：当入参中的value为NULL时，则会删除入参名对应的环境变量。</li>
+</ul>
+<pre class=" language-c"><code class="language-c">EfErrCode <span class="token function">ef_set_env_blob</span><span class="token punctuation">(</span><span class="token keyword">const</span> <span class="token keyword">char</span> <span class="token operator">*</span>key<span class="token punctuation">,</span> <span class="token keyword">const</span> <span class="token keyword">void</span> <span class="token operator">*</span>value_buf<span class="token punctuation">,</span> size_t buf_len<span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
+<p>其中参数的意义如下：</p>
+<ul>
+<li>key：环境变量名称</li>
+<li>value_buf：环境变量值缓冲区</li>
+<li>buf_len：缓冲区长度，即值的长度</li>
+</ul>
+<h2 id="3-3-测试读取默认环境变量"><a href="#3-3-测试读取默认环境变量" class="headerlink" title="3.3. 测试读取默认环境变量"></a>3.3. 测试读取默认环境变量</h2><p>在main.c中编写一个EasyFlash测试函数：</p>
+<pre class=" language-c"><code class="language-c"><span class="token keyword">void</span> <span class="token function">test_env</span><span class="token punctuation">(</span><span class="token keyword">void</span><span class="token punctuation">)</span>
+<span class="token punctuation">{</span>
+    <span class="token keyword">char</span> wifi_ssid<span class="token punctuation">[</span><span class="token number">20</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token punctuation">{</span><span class="token number">0</span><span class="token punctuation">}</span><span class="token punctuation">;</span>
+    <span class="token keyword">char</span> wifi_passwd<span class="token punctuation">[</span><span class="token number">20</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token punctuation">{</span><span class="token number">0</span><span class="token punctuation">}</span><span class="token punctuation">;</span>
+    size_t len <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
+
+    <span class="token comment" spellcheck="true">/* 读取默认环境变量值 */</span>
+    <span class="token comment" spellcheck="true">//环境变量长度未知，先获取 Flash 上存储的实际长度 */</span>
+    <span class="token function">ef_get_env_blob</span><span class="token punctuation">(</span><span class="token string">"wifi_ssid"</span><span class="token punctuation">,</span> <span class="token constant">NULL</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">,</span> <span class="token operator">&amp;</span>len<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token comment" spellcheck="true">//获取环境变量</span>
+    <span class="token function">ef_get_env_blob</span><span class="token punctuation">(</span><span class="token string">"wifi_ssid"</span><span class="token punctuation">,</span> wifi_ssid<span class="token punctuation">,</span> len<span class="token punctuation">,</span> <span class="token constant">NULL</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token comment" spellcheck="true">//打印获取的环境变量值</span>
+    <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"wifi_ssid env is:%s\r\n"</span><span class="token punctuation">,</span> wifi_ssid<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    <span class="token comment" spellcheck="true">//环境变量长度未知，先获取 Flash 上存储的实际长度 */</span>
+    <span class="token function">ef_get_env_blob</span><span class="token punctuation">(</span><span class="token string">"wifi_passwd"</span><span class="token punctuation">,</span> <span class="token constant">NULL</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">,</span> <span class="token operator">&amp;</span>len<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token comment" spellcheck="true">//获取环境变量</span>
+    <span class="token function">ef_get_env_blob</span><span class="token punctuation">(</span><span class="token string">"wifi_passwd"</span><span class="token punctuation">,</span> wifi_passwd<span class="token punctuation">,</span> len<span class="token punctuation">,</span> <span class="token constant">NULL</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token comment" spellcheck="true">//打印获取的环境变量值</span>
+    <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"wifi_passwd env is:%s\r\n"</span><span class="token punctuation">,</span> wifi_passwd<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    <span class="token comment" spellcheck="true">/* 将环境变量值改变 */</span>
+    <span class="token function">ef_set_env_blob</span><span class="token punctuation">(</span><span class="token string">"wifi_ssid"</span><span class="token punctuation">,</span> <span class="token string">"SSID_TEST"</span><span class="token punctuation">,</span> <span class="token number">9</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token function">ef_set_env_blob</span><span class="token punctuation">(</span><span class="token string">"wifi_passwd"</span><span class="token punctuation">,</span> <span class="token string">"66666666"</span><span class="token punctuation">,</span> <span class="token number">8</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token punctuation">}</span></code></pre>
+<p>在main函数的初始化代码之后<strong>调用</strong>该函数，编译下载之后，在串口终端中可以看到读取结果：<br><img src="https://img-blog.csdnimg.cn/20200421145455429.png" alt=""><br>此时环境变量已经被修改，直接复位开发板，可以看到读取出的新值：<br><img src="https://img-blog.csdnimg.cn/20200421145605217.png" alt=""></p>
+<h2 id="3-4-Easyflash和letter-shell的结合"><a href="#3-4-Easyflash和letter-shell的结合" class="headerlink" title="3.4. Easyflash和letter-shell的结合"></a>3.4. Easyflash和letter-shell的结合</h2><p>EasyFlash在测试阶段需要不断的设置环境变量、读取环境变量、开发板重新上电，这个特点刚好可以应用letter-shell，直接将两个常用函数导出为命令，在串口命令行测试。</p>
+<p>letter-shell的移植过程请参考第2期：</p>
+<ul>
+<li><a href="https://blog.csdn.net/Mculover666/article/details/105141286" target="_blank" rel="noopener">letter-shell | 一个功能强大的嵌入式shell</a></li>
+</ul>
+<p>移植之后将读取环境变量的API封装，导出到命令列表中：</p>
+<pre class=" language-c"><code class="language-c"><span class="token comment" spellcheck="true">/* USER CODE BEGIN 4 */</span>
+<span class="token keyword">int</span> <span class="token function">getenv</span><span class="token punctuation">(</span><span class="token keyword">const</span> <span class="token keyword">char</span> <span class="token operator">*</span>key<span class="token punctuation">)</span>
+<span class="token punctuation">{</span>
+    size_t len <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
+    <span class="token keyword">char</span> buf<span class="token punctuation">[</span><span class="token number">20</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token punctuation">{</span><span class="token number">0</span><span class="token punctuation">}</span><span class="token punctuation">;</span>
+
+    <span class="token comment" spellcheck="true">//获取长度</span>
+    <span class="token function">ef_get_env_blob</span><span class="token punctuation">(</span>key<span class="token punctuation">,</span> <span class="token constant">NULL</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">,</span> <span class="token operator">&amp;</span>len<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    <span class="token keyword">if</span><span class="token punctuation">(</span>len <span class="token operator">==</span> <span class="token number">0</span><span class="token punctuation">)</span>
+    <span class="token punctuation">{</span>
+        <span class="token comment" spellcheck="true">//环境变量不存在</span>
+        <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"evn %s is not exist\r\n"</span><span class="token punctuation">,</span> key<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+        <span class="token keyword">return</span> <span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    <span class="token keyword">else</span> <span class="token keyword">if</span><span class="token punctuation">(</span>len <span class="token operator">&lt;</span> <span class="token number">20</span><span class="token punctuation">)</span>
+    <span class="token punctuation">{</span>
+        <span class="token comment" spellcheck="true">//环境变量值超长</span>
+        <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"buf size is not enough, len is %d\r\n"</span><span class="token punctuation">,</span> len<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+        <span class="token keyword">return</span> <span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">;</span>
+
+    <span class="token punctuation">}</span>
+    <span class="token keyword">else</span>
+    <span class="token punctuation">{</span>
+        <span class="token comment" spellcheck="true">//获取环境变量值</span>
+        <span class="token function">ef_get_env_blob</span><span class="token punctuation">(</span>key<span class="token punctuation">,</span> buf<span class="token punctuation">,</span> len<span class="token punctuation">,</span> <span class="token constant">NULL</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"read env %s, value is:%s\r\n"</span><span class="token punctuation">,</span> key<span class="token punctuation">,</span> buf<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+        <span class="token keyword">return</span> <span class="token number">0</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+
+<span class="token function">SHELL_EXPORT_CMD</span><span class="token punctuation">(</span><span class="token function">SHELL_CMD_PERMISSION</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">)</span><span class="token operator">|</span><span class="token function">SHELL_CMD_TYPE</span><span class="token punctuation">(</span>SHELL_TYPE_CMD_FUNC<span class="token punctuation">)</span><span class="token punctuation">,</span> getenv<span class="token punctuation">,</span> getenv<span class="token punctuation">,</span> getenv<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token comment" spellcheck="true">/* USER CODE END 4 */</span></code></pre>
+<p>编译下载之后，在串口终端中查看串口输出：<br><img src="https://img-blog.csdnimg.cn/20200421151933889.png" alt=""></p>
+<p>然后进行读取环境变量测试：<br><img src="https://img-blog.csdnimg.cn/20200421152245850.png" alt=""><br>测试成功，同理，修改环境变量的API也可以进行封装，导出到命令列表中进行测试。</p>
+<h1 id="4-设计思想解读"><a href="#4-设计思想解读" class="headerlink" title="4. 设计思想解读"></a>4. 设计思想解读</h1><p>对于EasyFlash的全新版本设计，作者armink在仓库中写了一份文档，解铃还须系铃人，笔者的技术水平有限，直接放上作者的文档链接，欢迎感兴趣的读者阅读。</p>
+<ul>
+<li><a href="https://mculover666.blog.csdn.net/article/details/105715982" target="_blank" rel="noopener">EasyFlash V4.0 ENV 功能设计与实现</a></li>
+</ul>
+<h1 id="5-项目工程源码获取和问题交流"><a href="#5-项目工程源码获取和问题交流" class="headerlink" title="5. 项目工程源码获取和问题交流"></a>5. 项目工程源码获取和问题交流</h1><p>目前我将EasyFlash源码、我移植到小熊派STM32L431RCT6开发板的工程源码上传到了QQ群里（包含好几份HAL库，QQ相对速度快点），<strong>可以在QQ群里下载，有问题也可以在群里交流，当然也欢迎大家分享出来自己移植的工程到QQ群里</strong>：<br><img src="https://img-blog.csdnimg.cn/20200418104909667.png" alt=""><br>放上QQ群二维码：<br><img src="https://img-blog.csdnimg.cn/20200321144543508.png" alt=""></p>
+<p><font color="red"><strong>接收更多精彩文章及资源推送，欢迎订阅我的微信公众号：『mculover666』。</strong></font><br><img src="https://img-blog.csdnimg.cn/20200202092055136.png" alt=""></p>
+
+            </div>
+            <hr/>
+
+            
+
+    <div class="reprint" id="reprint-statement">
+        
+            <div class="reprint__author">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-user">
+                        文章作者:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    <a href="http://www.mculover666.cn" rel="external nofollow noreferrer">Mculover666</a>
+                </span>
+            </div>
+            <div class="reprint__type">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-link">
+                        文章链接:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    <a href="http://www.mculover666.cn/posts/514838439/">http://www.mculover666.cn/posts/514838439/</a>
+                </span>
+            </div>
+            <div class="reprint__notice">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-copyright">
+                        版权声明:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    本博客所有文章除特別声明外，均采用
+                    <a href="https://creativecommons.org/licenses/by/4.0/deed.zh" rel="external nofollow noreferrer" target="_blank">CC BY 4.0</a>
+                    许可协议。转载请注明来源
+                    <a href="http://www.mculover666.cn" target="_blank">Mculover666</a>
+                    !
+                </span>
+            </div>
+        
+    </div>
+
+    <script async defer>
+      document.addEventListener("copy", function (e) {
+        let toastHTML = '<span>复制成功，请遵循本文的转载规则</span><button class="btn-flat toast-action" onclick="navToReprintStatement()" style="font-size: smaller">查看</a>';
+        M.toast({html: toastHTML})
+      });
+
+      function navToReprintStatement() {
+        $("html, body").animate({scrollTop: $("#reprint-statement").offset().top - 80}, 800);
+      }
+    </script>
+
+
+
+            <div class="tag_share" style="display: block;">
+                <div class="post-meta__tag-list" style="display: inline-block;">
+                    
+                        <div class="article-tag">
+                            
+                                <a href="/tags/%E5%B5%8C%E5%85%A5%E5%BC%8F%E5%BC%80%E6%BA%90%E9%A1%B9%E7%9B%AE%E7%B2%BE%E9%80%89%E4%B8%93%E6%A0%8F/">
+                                    <span class="chip bg-color">嵌入式开源项目精选专栏</span>
+                                </a>
+                            
+                        </div>
+                    
+                </div>
+                <div class="post_share" style="zoom: 80%; width: fit-content; display: inline-block; float: right; margin: -0.15rem 0;">
+                    <link rel="stylesheet" type="text/css" href="/libs/share/css/share.min.css">
+
+<div id="article-share">
+    
+    
+    <div class="social-share" data-sites="qq,qzone,wechat,weibo,douban" data-wechat-qrcode-helper="<p>微信扫一扫即可分享！</p>"></div>
+    <script src="/libs/share/js/social-share.min.js"></script>
+    
+
+    
+
+</div>
+
+                </div>
+            </div>
+            
+                <style>
+    #reward {
+        margin: 40px 0;
+        text-align: center;
+    }
+
+    #reward .reward-link {
+        font-size: 1.4rem;
+        line-height: 38px;
+    }
+
+    #reward .btn-floating:hover {
+        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2), 0 5px 15px rgba(0, 0, 0, 0.2);
+    }
+
+    #rewardModal {
+        width: 320px;
+        height: 350px;
+    }
+
+    #rewardModal .reward-title {
+        margin: 15px auto;
+        padding-bottom: 5px;
+    }
+
+    #rewardModal .modal-content {
+        padding: 10px;
+    }
+
+    #rewardModal .close {
+        position: absolute;
+        right: 15px;
+        top: 15px;
+        color: rgba(0, 0, 0, 0.5);
+        font-size: 1.3rem;
+        line-height: 20px;
+        cursor: pointer;
+    }
+
+    #rewardModal .close:hover {
+        color: #ef5350;
+        transform: scale(1.3);
+        -moz-transform:scale(1.3);
+        -webkit-transform:scale(1.3);
+        -o-transform:scale(1.3);
+    }
+
+    #rewardModal .reward-tabs {
+        margin: 0 auto;
+        width: 210px;
+    }
+
+    .reward-tabs .tabs {
+        height: 38px;
+        margin: 10px auto;
+        padding-left: 0;
+    }
+
+    .reward-content ul {
+        padding-left: 0 !important;
+    }
+
+    .reward-tabs .tabs .tab {
+        height: 38px;
+        line-height: 38px;
+    }
+
+    .reward-tabs .tab a {
+        color: #fff;
+        background-color: #ccc;
+    }
+
+    .reward-tabs .tab a:hover {
+        background-color: #ccc;
+        color: #fff;
+    }
+
+    .reward-tabs .wechat-tab .active {
+        color: #fff !important;
+        background-color: #22AB38 !important;
+    }
+
+    .reward-tabs .alipay-tab .active {
+        color: #fff !important;
+        background-color: #019FE8 !important;
+    }
+
+    .reward-tabs .reward-img {
+        width: 210px;
+        height: 210px;
+    }
+</style>
+
+<div id="reward">
+    <a href="#rewardModal" class="reward-link modal-trigger btn-floating btn-medium waves-effect waves-light red">赏</a>
+
+    <!-- Modal Structure -->
+    <div id="rewardModal" class="modal">
+        <div class="modal-content">
+            <a class="close modal-close"><i class="fas fa-times"></i></a>
+            <h4 class="reward-title">你的赏识是我前进的动力</h4>
+            <div class="reward-content">
+                <div class="reward-tabs">
+                    <ul class="tabs row">
+                        <li class="tab col s6 alipay-tab waves-effect waves-light"><a href="#alipay">支付宝</a></li>
+                        <li class="tab col s6 wechat-tab waves-effect waves-light"><a href="#wechat">微 信</a></li>
+                    </ul>
+                    <div id="alipay">
+                        <img src="/medias/reward/alipay.png" class="reward-img" alt="支付宝打赏二维码">
+                    </div>
+                    <div id="wechat">
+                        <img src="/medias/reward/we-chat.png" class="reward-img" alt="微信打赏二维码">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    $(function () {
+        $('.tabs').tabs();
+    });
+</script>
+            
+        </div>
+    </div>
+
+    
+
+    
+
+    
+
+    
+    <div class="livere-card card" data-aos="fade-up">
+    <!-- 来必力City版安装代码 -->
+    <div id="lv-container" class="card-content" data-id="city" data-uid="MTAyMC80Njg0OS8yMzM1MA">
+        <script type="text/javascript">
+            (function (d, s) {
+                let j, e = d.getElementsByTagName(s)[0];
+                if (typeof LivereTower === 'function') {
+                    return;
+                }
+
+                j = d.createElement(s);
+                j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+                j.async = true;
+
+                e.parentNode.insertBefore(j, e);
+            })(document, 'script');
+        </script>
+        <noscript>为正常使用来必力评论功能请激活JavaScript。</noscript>
+    </div>
+    <!-- City版安装代码已完成 -->
+</div>
+    
+
+    
+
+    
+
+<article id="prenext-posts" class="prev-next articles">
+    <div class="row article-row">
+        
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
+            <div class="article-badge left-badge text-color">
+                <i class="far fa-dot-circle"></i>&nbsp;本篇
+            </div>
+            <div class="card">
+                <a href="/posts/514838439/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/5.jpg" class="responsive-img" alt="EasyFlash | 让Flash成为小型 KV 数据库">
+                        
+                        <span class="card-title">EasyFlash | 让Flash成为小型 KV 数据库</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            嵌入式开源项目精选专栏
+                        
+                    </div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2020-04-25
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/OpenSource/" class="post-category">
+                                    OpenSource
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/%E5%B5%8C%E5%85%A5%E5%BC%8F%E5%BC%80%E6%BA%90%E9%A1%B9%E7%9B%AE%E7%B2%BE%E9%80%89%E4%B8%93%E6%A0%8F/">
+                        <span class="chip bg-color">嵌入式开源项目精选专栏</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge right-badge text-color">
+                下一篇&nbsp;<i class="fas fa-chevron-right"></i>
+            </div>
+            <div class="card">
+                <a href="/posts/3066735794/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/16.jpg" class="responsive-img" alt="SFUD | 一款串行 Flash 通用驱动库">
+                        
+                        <span class="card-title">SFUD | 一款串行 Flash 通用驱动库</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            嵌入式开源项目精选专栏
+                        
+                    </div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2020-04-23
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/OpenSource/" class="post-category">
+                                    OpenSource
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/%E5%B5%8C%E5%85%A5%E5%BC%8F%E5%BC%80%E6%BA%90%E9%A1%B9%E7%9B%AE%E7%B2%BE%E9%80%89%E4%B8%93%E6%A0%8F/">
+                        <span class="chip bg-color">嵌入式开源项目精选专栏</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+    </div>
+</article>
+
+</div>
+
+
+
+<!-- 代码块功能依赖 -->
+<script type="text/javascript" src="/libs/codeBlock/codeBlockFuction.js"></script>
+
+<!-- 代码语言 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeLang.js"></script>
+
+
+<!-- 代码块复制 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeCopy.js"></script>
+
+
+<!-- 代码块收缩 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeShrink.js"></script>
+
+
+<!-- 代码块折行 -->
+
+<style type="text/css">
+code[class*="language-"], pre[class*="language-"] { white-space: pre !important; }
+</style>
+
+
+    </div>
+    <div id="toc-aside" class="expanded col l3 hide-on-med-and-down">
+        <div class="toc-widget">
+            <div class="toc-title"><i class="far fa-list-alt"></i>&nbsp;&nbsp;目录</div>
+            <div id="toc-content"></div>
+        </div>
+    </div>
+</div>
+
+<!-- TOC 悬浮按钮. -->
+
+<div id="floating-toc-btn" class="hide-on-med-and-down">
+    <a class="btn-floating btn-large bg-color">
+        <i class="fas fa-list-ul"></i>
+    </a>
+</div>
+
+
+<script src="/libs/tocbot/tocbot.min.js"></script>
+<script>
+    $(function () {
+        tocbot.init({
+            tocSelector: '#toc-content',
+            contentSelector: '#articleContent',
+            headingsOffset: -($(window).height() * 0.4 - 45),
+            collapseDepth: Number('0'),
+            headingSelector: 'h1, h2, h3, h4, h5, h6'
+        });
+
+        // modify the toc link href to support Chinese.
+        let i = 0;
+        let tocHeading = 'toc-heading-';
+        $('#toc-content a').each(function () {
+            $(this).attr('href', '#' + tocHeading + (++i));
+        });
+
+        // modify the heading title id to support Chinese.
+        i = 0;
+        $('#articleContent').children('h1, h2, h3, h4, h5, h6').each(function () {
+            $(this).attr('id', tocHeading + (++i));
+        });
+
+        // Set scroll toc fixed.
+        let tocHeight = parseInt($(window).height() * 0.4 - 64);
+        let $tocWidget = $('.toc-widget');
+        $(window).scroll(function () {
+            let scroll = $(window).scrollTop();
+            /* add post toc fixed. */
+            if (scroll > tocHeight) {
+                $tocWidget.addClass('toc-fixed');
+            } else {
+                $tocWidget.removeClass('toc-fixed');
+            }
+        });
+
+        
+        /* 修复文章卡片 div 的宽度. */
+        let fixPostCardWidth = function (srcId, targetId) {
+            let srcDiv = $('#' + srcId);
+            if (srcDiv.length === 0) {
+                return;
+            }
+
+            let w = srcDiv.width();
+            if (w >= 450) {
+                w = w + 21;
+            } else if (w >= 350 && w < 450) {
+                w = w + 18;
+            } else if (w >= 300 && w < 350) {
+                w = w + 16;
+            } else {
+                w = w + 14;
+            }
+            $('#' + targetId).width(w);
+        };
+
+        // 切换TOC目录展开收缩的相关操作.
+        const expandedClass = 'expanded';
+        let $tocAside = $('#toc-aside');
+        let $mainContent = $('#main-content');
+        $('#floating-toc-btn .btn-floating').click(function () {
+            if ($tocAside.hasClass(expandedClass)) {
+                $tocAside.removeClass(expandedClass).hide();
+                $mainContent.removeClass('l9');
+            } else {
+                $tocAside.addClass(expandedClass).show();
+                $mainContent.addClass('l9');
+            }
+            fixPostCardWidth('artDetail', 'prenext-posts');
+        });
+        
+    });
+</script>
+
+    
+
+</main>
+
+
+
+    <footer class="page-footer bg-color">
+    
+    <div class="container row center-align" style="margin-bottom: 15px !important;">
+        <div class="col s12 m8 l8 copy-right">
+            Copyright&nbsp;&copy;
+            <span id="year">2016</span>
+            <a href="http://www.mculover666.cn" target="_blank">Mculover666</a>
+            |&nbsp;Powered by&nbsp;<a href="https://hexo.io/" target="_blank">Hexo</a>
+            |&nbsp;Theme&nbsp;<a href="https://github.com/blinkfox/hexo-theme-matery" target="_blank">Matery</a>
+            <br>
+            
+            &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
+                class="white-color">60k</span>&nbsp;字
+            
+            
+            
+            
+            
+            
+            <span id="busuanzi_container_site_pv">
+                |&nbsp;<i class="far fa-eye"></i>&nbsp;总访问量:&nbsp;<span id="busuanzi_value_site_pv"
+                    class="white-color"></span>&nbsp;次
+            </span>
+            
+            
+            <span id="busuanzi_container_site_uv">
+                |&nbsp;<i class="fas fa-users"></i>&nbsp;总访问人数:&nbsp;<span id="busuanzi_value_site_uv"
+                    class="white-color"></span>&nbsp;人
+            </span>
+            
+            <br>
+            
+            <span id="sitetime">载入运行时间...</span>
+            <script>
+                function siteTime() {
+                    var seconds = 1000;
+                    var minutes = seconds * 60;
+                    var hours = minutes * 60;
+                    var days = hours * 24;
+                    var years = days * 365;
+                    var today = new Date();
+                    var startYear = "2016";
+                    var startMonth = "08";
+                    var startDate = "28";
+                    var startHour = "0";
+                    var startMinute = "0";
+                    var startSecond = "0";
+                    var todayYear = today.getFullYear();
+                    var todayMonth = today.getMonth() + 1;
+                    var todayDate = today.getDate();
+                    var todayHour = today.getHours();
+                    var todayMinute = today.getMinutes();
+                    var todaySecond = today.getSeconds();
+                    var t1 = Date.UTC(startYear, startMonth, startDate, startHour, startMinute, startSecond);
+                    var t2 = Date.UTC(todayYear, todayMonth, todayDate, todayHour, todayMinute, todaySecond);
+                    var diff = t2 - t1;
+                    var diffYears = Math.floor(diff / years);
+                    var diffDays = Math.floor((diff / days) - diffYears * 365);
+                    var diffHours = Math.floor((diff - (diffYears * 365 + diffDays) * days) / hours);
+                    var diffMinutes = Math.floor((diff - (diffYears * 365 + diffDays) * days - diffHours * hours) /
+                        minutes);
+                    var diffSeconds = Math.floor((diff - (diffYears * 365 + diffDays) * days - diffHours * hours -
+                        diffMinutes * minutes) / seconds);
+                    if (startYear == todayYear) {
+                        document.getElementById("year").innerHTML = todayYear;
+                        document.getElementById("sitetime").innerHTML = "本站已安全运行 " + diffDays + " 天 " + diffHours +
+                            " 小时 " + diffMinutes + " 分钟 " + diffSeconds + " 秒";
+                    } else {
+                        document.getElementById("year").innerHTML = startYear + " - " + todayYear;
+                        document.getElementById("sitetime").innerHTML = "本站已安全运行 " + diffYears + " 年 " + diffDays +
+                            " 天 " + diffHours + " 小时 " + diffMinutes + " 分钟 " + diffSeconds + " 秒";
+                    }
+                }
+                setInterval(siteTime, 1000);
+            </script>
+            
+            <br>
+            
+            <span id="icp"><img src="/medias/icp.png" style="vertical-align: text-bottom;" />
+                <a href="http://www.beian.miit.gov.cn" target="_blank">陇ICP备19002222号</a>
+            </span>
+            
+        </div>
+        <div class="col s12 m4 l4 social-link social-statis">
+    <a href="https://github.com/Mculover666" class="tooltipped" target="_blank" data-tooltip="访问我的GitHub" data-position="top" data-delay="50">
+        <i class="fab fa-github"></i>
+    </a>
+
+
+
+    <a href="mailto:mculover666@foxmail.com" class="tooltipped" target="_blank" data-tooltip="邮件联系我" data-position="top" data-delay="50">
+        <i class="fas fa-envelope-open"></i>
+    </a>
+
+
+
+
+
+
+
+    <a href="tencent://AddContact/?fromId=50&fromSubId=1&subcmd=all&uin=2412828003" class="tooltipped" target="_blank" data-tooltip="QQ联系我: 2412828003" data-position="top" data-delay="50">
+        <i class="fab fa-qq"></i>
+    </a>
+
+
+
+
+
+    <a href="https://www.zhihu.com/people/wang-shi-wei-67-38/activities" class="tooltipped" target="_blank" data-tooltip="关注我的知乎: https://www.zhihu.com/people/wang-shi-wei-67-38/activities" data-position="top" data-delay="50">
+        <i class="fab fa-zhihu1">知</i>
+    </a>
+
+
+
+    <a href="/atom.xml" class="tooltipped" target="_blank" data-tooltip="RSS 订阅" data-position="top" data-delay="50">
+        <i class="fas fa-rss"></i>
+    </a>
+
+</div>
+    </div>
+</footer>
+
+<div class="progress-bar"></div>
+
+
+    <!-- 搜索遮罩框 -->
+<div id="searchModal" class="modal">
+    <div class="modal-content">
+        <div class="search-header">
+            <span class="title"><i class="fas fa-search"></i>&nbsp;&nbsp;搜索</span>
+            <input type="search" id="searchInput" name="s" placeholder="请输入搜索的关键字"
+                   class="search-input">
+        </div>
+        <div id="searchResult"></div>
+    </div>
+</div>
+
+<script src="/js/search.js"></script>
+<script type="text/javascript">
+$(function () {
+    searchFunc("/" + "search.xml", 'searchInput', 'searchResult');
+});
+</script>
+    <!-- 回到顶部按钮 -->
+<div id="backTop" class="top-scroll">
+    <a class="btn-floating btn-large waves-effect waves-light" href="#!">
+        <i class="fas fa-arrow-up"></i>
+    </a>
+</div>
+
+
+    <script src="/libs/materialize/materialize.min.js"></script>
+    <script src="/libs/masonry/masonry.pkgd.min.js"></script>
+    <script src="/libs/aos/aos.js"></script>
+    <script src="/libs/scrollprogress/scrollProgress.min.js"></script>
+    <script src="/libs/lightGallery/js/lightgallery-all.min.js"></script>
+    <script src="/js/matery.js"></script>
+
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+
+
+    <!-- Baidu Analytics -->
+
+<script>
+    var _hmt = _hmt || [];
+    (function () {
+        var hm = document.createElement("script");
+        hm.src = "https://hm.baidu.com/hm.js?6e1efa0988723a1db6356535db2ae6bd";
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(hm, s);
+    })();
+</script>
+
+    <!-- Baidu Push -->
+
+<script>
+    (function () {
+        var bp = document.createElement('script');
+        var curProtocol = window.location.protocol.split(':')[0];
+        if (curProtocol === 'https') {
+            bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+        } else {
+            bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+        }
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(bp, s);
+    })();
+</script>
+
+    
+    <script src="/libs/others/clicklove.js" async="async"></script>
+    
+    
+    <script async src="/libs/others/busuanzi.pure.mini.js"></script>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <script type="text/javascript" src="/libs/background/ribbon-dynamic.js" async="async"></script>
+    
+    
+    
+    <script src="/libs/instantpage/instantpage.js" type="module"></script>
+    
+
+</body>
+
+</html>

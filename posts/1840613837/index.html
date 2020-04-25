@@ -4,12 +4,8 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="STM32CubeMX CRC校验 温湿度传感器SHT30">
-    <meta name="description" content="本篇详细的记录了如何使用STM32CubeMX配置STM32L431RCT6的硬件CRC外设校验数据，并用SHT30温湿度传感器为例检查是否可以正确校验。
-
-
-1. 准备工作硬件准备
-开发板首先需要准备一个开发板，这里我准备的是STM32L">
+    <meta name="keywords" content="嵌入式开源项目">
+    <meta name="description" content="致力于寻找嵌入式领域内的开源项目！">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -17,7 +13,7 @@
     <meta name="format-detection" content="telephone=no">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    <title>STM32CubeMX_16 | 使用硬件CRC校验数据（以SHT30为例） | Mculover666</title>
+    <title>嵌入式开源项目精选专栏 | Mculover666</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
@@ -265,12 +261,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/16.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/10.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">STM32CubeMX_16 | 使用硬件CRC校验数据（以SHT30为例）</h1>
+                    <h1 class="description center-align post-title">嵌入式开源项目精选专栏</h1>
                 </div>
             </div>
         </div>
@@ -387,8 +383,8 @@
                     
                     <div class="article-tag">
                         
-                            <a href="/tags/STM32CubeMX-%E6%B8%A9%E6%B9%BF%E5%BA%A6%E4%BC%A0%E6%84%9F%E5%99%A8-SHT30-CRC%E6%A0%A1%E9%AA%8C/">
-                                <span class="chip bg-color">STM32CubeMX 温湿度传感器 SHT30 CRC校验</span>
+                            <a href="/tags/%E5%B5%8C%E5%85%A5%E5%BC%8F%E5%BC%80%E6%BA%90%E9%A1%B9%E7%9B%AE/">
+                                <span class="chip bg-color">嵌入式开源项目</span>
                             </a>
                         
                     </div>
@@ -399,8 +395,8 @@
                     <div class="post-cate">
                         <i class="fas fa-bookmark fa-fw icon-category"></i>
                         
-                            <a href="/categories/STM32CubeMX/" class="post-category">
-                                STM32CubeMX
+                            <a href="/categories/OpenSource/" class="post-category">
+                                OpenSource
                             </a>
                         
                     </div>
@@ -412,7 +408,7 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2019-08-06
+                    2020-04-01
                 </div>
                 
 
@@ -434,78 +430,23 @@
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <p>本篇详细的记录了如何使用STM32CubeMX配置STM32L431RCT6的硬件CRC外设校验数据，并用SHT30温湿度传感器为例检查是否可以正确校验。</p>
-<a id="more"></a>
-
-<h1 id="1-准备工作"><a href="#1-准备工作" class="headerlink" title="1. 准备工作"></a>1. 准备工作</h1><h2 id="硬件准备"><a href="#硬件准备" class="headerlink" title="硬件准备"></a>硬件准备</h2><ul>
-<li>开发板<br>首先需要准备一个开发板，这里我准备的是STM32L4的开发板（BearPi）：</li>
+                <h1 id="嵌入式开源项目精选专栏"><a href="#嵌入式开源项目精选专栏" class="headerlink" title="嵌入式开源项目精选专栏"></a>嵌入式开源项目精选专栏</h1><p><img src="https://img-blog.csdnimg.cn/20200321151234798.png" alt=""></p>
+<p>本专栏由Mculover666创建，主要内容为寻找嵌入式领域内的优质开源项目。</p>
+<p>一是帮助开发者使用开源项目实现更多的功能；</p>
+<p>二是通过这些开源项目，学习大佬的代码及背后的实现思想，提升自己的代码水平。</p>
+<p>和其它专栏相比，本专栏的优势在于：</p>
+<p><strong>不会单纯的介绍分享项目，还会包含作者亲自实践的过程分享，甚至还会有对它背后的设计思想解读</strong>。</p>
+<p>如果您自己编写或者发现的开源项目不错，欢迎留言或者私信投稿到本专栏，分享获得双倍的快乐！</p>
+<h1 id="接收最新推送"><a href="#接收最新推送" class="headerlink" title="接收最新推送"></a>接收最新推送</h1><p>每个周六会更新一期，如需接收推送，请订阅我的微信公众号：</p>
+<p><img src="http://mculover666.cn/image/20190814/NQqt1eRxrl1K.png?imageslim" alt=""></p>
+<h1 id="汇总"><a href="#汇总" class="headerlink" title="汇总"></a>汇总</h1><p>目前本专栏包含的开源项目有：</p>
+<ul>
+<li><a href="http://www.mculover666.cn/posts/2795548875/">MultiButton | 一个小巧简单易用的事件驱动型按键驱动模块</a></li>
+<li><a href="http://www.mculover666.cn/posts/131757493/">letter-shell | 一个功能强大的嵌入式shell</a></li>
+<li><a href="http://www.mculover666.cn/posts/524269974/">EasyLogger | 一款轻量级且高性能的日志库</a></li>
+<li><a href="http://www.mculover666.cn/posts/3066735794/">SFUD | 一款串行 Flash 通用驱动库 </a></li>
+<li>持续更新中…</li>
 </ul>
-<p><img src="http://mculover666.cn/image/20190806/9uiPTi5odYSj.png?imageslim" alt="mark"></p>
-<h2 id="软件准备"><a href="#软件准备" class="headerlink" title="软件准备"></a>软件准备</h2><ul>
-<li>需要安装好Keil - MDK及芯片对应的包，以便编译和下载生成的代码；</li>
-<li>准备一个串口调试助手，这里我使用的是<code>Serial Port Utility</code>；</li>
-</ul>
-<blockquote>
-<p>Keil MDK和串口助手Serial Port Utility 的安装包都可以<strong>在文末关注公众号获取</strong>，回复关键字获取相应的安装包：</p>
-</blockquote>
-<p><img src="http://mculover666.cn/image/20190814/gubaOwmETp1w.png?imageslim" alt="mark"></p>
-<h1 id="2-生成MDK工程"><a href="#2-生成MDK工程" class="headerlink" title="2.生成MDK工程"></a>2.生成MDK工程</h1><h2 id="选择芯片型号"><a href="#选择芯片型号" class="headerlink" title="选择芯片型号"></a>选择芯片型号</h2><p>打开STM32CubeMX，打开MCU选择器：<br><img src="http://mculover666.cn/image/20190806/gBP6glmUSH80.png?imageslim" alt="mark"></p>
-<p>搜索并选中芯片<code>STM32L431RCT6</code>:<br><img src="http://mculover666.cn/image/20190806/gnyHwdl53uVD.png?imageslim" alt="mark"></p>
-<h2 id="配置时钟源"><a href="#配置时钟源" class="headerlink" title="配置时钟源"></a>配置时钟源</h2><ul>
-<li>如果选择使用外部高速时钟（HSE），则需要在System Core中配置RCC；</li>
-<li>如果使用默认内部时钟（HSI），这一步可以略过；</li>
-</ul>
-<p>这里我都使用外部时钟：<br><img src="http://mculover666.cn/image/20190806/k593lGGb5tlW.png?imageslim" alt="mark"></p>
-<h2 id="配置串口"><a href="#配置串口" class="headerlink" title="配置串口"></a>配置串口</h2><p>小熊派开发板板载ST-Link并且虚拟了一个串口，原理图如下：</p>
-<p><img src="http://mculover666.cn/image/20190814/IwyXONVefPx9.png?imageslim" alt="mark"></p>
-<p>这里我将开关拨到<code>AT-MCU</code>模式，使PC的串口与USART1之间连接。</p>
-<p>接下来开始配置<code>USART1</code>：</p>
-<p><img src="http://mculover666.cn/image/20190814/nLMRMYtmzghl.png?imageslim" alt="mark"></p>
-<h2 id="配置CRC外设"><a href="#配置CRC外设" class="headerlink" title="配置CRC外设"></a>配置CRC外设</h2><p>首先激活CRC：<br><img src="http://mculover666.cn/image/20190811/AdBDzKeEu9tX.png?imageslim" alt="mark"></p>
-<p>然后配置CRC校验的初始值：</p>
-<p>这里我们以SHT30为例，其数据手册中已给出，如图：</p>
-<p><img src="http://mculover666.cn/image/20190809/wtLIFxbSLyon.png?imageslim" alt="mark"></p>
-<p>据此，CRC外设的配置如下：<br><img src="http://mculover666.cn/image/20190811/GHPasXPYsCiX.png?imageslim" alt="mark"></p>
-<h2 id="配置时钟树"><a href="#配置时钟树" class="headerlink" title="配置时钟树"></a>配置时钟树</h2><p>STM32L4的最高主频到80M，所以配置PLL，最后使<code>HCLK = 80Mhz</code>即可：<br><img src="http://mculover666.cn/image/20190806/1TQg7frjRpVr.png?imageslim" alt="mark"></p>
-<h2 id="生成工程设置"><a href="#生成工程设置" class="headerlink" title="生成工程设置"></a>生成工程设置</h2><p><img src="http://mculover666.cn/image/20190811/8pAljFetp84X.png?imageslim" alt="mark"></p>
-<h2 id="代码生成设置"><a href="#代码生成设置" class="headerlink" title="代码生成设置"></a>代码生成设置</h2><p>最后设置生成独立的初始化文件：<br><img src="http://mculover666.cn/image/20190806/T6WvSK6Dfpts.png?imageslim" alt="mark"></p>
-<h2 id="生成代码"><a href="#生成代码" class="headerlink" title="生成代码"></a>生成代码</h2><p>点击<code>GENERATE CODE</code>即可生成MDK-V5工程：<br><img src="http://mculover666.cn/image/20190806/s0jGhLBWW6Cm.png?imageslim" alt="mark"></p>
-<h1 id="3-在MDK中编写、编译、下载用户代码"><a href="#3-在MDK中编写、编译、下载用户代码" class="headerlink" title="3. 在MDK中编写、编译、下载用户代码"></a>3. 在MDK中编写、编译、下载用户代码</h1><h2 id="重定向printf-函数"><a href="#重定向printf-函数" class="headerlink" title="重定向printf( )函数"></a>重定向printf( )函数</h2><p>参考：<a href="https://www.mculover666.cn/2019/07/30/STM32Cube/【STM32Cube-09】重定向printf函数到串口输出的多种方法/">【STM32Cube_09】重定向printf函数到串口输出的多种方法</a>。</p>
-<h2 id="测试CRC校验"><a href="#测试CRC校验" class="headerlink" title="测试CRC校验"></a>测试CRC校验</h2><p>在<code>main.c</code>文件中添加如下代码:</p>
-<pre class=" language-c"><code class="language-c"><span class="token comment" spellcheck="true">/* USER CODE BEGIN Includes */</span>
-<span class="token macro property">#<span class="token directive keyword">include</span> <span class="token string">&lt;stdio.h></span></span>
-<span class="token comment" spellcheck="true">/* USER CODE END Includes */</span></code></pre>
-<p>然后修改<code>main</code>函数：</p>
-<pre class=" language-c"><code class="language-c"><span class="token keyword">int</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token keyword">void</span><span class="token punctuation">)</span>
-<span class="token punctuation">{</span>
-    <span class="token comment" spellcheck="true">/* USER CODE BEGIN 1 */</span>
-    uint8_t dat<span class="token punctuation">[</span><span class="token number">2</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token punctuation">{</span><span class="token number">0xBE</span><span class="token punctuation">,</span> <span class="token number">0xEF</span><span class="token punctuation">}</span><span class="token punctuation">;</span>
-    uint8_t crc <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
-
-    <span class="token comment" spellcheck="true">/* USER CODE END 1 */</span>
-    <span class="token function">HAL_Init</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-
-    <span class="token function">SystemClock_Config</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-
-    <span class="token function">MX_GPIO_Init</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token function">MX_CRC_Init</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token function">MX_USART1_UART_Init</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-
-    <span class="token comment" spellcheck="true">/* USER CODE BEGIN 2 */</span>
-    <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"Test CRC check:\n"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    crc <span class="token operator">=</span> <span class="token function">HAL_CRC_Accumulate</span><span class="token punctuation">(</span><span class="token operator">&amp;</span>hcrc<span class="token punctuation">,</span> <span class="token punctuation">(</span>uint32_t<span class="token operator">*</span><span class="token punctuation">)</span>dat<span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"crc = %#x\n"</span><span class="token punctuation">,</span> crc<span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token comment" spellcheck="true">/* USER CODE END 2 */</span>
-
-    <span class="token keyword">while</span> <span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">)</span>
-    <span class="token punctuation">{</span>
-    <span class="token punctuation">}</span>
-<span class="token punctuation">}</span></code></pre>
-<h2 id="测试结果"><a href="#测试结果" class="headerlink" title="测试结果"></a>测试结果</h2><p>测试结果如下：</p>
-<p><img src="http://mculover666.cn/image/20190811/cmbdUIcWEkcQ.png?imageslim" alt="mark"></p>
-<p>至此，我们已经学会<strong>如何使用硬件CRC校验SHT30的数据</strong>，下一节将讲述如何使用硬件SPI驱动LCD屏幕（ST7789）。</p>
-<p><strong><font color="#FF0000">更多精彩文章及资源，请关注我的微信公众号：『mculover666』。</font></strong></p>
-<p><img src="http://mculover666.cn/image/20190814/NQqt1eRxrl1K.png?imageslim" alt="mark"></p>
 
             </div>
             <hr/>
@@ -531,7 +472,7 @@
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="http://www.mculover666.cn/posts/842429667/">http://www.mculover666.cn/posts/842429667/</a>
+                    <a href="http://www.mculover666.cn/posts/1840613837/">http://www.mculover666.cn/posts/1840613837/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -569,8 +510,8 @@
                     
                         <div class="article-tag">
                             
-                                <a href="/tags/STM32CubeMX-%E6%B8%A9%E6%B9%BF%E5%BA%A6%E4%BC%A0%E6%84%9F%E5%99%A8-SHT30-CRC%E6%A0%A1%E9%AA%8C/">
-                                    <span class="chip bg-color">STM32CubeMX 温湿度传感器 SHT30 CRC校验</span>
+                                <a href="/tags/%E5%B5%8C%E5%85%A5%E5%BC%8F%E5%BC%80%E6%BA%90%E9%A1%B9%E7%9B%AE/">
+                                    <span class="chip bg-color">嵌入式开源项目</span>
                                 </a>
                             
                         </div>
@@ -762,35 +703,31 @@
             <div class="article-badge left-badge text-color">
                 <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
             <div class="card">
-                <a href="/posts/1935373145/">
+                <a href="/posts/2795548875/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/16.jpg" class="responsive-img" alt="如何通俗的理解CRC校验并用C语言实现">
+                        <img src="/medias/featureimages/12.jpg" class="responsive-img" alt="MultiButton | 一个小巧简单易用的事件驱动型按键驱动模块">
                         
-                        <span class="card-title">如何通俗的理解CRC校验并用C语言实现</span>
+                        <span class="card-title">MultiButton | 一个小巧简单易用的事件驱动型按键驱动模块</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            本篇文章通俗的讲解了何谓CRC？如何生成CRC码以及如何使用CRC码校验，最后采用多种思路用C语言实现CRC校验。
-
-
-
-背景最近在研究温湿度传感器SHT30，该传感器使用IIC接口进行通信，在读取数据时，该传感器分别在发送 16bit 的
+                            嵌入式开源项目精选专栏
                         
                     </div>
                     <div class="publish-info">
                         <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2019-08-06
+                            <i class="far fa-clock fa-fw icon-date"></i>2020-04-08
                         </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="/categories/%E7%AE%97%E6%B3%95/" class="post-category">
-                                    算法
+                            <a href="/categories/OpenSource/" class="post-category">
+                                    OpenSource
                                 </a>
                             
                             
@@ -800,8 +737,8 @@
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/CRC%E6%A0%A1%E9%AA%8C%E7%AE%97%E6%B3%95/">
-                        <span class="chip bg-color">CRC校验算法</span>
+                    <a href="/tags/%E5%B5%8C%E5%85%A5%E5%BC%8F%E5%BC%80%E6%BA%90%E9%A1%B9%E7%9B%AE%E7%B2%BE%E9%80%89%E4%B8%93%E6%A0%8F/">
+                        <span class="chip bg-color">嵌入式开源项目精选专栏</span>
                     </a>
                     
                 </div>
@@ -815,35 +752,31 @@
                 下一篇&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/posts/2508748577/">
+                <a href="/posts/1603677970/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/16.jpg" class="responsive-img" alt="STM32CubeMX_15 | 使用硬件I2C读取温湿度传感器数据（SHT30）">
+                        <img src="/medias/featureimages/13.jpg" class="responsive-img" alt="Linux中使用fork创建子进程详解及示例程序">
                         
-                        <span class="card-title">STM32CubeMX_15 | 使用硬件I2C读取温湿度传感器数据（SHT30）</span>
+                        <span class="card-title">Linux中使用fork创建子进程详解及示例程序</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            本篇详细的记录了如何使用STM32CubeMX配置STM32L431RCT6的硬件I2C外设，读取SHT30温湿度传感器的数据并通过串口发送。
-
-
-1. 准备工作硬件准备
-开发板首先需要准备一个开发板，这里我准备的是STM32L4的开发板（
+                            Linux应用开发
                         
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2019-08-05
+                                <i class="far fa-clock fa-fw icon-date"></i>2020-03-13
                             </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="/categories/STM32CubeMX/" class="post-category">
-                                    STM32CubeMX
+                            <a href="/categories/Linux/" class="post-category">
+                                    Linux
                                 </a>
                             
                             
@@ -853,8 +786,8 @@
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/STM32CubeMX-%E6%B8%A9%E6%B9%BF%E5%BA%A6%E4%BC%A0%E6%84%9F%E5%99%A8-SHT30/">
-                        <span class="chip bg-color">STM32CubeMX 温湿度传感器 SHT30</span>
+                    <a href="/tags/Linux%E5%BA%94%E7%94%A8%E5%BC%80%E5%8F%91/">
+                        <span class="chip bg-color">Linux应用开发</span>
                     </a>
                     
                 </div>
