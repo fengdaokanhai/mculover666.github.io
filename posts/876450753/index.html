@@ -4,8 +4,8 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="Linux 文件读写">
-    <meta name="description" content="Linux应用开发">
+    <meta name="keywords" content="MultiTimer">
+    <meta name="description" content="嵌入式开源项目精选专栏">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -13,7 +13,7 @@
     <meta name="format-detection" content="telephone=no">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    <title>Linux中的文件读写详解及示例程序 | Mculover666</title>
+    <title>MultiTimer | 一款可无限扩展的软件定时器 | Mculover666</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
@@ -261,12 +261,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/18.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/2.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">Linux中的文件读写详解及示例程序</h1>
+                    <h1 class="description center-align post-title">MultiTimer | 一款可无限扩展的软件定时器</h1>
                 </div>
             </div>
         </div>
@@ -383,8 +383,8 @@
                     
                     <div class="article-tag">
                         
-                            <a href="/tags/Linux%E5%BA%94%E7%94%A8%E5%BC%80%E5%8F%91/">
-                                <span class="chip bg-color">Linux应用开发</span>
+                            <a href="/tags/%E5%B5%8C%E5%85%A5%E5%BC%8F%E5%BC%80%E6%BA%90%E9%A1%B9%E7%9B%AE%E7%B2%BE%E9%80%89%E4%B8%93%E6%A0%8F/">
+                                <span class="chip bg-color">嵌入式开源项目精选专栏</span>
                             </a>
                         
                     </div>
@@ -395,8 +395,8 @@
                     <div class="post-cate">
                         <i class="fas fa-bookmark fa-fw icon-category"></i>
                         
-                            <a href="/categories/Linux/" class="post-category">
-                                Linux
+                            <a href="/categories/OpenSource/" class="post-category">
+                                OpenSource
                             </a>
                         
                     </div>
@@ -408,7 +408,7 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2020-03-12
+                    2020-05-05
                 </div>
                 
 
@@ -430,195 +430,232 @@
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h1 id="1-Linux中“一切皆文件”"><a href="#1-Linux中“一切皆文件”" class="headerlink" title="1. Linux中“一切皆文件”"></a>1. Linux中“一切皆文件”</h1><p>在Linux系统中，一切皆文件，文件类型根据其表示的意义，分为：</p>
+                <p><img src="https://img-blog.csdnimg.cn/20200321151234798.png" alt=""></p>
+<h1 id="1-MultiTimer"><a href="#1-MultiTimer" class="headerlink" title="1. MultiTimer"></a>1. MultiTimer</h1><p>本期给大家带来的开源项目是 MultiTimer，<strong>一款可无限扩展的软件定时器</strong>，作者0x1abin，目前收获 95 个 star，遵循 MIT 开源许可协议。</p>
+<p>MultiTimer 是一个软件定时器扩展模块，可无限扩展你所需的定时器任务，取代传统的标志位判断方式， 更优雅更便捷地管理程序的时间触发时序。</p>
+<blockquote>
+<p>项目地址：<a href="https://github.com/0x1abin/MultiTimer" target="_blank" rel="noopener">https://github.com/0x1abin/MultiTimer</a></p>
+</blockquote>
+<h1 id="2-移植MultiTimer"><a href="#2-移植MultiTimer" class="headerlink" title="2. 移植MultiTimer"></a>2. 移植MultiTimer</h1><h2 id="2-1-移植思路"><a href="#2-1-移植思路" class="headerlink" title="2.1. 移植思路"></a>2.1. 移植思路</h2><p>开源项目在移植过程中主要参考项目的readme文档，一般只需两步：</p>
 <ul>
-<li>普通文件</li>
-<li>设备文件：代表一个具体的硬件设备</li>
-<li>管道文件、FIFO文件：具有特殊意义的文件，用于进程间通信；</li>
-<li>套接字文件：用于网络通信；</li>
+<li>① 添加源码到裸机工程中；</li>
+<li>② 实现需要的接口；</li>
 </ul>
-<p>所有这些文件都可以用一套API来操作，最基本的四个API是：</p>
+<h2 id="2-2-准备裸机工程"><a href="#2-2-准备裸机工程" class="headerlink" title="2.2. 准备裸机工程"></a>2.2. 准备裸机工程</h2><p>本文中我使用的是小熊派IoT开发套件，主控芯片为STM32L431RCT6：<br><img src="https://imgconvert.csdnimg.cn/aHR0cDovL21jdWxvdmVyNjY2LmNuL2Jsb2cvMjAxOTA5MTkvekh4NXhNWVVtU1cxLnBuZw?x-oss-process=image/format,png#pic_center" alt=""></p>
+<p>移植之前需要准备一份裸机工程，我使用STM32CubeMX生成，需要初始化以下配置：</p>
 <ul>
-<li>打开：open</li>
-<li>读文件：read</li>
-<li>写文件：write</li>
-<li>关闭：close</li>
+<li>配置一个串口用于打印信息</li>
+<li>printf重定向</li>
 </ul>
-<p>在使用这些API操作文件的时候，需要传入文件标识符 fd（file descriptor），文件标识符的本质就是在进程中代码某一个具体文件的整数，在使用 open 函数打开一个文件时被唯一分配，一般情况下，fd的值如果从0开始分配，如果 fd 为负数，则表示文件打开失败或者操作失败。</p>
-<p>需要注意，fd的值在使用open打开文件时被唯一分配，在使用close关闭文件时会被回收。举个例子，比如第一次打开文件时分配的值fd = 0，如果该文件被关闭，下次新打开一个文件时，fd依然为0，但如果之前打开的文件没有被close掉，则下次新打开一个文件时，fd递增为1，一直递增到系统设定的同时打开文件的最大值为止，这个最大值可以使用<code>ulimit -n</code>查看，一般为1024。</p>
-<p>另外，文件描述符的值0、1、2被系统占用，在桌面Linux系统上表示：</p>
-<ul>
-<li>fd = 0：表示标准输入(stdin)，对应系统的键盘</li>
-<li>fd = 1：表示标准输出(stdout)，对应系统的显示器</li>
-<li>fd = 2：表示标准错误输出(stderr)，对应系统的显示器</li>
-</ul>
-<p>而在嵌入式Linux系统中，一般不存在显示器和键盘，都是用串口交互，所以这三个值对应的设备如下：</p>
-<ul>
-<li>fd = 0：表示标准输入(stdin)，对应系统的控制台串口</li>
-<li>fd = 1：表示标准输出(stdout)，对应系统的控制台串口</li>
-<li>fd = 2：表示标准错误输出(stderr)，对应系统的控制台串口</li>
-</ul>
-<h1 id="2-Linux-C库提供的文件操作API"><a href="#2-Linux-C库提供的文件操作API" class="headerlink" title="2. Linux C库提供的文件操作API"></a>2. Linux C库提供的文件操作API</h1><h2 id="2-1-头文件"><a href="#2-1-头文件" class="headerlink" title="2.1. 头文件"></a>2.1. 头文件</h2><p>在使用文件操作API时，必须首先包含以下头文件：</p>
-<pre class=" language-c"><code class="language-c"><span class="token macro property">#<span class="token directive keyword">include</span> <span class="token string">&lt;sys/types.h></span>        </span><span class="token comment" spellcheck="true">//定义了一些常用数据类型，比如size_t</span>
-<span class="token macro property">#<span class="token directive keyword">include</span> <span class="token string">&lt;fcntl.h></span>            </span><span class="token comment" spellcheck="true">//定义了open、creat等函数，以及表示文件权限的宏定义</span>
-<span class="token macro property">#<span class="token directive keyword">include</span> <span class="token string">&lt;unistd.h></span>            </span><span class="token comment" spellcheck="true">//定义了read、write、close、lseek等函数</span>
-<span class="token macro property">#<span class="token directive keyword">include</span> <span class="token string">&lt;errno.h></span>            </span><span class="token comment" spellcheck="true">//与全局变量errno相关的定义</span>
-<span class="token macro property">#<span class="token directive keyword">include</span> <span class="token string">&lt;sys/ioctl.h></span>        </span><span class="token comment" spellcheck="true">//定义了ioctl函数 </span></code></pre>
-<h2 id="2-2-open-—-打开文件"><a href="#2-2-open-—-打开文件" class="headerlink" title="2.2. open — 打开文件"></a>2.2. open — 打开文件</h2><p>操作文件之前必须要打开文件，获取文件描述符fd，该函数原型如下：</p>
-<pre class=" language-c"><code class="language-c"><span class="token keyword">int</span> <span class="token function">open</span><span class="token punctuation">(</span><span class="token keyword">const</span> <span class="token keyword">char</span> <span class="token operator">*</span>pathname<span class="token punctuation">,</span> <span class="token keyword">int</span> flags<span class="token punctuation">)</span><span class="token punctuation">;</span>
-<span class="token keyword">int</span> <span class="token function">open</span><span class="token punctuation">(</span><span class="token keyword">const</span> <span class="token keyword">char</span> <span class="token operator">*</span>pathname<span class="token punctuation">,</span> <span class="token keyword">int</span> flags<span class="token punctuation">,</span>mode_t mode<span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
-<p>① 参数含义如下：</p>
-<ul>
-<li>pathname：文件路径+文件名称</li>
-<li>flags：文件打开方式</li>
-<li>mode：打开文件的权限</li>
-<li>返回值int：打开成功则返回文件描述符，打开失败则返回-1，同时设置全局变量errno的值来表示错误原因；</li>
-</ul>
-<p>② flags标志的值可以使用在<code>&lt;fcntl.h&gt;</code>的宏定义：</p>
-<ul>
-<li><code>O_RDONLY</code>：只读</li>
-<li><code>O_WRONLY</code>：只写</li>
-<li><code>O_RDWR</code>：可读可写（常用）</li>
-<li><code>O_CREAT</code>：如果要打开的文件不存在，则创建新文件</li>
-<li><code>O_EXCL</code>：如果使用O_CREAT时文件已经存在，则返回错误消息</li>
-<li><code>O_TRUNC</code>：如果文件已经存在，且成功打开，则删除文件中原来的全部数据</li>
-<li><code>O_APPEND</code>：以追加写入方式打开文件，打开之后文件指针指向文件末尾</li>
-</ul>
-<p>这些打开方式可以使用<code>|</code>操作符，一起使用，比如：</p>
-<pre class=" language-c"><code class="language-c">O_RDWR <span class="token operator">|</span> O_CREAT</code></pre>
-<p>③ mode的值表示创建新文件时设置的权限，用8进制数来表示，也可以使用&lt;fcntl.h&gt;中定义的宏定义来表示，但是八进制数比较方便。</p>
-<p>3bit的八进制数分别对应linux中文件的三个权限：</p>
-<pre><code>rwxrwxrwx</code></pre><p>第一个rwx是文件拥有者的权限，第二个rwx是文件拥有者所在用户组的权限，第三个rwx是其它用户组的权限；</p>
-<p>每一个rwx都对应一个<strong>8进制数</strong>，比如0x7就表示rwx三项权限全有，0x0就表示rwx三个权限全没有，比如：</p>
-<ul>
-<li><code>0700</code>：所属用户有rwx权限，当前用户组和其他用户组的用户没有任何权限；</li>
-<li><code>0664</code>（常用）：所属用户有rw-权限（-表示没有此项对应权限），当前用户组的其它用户拥有rw-权限，其它用户组的用户只有r–权限。</li>
-</ul>
-<h2 id="2-3-read-—-读取文件"><a href="#2-3-read-—-读取文件" class="headerlink" title="2.3. read — 读取文件"></a>2.3. read — 读取文件</h2><p>函数原型如下：</p>
-<pre class=" language-c"><code class="language-c">ssize_t <span class="token function">read</span><span class="token punctuation">(</span><span class="token keyword">int</span> fd<span class="token punctuation">,</span> <span class="token keyword">void</span> <span class="token operator">*</span>buf<span class="token punctuation">,</span> size_t count<span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
-<p>函数参数含义如下：</p>
-<ul>
-<li>fd：文件描述符</li>
-<li>buf：用来接收所读数据的缓冲区</li>
-<li>count：请求读取的字节数</li>
-<li>返回值：读取成功则返回读取的字节数，读取到文件尾则返回0，读取失败则返回-1，同时设置全局变量errno的值来表示错误原因；</li>
-</ul>
-<h2 id="2-4-write-—-写入文件"><a href="#2-4-write-—-写入文件" class="headerlink" title="2.4. write — 写入文件"></a>2.4. write — 写入文件</h2><p>函数原型如下：</p>
-<pre class=" language-c"><code class="language-c">ssize_t <span class="token function">write</span><span class="token punctuation">(</span><span class="token keyword">int</span> fd<span class="token punctuation">,</span> <span class="token keyword">const</span> <span class="token keyword">void</span> <span class="token operator">*</span>buf<span class="token punctuation">,</span> size_t count<span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
-<p>函数参数含义如下：</p>
-<ul>
-<li>fd：文件描述符</li>
-<li>buf：存放待写入数据的缓冲区</li>
-<li>count：请求写入的字节数</li>
-<li>返回值：写入成功则返回实际写入的字节数，写入失败则返回-1，同时设置全局变量errno的值来表示错误原因；</li>
-</ul>
-<h2 id="2-5-close-—-关闭文件"><a href="#2-5-close-—-关闭文件" class="headerlink" title="2.5. close — 关闭文件"></a>2.5. close — 关闭文件</h2><p>API原型如下：</p>
-<pre class=" language-c"><code class="language-c"><span class="token keyword">int</span> <span class="token function">close</span><span class="token punctuation">(</span><span class="token keyword">int</span> fd<span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
-<p>函数参数fd表示要关闭文件的文件描述符。</p>
-<p>如果关闭成功，返回0，否则返回-1，同时设置全局变量 errno 报告具体错误的原因。</p>
-<h1 id="3-文件操作示例程序"><a href="#3-文件操作示例程序" class="headerlink" title="3. 文件操作示例程序"></a>3. 文件操作示例程序</h1><p>范例实现功能：</p>
-<p>打开当前目录下的text.txt文件，如果不存在则创建，首先写入一个字符串，然后关闭文件，再重新打开读取该文件中的内容并打印。</p>
-<p>范例代码：</p>
-<pre class=" language-c"><code class="language-c"><span class="token comment" spellcheck="true">/**
- * @brief  文件读写API使用示例程序
- * @author Mculover666
- * @note   首先写入文件，接着读取文件
-*/</span>
+<h1 id="2-3-添加MultiTimer到工程中"><a href="#2-3-添加MultiTimer到工程中" class="headerlink" title="2.3. 添加MultiTimer到工程中"></a>2.3. 添加MultiTimer到工程中</h1><p>① 复制MultiTimer源码到工程中：<br><img src="https://img-blog.csdnimg.cn/20200430110841828.png" alt=""></p>
+<p>② 在keil中添加 MultiTimer的源码文件：<br><img src="https://img-blog.csdnimg.cn/20200430111007848.png" alt="在这里插入图片描述"></p>
+<p>③ 将MultiTimer头文件路径添加到keil中：<br><img src="https://img-blog.csdnimg.cn/20200430111059907.png" alt=""></p>
+<h1 id="3-使用MultiTimer"><a href="#3-使用MultiTimer" class="headerlink" title="3. 使用MultiTimer"></a>3. 使用MultiTimer</h1><p>使用时包含头文件：</p>
+<pre class=" language-c"><code class="language-c"><span class="token macro property">#<span class="token directive keyword">include</span> <span class="token string">"multi_timer.h"</span></span></code></pre>
+<blockquote>
+<p>如果遇到multi_timer.c文件中NULL宏定义报错，则在multi_timer.h中添加&lt;stddef.h&gt;头文件即可。</p>
+</blockquote>
+<h2 id="3-1-创建Timer对象"><a href="#3-1-创建Timer对象" class="headerlink" title="3.1. 创建Timer对象"></a>3.1. 创建Timer对象</h2><pre class=" language-c"><code class="language-c"><span class="token comment" spellcheck="true">/* USER CODE BEGIN PV */</span>
+<span class="token keyword">struct</span> Timer timer1<span class="token punctuation">;</span>
+<span class="token keyword">struct</span> Timer timer2<span class="token punctuation">;</span>
 
-<span class="token macro property">#<span class="token directive keyword">include</span> <span class="token string">&lt;sys/types.h></span>        </span><span class="token comment" spellcheck="true">//定义了一些常用数据类型，比如size_t</span>
-<span class="token macro property">#<span class="token directive keyword">include</span> <span class="token string">&lt;fcntl.h></span>            </span><span class="token comment" spellcheck="true">//定义了open、creat等函数，以及表示文件权限的宏定义</span>
-<span class="token macro property">#<span class="token directive keyword">include</span> <span class="token string">&lt;unistd.h></span>            </span><span class="token comment" spellcheck="true">//定义了read、write、close、lseek等函数</span>
-<span class="token macro property">#<span class="token directive keyword">include</span> <span class="token string">&lt;errno.h></span>            </span><span class="token comment" spellcheck="true">//与全局变量errno相关的定义</span>
-<span class="token macro property">#<span class="token directive keyword">include</span> <span class="token string">&lt;sys/ioctl.h></span>        </span><span class="token comment" spellcheck="true">//定义了ioctl函数 </span>
-<span class="token macro property">#<span class="token directive keyword">include</span> <span class="token string">&lt;stdio.h></span></span>
-
-<span class="token keyword">int</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token keyword">void</span><span class="token punctuation">)</span>
+<span class="token comment" spellcheck="true">/* USER CODE END PV */</span></code></pre>
+<h2 id="3-2-Timer回调函数"><a href="#3-2-Timer回调函数" class="headerlink" title="3.2. Timer回调函数"></a>3.2. Timer回调函数</h2><pre class=" language-c"><code class="language-c"><span class="token comment" spellcheck="true">/* Private user code ---------------------------------------------------------*/</span>
+<span class="token comment" spellcheck="true">/* USER CODE BEGIN 0 */</span>
+<span class="token keyword">void</span> <span class="token function">timer1_callback</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
 <span class="token punctuation">{</span>
-    <span class="token keyword">int</span> fd <span class="token operator">=</span> <span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">;</span>
-    <span class="token keyword">int</span> res <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
+    <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"timer1 timeout!\r\n"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
 
-    <span class="token keyword">char</span> filename<span class="token punctuation">[</span><span class="token punctuation">]</span>  <span class="token operator">=</span> <span class="token string">"test.txt"</span><span class="token punctuation">;</span>
-    <span class="token keyword">char</span> write_dat<span class="token punctuation">[</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token string">"Hello World!"</span><span class="token punctuation">;</span>
-    <span class="token keyword">char</span> read_buf<span class="token punctuation">[</span><span class="token number">128</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token punctuation">{</span><span class="token number">0</span><span class="token punctuation">}</span><span class="token punctuation">;</span>
+<span class="token keyword">void</span> <span class="token function">timer2_callback</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token punctuation">{</span>
+    <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"timer2 timeout!\r\n"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+<span class="token comment" spellcheck="true">/* USER CODE END 0 */</span></code></pre>
+<h2 id="3-3-初始化并启动Timer"><a href="#3-3-初始化并启动Timer" class="headerlink" title="3.3. 初始化并启动Timer"></a>3.3. 初始化并启动Timer</h2><p>始化定时器对象，注册定时器回调处理函数，设置定时时间（ms），循环定时触发时间：</p>
+<pre class=" language-c"><code class="language-c"><span class="token comment" spellcheck="true">/* USER CODE BEGIN 2 */</span>
+<span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"multi timer test...\r\n"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 
-    <span class="token comment" spellcheck="true">/* 写入文件操作示例 */</span>
-    <span class="token comment" spellcheck="true">//1. 打开文件</span>
-    fd <span class="token operator">=</span> <span class="token function">open</span><span class="token punctuation">(</span>filename<span class="token punctuation">,</span> O_RDWR <span class="token operator">|</span> O_CREAT<span class="token punctuation">,</span> <span class="token number">0664</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token keyword">if</span><span class="token punctuation">(</span>fd <span class="token operator">&lt;</span> <span class="token number">0</span><span class="token punctuation">)</span>
-    <span class="token punctuation">{</span>
-        <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"%s file open fail,errno = %d.\r\n"</span><span class="token punctuation">,</span> filename<span class="token punctuation">,</span> errno<span class="token punctuation">)</span><span class="token punctuation">;</span>
-        <span class="token keyword">return</span> <span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">;</span>
+<span class="token comment" spellcheck="true">//重复计时，周期为1000次，即1000ms=1s</span>
+<span class="token function">timer_init</span><span class="token punctuation">(</span><span class="token operator">&amp;</span>timer1<span class="token punctuation">,</span> timer1_callback<span class="token punctuation">,</span> <span class="token number">1000</span><span class="token punctuation">,</span> <span class="token number">1000</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token function">timer_start</span><span class="token punctuation">(</span><span class="token operator">&amp;</span>timer1<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token comment" spellcheck="true">//单次计时，周期为50次，即50ms</span>
+<span class="token function">timer_init</span><span class="token punctuation">(</span><span class="token operator">&amp;</span>timer2<span class="token punctuation">,</span> timer2_callback<span class="token punctuation">,</span> <span class="token number">50</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token function">timer_start</span><span class="token punctuation">(</span><span class="token operator">&amp;</span>timer2<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token comment" spellcheck="true">/* USER CODE END 2 */</span></code></pre>
+<h2 id="3-4-Timer对象处理"><a href="#3-4-Timer对象处理" class="headerlink" title="3.4. Timer对象处理"></a>3.4. Timer对象处理</h2><p>在循环中调用Timer对象处理函数，处理函数会判断链表上的每个定时器是否超时，如果超过，则拉起注册的回调函数：</p>
+<pre class=" language-c"><code class="language-c"><span class="token comment" spellcheck="true">/* Infinite loop */</span>
+<span class="token comment" spellcheck="true">/* USER CODE BEGIN WHILE */</span>
+<span class="token keyword">while</span> <span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">)</span>
+<span class="token punctuation">{</span>
+  <span class="token comment" spellcheck="true">/* USER CODE END WHILE */</span>
+
+  <span class="token comment" spellcheck="true">/* USER CODE BEGIN 3 */</span>
+  <span class="token function">timer_loop</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+ <span class="token comment" spellcheck="true">/* USER CODE END 3 */</span></code></pre>
+<h2 id="3-5-提供Timer时基信号"><a href="#3-5-提供Timer时基信号" class="headerlink" title="3.5. 提供Timer时基信号"></a>3.5. 提供Timer时基信号</h2><p>MultiTimer中所有的定时器都是通过一个32位的计数值<code>_timer_ticks</code>来判断的，所以需要一个硬件定时器提供时基信号，递增该值。</p>
+<p>本文中使用的是STM32HAL库，所以通过Systick来提供，无需设置额外的定时器。</p>
+<p>在<code>main.c</code>文件的最后编写Systick回调函数：</p>
+<pre class=" language-c"><code class="language-c"><span class="token comment" spellcheck="true">/* USER CODE BEGIN 4 */</span>
+<span class="token keyword">void</span> <span class="token function">HAL_SYSTICK_Callback</span><span class="token punctuation">(</span><span class="token keyword">void</span><span class="token punctuation">)</span>
+<span class="token punctuation">{</span>
+    <span class="token comment" spellcheck="true">//给multi timer提供时基信号</span>
+    <span class="token function">timer_ticks</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment" spellcheck="true">//1ms ticks</span>
+<span class="token punctuation">}</span>
+
+<span class="token comment" spellcheck="true">/* USER CODE END 4 */</span></code></pre>
+<p>然后在<code>stm32l4xx_it.c</code>中调用该回调函数：</p>
+<pre class=" language-c"><code class="language-c"><span class="token comment" spellcheck="true">/**
+  * @brief This function handles System tick timer.
+  */</span>
+<span class="token keyword">void</span> <span class="token function">SysTick_Handler</span><span class="token punctuation">(</span><span class="token keyword">void</span><span class="token punctuation">)</span>
+<span class="token punctuation">{</span>
+  <span class="token comment" spellcheck="true">/* USER CODE BEGIN SysTick_IRQn 0 */</span>
+  <span class="token function">HAL_SYSTICK_IRQHandler</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+  <span class="token comment" spellcheck="true">/* USER CODE END SysTick_IRQn 0 */</span>
+  <span class="token function">HAL_IncTick</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token comment" spellcheck="true">/* USER CODE BEGIN SysTick_IRQn 1 */</span>
+
+  <span class="token comment" spellcheck="true">/* USER CODE END SysTick_IRQn 1 */</span>
+<span class="token punctuation">}</span></code></pre>
+<p>接下来编译下载，看在串口助手中看到打印的日志：<br><img src="https://img-blog.csdnimg.cn/2020043017040247.png" alt=""></p>
+<h1 id="4-MultiTimer设计思想解读"><a href="#4-MultiTimer设计思想解读" class="headerlink" title="4. MultiTimer设计思想解读"></a>4. MultiTimer设计思想解读</h1><h2 id="4-1-软件定时器设计思想"><a href="#4-1-软件定时器设计思想" class="headerlink" title="4.1. 软件定时器设计思想"></a>4.1. 软件定时器设计思想</h2><p>MultiTimer的设计比较简洁。</p>
+<p>设置一个计数值<code>_timer_ticks</code>不断递增，由定时器提供的中断驱动，只计次数，不计时间，有了很大的自由度，一般时基信号设置为1ms一次：</p>
+<pre class=" language-c"><code class="language-c"><span class="token comment" spellcheck="true">/**
+  * @brief  background ticks, timer repeat invoking interval 1ms.
+  * @param  None.
+  * @retval None.
+  */</span>
+<span class="token keyword">void</span> <span class="token function">timer_ticks</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token punctuation">{</span>
+    _timer_ticks<span class="token operator">++</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span></code></pre>
+<p>在程序运行时循环比较定时器设置的超时值是否大于当前_timer_ticks的计数值，如果是则再次判断是否重复计数值是否为0，是则停止定时器，完成单次计时效果，否则修改计数值，最后拉起注册到该定时器的回调函数执行：</p>
+<pre class=" language-c"><code class="language-c"><span class="token comment" spellcheck="true">/**
+  * @brief  main loop.
+  * @param  None.
+  * @retval None
+  */</span>
+<span class="token keyword">void</span> <span class="token function">timer_loop</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token punctuation">{</span>
+    <span class="token keyword">struct</span> Timer<span class="token operator">*</span> target<span class="token punctuation">;</span>
+    <span class="token keyword">for</span><span class="token punctuation">(</span>target<span class="token operator">=</span>head_handle<span class="token punctuation">;</span> target<span class="token punctuation">;</span> target<span class="token operator">=</span>target<span class="token operator">-></span>next<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">if</span><span class="token punctuation">(</span>_timer_ticks <span class="token operator">>=</span> target<span class="token operator">-></span>timeout<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            <span class="token keyword">if</span><span class="token punctuation">(</span>target<span class="token operator">-></span>repeat <span class="token operator">==</span> <span class="token number">0</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+                <span class="token function">timer_stop</span><span class="token punctuation">(</span>target<span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token punctuation">{</span>
+                target<span class="token operator">-></span>timeout <span class="token operator">=</span> _timer_ticks <span class="token operator">+</span> target<span class="token operator">-></span>repeat<span class="token punctuation">;</span>
+            <span class="token punctuation">}</span>
+            target<span class="token operator">-></span><span class="token function">timeout_cb</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
     <span class="token punctuation">}</span>
-
-    <span class="token comment" spellcheck="true">//2. 读取内容</span>
-    res <span class="token operator">=</span> <span class="token function">write</span><span class="token punctuation">(</span>fd<span class="token punctuation">,</span> write_dat<span class="token punctuation">,</span> <span class="token keyword">sizeof</span><span class="token punctuation">(</span>write_dat<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token keyword">if</span><span class="token punctuation">(</span>res <span class="token operator">&lt;</span> <span class="token number">0</span><span class="token punctuation">)</span>
+<span class="token punctuation">}</span></code></pre>
+<h2 id="4-2-单链表操作"><a href="#4-2-单链表操作" class="headerlink" title="4.2. 单链表操作"></a>4.2. 单链表操作</h2><p>MultiTimer的代码少，非常适合拿来学习单链表的操作，学习数据结构的过程是乏味的，不如直接来个实例看看是如何操作的。</p>
+<p>① 链表的<strong>节点设计为一个软件定时器</strong>，所以理论上支持的定时器数量只受内存限制。</p>
+<pre class=" language-c"><code class="language-c"><span class="token keyword">typedef</span> <span class="token keyword">struct</span> Timer <span class="token punctuation">{</span>
+    uint32_t timeout<span class="token punctuation">;</span>
+    uint32_t repeat<span class="token punctuation">;</span>
+    <span class="token keyword">void</span> <span class="token punctuation">(</span><span class="token operator">*</span>timeout_cb<span class="token punctuation">)</span><span class="token punctuation">(</span><span class="token keyword">void</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">struct</span> Timer<span class="token operator">*</span> next<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>Timer<span class="token punctuation">;</span></code></pre>
+<p>定时器初始化函数<code>timer_init</code>就是初始化一个链表节点：</p>
+<pre class=" language-c"><code class="language-c"><span class="token keyword">void</span> <span class="token function">timer_init</span><span class="token punctuation">(</span><span class="token keyword">struct</span> Timer<span class="token operator">*</span> handle<span class="token punctuation">,</span> <span class="token keyword">void</span><span class="token punctuation">(</span><span class="token operator">*</span>timeout_cb<span class="token punctuation">)</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span> uint32_t timeout<span class="token punctuation">,</span> uint32_t repeat<span class="token punctuation">)</span>
+<span class="token punctuation">{</span>
+    <span class="token comment" spellcheck="true">// memset(handle, sizeof(struct Timer), 0);</span>
+    handle<span class="token operator">-></span>timeout_cb <span class="token operator">=</span> timeout_cb<span class="token punctuation">;</span>
+    handle<span class="token operator">-></span>timeout <span class="token operator">=</span> _timer_ticks <span class="token operator">+</span> timeout<span class="token punctuation">;</span>
+    handle<span class="token operator">-></span>repeat <span class="token operator">=</span> repeat<span class="token punctuation">;</span>
+<span class="token punctuation">}</span></code></pre>
+<p>② 设置<strong>链表头指针</strong>，只需知道头指针就能完成对整个单链表的操作：</p>
+<pre class=" language-c"><code class="language-c"><span class="token comment" spellcheck="true">//timer handle list head.</span>
+<span class="token keyword">static</span> <span class="token keyword">struct</span> Timer<span class="token operator">*</span> head_handle <span class="token operator">=</span> <span class="token constant">NULL</span><span class="token punctuation">;</span></code></pre>
+<p>③ 向单链表<strong>增加一个节点</strong></p>
+<p>向单链表增加一个节点有三种方式：</p>
+<ul>
+<li>在单链表尾部增加一个节点</li>
+<li>在单链表头部增加一个节点</li>
+<li>在单链表中间增加一个节点</li>
+</ul>
+<p>MultiTimer中所有的结点都是定时器，每个定时器之间相互独立，不存在先后次序关系，所以无论加到中间，还是加到尾部，还是加到头部，最后的功能都是一样的，但是在插入算法上有优劣性能之分。</p>
+<p>先来看看再单链表尾部增加一个节点的算法：<br><img src="https://img-blog.csdnimg.cn/20200430211524417.gif" alt=""></p>
+<pre class=" language-c"><code class="language-c"><span class="token keyword">int</span> <span class="token function">timer_start</span><span class="token punctuation">(</span><span class="token keyword">struct</span> Timer<span class="token operator">*</span> handle<span class="token punctuation">)</span>
+<span class="token punctuation">{</span>
+    <span class="token comment" spellcheck="true">/** 
+     * 算法1 —— 向单链表尾部添加节点
+     * 时间复杂度O(n)
+     * Mculover666
+     */</span>
+    <span class="token keyword">struct</span> Timer<span class="token operator">*</span> target <span class="token operator">=</span> head_handle<span class="token punctuation">;</span>
+    <span class="token keyword">if</span><span class="token punctuation">(</span>head_handle <span class="token operator">==</span> <span class="token constant">NULL</span><span class="token punctuation">)</span>
     <span class="token punctuation">{</span>
-        <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"write dat fail,errno = %d.\r\n"</span><span class="token punctuation">,</span> errno<span class="token punctuation">)</span><span class="token punctuation">;</span>
-        <span class="token keyword">return</span> <span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">;</span>
+        <span class="token comment" spellcheck="true">/* 链表为空 */</span>
+        head_handle <span class="token operator">=</span> handle<span class="token punctuation">;</span>
+        handle<span class="token operator">-></span>next <span class="token operator">=</span> <span class="token constant">NULL</span><span class="token punctuation">;</span>
     <span class="token punctuation">}</span>
     <span class="token keyword">else</span>
     <span class="token punctuation">{</span>
-        <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"write %d bytes:%s\r\n"</span><span class="token punctuation">,</span> res<span class="token punctuation">,</span> write_dat<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token comment" spellcheck="true">/* 链表中存在节点，遍历找最后一个节点 */</span>
+        <span class="token keyword">while</span><span class="token punctuation">(</span>target<span class="token operator">-></span>next <span class="token operator">!=</span> <span class="token constant">NULL</span><span class="token punctuation">)</span>
+        <span class="token punctuation">{</span>
+            <span class="token keyword">if</span><span class="token punctuation">(</span>target <span class="token operator">==</span> handle<span class="token punctuation">)</span>
+                <span class="token keyword">return</span> <span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">;</span>
+            target <span class="token operator">=</span> target<span class="token operator">-></span>next<span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+        target<span class="token operator">-></span>next <span class="token operator">=</span> handle<span class="token punctuation">;</span>
+        handle<span class="token operator">-></span>next <span class="token operator">=</span> <span class="token constant">NULL</span><span class="token punctuation">;</span>
     <span class="token punctuation">}</span>
-
-    <span class="token comment" spellcheck="true">//3. 关闭文件</span>
-    <span class="token function">close</span><span class="token punctuation">(</span>fd<span class="token punctuation">)</span><span class="token punctuation">;</span>
-
-    <span class="token comment" spellcheck="true">/* 读取文件数据示例 */</span>
-    <span class="token comment" spellcheck="true">//1. 打开文件</span>
-    fd <span class="token operator">=</span> <span class="token function">open</span><span class="token punctuation">(</span>filename<span class="token punctuation">,</span> O_RDONLY<span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token keyword">if</span><span class="token punctuation">(</span>fd <span class="token operator">&lt;</span> <span class="token number">0</span><span class="token punctuation">)</span>
-    <span class="token punctuation">{</span>
-        <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"%s file open fail,errno = %d.\r\n"</span><span class="token punctuation">,</span> filename<span class="token punctuation">,</span> errno<span class="token punctuation">)</span><span class="token punctuation">;</span>
-        <span class="token keyword">return</span> <span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">;</span>
-    <span class="token punctuation">}</span>
-
-    <span class="token comment" spellcheck="true">//2. 写入内容</span>
-    res <span class="token operator">=</span> <span class="token function">read</span><span class="token punctuation">(</span>fd<span class="token punctuation">,</span> read_buf<span class="token punctuation">,</span> <span class="token keyword">sizeof</span><span class="token punctuation">(</span>read_buf<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token keyword">if</span><span class="token punctuation">(</span>res <span class="token operator">&lt;</span> <span class="token number">0</span><span class="token punctuation">)</span>
-    <span class="token punctuation">{</span>
-        <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"read dat fail,errno = %d.\r\n"</span><span class="token punctuation">,</span> errno<span class="token punctuation">)</span><span class="token punctuation">;</span>
-        <span class="token keyword">return</span> <span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">;</span>
-    <span class="token punctuation">}</span>
-    <span class="token keyword">else</span>
-    <span class="token punctuation">{</span>
-        <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"read %d bytes:%s\r\n"</span><span class="token punctuation">,</span> res<span class="token punctuation">,</span> read_buf<span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token punctuation">}</span>
-
-    <span class="token comment" spellcheck="true">//3. 关闭文件</span>
-    <span class="token function">close</span><span class="token punctuation">(</span>fd<span class="token punctuation">)</span><span class="token punctuation">;</span>
 
     <span class="token keyword">return</span> <span class="token number">0</span><span class="token punctuation">;</span>
 <span class="token punctuation">}</span></code></pre>
-<p>编译：</p>
-<pre class=" language-bash"><code class="language-bash">gcc 01-file_test.c -o 01-file_test.o</code></pre>
-<p>运行：</p>
-<p><img src="https://img-blog.csdnimg.cn/20200312193151469.png" alt=""></p>
-<h1 id="4-移植到嵌入式Linux开发板上运行测试"><a href="#4-移植到嵌入式Linux开发板上运行测试" class="headerlink" title="4. 移植到嵌入式Linux开发板上运行测试"></a>4. 移植到嵌入式Linux开发板上运行测试</h1><h2 id="4-1-优化程序-——-fsync"><a href="#4-1-优化程序-——-fsync" class="headerlink" title="4.1. 优化程序 —— fsync"></a>4.1. 优化程序 —— fsync</h2><p>嵌入式Linux系统通常采用 Flash 存储器， write()有个问题 —— 将数据提交到系统内部缓存之后就返回，所以当它返回之后，嵌入式系统如果突然掉电，则文件数据也会写入失败。</p>
-<p>所以，在嵌入式系统中使用这些API时，<strong>应该在write函数之后，用 fsync()函数把修改过的文件数据立马写入闪存中，避免数据丢失</strong>。</p>
-<p>fsync()函数的功能原型在&lt;unistd.h&gt;中，原型如下：</p>
-<pre class=" language-c"><code class="language-c"><span class="token keyword">int</span> <span class="token function">fsync</span><span class="token punctuation">(</span><span class="token keyword">int</span> fd<span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
-<p>fsync()调用后，会直到文件已修改过的数据全部写入磁盘后才返回，成功返回 0，失败返回-1， 同时设置全局变量 errno 报告具体错误的原因。</p>
-<p>在示例程序的write操作之后添加代码：</p>
-<pre class=" language-c"><code class="language-c"><span class="token comment" spellcheck="true">//写入之后立马同步数据</span>
-res <span class="token operator">=</span> <span class="token function">fsync</span><span class="token punctuation">(</span>fd<span class="token punctuation">)</span><span class="token punctuation">;</span>
-<span class="token keyword">if</span><span class="token punctuation">(</span>res <span class="token operator">&lt;</span> <span class="token number">0</span><span class="token punctuation">)</span>
+<p>这种算法理解简单，实现简单，但是算法<strong>时间复杂度秒变为O(n)</strong>，当n很大时，插入一个节点的时间就会非常久。</p>
+<p>再来看看在链表头部插入一个新节点的情况：<br><img src="https://img-blog.csdnimg.cn/20200430215442603.gif" alt=""></p>
+<pre class=" language-c"><code class="language-c"><span class="token keyword">int</span> <span class="token function">timer_start</span><span class="token punctuation">(</span><span class="token keyword">struct</span> Timer<span class="token operator">*</span> handle<span class="token punctuation">)</span>
 <span class="token punctuation">{</span>
-    <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"fsync fail,errno = %d.\r\n"</span><span class="token punctuation">,</span> errno<span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token keyword">return</span> <span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">;</span>
+    <span class="token comment" spellcheck="true">/** 
+     * 算法2 —— 向单链表头部添加节点
+     * 时间复杂度O(n)，如果去掉判断重复，则时间复杂度O(1)
+     * 0x1abin
+     */</span>
+     <span class="token keyword">struct</span> Timer <span class="token operator">*</span>target <span class="token operator">=</span> head_handle<span class="token punctuation">;</span>
+
+     <span class="token comment" spellcheck="true">//判断是否有重复的定时器</span>
+     <span class="token keyword">while</span><span class="token punctuation">(</span>target<span class="token punctuation">)</span>
+     <span class="token punctuation">{</span>
+        <span class="token keyword">if</span><span class="token punctuation">(</span>target <span class="token operator">==</span> handle<span class="token punctuation">)</span>
+        <span class="token punctuation">{</span>
+            <span class="token keyword">return</span> <span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+        target <span class="token operator">=</span> target<span class="token operator">-></span>next<span class="token punctuation">;</span>
+     <span class="token punctuation">}</span>
+     handle<span class="token operator">-></span>next <span class="token operator">=</span> head_handle<span class="token punctuation">;</span>
+     head_handle <span class="token operator">=</span> handle<span class="token punctuation">;</span>
+     <span class="token keyword">return</span> <span class="token number">0</span><span class="token punctuation">;</span>
 <span class="token punctuation">}</span></code></pre>
-<h2 id="4-2-移植到开发板上运行处"><a href="#4-2-移植到开发板上运行处" class="headerlink" title="4.2. 移植到开发板上运行处"></a>4.2. 移植到开发板上运行处</h2><p>① 使用交叉编译工具重新编译程序：</p>
-<pre class=" language-bash"><code class="language-bash">arm-none-linux-gnueabi-gcc 01-file_test.c -o 01-file_test_arm.o</code></pre>
-<p><img src="https://img-blog.csdnimg.cn/20200312195247139.png" alt=""></p>
-<p>② 基于NFS文件系统，将可执行文件传到开发板上</p>
-<pre class=" language-bash"><code class="language-bash"><span class="token function">cp</span> 01-file_test_arm.o /nfs_root/</code></pre>
-<p>③ 开发板上执行该程序测试：</p>
-<pre class=" language-bash"><code class="language-bash">./01-file_test_arm.o</code></pre>
-<p>开发板上执行结果如下：</p>
-<p><img src="https://img-blog.csdnimg.cn/20200312195622433.png" alt=""></p>
-<p><font color="red"><strong>接收更多精彩文章及资源推送，欢迎订阅我的微信公众号：『mculover666』。</strong></font></p>
-<p><img src="https://img-blog.csdnimg.cn/20200202092055136.png" alt=""></p>
+<p>这里第二种头部插入节点的算法时间复杂度依然是O(n)，emmm?</p>
+<p>其实，这里因为单链表节点是定时器，<strong>在插入的时候需要对整个链表进行判断，避免重复添加同样的定时器节点</strong>，所以无论任何一种算法，都需要对单链表进行遍历。</p>
+<p>如果在不需要判断重复的情况下，尾部插入算法仍然需要遍历，但是<strong>头部插入算法只需要插入就可以，时间复杂度为O(1)，算法更优</strong>。</p>
+<p>④ 单链表<strong>删除其中一个节点</strong></p>
+<p>删除单链表的节点时，因为节点自身只保存有下一个节点的指针，并没有指向上一个节点的指针，所以不能直接入手删除节点，那么如何删除单链表的节点呢？</p>
+<p>方法是：设置二级指针（指向Timer类型指针的指针），通过遍历链表的方式来寻找<strong>节点中next指针指向删除节点的</strong>那个节点，代码如下。</p>
+<pre class=" language-c"><code class="language-c"><span class="token keyword">void</span> <span class="token function">timer_stop</span><span class="token punctuation">(</span><span class="token keyword">struct</span> Timer<span class="token operator">*</span> handle<span class="token punctuation">)</span>
+<span class="token punctuation">{</span>
+    <span class="token keyword">struct</span> Timer<span class="token operator">*</span><span class="token operator">*</span> curr<span class="token punctuation">;</span>
+    <span class="token keyword">for</span><span class="token punctuation">(</span>curr <span class="token operator">=</span> <span class="token operator">&amp;</span>head_handle<span class="token punctuation">;</span> <span class="token operator">*</span>curr<span class="token punctuation">;</span> <span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">struct</span> Timer<span class="token operator">*</span> entry <span class="token operator">=</span> <span class="token operator">*</span>curr<span class="token punctuation">;</span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span>entry <span class="token operator">==</span> handle<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            <span class="token operator">*</span>curr <span class="token operator">=</span> entry<span class="token operator">-></span>next<span class="token punctuation">;</span>
+<span class="token comment" spellcheck="true">//            free(entry);</span>
+        <span class="token punctuation">}</span> <span class="token keyword">else</span>
+            curr <span class="token operator">=</span> <span class="token operator">&amp;</span>entry<span class="token operator">-></span>next<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span></code></pre>
+<h1 id="5-项目工程源码获取和问题交流"><a href="#5-项目工程源码获取和问题交流" class="headerlink" title="5. 项目工程源码获取和问题交流"></a>5. 项目工程源码获取和问题交流</h1><p>目前我将MultiTimer源码、我移植到小熊派STM32L431RCT6开发板的工程源码上传到了QQ群里（包含好几份HAL库，QQ相对速度快点），<strong>可以在QQ群里下载，有问题也可以在群里交流，当然也欢迎大家分享出来自己移植的工程到QQ群里</strong>：<br><img src="https://img-blog.csdnimg.cn/20200501174938684.png" alt=""></p>
+<p>放上QQ群二维码：<br><img src="https://img-blog.csdnimg.cn/20200321144543508.png" alt=""></p>
+<p><font color="red"><strong>接收更多精彩文章及资源推送，欢迎订阅我的微信公众号：『mculover666』。</strong></font><br><img src="https://img-blog.csdnimg.cn/20200202092055136.png" alt=""></p>
 
             </div>
             <hr/>
@@ -644,7 +681,7 @@ res <span class="token operator">=</span> <span class="token function">fsync</sp
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="http://www.mculover666.cn/posts/917538546/">http://www.mculover666.cn/posts/917538546/</a>
+                    <a href="http://www.mculover666.cn/posts/876450753/">http://www.mculover666.cn/posts/876450753/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -682,8 +719,8 @@ res <span class="token operator">=</span> <span class="token function">fsync</sp
                     
                         <div class="article-tag">
                             
-                                <a href="/tags/Linux%E5%BA%94%E7%94%A8%E5%BC%80%E5%8F%91/">
-                                    <span class="chip bg-color">Linux应用开发</span>
+                                <a href="/tags/%E5%B5%8C%E5%85%A5%E5%BC%8F%E5%BC%80%E6%BA%90%E9%A1%B9%E7%9B%AE%E7%B2%BE%E9%80%89%E4%B8%93%E6%A0%8F/">
+                                    <span class="chip bg-color">嵌入式开源项目精选专栏</span>
                                 </a>
                             
                         </div>
@@ -871,46 +908,48 @@ res <span class="token operator">=</span> <span class="token function">fsync</sp
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
+                <i class="far fa-dot-circle"></i>&nbsp;本篇
+            </div>
             <div class="card">
-                <a href="/posts/1603677970/">
+                <a href="/posts/876450753/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/13.jpg" class="responsive-img" alt="Linux中使用fork创建子进程详解及示例程序">
+                        <img src="/medias/featureimages/2.jpg" class="responsive-img" alt="MultiTimer | 一款可无限扩展的软件定时器">
                         
-                        <span class="card-title">Linux中使用fork创建子进程详解及示例程序</span>
+                        <span class="card-title">MultiTimer | 一款可无限扩展的软件定时器</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            Linux应用开发
+                            嵌入式开源项目精选专栏
                         
                     </div>
                     <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2020-03-13
-                        </span>
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2020-05-05
+                            </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="/categories/Linux/" class="post-category">
-                                    Linux
+                            <a href="/categories/OpenSource/" class="post-category">
+                                    OpenSource
                                 </a>
                             
                             
                         </span>
                     </div>
                 </div>
+
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/Linux%E5%BA%94%E7%94%A8%E5%BC%80%E5%8F%91/">
-                        <span class="chip bg-color">Linux应用开发</span>
+                    <a href="/tags/%E5%B5%8C%E5%85%A5%E5%BC%8F%E5%BC%80%E6%BA%90%E9%A1%B9%E7%9B%AE%E7%B2%BE%E9%80%89%E4%B8%93%E6%A0%8F/">
+                        <span class="chip bg-color">嵌入式开源项目精选专栏</span>
                     </a>
                     
                 </div>
@@ -924,31 +963,31 @@ res <span class="token operator">=</span> <span class="token function">fsync</sp
                 下一篇&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/posts/433364979/">
+                <a href="/posts/514838439/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/6.jpg" class="responsive-img" alt="Multisim13安装教程">
+                        <img src="/medias/featureimages/5.jpg" class="responsive-img" alt="EasyFlash | 让Flash成为小型 KV 数据库">
                         
-                        <span class="card-title">Multisim13安装教程</span>
+                        <span class="card-title">EasyFlash | 让Flash成为小型 KV 数据库</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            下载站配套安装教程
+                            嵌入式开源项目精选专栏
                         
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2020-03-10
+                                <i class="far fa-clock fa-fw icon-date"></i>2020-04-25
                             </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="/categories/%E5%AE%89%E8%A3%85%E6%95%99%E7%A8%8B/" class="post-category">
-                                    安装教程
+                            <a href="/categories/OpenSource/" class="post-category">
+                                    OpenSource
                                 </a>
                             
                             
@@ -958,8 +997,8 @@ res <span class="token operator">=</span> <span class="token function">fsync</sp
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/%E5%AE%89%E8%A3%85%E6%95%99%E7%A8%8B/">
-                        <span class="chip bg-color">安装教程</span>
+                    <a href="/tags/%E5%B5%8C%E5%85%A5%E5%BC%8F%E5%BC%80%E6%BA%90%E9%A1%B9%E7%9B%AE%E7%B2%BE%E9%80%89%E4%B8%93%E6%A0%8F/">
+                        <span class="chip bg-color">嵌入式开源项目精选专栏</span>
                     </a>
                     
                 </div>
