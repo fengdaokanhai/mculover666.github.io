@@ -4,16 +4,8 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="STM32CubeMX 舵机 PWM">
-    <meta name="description" content="本篇详细的记录了如何使用STM32CubeMX配置STM32L431RCT6的通用定时器外设，产生PWM驱动舵机。
-
-
-1. 准备工作硬件准备
-开发板首先需要准备一个开发板，这里我准备的是STM32L4的开发板（BearPi）：
-
-
-
-舵机">
+    <meta name="keywords" content="cmd-parser">
+    <meta name="description" content="嵌入式开源项目精选专栏">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -21,7 +13,7 @@
     <meta name="format-detection" content="telephone=no">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    <title>STM32CubeMX_24 | 使用通用定时器产生PWM驱动舵机 | Mculover666</title>
+    <title>cmd-parser | 一个基于哈希匹配的超快命令解析器 | Mculover666</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
@@ -269,12 +261,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/19.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/10.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">STM32CubeMX_24 | 使用通用定时器产生PWM驱动舵机</h1>
+                    <h1 class="description center-align post-title">cmd-parser | 一个基于哈希匹配的超快命令解析器</h1>
                 </div>
             </div>
         </div>
@@ -391,8 +383,8 @@
                     
                     <div class="article-tag">
                         
-                            <a href="/tags/STM32CubeMX/">
-                                <span class="chip bg-color">STM32CubeMX</span>
+                            <a href="/tags/%E5%B5%8C%E5%85%A5%E5%BC%8F%E5%BC%80%E6%BA%90%E9%A1%B9%E7%9B%AE%E7%B2%BE%E9%80%89%E4%B8%93%E6%A0%8F/">
+                                <span class="chip bg-color">嵌入式开源项目精选专栏</span>
                             </a>
                         
                     </div>
@@ -403,8 +395,8 @@
                     <div class="post-cate">
                         <i class="fas fa-bookmark fa-fw icon-category"></i>
                         
-                            <a href="/categories/STM32CubeMX/" class="post-category">
-                                STM32CubeMX
+                            <a href="/categories/OpenSource/" class="post-category">
+                                OpenSource
                             </a>
                         
                     </div>
@@ -416,7 +408,7 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2019-12-05
+                    2020-05-18
                 </div>
                 
 
@@ -438,199 +430,149 @@
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <p>本篇详细的记录了如何使用STM32CubeMX配置STM32L431RCT6的通用定时器外设，产生PWM驱动舵机。</p>
-<a id="more"></a>
+                <p><img src="https://img-blog.csdnimg.cn/20200321151234798.png" alt=""></p>
+<h1 id="1-cmd-parser"><a href="#1-cmd-parser" class="headerlink" title="1. cmd-parser"></a>1. cmd-parser</h1><p>本期给大家带来的开源项目是 cmd-parser，<strong>一款非常轻量级的命令解析器</strong>，作者jiejie，目前收获 32 个 star，遵循 Apache-2.0 开源许可协议。</p>
+<p>cmd-parser一个非常简单好用的命令解析器，占用资源极少极少，采用哈希算法超快匹配命令！</p>
+<blockquote>
+<p>项目地址：<a href="https://github.com/jiejieTop/cmd-parser" target="_blank" rel="noopener">https://github.com/jiejieTop/cmd-parser</a></p>
+</blockquote>
+<h1 id="2-移植cmd-parser"><a href="#2-移植cmd-parser" class="headerlink" title="2. 移植cmd-parser"></a>2. 移植cmd-parser</h1><h2 id="2-1-移植思路"><a href="#2-1-移植思路" class="headerlink" title="2.1. 移植思路"></a>2.1. 移植思路</h2><p>开源项目在移植过程中主要参考项目的readme文档，一般只需两步：</p>
+<ul>
+<li>① 添加源码到裸机工程中；</li>
+<li>② 实现需要的接口；</li>
+</ul>
+<h2 id="2-2-准备裸机工程"><a href="#2-2-准备裸机工程" class="headerlink" title="2.2. 准备裸机工程"></a>2.2. 准备裸机工程</h2><p>本文中我使用的是小熊派IoT开发套件，主控芯片为STM32L431RCT6：<br><img src="https://imgconvert.csdnimg.cn/aHR0cDovL21jdWxvdmVyNjY2LmNuL2Jsb2cvMjAxOTA5MTkvekh4NXhNWVVtU1cxLnBuZw?x-oss-process=image/format,png#pic_center" alt=""></p>
+<p>移植之前需要准备一份裸机工程，我使用STM32CubeMX生成，需要初始化以下配置：</p>
+<ul>
+<li>配置一个串口用于中断方式接收数据，发送数据；</li>
+<li>printf重定向</li>
+</ul>
+<p>具体过程可以参考：</p>
+<ul>
+<li><a href="http://www.mculover666.cn/posts/1803605667/">STM32CubeMX_07 | 使用USART发送和接收数据（中断模式）</a></li>
+<li><a href="http://www.mculover666.cn/posts/2251182441/">STM32CubeMX_09 | 重定向printf函数到串口输出的多种方法</a></li>
+</ul>
+<h1 id="2-3-添加cmd-parser到工程中"><a href="#2-3-添加cmd-parser到工程中" class="headerlink" title="2.3. 添加cmd-parser到工程中"></a>2.3. 添加cmd-parser到工程中</h1><p>① 复制cmd-parser源码到工程中：<br><img src="https://img-blog.csdnimg.cn/20200513171828377.png" alt=""></p>
+<p>② 在keil中添加 cmd-parser 的源码文件：<br><img src="https://img-blog.csdnimg.cn/2020051317200363.png" alt=""></p>
+<p>③ 将 cmd-parser 头文件路径添加到keil中：<br><img src="https://img-blog.csdnimg.cn/20200513172042417.png" alt=""></p>
+<h1 id="3-使用cmd-parser解析命令"><a href="#3-使用cmd-parser解析命令" class="headerlink" title="3. 使用cmd-parser解析命令"></a>3. 使用cmd-parser解析命令</h1><p>使用时包含头文件：</p>
+<pre class=" language-c"><code class="language-c"><span class="token comment" spellcheck="true">/* USER CODE BEGIN Includes */</span>
+<span class="token macro property">#<span class="token directive keyword">include</span> <span class="token string">"cmd.h"</span></span>
+<span class="token macro property">#<span class="token directive keyword">include</span> <span class="token string">&lt;stdio.h></span>    </span><span class="token comment" spellcheck="true">//用于printf打印</span>
 
-<h1 id="1-准备工作"><a href="#1-准备工作" class="headerlink" title="1. 准备工作"></a>1. 准备工作</h1><h2 id="硬件准备"><a href="#硬件准备" class="headerlink" title="硬件准备"></a>硬件准备</h2><ul>
-<li>开发板<br>首先需要准备一个开发板，这里我准备的是STM32L4的开发板（BearPi）：</li>
-</ul>
-<p><img src="http://mculover666.cn/image/20190806/9uiPTi5odYSj.png?imageslim" alt="小熊派IoT开发套件"></p>
-<ul>
-<li>舵机</li>
-</ul>
-<p>这里我使用常见的 SG90 舵机：</p>
-<p><img src="http://mculover666.cn/blog/20191205/FHWF7Azy542U.png?imageslim" alt="9g舵机"></p>
-<blockquote>
-<p>知识小卡片 —— 舵机</p>
-</blockquote>
-<p>舵机是电机的一种，又叫伺服电机，舵机的优势是<strong>可以设定转到指定的位置</strong>，本文中使用的SG90型号的舵机可以在0°-180°的范围内转动到指定角度，在实际项目中使用非常广泛。</p>
-<p>在硬件上，SG90 舵机有三根线，红色的为电源线（5V），棕色的为 GND ，橙色的为控制线，用来传输 PWM 信号。</p>
-<p>那么，应该产生怎样的PMW波形来控制舵机的转动角度呢？</p>
-<p>SG90的舵机要求<strong>控制舵机的 PWM 信号频率在50Hz左右</strong>，即周期为 20ms 的 PWM 信号，<strong>当该信号的高电平部分在0.5ms - 2.5ms之间时，对应舵机转动的角度</strong>，具体对应情况如下表：</p>
-<table>
-<thead>
-<tr>
-<th align="center">高电平脉宽</th>
-<th align="center">舵机转动角度</th>
-</tr>
-</thead>
-<tbody><tr>
-<td align="center">0.5ms</td>
-<td align="center">0°</td>
-</tr>
-<tr>
-<td align="center">1.0ms</td>
-<td align="center">45°</td>
-</tr>
-<tr>
-<td align="center">1.5ms</td>
-<td align="center">90°</td>
-</tr>
-<tr>
-<td align="center">2.0ms</td>
-<td align="center">135°</td>
-</tr>
-<tr>
-<td align="center">2.5ms</td>
-<td align="center">180°</td>
-</tr>
-</tbody></table>
-<p>下面结合一个动图来理解：</p>
-<p><img src="http://mculover666.cn/blog/20191205/iKyLJIGWewhP.gif" alt="图片来源八色木"></p>
-<blockquote>
-<p>知识小卡片结束啦！对舵机有了解了吗？</p>
-</blockquote>
-<h2 id="软件准备"><a href="#软件准备" class="headerlink" title="软件准备"></a>软件准备</h2><ul>
-<li>需要安装好Keil - MDK及芯片对应的包，以便编译和下载生成的代码；</li>
-</ul>
-<blockquote>
-<p>Keil MDK和串口助手Serial Port Utility 的安装包都可以<strong>在文末关注公众号获取</strong>，回复关键字获取相应的安装包：</p>
-</blockquote>
-<p><img src="http://mculover666.cn/image/20190814/gubaOwmETp1w.png?imageslim" alt=""></p>
-<h1 id="2-生成MDK工程"><a href="#2-生成MDK工程" class="headerlink" title="2.生成MDK工程"></a>2.生成MDK工程</h1><h2 id="选择芯片型号"><a href="#选择芯片型号" class="headerlink" title="选择芯片型号"></a>选择芯片型号</h2><p>打开STM32CubeMX，打开MCU选择器：<br><img src="http://mculover666.cn/image/20190806/gBP6glmUSH80.png?imageslim" alt="打开MCU选择器"></p>
-<p>搜索并选中芯片<code>STM32L431RCT6</code>:<br><img src="http://mculover666.cn/image/20190806/gnyHwdl53uVD.png?imageslim" alt="选择芯片"></p>
-<h2 id="配置时钟源"><a href="#配置时钟源" class="headerlink" title="配置时钟源"></a>配置时钟源</h2><ul>
-<li>如果选择使用外部高速时钟（HSE），则需要在System Core中配置RCC；</li>
-<li>如果使用默认内部时钟（HSI），这一步可以略过；</li>
-</ul>
-<p>这里我都使用外部时钟：</p>
-<p><img src="http://mculover666.cn/blog/20191205/krcW6G9qAj0A.png?imageslim" alt="打开外部时钟"></p>
-<h2 id="配置通用定时器TIM16"><a href="#配置通用定时器TIM16" class="headerlink" title="配置通用定时器TIM16"></a>配置通用定时器TIM16</h2><blockquote>
-<p>知识小卡片——STM32L431的定时器</p>
-</blockquote>
-<p>STM32L431xx 系列有 1 个高级定时器（TIM1）, 3 个通用定时器（TIM2、TIM15、TIM16），两个基本定时器（TIM6、TIM7），还有两个低功耗定时器（LPTIM1、LPTIM2）。</p>
-<p>STM32L431 的通用 TIMx (TIM2、TIM15、TIM16)定时器功能包括：</p>
-<ul>
-<li><p>16 位(TIM15,TIM16)/32 位(TIM2)向上、向下、向上/向下自动装载计数器，注意：<br>TIM15、TIM16 只支持向上（递增）计数方式；</p>
-</li>
-<li><p>16 位可编程(可以实时修改)预分频器，计数器时钟频率的分频系数为 1～65535 之间的任<br>意数值。</p>
-</li>
-<li><p>4 个独立通道（TIMx_CH1~4， 其中 TIM15 最多 2 个通道， TIM16 最多 1 个<br>通道），这些通道可以用来作为：</p>
-<ul>
-<li>输入捕获</li>
-<li>输出比较</li>
-<li>PWM 生成(边缘或中间对齐模式)</li>
-<li>单脉冲模式输出</li>
-</ul>
-</li>
-<li><p>可使用外部信号控制定时器和定时器互连的同步电路。</p>
-</li>
-<li><p>如下事件发生时产生中断/DMA：</p>
-<ul>
-<li>更新：计数器向上溢出/向下溢出，计数器初始化(通过软件或者内部/外部触发)</li>
-<li>触发事件(计数器启动、停止、初始化或者由内部/外部触发计数)</li>
-<li>输入捕获</li>
-<li>输出比较</li>
-</ul>
-</li>
-</ul>
-<blockquote>
-<p>知识小卡片结束啦~</p>
-</blockquote>
-<p>接下来开始配置TIM16定时器的PWM功能：</p>
-<p>首先选择<code>TIM</code>，选择通道1的功能，默认的CH1是<code>PA6</code>引脚，但是开发板上是与 PB8 连接的，所以在右边将PB8配置为<code>TIM16_CH1</code>：</p>
-<p><img src="http://mculover666.cn/image/20190807/3Ru6wXY95H7s.png?imageslim" alt="打开TIM16并选择PWM输出引脚"></p>
-<p>接下来是对TIM16的参数设置，参照数据手册中的RCC时钟树，TIM16内部时钟来源是<code>PCLK2 = 80Mhz</code>，我们的目的是产生<code>20Hz</code>的PWM，所以预分频系数设置为<code>80-1</code>，自动重载值为<code>20000-1</code>，得到的计时器更新中断频率即为<code>80000000/80/20000 = 50 Hz</code>：</p>
-<p><img src="http://mculover666.cn/blog/20191205/bukWGxaWdSG6.png?imageslim" alt="设置PWM输出频率"></p>
-<p>其余的一些设置保持默认即可，最后配置PWM占空比：</p>
-<p><img src="http://mculover666.cn/blog/20191205/JMXATy2qaXlx.png?imageslim" alt="设置PWM占空比"></p>
-<h2 id="配置时钟树"><a href="#配置时钟树" class="headerlink" title="配置时钟树"></a>配置时钟树</h2><p>STM32L4的最高主频到80M，所以配置PLL，最后使<code>HCLK = 80Mhz</code>即可：</p>
-<p><img src="http://mculover666.cn/image/20190806/1TQg7frjRpVr.png?imageslim" alt="设置时钟树"></p>
-<h2 id="生成工程设置"><a href="#生成工程设置" class="headerlink" title="生成工程设置"></a>生成工程设置</h2><p><img src="http://mculover666.cn/blog/20191205/VsuAG8EIkAog.png?imageslim" alt="工程设置"></p>
-<h2 id="代码生成设置"><a href="#代码生成设置" class="headerlink" title="代码生成设置"></a>代码生成设置</h2><p>最后设置生成独立的初始化文件：</p>
-<p><img src="http://mculover666.cn/image/20190806/T6WvSK6Dfpts.png?imageslim" alt="代码生成设置"></p>
-<h2 id="生成代码"><a href="#生成代码" class="headerlink" title="生成代码"></a>生成代码</h2><p>点击<code>GENERATE CODE</code>即可生成MDK-V5工程：</p>
-<p><img src="http://mculover666.cn/image/20190806/s0jGhLBWW6Cm.png?imageslim" alt="生成代码"></p>
-<h1 id="3-在MDK中编写、编译、下载用户代码"><a href="#3-在MDK中编写、编译、下载用户代码" class="headerlink" title="3. 在MDK中编写、编译、下载用户代码"></a>3. 在MDK中编写、编译、下载用户代码</h1><h2 id="启动定时器并产生PWM"><a href="#启动定时器并产生PWM" class="headerlink" title="启动定时器并产生PWM"></a>启动定时器并产生PWM</h2><p>最后在<code>main</code>函数中开启TIM2并使能其中断（TIM2初始化代码之后）：</p>
-<pre class=" language-c"><code class="language-c"><span class="token keyword">int</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token keyword">void</span><span class="token punctuation">)</span>
+<span class="token comment" spellcheck="true">/* USER CODE END Includes */</span></code></pre>
+<h2 id="3-1-初始化cmd-parser"><a href="#3-1-初始化cmd-parser" class="headerlink" title="3.1. 初始化cmd-parser"></a>3.1. 初始化cmd-parser</h2><p>在main.c中添加初始化代码，首先开辟一块接收缓冲区：</p>
+<pre class=" language-c"><code class="language-c"><span class="token comment" spellcheck="true">/* USER CODE BEGIN PV */</span>
+<span class="token keyword">char</span> recv_buf<span class="token punctuation">[</span><span class="token number">6</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token punctuation">{</span><span class="token number">0</span><span class="token punctuation">}</span><span class="token punctuation">;</span>
+
+<span class="token comment" spellcheck="true">/* USER CODE END PV */</span></code></pre>
+<p>然后初始化cmd-parser，并使能串口接收中断：</p>
+<pre class=" language-c"><code class="language-c"><span class="token comment" spellcheck="true">/* USER CODE BEGIN 2 */</span>
+<span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"cmd parser testing...\r\n"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token function">cmd_init</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token function">HAL_UART_Receive_IT</span><span class="token punctuation">(</span><span class="token operator">&amp;</span>huart1<span class="token punctuation">,</span> <span class="token punctuation">(</span>uint8_t<span class="token operator">*</span><span class="token punctuation">)</span>recv_buf<span class="token punctuation">,</span> <span class="token number">5</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token comment" spellcheck="true">/* USER CODE END 2 */</span></code></pre>
+<h2 id="3-2-注册命令"><a href="#3-2-注册命令" class="headerlink" title="3.2. 注册命令"></a>3.2. 注册命令</h2><p>在main.c的开始定义两个函数，作为命令回调函数，使用<code>REGISTER_CMD</code>注册：</p>
+<pre class=" language-c"><code class="language-c"><span class="token comment" spellcheck="true">/* USER CODE BEGIN 0 */</span>
+
+<span class="token keyword">void</span> <span class="token function">led_on_cmd</span><span class="token punctuation">(</span><span class="token keyword">void</span><span class="token punctuation">)</span>
 <span class="token punctuation">{</span>
-  <span class="token comment" spellcheck="true">/* USER CODE BEGIN 1 */</span>
-
-  <span class="token comment" spellcheck="true">/* USER CODE END 1 */</span>
-
-  <span class="token function">HAL_Init</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-  <span class="token function">SystemClock_Config</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-  <span class="token function">MX_GPIO_Init</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-  <span class="token function">MX_TIM16_Init</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-
-  <span class="token comment" spellcheck="true">/* USER CODE BEGIN 2 */</span>
-
-  <span class="token function">HAL_TIM_PWM_Start</span><span class="token punctuation">(</span><span class="token operator">&amp;</span>htim16<span class="token punctuation">,</span>TIM_CHANNEL_1<span class="token punctuation">)</span><span class="token punctuation">;</span>
-
-  <span class="token comment" spellcheck="true">/* USER CODE END 2 */</span>
-
-  <span class="token comment" spellcheck="true">/* Infinite loop */</span>
-  <span class="token comment" spellcheck="true">/* USER CODE BEGIN WHILE */</span>
-  <span class="token keyword">while</span> <span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">)</span>
-  <span class="token punctuation">{</span>
-    <span class="token comment" spellcheck="true">/* USER CODE END WHILE */</span>
-    <span class="token comment" spellcheck="true">/* USER CODE BEGIN 3 */</span>
-  <span class="token punctuation">}</span>
-  <span class="token comment" spellcheck="true">/* USER CODE END 3 */</span>
-<span class="token punctuation">}</span></code></pre>
-<p>编译下载之后，可以看到舵机旋转到45°：</p>
-<p><img src="http://mculover666.cn/blog/20191205/96mLb22EUSrL.png?imageslim" alt="舵机转动45°现象"></p>
-<h2 id="动态改变舵机角度"><a href="#动态改变舵机角度" class="headerlink" title="动态改变舵机角度"></a>动态改变舵机角度</h2><p>上一个实验中，我们配置了PWM波的高电平时长计数个数为1000，即时长为1ms，对应旋转角度为45°，在本实验中，我们来动态改变 PWM 占空比，使舵机在0°到180之间来回旋转。</p>
-<p>编写如下代码：</p>
-<pre class=" language-c"><code class="language-c"><span class="token keyword">int</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token keyword">void</span><span class="token punctuation">)</span>
+    <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"led on!\n"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+<span class="token keyword">void</span> <span class="token function">led_of_cmd</span><span class="token punctuation">(</span><span class="token keyword">void</span><span class="token punctuation">)</span>
 <span class="token punctuation">{</span>
-  <span class="token comment" spellcheck="true">/* USER CODE BEGIN 1 */</span>
+    <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"led off!\n"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
 
-    uint16_t pluse <span class="token operator">=</span> <span class="token number">500</span><span class="token punctuation">;</span>
+<span class="token function">REGISTER_CMD</span><span class="token punctuation">(</span>ledon<span class="token punctuation">,</span> led_on_cmd<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token function">REGISTER_CMD</span><span class="token punctuation">(</span>ledof<span class="token punctuation">,</span> led_of_cmd<span class="token punctuation">)</span><span class="token punctuation">;</span>
 
-  <span class="token comment" spellcheck="true">/* USER CODE END 1 */</span>
-
-  <span class="token function">HAL_Init</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-  <span class="token function">SystemClock_Config</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-  <span class="token function">MX_GPIO_Init</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-  <span class="token function">MX_TIM16_Init</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-
-  <span class="token comment" spellcheck="true">/* USER CODE BEGIN 2 */</span>
-
-  <span class="token comment" spellcheck="true">/* USER CODE END 2 */</span>
-
-  <span class="token comment" spellcheck="true">/* Infinite loop */</span>
-  <span class="token comment" spellcheck="true">/* USER CODE BEGIN WHILE */</span>
-  <span class="token keyword">while</span> <span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">)</span>
-  <span class="token punctuation">{</span>
-    <span class="token comment" spellcheck="true">/* USER CODE END WHILE */</span>
-
-    <span class="token comment" spellcheck="true">/* USER CODE BEGIN 3 */</span>
-    <span class="token comment" spellcheck="true">//产生PWM，舵机转动</span>
-    <span class="token function">HAL_TIM_PWM_Start</span><span class="token punctuation">(</span><span class="token operator">&amp;</span>htim16<span class="token punctuation">,</span>TIM_CHANNEL_1<span class="token punctuation">)</span><span class="token punctuation">;</span>
-
-    <span class="token comment" spellcheck="true">//1s后改变舵机角度，增加45°</span>
-    <span class="token function">HAL_Delay</span><span class="token punctuation">(</span><span class="token number">1000</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    pluse <span class="token operator">+</span><span class="token operator">=</span> <span class="token number">500</span><span class="token punctuation">;</span>
-    <span class="token keyword">if</span><span class="token punctuation">(</span>pluse <span class="token operator">==</span> <span class="token number">3000</span><span class="token punctuation">)</span>
+<span class="token comment" spellcheck="true">/* USER CODE END 0 */</span></code></pre>
+<p>使用REGISTER_CMD宏定义的时候，需要注意，第二个参数是函数指针，第一个参数是命令内容，<strong>此处不需要双引号，cmd-parser会进行处理</strong>。</p>
+<h2 id="3-3-解析命令"><a href="#3-3-解析命令" class="headerlink" title="3.3. 解析命令"></a>3.3. 解析命令</h2><p>在main.c的末尾编写串口中断回调函数，在串口中断回调函数中从接收缓冲区解析命令：</p>
+<pre class=" language-c"><code class="language-c"><span class="token comment" spellcheck="true">/* USER CODE BEGIN 4 */</span>
+<span class="token comment" spellcheck="true">/* 中断回调函数 */</span>
+<span class="token keyword">void</span> <span class="token function">HAL_UART_RxCpltCallback</span><span class="token punctuation">(</span>UART_HandleTypeDef <span class="token operator">*</span>huart<span class="token punctuation">)</span>
+<span class="token punctuation">{</span>
+    <span class="token comment" spellcheck="true">/* 判断是哪个串口触发的中断 */</span>
+    <span class="token keyword">if</span><span class="token punctuation">(</span>huart <span class="token operator">-></span>Instance <span class="token operator">==</span> USART1<span class="token punctuation">)</span>
     <span class="token punctuation">{</span>
-      <span class="token comment" spellcheck="true">//如果舵机角度大于180°，回零</span>
-      pluse <span class="token operator">=</span> <span class="token number">500</span><span class="token punctuation">;</span>
+        <span class="token comment" spellcheck="true">//解析数据</span>
+        <span class="token function">cmd_parsing</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token keyword">char</span><span class="token operator">*</span><span class="token punctuation">)</span>recv_buf<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+        <span class="token comment" spellcheck="true">//重新使能串口接收中断</span>
+        <span class="token function">HAL_UART_Receive_IT</span><span class="token punctuation">(</span>huart<span class="token punctuation">,</span> <span class="token punctuation">(</span>uint8_t<span class="token operator">*</span><span class="token punctuation">)</span>recv_buf<span class="token punctuation">,</span> <span class="token number">5</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+<span class="token comment" spellcheck="true">/* USER CODE END 4 */</span></code></pre>
+<h2 id="3-4-解析结果"><a href="#3-4-解析结果" class="headerlink" title="3.4. 解析结果"></a>3.4. 解析结果</h2><p>编译、下载到开发板，使用串口助手进行测试：<br><img src="https://img-blog.csdnimg.cn/20200516103552164.png" alt=""></p>
+<h1 id="4-cmd-parser设计思想解读"><a href="#4-cmd-parser设计思想解读" class="headerlink" title="4. cmd-parser设计思想解读"></a>4. cmd-parser设计思想解读</h1><p>cmd-parser组件的意义在于优化了字符串匹配算法。</p>
+<p>在本文中的命令应用中，串口接收缓冲区的字符串是主字符串，而我们注册的命令是模式字符串，一般情况下，在主字符串中寻找模式字符串使用的是暴力算法，即直接从主字符串的第一个字符开始，双重循环判断字符是否匹配。</p>
+<p>这种暴力算法可以解决大多数问题，但在一些特殊情况下，比如模式字符串是<code>ledon</code>，而主字符串是<code>ledoledoledoledoledon</code>，如果依然使用暴力算法，则算法时间复杂度为O(mn)，m为主串长度，n为模式串长度，极其浪费时间。</p>
+<p>cmd-parser组件没有使用这种暴力匹配算法，而是直接匹配主字符串和模式字符串的哈希值（hashcode），将两个字符串的匹配<strong>转换为两个整数比较</strong>，非常高效，这种算法的发明人Rabin Karp，所以称之为RK算法。</p>
+<p>接下来逐步解析cmd-parser是如何使用RK算法高效匹配的。</p>
+<h2 id="4-1-生成模式串的hashcode"><a href="#4-1-生成模式串的hashcode" class="headerlink" title="4.1. 生成模式串的hashcode"></a>4.1. 生成模式串的hashcode</h2><p>此部分源码在<code>cmd.c</code>中，如下：</p>
+<pre class=" language-c"><code class="language-c"><span class="token keyword">static</span> <span class="token keyword">unsigned</span> <span class="token keyword">int</span> <span class="token function">_cmd_hash</span><span class="token punctuation">(</span><span class="token keyword">const</span> <span class="token keyword">char</span><span class="token operator">*</span> str<span class="token punctuation">)</span>
+<span class="token punctuation">{</span>
+    <span class="token keyword">unsigned</span> <span class="token keyword">int</span> hash <span class="token operator">=</span> CMD_HASH<span class="token punctuation">;</span>  <span class="token comment" spellcheck="true">/* 'jiejie' string hash */</span>  
+    <span class="token keyword">int</span> c <span class="token operator">=</span> <span class="token operator">*</span>str<span class="token punctuation">;</span>
+    <span class="token keyword">int</span> tmp<span class="token punctuation">;</span>
+
+    <span class="token comment" spellcheck="true">//mculover666添加</span>
+    <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"str=[%s]\n"</span><span class="token punctuation">,</span> str<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    <span class="token keyword">while</span><span class="token punctuation">(</span><span class="token operator">*</span>str<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        tmp <span class="token operator">=</span> <span class="token function">_cmd_to_lower</span><span class="token punctuation">(</span>c<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        hash <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token punctuation">(</span>hash <span class="token operator">&lt;&lt;</span> <span class="token number">5</span><span class="token punctuation">)</span> <span class="token operator">+</span> <span class="token punctuation">(</span>hash <span class="token operator">^</span> tmp<span class="token punctuation">)</span> <span class="token operator">+</span> tmp<span class="token punctuation">)</span><span class="token punctuation">;</span> 
+        str<span class="token operator">++</span><span class="token punctuation">;</span>
+        c <span class="token operator">=</span> <span class="token operator">*</span>str<span class="token punctuation">;</span>
     <span class="token punctuation">}</span>
 
-    <span class="token comment" spellcheck="true">//设置PWM占空比</span>
-    <span class="token function">__HAL_TIM_SetCompare</span><span class="token punctuation">(</span><span class="token operator">&amp;</span>htim16<span class="token punctuation">,</span> TIM_CHANNEL_1<span class="token punctuation">,</span> <span class="token punctuation">(</span>uint16_t<span class="token punctuation">)</span>pluse<span class="token punctuation">)</span><span class="token punctuation">;</span>
-  <span class="token punctuation">}</span>
-  <span class="token comment" spellcheck="true">/* USER CODE END 3 */</span>
+    <span class="token comment" spellcheck="true">//mculover666添加</span>
+    <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"hashcode = %d\n"</span><span class="token punctuation">,</span> hash<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    <span class="token keyword">return</span> hash<span class="token punctuation">;</span>
 <span class="token punctuation">}</span></code></pre>
-<blockquote>
-<p>注意：STM32F1系列会报错找不到__HAL_TIM_SetCompare函数，解决方案啊：<a href="https://blog.csdn.net/Mculover666/article/details/104801386" target="_blank" rel="noopener">STM32CubeMX生成F1的工程中提示找不到 __HAL_TIM_SetCompare 问题的解决方案</a>。</p>
-</blockquote>
-<p>编译下载后可以看到舵机在0°-180°之间来回旋转：</p>
-<p><img src="http://mculover666.cn/blog/20191205/ImBhKMzpWqKa.gif" alt="舵机角度动态调整效果"></p>
-<p>至此，我们已经学会<strong>如何使用通用定时器产生PWM驱动舵机</strong>。</p>
-<p><strong><font color="#FF0000">更多精彩文章及资源，请关注我的微信公众号：『mculover666』。</font></strong></p>
-<p><img src="http://mculover666.cn/image/20190814/NQqt1eRxrl1K.png?imageslim" alt="公众号Mculover666"></p>
+<p>此函数输入一个字符串，输出一个整型hashcode，生成hashcode的算法非常多，各有优缺点，此处匹配时初始hash值为字符串”jiejie”的hashcode，所以暂且称之为“杰算法”，不用关心具体算法实现。</p>
+<p>在函数前后添加两行打印代码，编译，下载，在串口即可看到字符串生成的hashcode具体值：<br><img src="https://img-blog.csdnimg.cn/20200516111246564.png" alt=""></p>
+<p>emmmmm?使用杰算法生成的“ledon”和“ledof”的hash值竟然一样！</p>
+<p>不用慌，这个在hashcode生成的时候是非常常见的事情，对于hashcode相同的字符串，只能老老实实的进行暴力算法匹配，没有骚操作了，源码如下：</p>
+<pre class=" language-c"><code class="language-c"><span class="token keyword">static</span> <span class="token keyword">int</span> <span class="token function">_cmd_match</span><span class="token punctuation">(</span><span class="token keyword">const</span> <span class="token keyword">char</span> <span class="token operator">*</span>str<span class="token punctuation">,</span> <span class="token keyword">const</span> <span class="token keyword">char</span> <span class="token operator">*</span>cmd<span class="token punctuation">)</span>
+<span class="token punctuation">{</span>
+    <span class="token keyword">int</span> c1<span class="token punctuation">,</span> c2<span class="token punctuation">;</span>
+
+    <span class="token keyword">do</span> <span class="token punctuation">{</span>
+        c1 <span class="token operator">=</span> <span class="token function">_cmd_to_lower</span><span class="token punctuation">(</span><span class="token operator">*</span>str<span class="token operator">++</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        c2 <span class="token operator">=</span> <span class="token function">_cmd_to_lower</span><span class="token punctuation">(</span><span class="token operator">*</span>cmd<span class="token operator">++</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span> <span class="token keyword">while</span><span class="token punctuation">(</span><span class="token punctuation">(</span>c1 <span class="token operator">==</span> c2<span class="token punctuation">)</span> <span class="token operator">&amp;&amp;</span> c1<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    <span class="token keyword">return</span> c1 <span class="token operator">-</span> c2<span class="token punctuation">;</span>
+<span class="token punctuation">}</span></code></pre>
+<h2 id="4-2-命令解析"><a href="#4-2-命令解析" class="headerlink" title="4.2.  命令解析"></a>4.2.  命令解析</h2><p>源码在<code>cmd.c</code>中，先生成输入字符串的hashcode，如果两个字符串的hashcode相同，则进行逐个字符匹配，如下：</p>
+<pre class=" language-c"><code class="language-c"><span class="token keyword">void</span> <span class="token function">cmd_parsing</span><span class="token punctuation">(</span><span class="token keyword">char</span> <span class="token operator">*</span>str<span class="token punctuation">)</span>
+<span class="token punctuation">{</span>
+    cmd_t <span class="token operator">*</span>index<span class="token punctuation">;</span>
+    <span class="token keyword">unsigned</span> <span class="token keyword">int</span> hash <span class="token operator">=</span> <span class="token function">_cmd_hash</span><span class="token punctuation">(</span>str<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    <span class="token comment" spellcheck="true">//mculover666添加</span>
+    <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"recv str is [%s]\n"</span><span class="token punctuation">,</span> str<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"recv str hashcode = %d\n"</span><span class="token punctuation">,</span> hash<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    <span class="token keyword">for</span> <span class="token punctuation">(</span>index <span class="token operator">=</span> _cmd_begin<span class="token punctuation">;</span> index <span class="token operator">&lt;</span> _cmd_end<span class="token punctuation">;</span> index <span class="token operator">=</span> <span class="token function">_get_next_cmd</span><span class="token punctuation">(</span>index<span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span>hash <span class="token operator">==</span> index<span class="token operator">-></span>hash<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token function">_cmd_match</span><span class="token punctuation">(</span>str<span class="token punctuation">,</span> index<span class="token operator">-></span>cmd<span class="token punctuation">)</span> <span class="token operator">==</span> <span class="token number">0</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+                index<span class="token operator">-></span><span class="token function">handler</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+                <span class="token keyword">break</span><span class="token punctuation">;</span>
+            <span class="token punctuation">}</span>
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span></code></pre>
+<p>添加两行打印代码后，编译下载，在串口终端中查看结果：<br><img src="https://img-blog.csdnimg.cn/20200516111958204.png" alt=""></p>
+<p>以上就是关于使用RK算法超快匹配字符串的算法讲解，也是cmd-parser的设计灵魂所在，但是这种算法也有缺点：当hashcode冲突值较多时，就起不到优化作用了，和直接暴力匹配没有区别。</p>
+<p>比如本实验中“ledon”和”ledof”这两个模式串的匹配，使用暴力算法匹配和使用RK算法匹配就没有区别，所以在实际应用中，还要根据自己的协议情况，自行选择最优算法解决！</p>
+<h1 id="5-项目工程源码获取和问题交流"><a href="#5-项目工程源码获取和问题交流" class="headerlink" title="5. 项目工程源码获取和问题交流"></a>5. 项目工程源码获取和问题交流</h1><p>目前我将cmd-parser源码、我移植到小熊派STM32L431RCT6开发板的工程源码上传到了QQ群里（包含好几份HAL库，QQ相对速度快点），<strong>可以在QQ群里下载，有问题也可以在群里交流，当然也欢迎大家分享出来自己移植的工程到QQ群里</strong>：<br><img src="https://img-blog.csdnimg.cn/20200516103153959.png" alt=""></p>
+<p>放上QQ群二维码：<br><img src="https://img-blog.csdnimg.cn/20200321144543508.png" alt=""></p>
+<p><font color="red"><strong>接收更多精彩文章及资源推送，欢迎订阅我的微信公众号：『mculover666』。</strong></font><br><img src="https://img-blog.csdnimg.cn/20200202092055136.png" alt=""></p>
 
             </div>
             <hr/>
@@ -656,7 +598,7 @@
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="http://www.mculover666.cn/posts/933841213/">http://www.mculover666.cn/posts/933841213/</a>
+                    <a href="http://www.mculover666.cn/posts/987422422/">http://www.mculover666.cn/posts/987422422/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -694,8 +636,8 @@
                     
                         <div class="article-tag">
                             
-                                <a href="/tags/STM32CubeMX/">
-                                    <span class="chip bg-color">STM32CubeMX</span>
+                                <a href="/tags/%E5%B5%8C%E5%85%A5%E5%BC%8F%E5%BC%80%E6%BA%90%E9%A1%B9%E7%9B%AE%E7%B2%BE%E9%80%89%E4%B8%93%E6%A0%8F/">
+                                    <span class="chip bg-color">嵌入式开源项目精选专栏</span>
                                 </a>
                             
                         </div>
@@ -883,53 +825,48 @@
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
+                <i class="far fa-dot-circle"></i>&nbsp;本篇
+            </div>
             <div class="card">
-                <a href="/posts/390108705/">
+                <a href="/posts/987422422/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/8.jpg" class="responsive-img" alt="STM32CubeMX_25 | 使用硬件I2C驱动OLED(SSD1306)">
+                        <img src="/medias/featureimages/10.jpg" class="responsive-img" alt="cmd-parser | 一个基于哈希匹配的超快命令解析器">
                         
-                        <span class="card-title">STM32CubeMX_25 | 使用硬件I2C驱动OLED(SSD1306)</span>
+                        <span class="card-title">cmd-parser | 一个基于哈希匹配的超快命令解析器</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            本篇详细的记录了如何使用STM32CubeMX配置STM32L431RCT6的硬件I2C外设驱动0.96’OLED屏幕。
-
-
-1. 准备工作硬件准备
-开发板首先需要准备一个开发板，这里我准备的是STM32L4的开发板（BearPi）：
-
-
-
+                            嵌入式开源项目精选专栏
                         
                     </div>
                     <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2019-12-09
-                        </span>
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2020-05-18
+                            </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="/categories/STM32CubeMX/" class="post-category">
-                                    STM32CubeMX
+                            <a href="/categories/OpenSource/" class="post-category">
+                                    OpenSource
                                 </a>
                             
                             
                         </span>
                     </div>
                 </div>
+
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/STM32CubeMX/">
-                        <span class="chip bg-color">STM32CubeMX</span>
+                    <a href="/tags/%E5%B5%8C%E5%85%A5%E5%BC%8F%E5%BC%80%E6%BA%90%E9%A1%B9%E7%9B%AE%E7%B2%BE%E9%80%89%E4%B8%93%E6%A0%8F/">
+                        <span class="chip bg-color">嵌入式开源项目精选专栏</span>
                     </a>
                     
                 </div>
@@ -943,31 +880,31 @@
                 下一篇&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/posts/2291178417/">
+                <a href="/posts/876450753/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/23.jpg" class="responsive-img" alt="Win10沙盒开启方法">
+                        <img src="/medias/featureimages/2.jpg" class="responsive-img" alt="MultiTimer | 一款可无限扩展的软件定时器">
                         
-                        <span class="card-title">Win10沙盒开启方法</span>
+                        <span class="card-title">MultiTimer | 一款可无限扩展的软件定时器</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            拥有一个秒启动的Win10环境
+                            嵌入式开源项目精选专栏
                         
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2019-11-30
+                                <i class="far fa-clock fa-fw icon-date"></i>2020-05-05
                             </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="/categories/%E5%B7%A5%E5%85%B7%E6%8E%A8%E8%8D%90/" class="post-category">
-                                    工具推荐
+                            <a href="/categories/OpenSource/" class="post-category">
+                                    OpenSource
                                 </a>
                             
                             
@@ -977,8 +914,8 @@
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/%E5%B7%A5%E5%85%B7%E6%8E%A8%E8%8D%90/">
-                        <span class="chip bg-color">工具推荐</span>
+                    <a href="/tags/%E5%B5%8C%E5%85%A5%E5%BC%8F%E5%BC%80%E6%BA%90%E9%A1%B9%E7%9B%AE%E7%B2%BE%E9%80%89%E4%B8%93%E6%A0%8F/">
+                        <span class="chip bg-color">嵌入式开源项目精选专栏</span>
                     </a>
                     
                 </div>
