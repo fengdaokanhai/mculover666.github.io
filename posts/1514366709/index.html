@@ -4,7 +4,7 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="cmd-parser">
+    <meta name="keywords" content="jsmn">
     <meta name="description" content="嵌入式开源项目精选专栏">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -13,7 +13,7 @@
     <meta name="format-detection" content="telephone=no">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    <title>cmd-parser | 一个基于哈希匹配的超快命令解析器 | Mculover666</title>
+    <title>jsmn | 一个资源占用极小，解析速度最快的json解析器 | Mculover666</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
@@ -261,12 +261,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/10.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/20.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">cmd-parser | 一个基于哈希匹配的超快命令解析器</h1>
+                    <h1 class="description center-align post-title">jsmn | 一个资源占用极小，解析速度最快的json解析器</h1>
                 </div>
             </div>
         </div>
@@ -408,7 +408,7 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2020-05-18
+                    2020-05-25
                 </div>
                 
 
@@ -431,12 +431,19 @@
         <div class="card-content article-card-content">
             <div id="articleContent">
                 <p><img src="https://img-blog.csdnimg.cn/20200321151234798.png" alt=""></p>
-<h1 id="1-cmd-parser"><a href="#1-cmd-parser" class="headerlink" title="1. cmd-parser"></a>1. cmd-parser</h1><p>本期给大家带来的开源项目是 cmd-parser，<strong>一款非常轻量级的命令解析器</strong>，作者jiejie，目前收获 32 个 star，遵循 Apache-2.0 开源许可协议。</p>
-<p>cmd-parser一个非常简单好用的命令解析器，占用资源极少极少，采用哈希算法超快匹配命令！</p>
+<h1 id="1-jsmn"><a href="#1-jsmn" class="headerlink" title="1. jsmn"></a>1. jsmn</h1><p>本期给大家带来的开源项目是 jsmn，<strong>一个资源占用极小的json解析器，号称世界上最快</strong>，作者zserge，目前收获 2.1K 个 star，遵循 MIT 开源许可协议。</p>
+<p>jsmn主要有以下特性：</p>
+<ul>
+<li>没有任何库依赖关系；</li>
+<li>语法与C89兼容，代码可移植性高；</li>
+<li>没有任何动态内存分配</li>
+<li>极小的代码占用</li>
+<li>API只有两个，极其简洁</li>
+</ul>
 <blockquote>
-<p>项目地址：<a href="https://github.com/jiejieTop/cmd-parser" target="_blank" rel="noopener">https://github.com/jiejieTop/cmd-parser</a></p>
+<p>项目地址：<a href="https://github.com/zserge/jsmn" target="_blank" rel="noopener">https://github.com/zserge/jsmn</a></p>
 </blockquote>
-<h1 id="2-移植cmd-parser"><a href="#2-移植cmd-parser" class="headerlink" title="2. 移植cmd-parser"></a>2. 移植cmd-parser</h1><h2 id="2-1-移植思路"><a href="#2-1-移植思路" class="headerlink" title="2.1. 移植思路"></a>2.1. 移植思路</h2><p>开源项目在移植过程中主要参考项目的readme文档，一般只需两步：</p>
+<h1 id="2-移植jsmn"><a href="#2-移植jsmn" class="headerlink" title="2. 移植jsmn"></a>2. 移植jsmn</h1><h2 id="2-1-移植思路"><a href="#2-1-移植思路" class="headerlink" title="2.1. 移植思路"></a>2.1. 移植思路</h2><p>开源项目在移植过程中主要参考项目的readme文档，一般只需两步：</p>
 <ul>
 <li>① 添加源码到裸机工程中；</li>
 <li>② 实现需要的接口；</li>
@@ -444,7 +451,7 @@
 <h2 id="2-2-准备裸机工程"><a href="#2-2-准备裸机工程" class="headerlink" title="2.2. 准备裸机工程"></a>2.2. 准备裸机工程</h2><p>本文中我使用的是小熊派IoT开发套件，主控芯片为STM32L431RCT6：<br><img src="https://imgconvert.csdnimg.cn/aHR0cDovL21jdWxvdmVyNjY2LmNuL2Jsb2cvMjAxOTA5MTkvekh4NXhNWVVtU1cxLnBuZw?x-oss-process=image/format,png#pic_center" alt=""></p>
 <p>移植之前需要准备一份裸机工程，我使用STM32CubeMX生成，需要初始化以下配置：</p>
 <ul>
-<li>配置一个串口用于中断方式接收数据，发送数据；</li>
+<li>配置一个串口用于发送数据；</li>
 <li>printf重定向</li>
 </ul>
 <p>具体过程可以参考：</p>
@@ -452,125 +459,194 @@
 <li><a href="http://www.mculover666.cn/posts/1803605667/">STM32CubeMX_07 | 使用USART发送和接收数据（中断模式）</a></li>
 <li><a href="http://www.mculover666.cn/posts/2251182441/">STM32CubeMX_09 | 重定向printf函数到串口输出的多种方法</a></li>
 </ul>
-<h1 id="2-3-添加cmd-parser到工程中"><a href="#2-3-添加cmd-parser到工程中" class="headerlink" title="2.3. 添加cmd-parser到工程中"></a>2.3. 添加cmd-parser到工程中</h1><p>① 复制cmd-parser源码到工程中：<br><img src="https://img-blog.csdnimg.cn/20200513171828377.png" alt=""></p>
-<p>② 在keil中添加 cmd-parser 的源码文件：<br><img src="https://img-blog.csdnimg.cn/2020051317200363.png" alt=""></p>
-<p>③ 将 cmd-parser 头文件路径添加到keil中：<br><img src="https://img-blog.csdnimg.cn/20200513172042417.png" alt=""></p>
-<h1 id="3-使用cmd-parser解析命令"><a href="#3-使用cmd-parser解析命令" class="headerlink" title="3. 使用cmd-parser解析命令"></a>3. 使用cmd-parser解析命令</h1><p>使用时包含头文件：</p>
+<h1 id="2-3-添加jsmn到工程中"><a href="#2-3-添加jsmn到工程中" class="headerlink" title="2.3. 添加jsmn到工程中"></a>2.3. 添加jsmn到工程中</h1><p>① 复制jsmn源码到工程中：<br><img src="https://img-blog.csdnimg.cn/20200519112146427.png" alt=""></p>
+<p>② 将 jsmn.h 文件添加到keil中（<strong>没有实质作用，方便编辑</strong>）：<br><img src="https://img-blog.csdnimg.cn/20200522141838534.png" alt=""><br>③ 添加jsmn头文件路径：<br><img src="https://img-blog.csdnimg.cn/20200522141951848.png" alt=""></p>
+<h1 id="3-使用jsmn解析json数据"><a href="#3-使用jsmn解析json数据" class="headerlink" title="3. 使用jsmn解析json数据"></a>3. 使用jsmn解析json数据</h1><h2 id="3-1-准备工作"><a href="#3-1-准备工作" class="headerlink" title="3.1. 准备工作"></a>3.1. 准备工作</h2><p>① 包含jsmn头文件<br>使用时包含头文件，因为jsmn的函数定义也是在头文件中，所以第一次添加的时候，可以直接添加：</p>
 <pre class=" language-c"><code class="language-c"><span class="token comment" spellcheck="true">/* USER CODE BEGIN Includes */</span>
-<span class="token macro property">#<span class="token directive keyword">include</span> <span class="token string">"cmd.h"</span></span>
+<span class="token macro property">#<span class="token directive keyword">include</span> <span class="token string">"jsmn.h"</span></span>
 <span class="token macro property">#<span class="token directive keyword">include</span> <span class="token string">&lt;stdio.h></span>    </span><span class="token comment" spellcheck="true">//用于printf打印</span>
+<span class="token macro property">#<span class="token directive keyword">include</span> <span class="token string">&lt;string.h></span> </span><span class="token comment" spellcheck="true">//用于字符串处理</span>
 
 <span class="token comment" spellcheck="true">/* USER CODE END Includes */</span></code></pre>
-<h2 id="3-1-初始化cmd-parser"><a href="#3-1-初始化cmd-parser" class="headerlink" title="3.1. 初始化cmd-parser"></a>3.1. 初始化cmd-parser</h2><p>在main.c中添加初始化代码，首先开辟一块接收缓冲区：</p>
-<pre class=" language-c"><code class="language-c"><span class="token comment" spellcheck="true">/* USER CODE BEGIN PV */</span>
-<span class="token keyword">char</span> recv_buf<span class="token punctuation">[</span><span class="token number">6</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token punctuation">{</span><span class="token number">0</span><span class="token punctuation">}</span><span class="token punctuation">;</span>
-
-<span class="token comment" spellcheck="true">/* USER CODE END PV */</span></code></pre>
-<p>然后初始化cmd-parser，并使能串口接收中断：</p>
-<pre class=" language-c"><code class="language-c"><span class="token comment" spellcheck="true">/* USER CODE BEGIN 2 */</span>
-<span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"cmd parser testing...\r\n"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-<span class="token function">cmd_init</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-<span class="token function">HAL_UART_Receive_IT</span><span class="token punctuation">(</span><span class="token operator">&amp;</span>huart1<span class="token punctuation">,</span> <span class="token punctuation">(</span>uint8_t<span class="token operator">*</span><span class="token punctuation">)</span>recv_buf<span class="token punctuation">,</span> <span class="token number">5</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-<span class="token comment" spellcheck="true">/* USER CODE END 2 */</span></code></pre>
-<h2 id="3-2-注册命令"><a href="#3-2-注册命令" class="headerlink" title="3.2. 注册命令"></a>3.2. 注册命令</h2><p>在main.c的开始定义两个函数，作为命令回调函数，使用<code>REGISTER_CMD</code>注册：</p>
+<p>已经使用过之后，在别的文件中继续使用时，需要这样添加，且<strong>顺序不可互换</strong>：</p>
 <pre class=" language-c"><code class="language-c"><span class="token comment" spellcheck="true">/* USER CODE BEGIN 0 */</span>
-
-<span class="token keyword">void</span> <span class="token function">led_on_cmd</span><span class="token punctuation">(</span><span class="token keyword">void</span><span class="token punctuation">)</span>
-<span class="token punctuation">{</span>
-    <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"led on!\n"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-<span class="token punctuation">}</span>
-<span class="token keyword">void</span> <span class="token function">led_of_cmd</span><span class="token punctuation">(</span><span class="token keyword">void</span><span class="token punctuation">)</span>
-<span class="token punctuation">{</span>
-    <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"led off!\n"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-<span class="token punctuation">}</span>
-
-<span class="token function">REGISTER_CMD</span><span class="token punctuation">(</span>ledon<span class="token punctuation">,</span> led_on_cmd<span class="token punctuation">)</span><span class="token punctuation">;</span>
-<span class="token function">REGISTER_CMD</span><span class="token punctuation">(</span>ledof<span class="token punctuation">,</span> led_of_cmd<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token macro property">#<span class="token directive keyword">define</span> JSMN_HEADER</span>
+<span class="token macro property">#<span class="token directive keyword">include</span> <span class="token string">"jsmn.h"</span>    </span>
 
 <span class="token comment" spellcheck="true">/* USER CODE END 0 */</span></code></pre>
-<p>使用REGISTER_CMD宏定义的时候，需要注意，第二个参数是函数指针，第一个参数是命令内容，<strong>此处不需要双引号，cmd-parser会进行处理</strong>。</p>
-<h2 id="3-3-解析命令"><a href="#3-3-解析命令" class="headerlink" title="3.3. 解析命令"></a>3.3. 解析命令</h2><p>在main.c的末尾编写串口中断回调函数，在串口中断回调函数中从接收缓冲区解析命令：</p>
-<pre class=" language-c"><code class="language-c"><span class="token comment" spellcheck="true">/* USER CODE BEGIN 4 */</span>
-<span class="token comment" spellcheck="true">/* 中断回调函数 */</span>
-<span class="token keyword">void</span> <span class="token function">HAL_UART_RxCpltCallback</span><span class="token punctuation">(</span>UART_HandleTypeDef <span class="token operator">*</span>huart<span class="token punctuation">)</span>
-<span class="token punctuation">{</span>
-    <span class="token comment" spellcheck="true">/* 判断是哪个串口触发的中断 */</span>
-    <span class="token keyword">if</span><span class="token punctuation">(</span>huart <span class="token operator">-></span>Instance <span class="token operator">==</span> USART1<span class="token punctuation">)</span>
+<p>否则会造成函数重定义：<br><img src="https://img-blog.csdnimg.cn/2020052309101761.png" alt=""></p>
+<p>② 设置一段原始json数据<br>在main.c中设置原始的json数据，用于后续解析：</p>
+<pre class=" language-c"><code class="language-c"><span class="token comment" spellcheck="true">/* USER CODE BEGIN PV */</span>
+<span class="token keyword">static</span> <span class="token keyword">const</span> <span class="token keyword">char</span> <span class="token operator">*</span>JSON_STRING <span class="token operator">=</span>
+    <span class="token string">"{\"user\": \"johndoe\", \"admin\": false, \"uid\": 1000,\n"</span>
+    <span class="token string">"\"groups\": [\"users\", \"wheel\", \"audio\", \"video\"]}"</span><span class="token punctuation">;</span>
+<span class="token comment" spellcheck="true">/* USER CODE END PV */</span></code></pre>
+<p>③ 开辟一块存放token的数组（token池）<br>jsmn中，每个数据段解析出来之后是一个token，关于token的详细解释，请参考下文第4.1小节。</p>
+<pre class=" language-c"><code class="language-c"><span class="token comment" spellcheck="true">/* USER CODE BEGIN PV */</span>
+
+jsmntok_t t<span class="token punctuation">[</span><span class="token number">128</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+
+<span class="token comment" spellcheck="true">/* USER CODE END PV */</span></code></pre>
+<p>④ 编写在原始JSON数据中的字符串比较函数：</p>
+<pre class=" language-c"><code class="language-c"><span class="token keyword">static</span> <span class="token keyword">int</span> <span class="token function">jsoneq</span><span class="token punctuation">(</span><span class="token keyword">const</span> <span class="token keyword">char</span> <span class="token operator">*</span>json<span class="token punctuation">,</span> jsmntok_t <span class="token operator">*</span>tok<span class="token punctuation">,</span> <span class="token keyword">const</span> <span class="token keyword">char</span> <span class="token operator">*</span>s<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">if</span> <span class="token punctuation">(</span>tok<span class="token operator">-></span>type <span class="token operator">==</span> JSMN_STRING <span class="token operator">&amp;&amp;</span> <span class="token punctuation">(</span><span class="token keyword">int</span><span class="token punctuation">)</span><span class="token function">strlen</span><span class="token punctuation">(</span>s<span class="token punctuation">)</span> <span class="token operator">==</span> tok<span class="token operator">-></span>end <span class="token operator">-</span> tok<span class="token operator">-></span>start <span class="token operator">&amp;&amp;</span>
+      <span class="token function">strncmp</span><span class="token punctuation">(</span>json <span class="token operator">+</span> tok<span class="token operator">-></span>start<span class="token punctuation">,</span> s<span class="token punctuation">,</span> tok<span class="token operator">-></span>end <span class="token operator">-</span> tok<span class="token operator">-></span>start<span class="token punctuation">)</span> <span class="token operator">==</span> <span class="token number">0</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">return</span> <span class="token number">0</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+  <span class="token keyword">return</span> <span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span></code></pre>
+<h2 id="3-2-创建并初始化解析器"><a href="#3-2-创建并初始化解析器" class="headerlink" title="3.2. 创建并初始化解析器"></a>3.2. 创建并初始化解析器</h2><p>在main函数的开始创建解析器：</p>
+<pre class=" language-c"><code class="language-c"><span class="token comment" spellcheck="true">/* USER CODE BEGIN 1 */</span>
+    <span class="token keyword">int</span> r<span class="token punctuation">;</span>
+    <span class="token keyword">int</span> i<span class="token punctuation">;</span>
+
+    jsmn_parser p<span class="token punctuation">;</span><span class="token comment" spellcheck="true">//jsmn解析器</span>
+
+<span class="token comment" spellcheck="true">/* USER CODE END 1 */</span></code></pre>
+<p>在随后外设初始化完成之后的代码中初始化解析器：</p>
+<pre class=" language-c"><code class="language-c"><span class="token comment" spellcheck="true">/* USER CODE BEGIN 2 */</span>
+
+    <span class="token function">jsmn_init</span><span class="token punctuation">(</span><span class="token operator">&amp;</span>p<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token comment" spellcheck="true">/* USER CODE END 2 */</span></code></pre>
+<h2 id="3-3-解析数据，获取token"><a href="#3-3-解析数据，获取token" class="headerlink" title="3.3. 解析数据，获取token"></a>3.3. 解析数据，获取token</h2><pre class=" language-c"><code class="language-c">r <span class="token operator">=</span> <span class="token function">jsmn_parse</span><span class="token punctuation">(</span><span class="token operator">&amp;</span>p<span class="token punctuation">,</span> JSON_STRING<span class="token punctuation">,</span> <span class="token function">strlen</span><span class="token punctuation">(</span>JSON_STRING<span class="token punctuation">)</span><span class="token punctuation">,</span> t<span class="token punctuation">,</span><span class="token keyword">sizeof</span><span class="token punctuation">(</span>t<span class="token punctuation">)</span> <span class="token operator">/</span> <span class="token keyword">sizeof</span><span class="token punctuation">(</span>t<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+  <span class="token keyword">if</span> <span class="token punctuation">(</span>r <span class="token operator">&lt;</span> <span class="token number">0</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"Failed to parse JSON: %d\n"</span><span class="token punctuation">,</span> r<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">return</span> <span class="token number">1</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+
+  <span class="token comment" spellcheck="true">/* Assume the top-level element is an object */</span>
+  <span class="token keyword">if</span> <span class="token punctuation">(</span>r <span class="token operator">&lt;</span> <span class="token number">1</span> <span class="token operator">||</span> t<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">.</span>type <span class="token operator">!=</span> JSMN_OBJECT<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"Object expected\n"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">return</span> <span class="token number">1</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span></code></pre>
+<h2 id="3-4-逐个解析token"><a href="#3-4-逐个解析token" class="headerlink" title="3.4. 逐个解析token"></a>3.4. 逐个解析token</h2><pre class=" language-c"><code class="language-c"><span class="token comment" spellcheck="true">/* Loop over all keys of the root object */</span>
+ <span class="token keyword">for</span> <span class="token punctuation">(</span>i <span class="token operator">=</span> <span class="token number">1</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> r<span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span> 
+ <span class="token punctuation">{</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token function">jsoneq</span><span class="token punctuation">(</span>JSON_STRING<span class="token punctuation">,</span> <span class="token operator">&amp;</span>t<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">,</span> <span class="token string">"user"</span><span class="token punctuation">)</span> <span class="token operator">==</span> <span class="token number">0</span><span class="token punctuation">)</span>
     <span class="token punctuation">{</span>
-        <span class="token comment" spellcheck="true">//解析数据</span>
-        <span class="token function">cmd_parsing</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token keyword">char</span><span class="token operator">*</span><span class="token punctuation">)</span>recv_buf<span class="token punctuation">)</span><span class="token punctuation">;</span>
-
-        <span class="token comment" spellcheck="true">//重新使能串口接收中断</span>
-        <span class="token function">HAL_UART_Receive_IT</span><span class="token punctuation">(</span>huart<span class="token punctuation">,</span> <span class="token punctuation">(</span>uint8_t<span class="token operator">*</span><span class="token punctuation">)</span>recv_buf<span class="token punctuation">,</span> <span class="token number">5</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+          <span class="token comment" spellcheck="true">/* We may use strndup() to fetch string value */</span>
+          <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"- user: %.*s\n"</span><span class="token punctuation">,</span> t<span class="token punctuation">[</span>i <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">.</span>end <span class="token operator">-</span> t<span class="token punctuation">[</span>i <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">.</span>start<span class="token punctuation">,</span>
+             JSON_STRING <span class="token operator">+</span> t<span class="token punctuation">[</span>i <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">.</span>start<span class="token punctuation">)</span><span class="token punctuation">;</span>
+          i<span class="token operator">++</span><span class="token punctuation">;</span>
     <span class="token punctuation">}</span>
-<span class="token punctuation">}</span>
-<span class="token comment" spellcheck="true">/* USER CODE END 4 */</span></code></pre>
-<h2 id="3-4-解析结果"><a href="#3-4-解析结果" class="headerlink" title="3.4. 解析结果"></a>3.4. 解析结果</h2><p>编译、下载到开发板，使用串口助手进行测试：<br><img src="https://img-blog.csdnimg.cn/20200516103552164.png" alt=""></p>
-<h1 id="4-cmd-parser设计思想解读"><a href="#4-cmd-parser设计思想解读" class="headerlink" title="4. cmd-parser设计思想解读"></a>4. cmd-parser设计思想解读</h1><p>cmd-parser组件的意义在于优化了字符串匹配算法。</p>
-<p>在本文中的命令应用中，串口接收缓冲区的字符串是主字符串，而我们注册的命令是模式字符串，一般情况下，在主字符串中寻找模式字符串使用的是暴力算法，即直接从主字符串的第一个字符开始，双重循环判断字符是否匹配。</p>
-<p>这种暴力算法可以解决大多数问题，但在一些特殊情况下，比如模式字符串是<code>ledon</code>，而主字符串是<code>ledoledoledoledoledon</code>，如果依然使用暴力算法，则算法时间复杂度为O(mn)，m为主串长度，n为模式串长度，极其浪费时间。</p>
-<p>cmd-parser组件没有使用这种暴力匹配算法，而是直接匹配主字符串和模式字符串的哈希值（hashcode），将两个字符串的匹配<strong>转换为两个整数比较</strong>，非常高效，这种算法的发明人Rabin Karp，所以称之为RK算法。</p>
-<p>接下来逐步解析cmd-parser是如何使用RK算法高效匹配的。</p>
-<h2 id="4-1-生成模式串的hashcode"><a href="#4-1-生成模式串的hashcode" class="headerlink" title="4.1. 生成模式串的hashcode"></a>4.1. 生成模式串的hashcode</h2><p>此部分源码在<code>cmd.c</code>中，如下：</p>
-<pre class=" language-c"><code class="language-c"><span class="token keyword">static</span> <span class="token keyword">unsigned</span> <span class="token keyword">int</span> <span class="token function">_cmd_hash</span><span class="token punctuation">(</span><span class="token keyword">const</span> <span class="token keyword">char</span><span class="token operator">*</span> str<span class="token punctuation">)</span>
-<span class="token punctuation">{</span>
-    <span class="token keyword">unsigned</span> <span class="token keyword">int</span> hash <span class="token operator">=</span> CMD_HASH<span class="token punctuation">;</span>  <span class="token comment" spellcheck="true">/* 'jiejie' string hash */</span>  
-    <span class="token keyword">int</span> c <span class="token operator">=</span> <span class="token operator">*</span>str<span class="token punctuation">;</span>
-    <span class="token keyword">int</span> tmp<span class="token punctuation">;</span>
-
-    <span class="token comment" spellcheck="true">//mculover666添加</span>
-    <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"str=[%s]\n"</span><span class="token punctuation">,</span> str<span class="token punctuation">)</span><span class="token punctuation">;</span>
-
-    <span class="token keyword">while</span><span class="token punctuation">(</span><span class="token operator">*</span>str<span class="token punctuation">)</span> <span class="token punctuation">{</span>
-        tmp <span class="token operator">=</span> <span class="token function">_cmd_to_lower</span><span class="token punctuation">(</span>c<span class="token punctuation">)</span><span class="token punctuation">;</span>
-        hash <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token punctuation">(</span>hash <span class="token operator">&lt;&lt;</span> <span class="token number">5</span><span class="token punctuation">)</span> <span class="token operator">+</span> <span class="token punctuation">(</span>hash <span class="token operator">^</span> tmp<span class="token punctuation">)</span> <span class="token operator">+</span> tmp<span class="token punctuation">)</span><span class="token punctuation">;</span> 
-        str<span class="token operator">++</span><span class="token punctuation">;</span>
-        c <span class="token operator">=</span> <span class="token operator">*</span>str<span class="token punctuation">;</span>
+    <span class="token keyword">else</span> <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token function">jsoneq</span><span class="token punctuation">(</span>JSON_STRING<span class="token punctuation">,</span> <span class="token operator">&amp;</span>t<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">,</span> <span class="token string">"admin"</span><span class="token punctuation">)</span> <span class="token operator">==</span> <span class="token number">0</span><span class="token punctuation">)</span> 
+    <span class="token punctuation">{</span>
+          <span class="token comment" spellcheck="true">/* We may additionally check if the value is either "true" or "false" */</span>
+          <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"- Admin: %.*s\n"</span><span class="token punctuation">,</span> t<span class="token punctuation">[</span>i <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">.</span>end <span class="token operator">-</span> t<span class="token punctuation">[</span>i <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">.</span>start<span class="token punctuation">,</span>
+             JSON_STRING <span class="token operator">+</span> t<span class="token punctuation">[</span>i <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">.</span>start<span class="token punctuation">)</span><span class="token punctuation">;</span>
+          i<span class="token operator">++</span><span class="token punctuation">;</span>
     <span class="token punctuation">}</span>
-
-    <span class="token comment" spellcheck="true">//mculover666添加</span>
-    <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"hashcode = %d\n"</span><span class="token punctuation">,</span> hash<span class="token punctuation">)</span><span class="token punctuation">;</span>
-
-    <span class="token keyword">return</span> hash<span class="token punctuation">;</span>
-<span class="token punctuation">}</span></code></pre>
-<p>此函数输入一个字符串，输出一个整型hashcode，生成hashcode的算法非常多，各有优缺点，此处匹配时初始hash值为字符串”jiejie”的hashcode，所以暂且称之为“杰算法”，不用关心具体算法实现。</p>
-<p>在函数前后添加两行打印代码，编译，下载，在串口即可看到字符串生成的hashcode具体值：<br><img src="https://img-blog.csdnimg.cn/20200516111246564.png" alt=""></p>
-<p>emmmmm?使用杰算法生成的“ledon”和“ledof”的hash值竟然一样！</p>
-<p>不用慌，这个在hashcode生成的时候是非常常见的事情，对于hashcode相同的字符串，只能老老实实的进行暴力算法匹配，没有骚操作了，源码如下：</p>
-<pre class=" language-c"><code class="language-c"><span class="token keyword">static</span> <span class="token keyword">int</span> <span class="token function">_cmd_match</span><span class="token punctuation">(</span><span class="token keyword">const</span> <span class="token keyword">char</span> <span class="token operator">*</span>str<span class="token punctuation">,</span> <span class="token keyword">const</span> <span class="token keyword">char</span> <span class="token operator">*</span>cmd<span class="token punctuation">)</span>
-<span class="token punctuation">{</span>
-    <span class="token keyword">int</span> c1<span class="token punctuation">,</span> c2<span class="token punctuation">;</span>
-
-    <span class="token keyword">do</span> <span class="token punctuation">{</span>
-        c1 <span class="token operator">=</span> <span class="token function">_cmd_to_lower</span><span class="token punctuation">(</span><span class="token operator">*</span>str<span class="token operator">++</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-        c2 <span class="token operator">=</span> <span class="token function">_cmd_to_lower</span><span class="token punctuation">(</span><span class="token operator">*</span>cmd<span class="token operator">++</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token punctuation">}</span> <span class="token keyword">while</span><span class="token punctuation">(</span><span class="token punctuation">(</span>c1 <span class="token operator">==</span> c2<span class="token punctuation">)</span> <span class="token operator">&amp;&amp;</span> c1<span class="token punctuation">)</span><span class="token punctuation">;</span>
-
-    <span class="token keyword">return</span> c1 <span class="token operator">-</span> c2<span class="token punctuation">;</span>
-<span class="token punctuation">}</span></code></pre>
-<h2 id="4-2-命令解析"><a href="#4-2-命令解析" class="headerlink" title="4.2.  命令解析"></a>4.2.  命令解析</h2><p>源码在<code>cmd.c</code>中，先生成输入字符串的hashcode，如果两个字符串的hashcode相同，则进行逐个字符匹配，如下：</p>
-<pre class=" language-c"><code class="language-c"><span class="token keyword">void</span> <span class="token function">cmd_parsing</span><span class="token punctuation">(</span><span class="token keyword">char</span> <span class="token operator">*</span>str<span class="token punctuation">)</span>
-<span class="token punctuation">{</span>
-    cmd_t <span class="token operator">*</span>index<span class="token punctuation">;</span>
-    <span class="token keyword">unsigned</span> <span class="token keyword">int</span> hash <span class="token operator">=</span> <span class="token function">_cmd_hash</span><span class="token punctuation">(</span>str<span class="token punctuation">)</span><span class="token punctuation">;</span>
-
-    <span class="token comment" spellcheck="true">//mculover666添加</span>
-    <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"recv str is [%s]\n"</span><span class="token punctuation">,</span> str<span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"recv str hashcode = %d\n"</span><span class="token punctuation">,</span> hash<span class="token punctuation">)</span><span class="token punctuation">;</span>
-
-    <span class="token keyword">for</span> <span class="token punctuation">(</span>index <span class="token operator">=</span> _cmd_begin<span class="token punctuation">;</span> index <span class="token operator">&lt;</span> _cmd_end<span class="token punctuation">;</span> index <span class="token operator">=</span> <span class="token function">_get_next_cmd</span><span class="token punctuation">(</span>index<span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
-        <span class="token keyword">if</span> <span class="token punctuation">(</span>hash <span class="token operator">==</span> index<span class="token operator">-></span>hash<span class="token punctuation">)</span> <span class="token punctuation">{</span>
-            <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token function">_cmd_match</span><span class="token punctuation">(</span>str<span class="token punctuation">,</span> index<span class="token operator">-></span>cmd<span class="token punctuation">)</span> <span class="token operator">==</span> <span class="token number">0</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
-                index<span class="token operator">-></span><span class="token function">handler</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-                <span class="token keyword">break</span><span class="token punctuation">;</span>
-            <span class="token punctuation">}</span>
-        <span class="token punctuation">}</span>
+    <span class="token keyword">else</span> <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token function">jsoneq</span><span class="token punctuation">(</span>JSON_STRING<span class="token punctuation">,</span> <span class="token operator">&amp;</span>t<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">,</span> <span class="token string">"uid"</span><span class="token punctuation">)</span> <span class="token operator">==</span> <span class="token number">0</span><span class="token punctuation">)</span> 
+    <span class="token punctuation">{</span>
+          <span class="token comment" spellcheck="true">/* We may want to do strtol() here to get numeric value */</span>
+          <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"- UID: %.*s\n"</span><span class="token punctuation">,</span> t<span class="token punctuation">[</span>i <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">.</span>end <span class="token operator">-</span> t<span class="token punctuation">[</span>i <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">.</span>start<span class="token punctuation">,</span>
+             JSON_STRING <span class="token operator">+</span> t<span class="token punctuation">[</span>i <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">.</span>start<span class="token punctuation">)</span><span class="token punctuation">;</span>
+          i<span class="token operator">++</span><span class="token punctuation">;</span>
     <span class="token punctuation">}</span>
+    <span class="token keyword">else</span> <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token function">jsoneq</span><span class="token punctuation">(</span>JSON_STRING<span class="token punctuation">,</span> <span class="token operator">&amp;</span>t<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">,</span> <span class="token string">"groups"</span><span class="token punctuation">)</span> <span class="token operator">==</span> <span class="token number">0</span><span class="token punctuation">)</span> 
+    <span class="token punctuation">{</span>
+          <span class="token keyword">int</span> j<span class="token punctuation">;</span>
+          <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"- Groups:\n"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+          <span class="token keyword">if</span> <span class="token punctuation">(</span>t<span class="token punctuation">[</span>i <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">.</span>type <span class="token operator">!=</span> JSMN_ARRAY<span class="token punctuation">)</span> 
+          <span class="token punctuation">{</span>
+            <span class="token keyword">continue</span><span class="token punctuation">;</span> <span class="token comment" spellcheck="true">/* We expect groups to be an array of strings */</span>
+          <span class="token punctuation">}</span>
+          <span class="token keyword">for</span> <span class="token punctuation">(</span>j <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> j <span class="token operator">&lt;</span> t<span class="token punctuation">[</span>i <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">.</span>size<span class="token punctuation">;</span> j<span class="token operator">++</span><span class="token punctuation">)</span> 
+          <span class="token punctuation">{</span>
+            jsmntok_t <span class="token operator">*</span>g <span class="token operator">=</span> <span class="token operator">&amp;</span>t<span class="token punctuation">[</span>i <span class="token operator">+</span> j <span class="token operator">+</span> <span class="token number">2</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+            <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"  * %.*s\n"</span><span class="token punctuation">,</span> g<span class="token operator">-></span>end <span class="token operator">-</span> g<span class="token operator">-></span>start<span class="token punctuation">,</span> JSON_STRING <span class="token operator">+</span> g<span class="token operator">-></span>start<span class="token punctuation">)</span><span class="token punctuation">;</span>
+          <span class="token punctuation">}</span>
+          i <span class="token operator">+</span><span class="token operator">=</span> t<span class="token punctuation">[</span>i <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">.</span>size <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    <span class="token keyword">else</span>
+    <span class="token punctuation">{</span>
+          <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"Unexpected key: %.*s\n"</span><span class="token punctuation">,</span> t<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">.</span>end <span class="token operator">-</span> t<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">.</span>start<span class="token punctuation">,</span>
+             JSON_STRING <span class="token operator">+</span> t<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">.</span>start<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+  <span class="token punctuation">}</span></code></pre>
+<h2 id="3-5-解析结果"><a href="#3-5-解析结果" class="headerlink" title="3.5. 解析结果"></a>3.5. 解析结果</h2><p>编译、下载到开发板，使用串口助手进行测试：<br><img src="https://img-blog.csdnimg.cn/20200522155008406.png" alt=""></p>
+<h2 id="3-6-内存对比"><a href="#3-6-内存对比" class="headerlink" title="3.6. 内存对比"></a>3.6. 内存对比</h2><p><img src="https://img-blog.csdnimg.cn/20200522154854214.png" alt=""></p>
+<h1 id="4-jsmn设计思想解读"><a href="#4-jsmn设计思想解读" class="headerlink" title="4. jsmn设计思想解读"></a>4. jsmn设计思想解读</h1><h2 id="4-1-jsmn对json数据项的抽象"><a href="#4-1-jsmn对json数据项的抽象" class="headerlink" title="4.1. jsmn对json数据项的抽象"></a>4.1. jsmn对json数据项的抽象</h2><p>jsmn对json数据中的每一个数据段都会抽象为一个结构体，称之为token，此结构体非常简洁：</p>
+<pre class=" language-c"><code class="language-c"><span class="token comment" spellcheck="true">/**
+ * JSON token description.
+ * type        type (object, array, string etc.)
+ * start    start position in JSON data string
+ * end        end position in JSON data string
+ */</span>
+<span class="token keyword">typedef</span> <span class="token keyword">struct</span> jsmntok <span class="token punctuation">{</span>
+  jsmntype_t type<span class="token punctuation">;</span>
+  <span class="token keyword">int</span> start<span class="token punctuation">;</span>
+  <span class="token keyword">int</span> end<span class="token punctuation">;</span>
+  <span class="token keyword">int</span> size<span class="token punctuation">;</span>
+<span class="token macro property">#<span class="token directive keyword">ifdef</span> JSMN_PARENT_LINKS</span>
+  <span class="token keyword">int</span> parent<span class="token punctuation">;</span>
+<span class="token macro property">#<span class="token directive keyword">endif</span></span>
+<span class="token punctuation">}</span> jsmntok_t<span class="token punctuation">;</span></code></pre>
+<p>在本实验中未开启<code>JSMN_PARENT_LINKS</code>，所以此结构体占用<strong>16Byte大小</strong>。</p>
+<p>从结构体中的数据成员可以看出，<strong>jsmn并不保存任何具体的数据内容</strong>，仅仅记录：</p>
+<ul>
+<li>数据项的类型</li>
+<li>数据项数据段在原始json数据中的起始位置</li>
+<li>数据项数据段在原始json数据中的结束位置</li>
+</ul>
+<p>其中，数据项的类型支持4种：</p>
+<pre class=" language-c"><code class="language-c"><span class="token comment" spellcheck="true">/**
+ * JSON type identifier. Basic types are:
+ *     o Object
+ *     o Array
+ *     o String
+ *     o Other primitive: number, boolean (true/false) or null
+ */</span>
+<span class="token keyword">typedef</span> <span class="token keyword">enum</span> <span class="token punctuation">{</span>
+  JSMN_UNDEFINED <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">,</span>
+  JSMN_OBJECT <span class="token operator">=</span> <span class="token number">1</span><span class="token punctuation">,</span>
+  JSMN_ARRAY <span class="token operator">=</span> <span class="token number">2</span><span class="token punctuation">,</span>
+  JSMN_STRING <span class="token operator">=</span> <span class="token number">3</span><span class="token punctuation">,</span>
+  JSMN_PRIMITIVE <span class="token operator">=</span> <span class="token number">4</span>
+<span class="token punctuation">}</span> jsmntype_t<span class="token punctuation">;</span></code></pre>
+<h2 id="4-2-jsmn如何解析出每个token"><a href="#4-2-jsmn如何解析出每个token" class="headerlink" title="4.2. jsmn如何解析出每个token"></a>4.2. jsmn如何解析出每个token</h2><p>上述说到jsmn将每一个json数据段都抽象为一个token，那么jsmn是如何对整段json数据进行解析，得到每一个数据项的token呢？</p>
+<p>jsmn解析器也是非常简洁的一个结构体：</p>
+<pre class=" language-c"><code class="language-c"><span class="token comment" spellcheck="true">/**
+ * JSON parser. Contains an array of token blocks available. Also stores
+ * the string being parsed now and current position in that string.
+ */</span>
+<span class="token keyword">typedef</span> <span class="token keyword">struct</span> jsmn_parser <span class="token punctuation">{</span>
+  <span class="token keyword">unsigned</span> <span class="token keyword">int</span> pos<span class="token punctuation">;</span>     <span class="token comment" spellcheck="true">/* offset in the JSON string */</span>
+  <span class="token keyword">unsigned</span> <span class="token keyword">int</span> toknext<span class="token punctuation">;</span> <span class="token comment" spellcheck="true">/* next token to allocate */</span>
+  <span class="token keyword">int</span> toksuper<span class="token punctuation">;</span>         <span class="token comment" spellcheck="true">/* superior token node, e.g. parent object or array */</span>
+<span class="token punctuation">}</span> jsmn_parser<span class="token punctuation">;</span></code></pre>
+<p>jsmn解析就是<strong>将json数据逐个字符进行解析</strong>，用pos数据成员来记录解析器当前的位置，当寻找到特殊字符时，就去之前我们定义的token数组（t）中申请一个空的token成员，将该token在数组中的位置记录在数据成员toknext中。</p>
+<p>源码在下面的函数中，代码过多，暂且先不放：</p>
+<pre class=" language-c"><code class="language-c">JSMN_API <span class="token keyword">int</span> <span class="token function">jsmn_parse</span><span class="token punctuation">(</span>jsmn_parser <span class="token operator">*</span>parser<span class="token punctuation">,</span> <span class="token keyword">const</span> <span class="token keyword">char</span> <span class="token operator">*</span>js<span class="token punctuation">,</span> <span class="token keyword">const</span> size_t len<span class="token punctuation">,</span>
+                        jsmntok_t <span class="token operator">*</span>tokens<span class="token punctuation">,</span> <span class="token keyword">const</span> <span class="token keyword">unsigned</span> <span class="token keyword">int</span> num_tokens<span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
+<p>下面用一个实例来看看token是怎么分配的。</p>
+<p>缩短json原始数据：</p>
+<pre class=" language-c"><code class="language-c"><span class="token keyword">static</span> <span class="token keyword">const</span> <span class="token keyword">char</span> <span class="token operator">*</span>JSON_STRING <span class="token operator">=</span>
+    <span class="token string">"{\"name\":\"mculover666\",\"admin\":false,\"uid\":1000}"</span><span class="token punctuation">;</span></code></pre>
+<p>在解析之后将每个token打印出来：</p>
+<pre class=" language-c"><code class="language-c"><span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"[type][start][end][size]\n"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">for</span><span class="token punctuation">(</span>i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>i <span class="token operator">&lt;</span> r<span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span>
+<span class="token punctuation">{</span>
+    <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"[%4d][%5d][%3d][%4d]\n"</span><span class="token punctuation">,</span> t<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">.</span>type<span class="token punctuation">,</span> t<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">.</span>start<span class="token punctuation">,</span> t<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">.</span>end<span class="token punctuation">,</span> t<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">.</span>size<span class="token punctuation">)</span><span class="token punctuation">;</span>
 <span class="token punctuation">}</span></code></pre>
-<p>添加两行打印代码后，编译下载，在串口终端中查看结果：<br><img src="https://img-blog.csdnimg.cn/20200516111958204.png" alt=""></p>
-<p>以上就是关于使用RK算法超快匹配字符串的算法讲解，也是cmd-parser的设计灵魂所在，但是这种算法也有缺点：当hashcode冲突值较多时，就起不到优化作用了，和直接暴力匹配没有区别。</p>
-<p>比如本实验中“ledon”和”ledof”这两个模式串的匹配，使用暴力算法匹配和使用RK算法匹配就没有区别，所以在实际应用中，还要根据自己的协议情况，自行选择最优算法解决！</p>
-<h1 id="5-项目工程源码获取和问题交流"><a href="#5-项目工程源码获取和问题交流" class="headerlink" title="5. 项目工程源码获取和问题交流"></a>5. 项目工程源码获取和问题交流</h1><p>目前我将cmd-parser源码、我移植到小熊派STM32L431RCT6开发板的工程源码上传到了QQ群里（包含好几份HAL库，QQ相对速度快点），<strong>可以在QQ群里下载，有问题也可以在群里交流，当然也欢迎大家分享出来自己移植的工程到QQ群里</strong>：<br><img src="https://img-blog.csdnimg.cn/20200516103153959.png" alt=""></p>
+<p>结果如下：<br><img src="https://img-blog.csdnimg.cn/20200522154032155.png" alt=""><br>这段json数据解析出的token有7个：</p>
+<p>① Object类型的token：<code>{\&quot;name\&quot;:\&quot;mculover666\&quot;,\&quot;admin\&quot;:false,\&quot;uid\&quot;:1000}</code><br>② String类型的token：<code>&quot;name&quot;</code>、<code>&quot;mculover666&quot;</code>、<code>&quot;admin&quot;</code>、<code>&quot;uid&quot;</code><br>③ Primitive类型的token：数字<code>1000</code>，布尔值<code>false</code></p>
+<p><img src="https://img-blog.csdnimg.cn/20200522153959263.png" alt=""></p>
+<h2 id="4-3-用户如何从token中提取值"><a href="#4-3-用户如何从token中提取值" class="headerlink" title="4.3.  用户如何从token中提取值"></a>4.3.  用户如何从token中提取值</h2><p>在解析完毕获得这些token之后，需要根据token数量来判断是否解析成功：</p>
+<p>① 返回的token数量&lt;0：证明解析失败，返回值代表了错误类型：</p>
+<pre class=" language-c"><code class="language-c"><span class="token keyword">enum</span> jsmnerr <span class="token punctuation">{</span>
+  <span class="token comment" spellcheck="true">/* Not enough tokens were provided */</span>
+  JSMN_ERROR_NOMEM <span class="token operator">=</span> <span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">,</span>
+  <span class="token comment" spellcheck="true">/* Invalid character inside JSON string */</span>
+  JSMN_ERROR_INVAL <span class="token operator">=</span> <span class="token operator">-</span><span class="token number">2</span><span class="token punctuation">,</span>
+  <span class="token comment" spellcheck="true">/* The string is not a full JSON packet, more bytes expected */</span>
+  JSMN_ERROR_PART <span class="token operator">=</span> <span class="token operator">-</span><span class="token number">3</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span></code></pre>
+<p>② 判断第0个token是否是JSMN_OBJECT类型，如果不是，则证明解析错误。</p>
+<p>③ 如果token数量大于1，则从第1个token开始判断<strong>字符串是否与给定的键值对的名称相等</strong>，若相等，则提取下一个token的内容作为该键值对的值。</p>
+<h1 id="5-项目工程源码获取和问题交流"><a href="#5-项目工程源码获取和问题交流" class="headerlink" title="5. 项目工程源码获取和问题交流"></a>5. 项目工程源码获取和问题交流</h1><p>目前我将jsmn源码、我移植到小熊派STM32L431RCT6开发板的工程源码上传到了QQ群里（包含好几份HAL库，QQ相对速度快点），<strong>可以在QQ群里下载，有问题也可以在群里交流，当然也欢迎大家分享出来自己移植的工程到QQ群里</strong>：<br><img src="https://img-blog.csdnimg.cn/20200516103153959.png" alt=""></p>
 <p>放上QQ群二维码：<br><img src="https://img-blog.csdnimg.cn/20200321144543508.png" alt=""></p>
 <p><font color="red"><strong>接收更多精彩文章及资源推送，欢迎订阅我的微信公众号：『mculover666』。</strong></font><br><img src="https://img-blog.csdnimg.cn/20200202092055136.png" alt=""></p>
 
@@ -598,7 +674,7 @@
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="http://www.mculover666.cn/posts/987422422/">http://www.mculover666.cn/posts/987422422/</a>
+                    <a href="http://www.mculover666.cn/posts/1514366709/">http://www.mculover666.cn/posts/1514366709/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -825,9 +901,10 @@
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
+                <i class="far fa-dot-circle"></i>&nbsp;本篇
+            </div>
             <div class="card">
                 <a href="/posts/1514366709/">
                     <div class="card-image">
@@ -845,9 +922,9 @@
                         
                     </div>
                     <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2020-05-25
-                        </span>
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2020-05-25
+                            </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
@@ -860,6 +937,7 @@
                         </span>
                     </div>
                 </div>
+
                 
                 <div class="card-action article-tags">
                     
@@ -878,13 +956,13 @@
                 下一篇&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/posts/876450753/">
+                <a href="/posts/987422422/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/2.jpg" class="responsive-img" alt="MultiTimer | 一款可无限扩展的软件定时器">
+                        <img src="/medias/featureimages/10.jpg" class="responsive-img" alt="cmd-parser | 一个基于哈希匹配的超快命令解析器">
                         
-                        <span class="card-title">MultiTimer | 一款可无限扩展的软件定时器</span>
+                        <span class="card-title">cmd-parser | 一个基于哈希匹配的超快命令解析器</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -895,7 +973,7 @@
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2020-05-05
+                                <i class="far fa-clock fa-fw icon-date"></i>2020-05-18
                             </span>
                         <span class="publish-author">
                             
